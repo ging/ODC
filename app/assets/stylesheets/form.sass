@@ -22,3 +22,23 @@ form
 	.custom-checkbox .custom-control-input:checked~.custom-control-label::before
 	  background-color:black
 	
+.daterangepicker
+	border-radius: 0px
+	border: 2px solid black
+	font-family: Helvetica--Neue--55
+	&:before
+		top: -9px
+		border-right: 9px solid transparent
+		border-left: 9px solid transparent
+		border-bottom: 9px solid #000
+		&.opensleft
+			right: 7px
+	td
+		&.active.start-date, &.active.end-date
+			background-color: $orange_light
+			&:hover
+				background-color: $orange_light
+		&.in-range
+			background-color: rgba($orange_light, 0.2)
+		&.today.off.active
+			color: white

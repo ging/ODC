@@ -4,7 +4,16 @@
     	<iframe class="course-video" src="https://www.youtube.com/embed/jCf4UZ6HS6A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
     <div class="col-xs-12 col-md-3 course-info">
-		<br/>
+		<%if @user[:admin]%>
+			<a href="/course/<%=@course[:id]%>/edit" class="text-right d-block">
+				<button class="btn btn-dark orange" style="top:-10px;right:-10px;">
+					<i class="far fa-edit"></i>
+				</button>
+			</a>
+		<%else%>
+			<br/>
+		<%end%>
+		
 		<div class="course-characteristic">
 			<span class="course-field orange"><%= t("course.date")%>:</span> 
 			<span><%=@course[:from]%>-<%=@course[:to]%></span> 

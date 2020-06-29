@@ -4,7 +4,7 @@
 	<div class="col-12">
 		<div class="row search-row">
 			<div class="col-12 search-col">
-				<form action="/welcome/search" autocomplete="off">
+				<form action="/search" autocomplete="off">
 					<%print(params[:query])%>
 					<span class="input input--hoshi <%=params[:query] && !params[:query].strip.empty? ? "input--filled" : ""%>">
 						<input class="input__field input__field--hoshi" type="text" id="input-search" name="query"  autocomplete="off" value="<%=params[:query]%>"/>

@@ -24,7 +24,15 @@
     	<%end%>
     </div>
     <div class="col-xs-12 col-md-3 course-info">
-		<br/>
+		<%if @user[:admin]%>
+			<a href="/webinar/<%=@webinar[:id]%>/edit" class="text-right d-block">
+				<button class="btn btn-dark orange" style="top:-10px;right:-10px;">
+					<i class="far fa-edit"></i>
+				</button>
+			</a>
+		<%else%>
+			<br/>
+		<%end%>
 		<div class="course-characteristic">
 			<span class="course-field orange"><%= t("course.date")%>:</span> 
 			<span><%=@webinar[:date]%></span>

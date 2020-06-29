@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 		@isLoggedIn = true
 		@user = {
 			:name => "Sonsoles López Pernas",
+			:admin => true,
 			:img => "https://picsum.photos/120/120?random=2",
 			:tags => ["Etiqueta 1","Etiqueta 2","Etiqueta 3"],
 			:events => [

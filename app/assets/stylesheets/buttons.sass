@@ -44,7 +44,7 @@ button
 			color: $orange
 			background-color: transparent
 			border-color: $orange
-.btn-orange-light
+.btn-orange-light, .btn-primary
 	&:not(:disabled):not(.disabled)
 		color: white
 		background-color: $orange_light
@@ -53,6 +53,14 @@ button
 			color: $orange_light
 			background-color: transparent
 			border-color: $orange_light
+	&:disabled, &.disabled
+		color: white
+		background-color: rgba($orange_light, 0.5)
+		border: 2px solid rgba($orange_light, 0.5)
+		&.active, &:active, &:focus, &:hover
+			color: white
+			background-color: rgba($orange_light, 0.5)
+			border-color: rgba($orange_light, 0.5)
 .btn-more
 	float: right
 	color: black
