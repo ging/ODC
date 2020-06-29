@@ -1,0 +1,83 @@
+@import "colors"
+
+.calendar-container
+	text-align: center
+	font-size: larger
+	display: inline-block
+	#calendar
+		.ui-datepicker-inline
+			display: inline-block !important
+		.ui-widget
+			font-family: Helvetica--Neue--55
+		.ui-widget-header
+			background-color: white
+			border-color: white
+		.ui-datepicker-calendar thead
+			display: none
+		.ui-state-default
+			background-color: white
+			border-color: white
+			text-align: center
+			width: 34px
+			margin: auto
+			line-height: 1.4
+		.ui-widget.ui-widget-content
+			border-color: white
+		.ui-state-active
+			background-color: $orange_light !important
+			color: white
+			border-radius: 50%
+		.ui-datepicker-today
+			.ui-state-default:not(.ui-state-active)
+				color: $orange_light
+		.ui-datepicker-next-hover
+			right: 2px !important
+			top: 2px !important
+			cursor: pointer
+		.ui-datepicker-prev-hover
+			left: 2px !important
+			top: 2px !important
+			cursor: pointer
+		.ui-priority-secondary
+			color: $gris_oscuro
+			opacity: 0.5
+			&.ui-state-active
+				color: white
+		.ui-datepicker-prev, .ui-datepicker-next
+			background-color: black
+			color: white
+			border-radius: 0px
+			cursor: pointer
+			&.ui-state-hover
+				border: 1px solid black
+			span
+				background-image: none !important
+				&:before 
+					content: "\f104"
+					position: relative
+					visibility: visible
+					font-family: "Font Awesome 5 Free" !important 
+					-webkit-font-smoothing: antialiased;
+					display: inline-block;
+					font-style: normal;
+					font-variant: normal;
+					text-rendering: auto;
+					line-height: 1;
+				&.ui-icon
+					height: 16px
+					display: block
+					visibility: hidden
+					text-indent: 0
+					overflow: hidden
+					background-repeat: no-repeat
+					line-height: 14px
+					font-size: 19px
+		.ui-datepicker-next
+			span
+				background-image: none !important
+				&:before 
+					content: "\f105"
+		.turn-day-highlight
+			.ui-state-default
+				background-color: #DDD
+				border-radius: 50%

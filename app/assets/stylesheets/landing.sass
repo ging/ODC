@@ -1,0 +1,53 @@
+@import "colors"
+.landing-bckg
+		background-image: url("/img/landing_no_login.jpg")
+		background-size: cover
+		min-height: 300px
+		min-height: calc(50vh - 76px)
+		padding-top: 40%
+		background-position: center
+.info-block
+	background: rgba(0,0,0,0.95)
+	text-align: left
+	border-radius: 0
+	padding: 4rem
+	h1
+		color: $orange
+	.intro-paragraph
+		color: white
+	.intro-button-container
+		text-align: right
+.initial-info-login
+	padding: 0px
+	min-height: 0
+	height: auto
+	text-align: right
+	position: relative
+	.row
+		margin-left: 0
+		margin-right: 0
+	.info-block
+		h1
+			margin-bottom: 40px
+	.landing-bckg
+		padding-top: 0px
+		background-image: url("/img/landing_login.jpg")
+.initial-info-no-login
+	min-height: 600px
+	min-height: calc(100vh - 60px)
+	height: auto
+	text-align: right
+	position: relative
+	display: flex
+	flex-direction: row
+	align-items: center
+	justify-content: flex-end
+	.info-block
+		width: 500px
+		display: inline-block
+		max-width: 100%
+		position: relative
+		padding: 2rem
+	&.landing-bckg
+		padding-top: 0px
+

@@ -1,0 +1,44 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light2 <%=@searching ? "search" : ""%>">
+  <a class="navbar-brand" href="#">
+    <img class="navbar-logo" src="/img/LogoOrange.jpg" alt=""/> <span class="navbar-brand-title"> Orange + <span style="color: #ff4500;">RED</span> </span>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link text-center" href="/welcome/index"><%= t('navbar.who') %></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link text-center" href="/welcome/search"><%= t('navbar.courses') %><!-- <span class="sr-only">(current)</span> --></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link text-center" href="/welcome/search"><%= t('navbar.webinars') %></a>
+      </li>
+    </ul>
+    <% unless (@searching) %>
+      <form class="form-inline my-2 my-lg-0 search-bar d-none d-lg-inline" action="search">
+        <input class="form-control mr-sm-2 search-bar input input-search"  name="query" placeholder="" aria-label="<%= t('navbar.search') %>" type="dsearch" autocomplete="off">
+        <button class="btn my-2 my-sm-0 btn-link btn-search" type="submit"><img src="/img/search.svg" class="search-icon"/></button>
+      </form>
+    <% end %>
+    <div class=" my-2 my-lg-0 text-center user-name-container">
+      <%if @isLoggedIn%>
+        <a href="profile">
+          <img src="<%=@user[:img]%>" class="user-img"/>
+          <span class="user-name"><%=@user[:name]%></span>
+        </a>
+      <%else%>
+      <a href="profile">
+        <button class="btn btn-outline-dark">
+          <%= t('navbar.login') %>
+        </button>
+      </a>
+      <%end%>
+    </div>
+
+  </div>
+</nav>
+<div class="navbar-placeholder"></div>

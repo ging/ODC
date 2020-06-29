@@ -1,0 +1,5 @@
+<% if (@isLoggedIn) %>
+	<%= render partial: "partials/landing_login"  %>
+<% else %>
+	<%= render partial: "partials/landing_no_login"  %>
+<% end %>

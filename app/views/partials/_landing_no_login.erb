@@ -1,0 +1,19 @@
+<div class="jumbotron initial-info initial-info-no-login landing-bckg">
+  <div class="card info-block">
+    <div class="card-body">
+      <h1 class="card-title"><%=t('landing.welcome_new')%></h1>
+      <br/>
+      <p class="intro-paragraph"><%=t('landing.intro_new')%> </p>
+      <br/>
+      <div class="intro-button-container">
+        <button class="btn btn-outline-light btn-start"><%=t('landing.start')%></button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="highlight-background">
+  <%= render partial: "partials/course_list_4", :locals => {title: t('landing.popular_courses'), courses: @top_courses, button: t('landing.see_all'), button_link: "/", link: "/", mine: false }  %>
+</div>
+<div>
+  <%= render partial: "partials/course_list_4", :locals => {title: t('landing.popular_webinars'), courses: @top_webinars, button: t('landing.see_all'), button_link: "/", link: "/", mine: false  }  %>
+</div>

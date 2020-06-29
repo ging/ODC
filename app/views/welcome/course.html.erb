@@ -1,0 +1,95 @@
+<div class="container-fluid course-detail">
+  <div class="row">
+    <div class="col-xs-12 col-md-9">
+    	<iframe class="course-video" src="https://www.youtube.com/embed/jCf4UZ6HS6A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="col-xs-12 col-md-3 course-info">
+		<br/>
+		<div class="course-characteristic">
+			<span class="course-field orange"><%= t("course.date")%>:</span> 
+			<span><%=@course[:from]%>-<%=@course[:to]%></span> 
+		</div>
+		<div class="course-characteristic">
+			<span class="course-field orange"><%= t("course.duration")%>:</span> 
+			<span><%=@course[:duration]%></span>
+		</div>
+		<div class="course-characteristic">
+			<span class="course-field orange"><%= t("course.type")%>:</span> 
+			<span><%=@course[:type]%></span>
+		</div>
+		<div class="course-characteristic">
+			<span class="course-field orange"><%= t("course.lessons")%>:</span> 
+			<span><%=@course[:lessons]%></span>
+		</div>
+		<div class="course-characteristic">
+			<span class="course-field orange"><%= t("course.languages")%>:</span> 
+			<span><%=@course[:lang]%></span>
+		</div>
+		<div class="course-characteristic">
+			<span class="course-field orange"><%= t("course.tags")%>:</span> 
+			<span>
+				<% @course[:tags].each_with_index do |tag, index|%>
+					<span class="course-tag"><%=tag%></span><%if index != @course[:tags].length()-1%>, <%end%> 
+				<%end%>
+			</span>
+		</div>
+		<div class="course-characteristic">
+			<span class="course-field orange"><%= t("course.powered_by")%>:</span> 
+			<span><%=@course[:powered_by]%></span>
+		</div>
+		<%if (@course[:rating])%>
+			<div class="course-characteristic">
+				<span class="course-field orange" ><%= t("course.rating")%>:</span>
+				<span class="course-rating-container">
+    	   		<%= render partial: "partials/rating", :locals => {rating: @course[:rating]}  %>
+    	   		</span>
+    	   	</div>
+		<%end%>
+		
+		<br/><br/><br/><br/>
+		<button class="btn btn-orange btn-see" ><%=@course[:enrolled] ? t("course.continue") : t("course.enroll")%></button>
+		<br/>
+    </div>
+  </div>
+</div>
+<div class="container course-desc">
+	<div class="row">
+	    <div class="col-xs-12 col-lg-9">
+	    	<br/>
+	    	<br/>
+	    	<div>
+				<h2 class="orange"><%=@course[:name]%></h2>
+				<p><%=@course[:desc].html_safe%></p>
+			</div>
+			<div>
+				<h3 class="orange-light"><%= t("course.contents")%>
+					<button class="btn btn-outline-dark float-sm-right">
+					<%= t("course.download_guide")%>&nbsp;&nbsp;<i class="fas fa-download"></i>
+				</button>
+				</h3>
+				<ul class="content-list">
+					<% @course[:contents].each do |section|%>
+						<li class="content-section">
+							<span class="content-title"><%=section[:title]%></span>
+							<ul class="topic-list">
+								<% section[:topics].each do |topic|%>
+									<li class="topic"><span><%=topic%></span>
+								<%end%>
+							</ul>
+					<%end%>
+				</ul>
+				
+			</div>
+	    	<br/>
+	    	<br/>
+			<% @course[:teachers].each_with_index do |teacher, index| %>
+		   		<%= render partial: "partials/teacher_card", :locals => {index: index, teacher: teacher}  %>
+			<% end %>
+			<br>
+		</div>
+	</div>
+</div>
+<div class="soft-background">
+  <%= render partial: "partials/course_list_4", 
+        :locals => {title: t("course.related_courses"), courses: @related_courses, link: "/", mine: false }  %>
+</div>

@@ -1,0 +1,88 @@
+
+<div class="container-fluid">
+  <div class="row">
+	<div class="col-12">
+		<div class="row search-row">
+			<div class="col-12 search-col">
+				<form action="/welcome/search" autocomplete="off">
+					<%print(params[:query])%>
+					<span class="input input--hoshi <%=params[:query] && !params[:query].strip.empty? ? "input--filled" : ""%>">
+						<input class="input__field input__field--hoshi" type="text" id="input-search" name="query"  autocomplete="off" value="<%=params[:query]%>"/>
+						<button type="submit" class="btn btn-light search-icon">
+							<img src="/img/search.svg" class="search-icon"/>
+						</button>
+						<label class="input__label input__label--hoshi" for="input-search">
+							<span class="input__label-content input__label-content--hoshi">
+								<%=t("search.write")%>
+							</span>
+						</label>
+					</span>
+				</form>
+			</div>
+		</div>
+	</div>
+	</div>
+</div>
+<div class="soft-background">
+	<div class="col-12">
+		<div class="container ">
+			<div class="row courses-row">
+				<% @courses.each_with_index do |course, index| %>
+				  	<div class="col-xs-12 col-sm-6 col-lg-4 col-xl-3 col-course" style="position: relative;">
+						 <%= render partial: "partials/course_card", :locals => {index: index, course: course}  %>
+					</div>
+				<% end %>
+			</div> 
+			<nav aria-label="...">
+				<ul class="pagination justify-content-end">
+				  	<li class="page-item disabled">
+						<span class="page-link"><%=t("search.prev")%></span>
+					</li>
+					<li class="page-item active">
+						<a class="page-link" href="search/?query=<%=params[:query]%>&page=1">1</a>
+						<span class="sr-only">(current)</span>
+					</li>
+					<li class="page-item ">
+						<a class="page-link" href="search/?query=<%=params[:query]%>&page=2">2</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="search/?query=<%=params[:query]%>&page=2">3</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="search/?query=<%=params[:query]%>"><%=t("search.next")%></a>
+					</li>
+				</ul>
+			</nav>
+			</div>
+		</div>
+	</div>
+ 
+
+</div>
+<script>
+	(function() {
+		if (!String.prototype.trim) {
+			(function() {
+				var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+				String.prototype.trim = function() {
+					return this.replace(rtrim, '');
+				};
+			})();
+		}
+		[].slice.call( document.querySelectorAll( 'input.input__field' ) ).forEach( function( inputEl ) {
+			if( inputEl.value.trim() !== '' ) {
+				inputEl.classList.add('input--filled')
+			}
+			inputEl.addEventListener( 'focus', onInputFocus );
+			inputEl.addEventListener( 'blur', onInputBlur );
+		});
+		function onInputFocus( ev ) {
+			ev.target.parentNode.classList.add('input--filled')
+		}
+		function onInputBlur( ev ) {
+			if( ev.target.value.trim() === '' ) {
+				ev.target.parentNode.classList.remove('input--filled')
+			}
+		}
+	})();
+</script>
