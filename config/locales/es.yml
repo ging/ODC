@@ -26,6 +26,12 @@ es:
     prev: "Anterior"
     next: "Siguiente"
   course:
+    new: "Nuevo curso"
+    mooc: "MOOC"
+    spoc: "SPOC"
+    moc: "MOC"
+    desc: "Descripción"
+    url: "Enlace al curso"
     read_more: "Leer más"
     enroll: "Matricularse"
     enroll_webinar: "Apuntarme"
@@ -79,3 +85,6 @@ es:
       thu: "Jueves"
       fri: "Viernes"
       sat: "Sábado"
+  tags:
+      esafety: "Uso seguro de las TIC"
+      cybersecurity: "Ciberseguridad"

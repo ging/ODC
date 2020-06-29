@@ -57,6 +57,12 @@ en:
     prev: "Previous"
     next: "Next"
   course:
+    new: "New course"
+    mooc: "MOOC"
+    spoc: "SPOC"
+    moc: "MOC"
+    desc: "Description"
+    url: "Link to course"
     read_more: "Read more"
     enroll: "Enroll"
     enroll_webinar: "Enroll"
@@ -101,7 +107,7 @@ en:
       sep: "September"
       oct: "October"
       nov: "November"
-      dec: "Deceember"
+      dec: "December"
     days:
       sun: "Sunday"
       mon: "Monday"
@@ -110,3 +116,6 @@ en:
       thu: "Thursday"
       fri: "Friday"
       sat: "Saturday"
+  tags:
+    esafety: "E-safety"
+    cybersecurity: "Cybersecurity"

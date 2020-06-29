@@ -14,7 +14,8 @@ about supported directives.
 = require activestorage
 = require turbolinks
 = require_tree .
-= require ./main.js
+= require_self
+
 */
 
 console.log(2)

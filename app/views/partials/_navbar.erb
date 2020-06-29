@@ -9,29 +9,29 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link text-center" href="/welcome/index"><%= t('navbar.who') %></a>
+        <a class="nav-link text-center" href="/"><%= t('navbar.who') %></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link text-center" href="/welcome/search"><%= t('navbar.courses') %><!-- <span class="sr-only">(current)</span> --></a>
+        <a class="nav-link text-center" href="/search"><%= t('navbar.courses') %><!-- <span class="sr-only">(current)</span> --></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link text-center" href="/welcome/search"><%= t('navbar.webinars') %></a>
+        <a class="nav-link text-center" href="/search"><%= t('navbar.webinars') %></a>
       </li>
     </ul>
     <% unless (@searching) %>
-      <form class="form-inline my-2 my-lg-0 search-bar d-none d-lg-inline" action="search">
+      <form class="form-inline my-2 my-lg-0 search-bar d-none d-lg-inline" action="/search">
         <input class="form-control mr-sm-2 search-bar input input-search"  name="query" placeholder="" aria-label="<%= t('navbar.search') %>" type="dsearch" autocomplete="off">
         <button class="btn my-2 my-sm-0 btn-link btn-search" type="submit"><img src="/img/search.svg" class="search-icon"/></button>
       </form>
     <% end %>
     <div class=" my-2 my-lg-0 text-center user-name-container">
       <%if @isLoggedIn%>
-        <a href="profile">
+        <a href="/profile">
           <img src="<%=@user[:img]%>" class="user-img"/>
           <span class="user-name"><%=@user[:name]%></span>
         </a>
       <%else%>
-      <a href="profile">
+      <a href="/profile">
         <button class="btn btn-outline-dark">
           <%= t('navbar.login') %>
         </button>

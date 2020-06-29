@@ -19,18 +19,18 @@
 	  <br/>
 	  <br/>
 	  <%if (defined? mine and mine == true)%>
-		<a href="desmatricularse">
+		<a href="/desmatricularse">
 		  	<button class="btn btn-outline-dark btn-smaller">
 			  	<%= t("course.unenroll")%>
 			</button>
 		</a>
-		<a href="course">
+		<a href="/<%=(course[:webinar] ? "webinar":"course")%>/<%=course[:id]%>">
 			<button class="btn btn-orange-light btn-smaller">
 			  	<%= t("course.continue")%>
 			</button>
 		</a>
 	  <%else%>
-		<a href="<%=(course[:webinar] ? "webinar":"course")%>">
+		<a href="/<%=(course[:webinar] ? "webinar":"course")%>/<%=course[:id]%>">
 		  	<button class="btn btn-outline-dark">
 			  	<%= t("course.read_more")%>
 			</button>
