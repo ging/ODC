@@ -1,26 +1,26 @@
 <div class="container popular-list courses-3">
-  <div class="row">
-    <div class="col-xs-12 col-md-4 course-left-info">
-  		<h2><span><%=title%></span></h2>
-      <p><%=desc%></p>
-      <a href="<%=link%>">
-        <button class="btn btn-outline-dark"><%=button%></button>
-      </a>
-      <br/>
-      <br/>
-    </div>
-    <div class="col-xs-12 col-md-8">
-  		<div class="row">
-      		<% courses.each_with_index do |course, index| %>
-      	      <div class="col-xs-12 col-sm-6 col-lg-4 col-xl-4 col-course" style="position: relative;">
-                <%if index < 3%>
-      	   			   <%= render partial: "partials/course_card", :locals => {index: index, course: course}  %>
-                <% end %>
-      			</div>
-      		<% end %>
-  		</div>
-    </div>
-	</div>
-  </div>
+  	<div class="row">
+		<div class="col-xs-12 col-md-4 course-left-info">
+			<h2><span><%=title%></span></h2>
+	  		<p><%=desc%></p>
+	  		<a href="<%=link%>">
+				<button class="btn btn-outline-dark"><%=button%></button>
+		  	</a>
+	  		<br/>
+	  		<br/>
+		</div>
+		<div class="col-xs-12 col-md-8">
+			<div class="row">
+				<% courses.each_with_index do |course, index| %>
+			  		<div class="col-xs-12 col-sm-6 col-lg-4 col-xl-4 col-course" style="position: relative;">
+					<%if index < 3%>
+					   <%= render partial: "partials/course_card", :locals => {index: index, course: course}  %>
+					<% end %>
+					</div>
+				<% end %>
+				</div>
+			</div>
+		</div>
+ 	</div>
 </div>
 

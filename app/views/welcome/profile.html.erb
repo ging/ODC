@@ -4,20 +4,20 @@
 		<div class="col-12">
 			<div class="user-block">
 				<div class="d-flex flex-column flex-md-row align-items-center align-items-md-start">
-				  <div class="user-picture-container">
-				  	<img src="<%=@user[:img]%>">
-				  </div>
-				  <div class="user-info">
-				  	<h1 class="user-name"><%=@user[:name]%></h1>
-				  	<div class="d-flex justify-content-center justify-content-md-start user-tags">
-			  			<% @user[:tags].each do |tag| %>
+					<div class="user-picture-container">
+						<img src="<%=@user[:img]%>">
+					</div>
+					<div class="user-info">
+						<h1 class="user-name"><%=@user[:name]%></h1>
+						<div class="d-flex justify-content-center justify-content-md-start user-tags">
+							<% @user[:tags].each do |tag| %>
 							<span class="user-tag"><%=tag%></span>
-			  			<% end %>
-				  	</div>
-				  </div>
-				  <a href="/profile/edit" style="float:right;">
-				  	<button class="btn btn-outline-dark"><%=t("profile.edit")%></button>
-				  </a>
+							<% end %>
+						</div>
+					</div>
+					<a href="/profile/edit" style="float:right;">
+						<button class="btn btn-outline-dark"><%=t("profile.edit")%></button>
+					</a>
 				</div>
 				<br>
 			</div>
@@ -28,102 +28,36 @@
 			<br/>
 		</div>
 		<div class="col-xs-12 col-md-6 event-calendar-list">
-  			<% @user[:events].each do |event| %>
-  				<%= render partial: "partials/event_calendar", :locals => {event: event}%>
-  			<% end %>
-  			<div class="no-events hidden orange"><h4><%=t("profile.no_events")%></h4></div>
+			<% @user[:events].each do |event| %>
+			<%= render partial: "partials/event_calendar", :locals => {event: event}%>
+			<% end %>
+			<div class="no-events hidden orange"><h4><%=t("profile.no_events")%></h4></div>
 		</div>
 	</div>
 </div>
 <br/>
 <br/>
 <div class="soft-background">
-  <%= render partial: "partials/course_list_4", 
-        :locals => {title: t("profile.your_courses_and_webinars"), courses: @my_courses, link: "/", mine: true }  %>
+	<%= render partial: "partials/course_list_4", 
+	:locals => {title: t("profile.your_courses_and_webinars"), courses: @user[:courses], link: "/", mine: true }  %>
 </div>
 
 
 <script>
-	var selectedDates = [
-		<% @user[:events].each_with_index do |event, index| %>
-		new Date("<%= event[:date]%>") 
-			<%if (@user[:events].length() != index + 1) %>
-				,
-			<%end%>
-		<% end %>
-	].map(d=>{d.setHours(0,0,0,0); return d.getTime()}); 
+window.selectedDates = [
+  <% @user[:events].each_with_index do |event, index| %>
+  new Date("<%= event[:date]%>") 
+  <%if (@user[:events].length() != index + 1) %>
+  ,
+  <%end%>
+  <% end %>
+  ].map(d=>{
+  	d.setHours(0,0,0,0); 
+  	return d.getTime();
+});
 
-	$( function() {
-		var updateDate = (date) => {
-		    date.setHours(0,0,0,0)
-		    filterTurnos(getDashDate(date));
-		    if ($(".event-calendar:not(.hidden)").length){
-		    	$('.no-events').addClass("hidden");
-		    } else {
-		    	$('.no-events').removeClass("hidden");
-		    }
-		}
-		var dayArray = ["<%=t('calendar.days.sun')%>", "<%=t('calendar.days.mon')%>", "<%=t('calendar.days.tue')%>", "<%=t('calendar.days.wed')%>", "<%=t('calendar.days.thu')%>", "<%=t('calendar.days.fri')%>", "<%=t('calendar.days.sat')%>"];
-		var monthArray = ["<%=t('calendar.months.jan')%>", "<%=t('calendar.months.feb')%>", "<%=t('calendar.months.mar')%>", "<%=t('calendar.months.apr')%>", "<%=t('calendar.months.may')%>", "<%=t('calendar.months.jun')%>", "<%=t('calendar.months.jul')%>", "<%=t('calendar.months.aug')%>", "<%=t('calendar.months.sep')%>", "<%=t('calendar.months.oct')%>", "<%=t('calendar.months.nov')%>", "<%=t('calendar.months.dec')%>"];
-		$.datepicker.setDefaults({
-	        "firstDay": 1,
-	        "dayNamesMin": dayArray.map(a=>a.slice(0,1)),
-	        "monthNames": monthArray,
-	        "monthNamesShort": monthArray.map(a=>a.slice(0,3)),
-	        "dayNamesShort": dayArray.map(a=>a.slice(0,3)),
-	        "showOtherMonths": true,
-	        "selectOtherMonths": true,
-	        "dayNames": dayArray,
-	        "isRTL": false,
-	        "showMonthAfterYear": false,
-	        "yearSuffix": "",
-	        "dateFormat": "dd/mm/yy",
-	        "closeText": "Cerrar",
-	        "prevText": "",
-	        "nextText": "",
-	        "currentText": "Actual"
-	    });
-	    $.datepicker.setDefaults($.datepicker.regional.es);
-	    $("#calendar").datepicker({
-	        "onSelect" () {
-	            const date = $("#calendar").datepicker("getDate");
-	            updateDate(date);
-	        },
-	        "beforeShowDay" (date) {
-	            if ($.inArray(date.getTime(), window.selectedDates) !== -1) {
-	                return [
-	                    true,
-	                    "turn-day-highlight",
-	                    "Tienes eventos este día"
-	                ];
-	            }
-	            return [
-	                true,
-	                "",
-	                ""
-	            ];
-	        }
-	    });
-	    var getDashDate = function(currentDate) {
-	        return ("0"+(currentDate.getDate())).slice(-2) + "-" + ("0"+(currentDate.getMonth()+1)).slice(-2)  + "-" + currentDate.getFullYear();
-	    }
-	    var filterTurnos = (date) => {
-	        const events = $(".event-calendar");
-	        events.addClass("hidden");
-	        events.each((index, event) => {
-	            const $event = $(event);
-	            if ($event.data("date") === date) {
-	                $event.removeClass("hidden");
-	            }
-	        });
-	    };
-	    const date = $("#calendar").datepicker("getDate");
-	    updateDate(date);
-	    $(".ui-corner-all").mouseover(function() {
-	    		$(".ui-corner-all").removeClass("ui-state-hover");
-	    		$(".ui-corner-all").removeClass("ui-datepicker-next-hover");
-	    		$(".ui-corner-all").removeClass("ui-datepicker-prev-hover");
-	    });
+window.dayArray = ["<%=t('calendar.days.sun')%>", "<%=t('calendar.days.mon')%>", "<%=t('calendar.days.tue')%>", "<%=t('calendar.days.wed')%>", "<%=t('calendar.days.thu')%>", "<%=t('calendar.days.fri')%>", "<%=t('calendar.days.sat')%>"];
 
-	} );
+window.monthArray = ["<%=t('calendar.months.jan')%>", "<%=t('calendar.months.feb')%>", "<%=t('calendar.months.mar')%>", "<%=t('calendar.months.apr')%>", "<%=t('calendar.months.may')%>", "<%=t('calendar.months.jun')%>", "<%=t('calendar.months.jul')%>", "<%=t('calendar.months.aug')%>", "<%=t('calendar.months.sep')%>", "<%=t('calendar.months.oct')%>", "<%=t('calendar.months.nov')%>", "<%=t('calendar.months.dec')%>"];
+
 </script>

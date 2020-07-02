@@ -38,6 +38,9 @@ html
 			line-height: 19px	
 		a:hover
 			text-decoration: none !important
+		::selection
+			background-color: rgba($orange, 0.25)
+			color: black
 		.soft-background
 			background-color: $gris
 			padding-bottom: 15px
@@ -48,29 +51,6 @@ html
 			color: $orange
 		.orange-light
 			color: $orange_light
-		.pagination
-			margin-bottom: 0px
-			.page-item
-				.page-link
-					color: black
-					background-color: transparent
-					border: transparent
-					font-weight: bolder
-					border-radius: 0px
-					min-width: 36px
-					text-align: center
-					&:focus
-						box-shadow: 0 0 0 0.2rem rgba($orange_light,.25)
-				&.disabled 
-					.page-link
-						color: #bbb
-						background-color: transparent
-						border-color: transparent
-				&.active 
-					.page-link 
-						color: white
-						background-color: $orange_light
-						border-color: $orange_light
 		.popular-list
 			padding-top: 50px
 			padding-bottom: 50px
@@ -90,3 +70,6 @@ html
 				.course.card
 					font-size: 13px
 					line-height: 16px
+				h4
+					font-size: 20px
+					line-height: 23px

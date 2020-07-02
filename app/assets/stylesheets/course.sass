@@ -23,7 +23,6 @@
 			margin-bottom: -1pt
 		.btn-see
 			padding: 0.375rem 2.75rem
-
 .course-desc
 	h1
 		margin-bottom: 2rem
@@ -39,3 +38,32 @@
 			list-style-type: none
 			.topic
 				margin-top: 0.7em
+.content-list-edit
+	.content-block
+		position: relative
+		.form-control
+			font-family: Helvetica--Neue--75
+			padding-right: 55px
+		.lesson-topics
+			.form-control
+				font-family: Helvetica--Neue--55
+				padding-right: 34px
+		.delete-topic, .delete-lesson
+			left: auto !important
+			right: 10px
+			cursor: pointer
+	.add-topic
+		color: $orange_light
+		position: absolute
+		right: 34px
+		top: 9px
+		cursor: pointer
+		z-index: 999
+	&:empty
+		&:after
+			content: var(--no-lessons, "No hay ninguna lección añadida")
+			padding-top: 10px
+			padding-bottom: 10px
+			display: block
+
+

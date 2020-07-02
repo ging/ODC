@@ -1,6 +1,6 @@
 <div class="d-flex flex-lg-row flex-xs-column teacher-card">
   <div class="teacher-picture-container">
-  	<img src="<%=teacher[:photo]%>" alt="">
+  	<img src="<%=teacher[:photo_file_path]%>" alt="">
   </div>
   <div class="teacher-info">
   	<p class="teacher-name"><%=teacher[:name]%></p>
@@ -14,7 +14,7 @@
 		  		</a>
 		  	<%end%>
 		  	<%if !teacher[:facebook].nil?%>
-		  		<a href="https://facebook.com/<%=teacher[:facebook]%>">
+		  		<a href="https://www.facebook.com/<%=teacher[:facebook]%>">
 		  			<button class="btn btn-outline-dark btn-social">
 		  				<i class="fab fa-facebook-f"></i>
 		  			</button>
@@ -28,7 +28,7 @@
 		  		</a>
 		  	<%end%>
 		  	<%if !teacher[:twitter].nil?%>
-		  		<a href="/twitter/<%=teacher[:twitter]%>">
+		  		<a href="https://twitter.com/<%=teacher[:twitter]%>">
 		  			<button class="btn btn-outline-dark btn-social">
 		  				<i class="fab fa-twitter"></i>
 		  			</button>

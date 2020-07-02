@@ -1,90 +1,148 @@
-es:
-  navbar:
-    who: "¿Quienes somos?"
-    courses: "Cursos"
-    webinars: "Webinars"
-    search: "Buscar"
-    login: "Iniciar sesión"
-  landing:
-    welcome_new: "Bienvenido"
-    welcome_old: "Bienvenido de nuevo"
-    intro_new: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-    intro_old: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-    start: ¡Empieza a fomarte ahora!
-    your_courses: "Tus cursos y webinars"
-    popular_courses: "Cursos populares"
-    popular_courses_week: "Cursos populares esta semana"
-    popular_courses_intro: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    popular_courses_week_intro: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    popular_webinars: "Webinars populares"
-    popular_webinars_week: "Webinars populares esta semana"
-    popular_webinars_intro: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    popular_webinars_week_intro: "Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-    see_all: "Ver todos"
-  search:
-    write: "Escribe aquí tu búsqueda"
-    prev: "Anterior"
-    next: "Siguiente"
-  course:
-    new: "Nuevo curso"
-    mooc: "MOOC"
-    spoc: "SPOC"
-    moc: "MOC"
+--- 
+es: 
+  calendar: 
+    apply: Aplicar
+    cancel: Cancelar
+    custom: Personalizado
+    days: 
+      fri: Viernes
+      mon: Lunes
+      sat: Sábado
+      sun: Domingo
+      thu: Jueves
+      tue: Martes
+      wed: Miércoles
+    from: Desde
+    months: 
+      apr: Abril
+      aug: Agosto
+      dec: Diciembre
+      feb: Febrero
+      jan: Enero
+      jul: Julio
+      jun: Junio
+      mar: Marzo
+      may: Mayo
+      nov: Noviembre
+      oct: Octubre
+      sep: Septiembre
+    to: Hasta
+  course: 
+    add_new_lesson: "Añadir nueva lección"
+    add_new_teacher: "Añadir nuevo profesor"
+    add_new_topic: "Añadir nuevo apartado"
+    contents: Contenidos
+    continue: Continuar
+    course_formats: 
+      moc: "MOC (Massive Online Course)"
+      mooc: "MOOC (Massive Open Online Course)"
+      nooc: "NOOC (Nano Open Online Course)"
+      spoc: "SPOC (Small Private Online Course)"
+      spooc: "SPOOC (Self-Paced Private Online Course)"
+    create: "Crear"
+    date: "Fecha"
+    days: "días"
     desc: "Descripción"
-    url: "Enlace al curso"
-    read_more: "Leer más"
+    description_placeholder: "Descripción del curso"
+    download_guide: "Descargar guía didáctica"
+    duration: "Duración"
+    edit: "Editar curso"
     enroll: "Matricularse"
     enroll_webinar: "Apuntarme"
-    unenroll: "Desmatricularse"
-    continue: "Continuar"
+    guide: "Guía didáctica"
+    hours: "horas"
+    interested_users: "Usuarios interesados"
     join: "Únete"
-    see: "Ver"
-    date: "Fecha"
-    duration: "Duración"
-    type: "Tipo de curso"
-    lessons: "Lecciones"
     language: "Idioma"
     languages: "Idiomas"
-    tags: "Etiquetas"
+    languages_placeholder: "Idiomas en los que se imparte el curso separados por comas"
+    lesson: "Nombre de la lección"
+    lessons: "Lecciones"
+    lessons_placeholder: "Número de lecciones del curso y duración de las mismas"
+    live: "Live ahora en"
+    minutes: "minutos"
+    no_lessons: "No has añadido ninguna lección"
+    no_teacher: "No has añadido ningún profesor"
+    new: "Nuevo curso"
+    pictures: "Imágenes"
     powered_by: "Powered by"
+    powered_by_placeholder: "Organismo que ofrece el curso"
     rating: "Valoración"
-    contents: "Contenidos"
-    interested_users: "Usuarios interesados"
-    visits: "Visitas"
-    download_guide: "Descargar guía didáctica"
+    read_more: "Leer más"
     related_courses: "Cursos relacionados"
     related_webinars: "Webinars relacionados"
-    days: "días"
-    hours: "horas"
-    minutes: "minutos"
     seconds: "segundos"
-    live: "Live ahora en"
-  profile:
+    see: "Ver"
+    tags: "Etiquetas"
+    teachers: "Profesores"
+    teacher:
+      bio: "Breve biografía"
+      facebook: "Nombre público en Facebook"
+      instagram: "Nombre de usuario de Instagram"
+      linkedin: "Nombre público en Linkedin"
+      name: "Nombre del profesor"
+      position: "Puesto (ej. Profesor de la Universidad X)"
+      twitter: "Nombre de usuario de Twitter (sin @)"
+      upload: "Subir..."
+    title: "Título"
+    title_placeholder: "Título del curso"
+    topic: "Nombre del apartado"
+    type: "Tipo de curso"
+    unenroll: "Desmatricularse"
+    update: "Actualizar"
+    upload: "Elige un fichero"
+    url: "Enlace al curso"
+    url_placeholder: "Enlace oficial donde los alumnos se deben apuntar al curso"
+    video: "Vídeo"
+    video_placeholder: "Enlace al vídeo de introducción"
+    visits: "Visitas"
+  landing: 
+    intro_new: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    intro_old: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    popular_courses: "Cursos populares"
+    popular_courses_intro: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    popular_courses_week: "Cursos populares esta semana"
+    popular_courses_week_intro: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    popular_webinars: "Webinars populares"
+    popular_webinars_intro: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    popular_webinars_week: "Webinars populares esta semana"
+    popular_webinars_week_intro: "Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    see_all: "Ver todos"
+    start: "¡Empieza a fomarte ahora!"
+    welcome_new: Bienvenido
+    welcome_old: "Bienvenido de nuevo"
+    your_courses: "Tus cursos y webinars"
+  navbar: 
+    courses: "Cursos"
+    login: "Iniciar sesión"
+    new_course: "Nuevo curso"
+    new_webinar: "Nuevo webinar"
+    search: "Buscar"
+    webinars: "Webinars"
+    who: "¿Quienes somos?"
+  profile: 
     edit: "Editar perfil"
     no_events: "No tienes eventos programados para este día"
     your_courses_and_webinars: "Tus cursos y webinars"
-  calendar:
-    months:
-      jan: "Enero"
-      feb: "Febrero"
-      mar: "Marzo"
-      apr: "Abril"
-      may: "Mayo"
-      jun: "Junio"
-      jul: "Julio"
-      aug: "Agosto"
-      sep: "Septiembre"
-      oct: "Octubre"
-      nov: "Noviembre"
-      dec: "Diciembre"
-    days:
-      sun: "Domingo"
-      mon: "Lunes"
-      tue: "Martes"
-      wed: "Miércoles"
-      thu: "Jueves"
-      fri: "Viernes"
-      sat: "Sábado"
-  tags:
-      esafety: "Uso seguro de las TIC"
-      cybersecurity: "Ciberseguridad"
+  search: 
+    next: "Siguiente"
+    prev: "Anterior"
+    write: "Escribe aquí tu búsqueda"
+  tags: 
+    environment: "Medio ambiente"
+    esafety: "Uso seguro de las TIC"
+    inclusion: "Inclusión social digital"
+  user:
+    confirm_password: "Repetir contraseña"
+    edit: "Editar usuario"
+    email: "E-mail"
+    forgot: "He olvidado mi contraseña"
+    name: "Nombre de usuario"
+    new: "Registro"
+    password: "Contraseña"
+    register: "¡Regístrate!"
+    remember: "Recordarme"
+    update: "Actualizar"
+    signup: "¿Aún no tienes cuenta?¡Regístrate!"
+
+

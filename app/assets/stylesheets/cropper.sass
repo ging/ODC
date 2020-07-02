@@ -1,0 +1,32 @@
+@import "colors";
+
+canvas.canvas
+	width: 800px
+	height: 400px
+	display: none
+.image-container
+	display: inline-block
+	max-width: 100%
+	width: 800px
+	height: 400px
+	.picture
+		width: 100%
+.image-edit-actions
+	display: block
+	vertical-align: top
+	margin-bottom: 10px
+	flex: 1
+	input[type=file]
+		white-space: nowrap
+		overflow: hidden
+		text-overflow: ellipsis
+		width: 100%
+.cropper-view-box
+    outline: 2px solid $orange
+    outline-color: rgba($orange,.75)
+.cropper-line, .cropper-point
+	background-color: $orange
+.cropper-point:before
+	background-color: $orange !important
+.cropper-wrap-box
+	overflow: hidden

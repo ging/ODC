@@ -7,6 +7,8 @@ button
 	font-size: 15px
 	line-height: 19px
 	cursor: pointer
+	&.focus, &:focus
+		box-shadow: 0 0 0 0.2rem rgba($orange_light, 0.25)
 .btn-smaller
 	font-size: smaller
 .btn-dark
@@ -19,9 +21,10 @@ button
 			border-color: black
 			background-color: white
 .btn-outline-dark
-	&:not(:disabled):not(.disabled)
+	&:not(:disabled):not(.disabled), .dropdown-toggle
 		color: black
 		border: 2px solid black
+		background-color: white
 		&.active, &:active, &:focus, &:hover
 			color: white
 			background-color: black
@@ -35,6 +38,15 @@ button
 			color: black
 			background-color: white
 			border-color: white
+.btn-outline-orange
+	&:not(:disabled):not(.disabled)
+		color: $orange_light
+		background: transparent
+		border: 2px solid $orange_light
+		&.active, &:active, &:focus, &:hover
+			color: white
+			background-color: $orange_light
+			border-color: $orange_light
 .btn-orange
 	&:not(:disabled):not(.disabled)
 		color: white
@@ -64,3 +76,4 @@ button
 .btn-more
 	float: right
 	color: black
+	

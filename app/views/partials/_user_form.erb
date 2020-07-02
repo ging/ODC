@@ -1,0 +1,58 @@
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+			<br>
+			<h2><%=title%></h2>
+			<br/>
+			<br/>
+			<form multipart="true" action="<%=action%>" method="post" class="custom-form">
+				<%if (method == "put") %>
+					<input name="_method" type="hidden" value="put" />
+				<%end%>
+				<%= render partial: "partials/form_field", :locals => {
+						label: t('user.name'), 
+						type: "text", 
+						name:"name", 
+						id: "name", 
+						required: true,
+						placeholder: "", 
+						value: @user[:name] 
+					}  %>
+				<%= render partial: "partials/form_field", :locals => {
+						label: t('user.email'), 
+						type: "email", 
+						name:"email", 
+						id: "email", 
+						required: true,
+						placeholder: "", 
+						value: @user[:email] 
+					}  %>	
+				<%= render partial: "partials/form_field", :locals => {
+						label: t('user.password'), 
+						type: "password", 
+						name:"password", 
+						id: "password", 
+						required: false,
+						placeholder: "", 
+						value: "" 
+					}  %>
+				<%= render partial: "partials/form_field", :locals => {
+						label: t('user.confirm_password'), 
+						type: "password", 
+						name: "confirm_password", 
+						id: "confirm_password", 
+						required: false,
+						placeholder: "", 
+						value: "" 
+					}  %>	
+				<div class="form-group row">
+					<div class="col-sm-10">
+						<button type="submit" class="btn btn-orange">
+							<%=button_name%>
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

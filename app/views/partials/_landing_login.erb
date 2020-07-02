@@ -1,4 +1,4 @@
-  <div class="container-fluid initial-info initial-info-login">
+<div class="container-fluid initial-info initial-info-login">
   <div class="row">
     <div class="col-xs-12 col-sm-7 col-lg-8 landing-bckg">
     </div>
@@ -8,13 +8,11 @@
         <%= t('landing.intro_old') %>
       </p>
       <br/>
+      </div>
     </div>
-
   </div>
-</div>
-
 <div>
-  <%= render partial: "partials/course_list_4", :locals => {title: t("landing.your_courses"), courses: @my_courses,button: t('landing.see_all'), button_link: "/", link: "/", mine: true }  %>
+  <%= render partial: "partials/course_list_4", :locals => {title: t("landing.your_courses"), courses: @user[:courses],button: t('landing.see_all'), button_link: "/", link: "/", mine: true }  %>
 </div>
 <div class="highlight-background">
 	<%= render partial: "partials/course_list_3", :locals => {title: t('landing.popular_courses_week'), desc: t('landing.popular_courses_week_intro'), courses: @top_courses, button: t('landing.see_all'), button_link: "/", link: "/" }  %>

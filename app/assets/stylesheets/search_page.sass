@@ -17,10 +17,33 @@
 				border: none !important
 				outline: none !important
 				box-shadow: none !important
-			img
+			.search-icon-img
 				width: 40px
 				position: absolute
 				bottom: 0
 				right: 0
 .courses-row
 	padding-top: 50px
+.pagination
+	margin-bottom: 0px
+	.page-item
+		.page-link
+			color: black
+			background-color: transparent
+			border: transparent
+			font-weight: bolder
+			border-radius: 0px
+			min-width: 36px
+			text-align: center
+			&:focus
+				box-shadow: 0 0 0 0.2rem rgba($orange_light,.25)
+		&.disabled 
+			.page-link
+				color: #bbb
+				background-color: transparent
+				border-color: transparent
+		&.active 
+			.page-link 
+				color: white
+				background-color: $orange_light
+				border-color: $orange_light

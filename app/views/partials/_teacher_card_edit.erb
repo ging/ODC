@@ -1,0 +1,77 @@
+<div class="d-flex flex-lg-row flex-xs-column teacher-card">
+  <div class="teacher-picture-container">
+  	<img src="<%=teacher[:photo_file_path] || '/img/user_placeholder.png'%>" id="teacher-photo-<%=index%>" alt="">
+  	<!-- <input class="input-file" type="file" name="course[teachers][][photo_file_path]"  id="inputTeacher-<%=index%>-photo" class="form-control-file" accept="image/*"></input> -->
+  	  	<%=render partial: "partials/input_file_custom", :locals => { name: "", file_name: teacher[:photo_file_name], file_path: teacher[:photo_file_path] || '/img/user_placeholder.png', id:"inputTeacher-#{index}-photo", data_img_id: "teacher-photo-#{index}", width: 120, height: 120, accept: "image/*", label: t('course.teacher.upload'), data_name: "course[teachers][][photo]" } %>
+  	<button type="button" class="btn delete-teacher">
+  		<i class="far fa-trash-alt"></i>
+  	</button>
+  </div>
+  <div class="teacher-edit-block">
+	<%= render partial: "partials/form_field_icon", :locals => {
+			label: "", 
+			icon: "fas fa-user",
+			type: "text", 
+			name:"course[teachers][][name]", 
+			id: "inputTeacher-#{index}-name", 
+			placeholder: t("course.teacher.name"), 
+			value: teacher[:name] 
+		}  %>
+	<%= render partial: "partials/form_field_icon", :locals => {
+			label: "", 
+			icon: "fas fa-building",
+			type: "text", 
+			name:"course[teachers][][position]", 
+			id: "inputTeacher-#{index}-position", 
+			placeholder: t("course.teacher.position"), 
+			value: teacher[:position]
+		}  %>
+	<%= render partial: "partials/form_field_icon", :locals => {
+			label: "", 
+			icon: "fab fa-facebook-f",
+			type: "text", 
+			name:"course[teachers][][facebook]", 
+			id: "inputTeacher-#{index}-facebook", 
+			placeholder: t("course.teacher.facebook"), 
+			value: teacher[:facebook]
+		}  %>
+	<%= render partial: "partials/form_field_icon", :locals => {
+			label: "", 
+			icon: "fab fa-linkedin",
+			type: "text", 
+			name:"course[teachers][][linkedin]", 
+			id: "inputTeacher-#{index}-linkedin-in", 
+			placeholder: t("course.teacher.linkedin"), 
+			value: teacher[:linkedin]
+		}  %>
+	<%= render partial: "partials/form_field_icon", :locals => {
+			label: "", 
+			icon: "fab fa-twitter",
+			type: "text", 
+			name:"course[teachers][][twitter]", 
+			id: "inputTeacher-#{index}-twitter", 
+			placeholder: t("course.teacher.twitter"), 
+			value: teacher[:twitter]
+		}  %>
+	<%= render partial: "partials/form_field_icon", :locals => {
+			label: "", 
+			icon: "fab fa-instagram",
+			type: "text", 
+			name:"course[teachers][][instagram]", 
+			id: "inputTeacher-#{index}-instagram", 
+			placeholder: t("course.teacher.instagram"), 
+			value: teacher[:instagram]
+		}  %>
+	<%= render partial: "partials/form_field_icon", :locals => {
+			label: "", 
+			icon: "",
+			type: "textarea", 
+			name:"course[teachers][][bio]", 
+			id: "inputTeacher-#{index}-bio", 
+			placeholder: t("course.teacher.bio"), 
+			value: teacher[:bio]
+		}  %>
+	</div>
+	<hr class="orange"/>
+</div>
+
