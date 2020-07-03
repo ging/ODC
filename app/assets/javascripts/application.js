@@ -15,5 +15,6 @@ about supported directives.
 = require turbolinks
 = require_tree .
 = require main
+= require bootstrap-tagsinput.min
 */
 

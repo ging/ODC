@@ -40,7 +40,7 @@
     <div class=" my-2 my-lg-0 text-center user-name-container <%= @isLoggedIn ? "logged-in" : ""%>">
       <%if @isLoggedIn%>
         <a href="/profile">
-          <img src="<%=@user[:img]%>" class="user-img"/>
+          <img src="<%=@user[:photo_file_path]%>" class="user-img"/>
           <span class="user-name"><%=@user[:name]%></span>
         </a>
       <%else%>

@@ -4,7 +4,7 @@
 		<%if type == "textarea" %>
 			<textarea  class="form-control" autocomplete="off" name="<%=name%>" id="<%=id%>" placeholder="<%=placeholder %>" required="<%=required%>"rows="6" ><%=value%></textarea>
 		<%else%>
-			<input type="<%=type%>" name="<%=name%>" autocomplete="off" class="form-control" id="<%=id%>" placeholder="<%=placeholder %>" value="<%=value%>" required="<%=required%>">
+			<input type="<%=type%>" name="<%=name%>" <%=defined?(data_role) ? "data-role=#{data_role}": ''%> autocomplete="off" class="form-control" id="<%=id%>" placeholder="<%=placeholder %>" value="<%=value%>" <%=defined?(required) and required == true ? "required":""%>>
 		<%end%>
 	</div>
 </div>

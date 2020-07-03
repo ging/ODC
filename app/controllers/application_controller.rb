@@ -7,8 +7,9 @@ class ApplicationController < ActionController::Base
 			:name => "Sonsoles López Pernas",
 			:email => "sonsoles.lopez.pernas@upm.es",
 			:admin => true,
-			:img => "https://picsum.photos/120/120?random=2",
-			:tags => ["Etiqueta 1","Etiqueta 2","Etiqueta 3"],
+			:photo_file_name => "foto.png",
+			:photo_file_path => "https://picsum.photos/120/120?random=2",
+			:tags => "Etiqueta 1,Etiqueta 2,Etiqueta 3",
 			:events => [
 				{:title => "Webinar 1", :date =>  DateTime.yesterday, :duration => "2 h", :language => "Español"},
 				{:title => "Webinar 2", :date =>  DateTime.now, :duration => "3 h", :language => "Español"},

@@ -269,18 +269,15 @@ $(document).on('turbolinks:load', function() {
       var name = $input.data("name");
       var $image = $('#'+imgId);
       if (imgId && $image.length) {
-        console.log($image, name)
         var cropper = $image.data('cropper');
         if (cropper) {
           var canvas = $image.cropper('getCroppedCanvas')// cropper.getCroppedCanvas({width: Number(w || 120), height: Number( h || 120)});
           var canvasr = canvas.toDataURL();
           var photo = dataURItoBlob(canvasr);
-          $(form).append($(`<input type="hidden" name="${name}" value"${canvasr}"/>`))          
+          $(form).append($(`<input type="hidden" name="${name}" value="${canvasr}"/>`))          
         }
-
       }
     });
-
   });
 
   /*************************************** IMAGE CROPPER ****************************************/
@@ -322,7 +319,6 @@ $(document).on('turbolinks:load', function() {
         $('.countdown .minutes').html(pad(minutes,2));
         $('.countdown .seconds').html(pad(seconds,2));
       }
-
     }, 1000);
   }
 

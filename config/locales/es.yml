@@ -140,8 +140,10 @@ es:
     name: "Nombre de usuario"
     new: "Registro"
     password: "Contraseña"
+    picture: "Foto"
     register: "¡Regístrate!"
     remember: "Recordarme"
+    tags: "Etiquetas"
     update: "Actualizar"
     signup: "¿Aún no tienes cuenta?¡Regístrate!"
 

@@ -150,7 +150,7 @@
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label"><%=t('course.guide')%></label>
 					<div class="col-sm-10">
-						<%=render partial: "partials/input_file_custom", :locals => {name: "course[guide]", file_name: @course[:guide_file_name], file_path: @course[:guide_file_path], id:"guide", accept: "application/pdf"} %>
+						<%=render partial: "partials/input_file_custom", :locals => {name: "course[guide]", file_name: @course[:guide_file_name], label: t('course.upload'), file_path: @course[:guide_file_path], id:"guide", accept: "application/pdf"} %>
 					</div>
 				</div>
 				<div class="form-group row">
@@ -173,10 +173,10 @@
 						</div>
 						<div class="image-container">
 							<img id="edit-uploaded-picture" class="picture" src="<%= @course[:photo_file_path] || 'https://via.placeholder.com/800x400.png/ccc/fff?text=800x400'%>"/></div>
-						</div>
-						<canvas class="canvas"></canvas>
-
 					</div>
+					<canvas class="canvas"></canvas>
+
+				</div>
 					<div class="form-group row text-right">
 						<div class="col-sm-12">
 							<button type="submit" class="btn btn-orange">

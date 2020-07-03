@@ -5,12 +5,12 @@
 			<div class="user-block">
 				<div class="d-flex flex-column flex-md-row align-items-center align-items-md-start">
 					<div class="user-picture-container">
-						<img src="<%=@user[:img]%>">
+						<img src="<%=@user[:photo_file_path]%>">
 					</div>
 					<div class="user-info">
 						<h1 class="user-name"><%=@user[:name]%></h1>
 						<div class="d-flex justify-content-center justify-content-md-start user-tags">
-							<% @user[:tags].each do |tag| %>
+							<% @user[:tags].split(',').each do |tag| %>
 							<span class="user-tag"><%=tag%></span>
 							<% end %>
 						</div>

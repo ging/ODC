@@ -166,6 +166,8 @@ en:
     name: "Nombre de usuario"
     new: "Sign up"
     password: "Password"
+    picture: "Picture"
     remember: "Remember me"
+    tags: "Tags"
     update: "Update"
     signup: "You don't have an account yet? Sign up!"
