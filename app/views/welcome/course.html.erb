@@ -5,8 +5,8 @@
     </div>
     <div class="col-xs-12 col-md-3 course-info">
 		<%if @user[:admin]%>
-			<a href="/course/<%=@course[:id]%>/edit" class="text-right d-block">
-				<button class="btn btn-dark orange" style="top:-10px;right:-10px;">
+			<a href="/course/<%=@course[:id]%>/edit" class="text-right d-block link-edit-course">
+				<button class="btn btn-dark orange btn-edit-course">
 					<i class="far fa-edit"></i>
 				</button>
 			</a>

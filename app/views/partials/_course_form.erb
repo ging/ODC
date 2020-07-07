@@ -19,7 +19,7 @@
 						id: "name", 
 						required: true,
 						placeholder: t('course.title_placeholder'), 
-						value: @course[:name] 
+						value: course[:name] 
 					}  %>
 				<%= render partial: "partials/form_field", :locals => {
 						label: t('course.duration'), 
@@ -28,7 +28,7 @@
 						id: "duration", 
 						required: true,
 						placeholder: "", 
-						value: "#{@course[:from] || Time.now.strftime("%d/%m/%Y")}  -  #{@course[:to] || Time.now.strftime("%d/%m/%Y")}" 
+						value: "#{course[:from] || Time.now.strftime("%d/%m/%Y")}  -  #{course[:to] || Time.now.strftime("%d/%m/%Y")}" 
 					}  %>
 				<%= render partial: "partials/form_field", :locals => {
 						label: t('course.url'), 
@@ -37,7 +37,7 @@
 						id: "url", 
 						required: true,
 						placeholder: t('course.url_placeholder'), 
-						value: @course[:url] 
+						value: course[:url] 
 					}  %>
 				<%= render partial: "partials/form_field", :locals => {
 						label: t('course.video'), 
@@ -46,7 +46,7 @@
 						id: "video", 
 						required: true,
 						placeholder: t('course.video_placeholder'), 
-						value: @course[:video] 
+						value: course[:video] 
 					}  %>				
 				<%= render partial: "partials/form_field", :locals => {
 						label: t('course.lessons'), 
@@ -55,7 +55,7 @@
 						id: "lessons", 
 						required: true,
 						placeholder: t('course.lessons_placeholder'),  
-						value: @course[:lessons] 
+						value: course[:lessons] 
 					}  %>
 				<%= render partial: "partials/form_field", :locals => {
 						label: t('course.languages'), 
@@ -64,7 +64,7 @@
 						id: "lang", 
 						required: true,
 						placeholder: t('course.languages_placeholder'),  
-						value: @course[:lang] 
+						value: course[:lang] 
 					}  %>				
 				<%= render partial: "partials/form_field", :locals => {
 						label: t('course.powered_by'), 
@@ -73,7 +73,7 @@
 						id: "powered_by", 
 						required: false,
 						placeholder: t('course.powered_by_placeholder'),  
-						value: @course[:powered_by] 
+						value: course[:powered_by] 
 					}  %>
 
 				<div class="form-group">
@@ -82,7 +82,7 @@
 						<div class="col-sm-10">
 							<% t('course.course_formats').each do |name, format|%>
 								<div class="custom-control custom-radio ">
-									<input type="radio" id="<%=name%>" name="course[type]" class="custom-control-input" value="<%=name%>" <%=@course[:type].eql?(name.to_s) ? "checked":"" %>/>
+									<input type="radio" id="<%=name%>" name="course[type]" class="custom-control-input" value="<%=name%>" <%=course[:type].eql?(name.to_s) ? "checked":"" %>/>
 									<label class="custom-control-label" for="<%=name%>"><%=format%></label>
 								</div>
 							<%end%>
@@ -94,7 +94,7 @@
 					<div class="col-sm-10">
 						<% t('tags').each do |name, category|%>
 							<div class="custom-control form-check custom-checkbox">  
-								<input type="checkbox" class="custom-control-input" id="tag-<%=name%>" name="course[tags]" value="<%=name%>"  <%=(@course[:tags] || []).include?(name.to_s) ? "checked":"" %>>
+								<input type="checkbox" class="custom-control-input" id="tag-<%=name%>" name="course[tags]" value="<%=name%>"  <%=(course[:tags] || []).include?(name.to_s) ? "checked":"" %>>
 								<label class="custom-control-label" for="tag-<%=name%>"><%=category%></label>  
 							</div>  
 						<%end%>
@@ -107,13 +107,13 @@
 						id: "description", 
 						required: false,
 						placeholder: t('course.description_placeholder'), 
-						value: @course[:desc] 
+						value: course[:desc] 
 					}  %>
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label"><%=t('course.contents')%></label>
 					<div class="col-sm-10">
 						<style>:root{--no-lessons: "<%=t("course.no_lessons")%>";;}</style>
-						<div class="content-list-edit"><% (@course[:contents]||[]).each_with_index do |lesson, index|%>
+						<div class="content-list-edit"><% (course[:contents]||[]).each_with_index do |lesson, index|%>
 								<div class="content-block" data-content-id="<%=index%>">
 									<%= render partial: "partials/form_field_icon", :locals => {
 											label: "", 
@@ -150,14 +150,14 @@
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label"><%=t('course.guide')%></label>
 					<div class="col-sm-10">
-						<%=render partial: "partials/input_file_custom", :locals => {name: "course[guide]", file_name: @course[:guide_file_name], label: t('course.upload'), file_path: @course[:guide_file_path], id:"guide", accept: "application/pdf"} %>
+						<%=render partial: "partials/input_file_custom", :locals => {name: "course[guide]", file_name: course[:guide_file_name], label: t('course.upload'), file_path: course[:guide_file_path], id:"guide", accept: "application/pdf"} %>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label"><%=t('course.teachers')%></label>
 					<div class="col-sm-10">
 						<style>:root{--no-teacher: "<%=t("course.no_teacher")%>";}</style>
-						<div id="teacher-list"><% teachers = (@course[:teachers]||[])%><% teachers.each_with_index do |teacher, index|%><%=render partial: "partials/teacher_card_edit", :locals => { index: index, teacher: teacher} %><% end %></div>
+						<div id="teacher-list"><% teachers = (course[:teachers]||[])%><% teachers.each_with_index do |teacher, index|%><%=render partial: "partials/teacher_card_edit", :locals => { index: index, teacher: teacher} %><% end %></div>
 						<div class="text-left">
 							<button type="button" id="add-teacher" class="btn btn-outline-orange"><%=t('course.add_new_teacher')%></button>
 						</div>
@@ -168,13 +168,13 @@
 					<div class="col-sm-10">
 						<div class="image-edit-actions">
 							<!-- <input class="input-file" type="file" name="photo" class="form-control-file" accept="image/*"></input> -->
-							<%=render partial: "partials/input_file_custom", :locals => {name: "", file_name: @course[:photo_file_name], file_path: @course[:photo_file_path], id:"photo", label: t('course.upload'), data_name: "course[photo]",
+							<%=render partial: "partials/input_file_custom", :locals => {name: "", file_name: course[:photo_file_name], file_path: course[:photo_file_path], id:"photo", label: t('course.upload'), data_name: "course[photo]",
 							data_img_id: "edit-uploaded-picture", width: 800, height: 400, accept: "image/*"} %>
 						</div>
-						<div class="image-container">
-							<img id="edit-uploaded-picture" class="picture" src="<%= @course[:photo_file_path] || 'https://via.placeholder.com/800x400.png/ccc/fff?text=800x400'%>"/></div>
+						<div class="image-container" style="width: 800px;height: 400px;">
+							<img id="edit-uploaded-picture" class="picture" src="<%= course[:photo_file_path] || 'https://via.placeholder.com/800x400.png/ccc/fff?text=800x400'%>"/></div>
 					</div>
-					<canvas class="canvas"></canvas>
+					<canvas class="canvas" style="width: 800px;height: 400px;"></canvas>
 
 				</div>
 					<div class="form-group row text-right">

@@ -4,6 +4,9 @@
 		border-radius: 0 !important
 		color: black
 		border: 2px solid black
+		-webkit-box-shadow: 0 0 0 1000px white inset !important
+		font-size: 16px
+		line-height: 20px
 		&:-internal-autofill-selected
 			background-color: transparent !important
 		&:focus
@@ -19,11 +22,14 @@
 			&:-webkit-autofill:hover, 
 			&:-webkit-autofill:focus, 
 			&:-webkit-autofill:active 
-				-webkit-box-shadow: 0 0 0 30px white inset !important
+				-webkit-box-shadow: 0 0 0 1000px white inset !important
 				-webkit-text-fill-color: $orange_light !important
 				font-size: inherit !important
 			:-internal-autofill-previewed 
 			  font-size: inherit !important
+		&:-webkit-autofill::first-line
+			font-size: 16px !important
+			line-height: 20px !important
 	.col-form-label
 		font-family: Helvetica--Neue--75
 	.custom-control-input:checked~.custom-control-label::before 

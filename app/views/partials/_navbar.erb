@@ -49,24 +49,24 @@
            <%= t('navbar.login') %>
         </button>
         <div class="dropdown-menu dropdown-menu-right dropdown-login" aria-labelledby="loginDropdown">
-          <form class="custom-form px-4 py-4" action="/" method="post" onclick="event.stopPropagation()">
-            <div class="form-group">
+          <form class="custom-form px-4 py-4" action="/" id="loginForm" method="post" onclick="event.stopPropagation()">
+            <div class="form-group" >
               <label for="email"><%= t("user.email")%></label>
-              <input type="email" class="form-control" id="email" placeholder="">
+              <input type="email" class="form-control" id="email" placeholder="" required name="email">
             </div>
             <div class="form-group">
               <label for="password"><%= t("user.password")%></label>
-              <input type="password" class="form-control" id="password" placeholder="">
+              <input type="password" class="form-control" id="password" placeholder="" required name="password">
             </div>
             <div class="form-check custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="dropdownCheck">
+              <input type="checkbox" class="custom-control-input" id="dropdownCheck" name="remember">
               <label class="custom-control-label" for="dropdownCheck">
-                <%= t("user.remember")%>
+                <%= t("navbar.remember")%>
               </label>
             </div>
             <br>
-            <a class="dropdown-item px-0 text-underline" href="/"><%= t("user.forgot")%></a>
-            <a class="dropdown-item px-0" href="/"><%= t("user.signup")%></a>
+            <a class="dropdown-item px-0 text-underline" href="#" id="forgot"><%= t("navbar.forgot")%></a>
+            <a class="dropdown-item px-0" href="/register"><%= t("navbar.signup")%></a>
             
             <br>
             <div class="text-right">
@@ -74,6 +74,21 @@
             </div>
           </form>
 
+          <form class="custom-form px-4 py-4 hide" id="forgotForm" style="display:none;" onclick="event.stopPropagation()">
+            <div class="form-group" >
+              <label for="forgotEmail"><%= t("user.email")%></label>
+              <input type="email" class="form-control" id="forgotEmail" placeholder="" required name="email">
+            </div>
+            <div id="forgotMessages" style="width: 100%;"></div>
+            <br>
+            <a class="dropdown-item px-0" href="/register"><%= t("navbar.signup")%></a>
+            
+            <br>
+            <div class="text-right">
+              <button type="button" class="btn btn-dark" id="backToLogin"><%= t("navbar.reset_go_back")%></button>
+              <button type="submit" class="btn btn-outline-dark" id="forgotButton"><%= t("navbar.reset_password")%></button>
+            </div>
+          </form>
         </div>
       </div>
       <%end%>
@@ -81,4 +96,8 @@
 
   </div>
 </nav>
+<script>
+window.resetPasswordI18n = <%= (raw t('navbar.reset_codes').to_json)%>
+
+</script>
 <div class="navbar-placeholder"></div>

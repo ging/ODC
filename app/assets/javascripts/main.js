@@ -324,4 +324,56 @@ $(document).on('turbolinks:load', function() {
 
   /***************************************** COUNTDOWN ******************************************/
 
+
+
+
+  /******************************************* TAGS *********************************************/
+  
+$('input[data-role="tagsinput"]').tagsinput({
+    "cancelConfirmKeysOnEmpty": false
+});
+  /******************************************* TAGS *********************************************/
+  
+
+
+
+  /************************************* RESTORE PASSWORD ***************************************/
+  
+  $('#forgot').click(function(){
+    $("#loginForm").hide();
+    $("#forgotForm").show();
+  });
+
+  $('#backToLogin').click(function(event){
+    $('#forgotMessages').empty();
+    $('#forgotEmail').val("");
+    $("#forgotButton").prop("disabled", false);
+    $("#loginForm").show();
+    $("#forgotForm").hide();
+    $('#forgotMessages').width(0);
+
+
+  });
+  async function restorePassword() {
+    let res = await fetch("/forgot", {
+      "method": "POST", 
+      "body": JSON.stringify({"email": $('#forgotEmail').val()
+    })});
+    if (res.ok) {
+      let {msg} = await res.json();
+      if (msg === "OK")  $("#forgotButton").prop("disabled", true);
+      $('#forgotMessages').width($('#forgotEmail').width());
+      $('#forgotMessages').html(`<p class="message message_${msg}">${window.resetPasswordI18n[msg]}</p>`)
+    } else {
+      alert("Try again later");
+    }
+  }
+  $("#forgotForm").on("submit", function(){
+    restorePassword();
+    return false;
+  });
+
+
+  /************************************* RESTORE PASSWORD ***************************************/
+
 });

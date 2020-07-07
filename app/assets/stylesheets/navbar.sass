@@ -72,7 +72,6 @@
 		top: 0
 		left: 0
 		box-shadow: 0px 0px 10px #aaa
-
 		form
 			min-width: 450px
 			.form-control
@@ -81,9 +80,11 @@
 				border-bottom: 2px solid black
 				outline: none
 				box-shadow: none !important
+				-webkit-box-shadow: 0 0 0 1000px white inset !important
 				&:focus, &:active
 					border-bottom-color: $orange_light
 					color: $orange_light
+					-webkit-box-shadow: 0 0 0 1000px white inset !important
 			.form-check
 				padding-left: 24px
 			label
@@ -96,6 +97,19 @@
 					text-decoration: underline !important
 					color: $orange_light
 					outline: none
+			#forgotMessages
+				.message
+					white-space: pre-wrap
+					&.message_OK
+						color: $success
+						color: var(--success) 
+					&.message_EMAIL_NOT_FOUND
+						color: $warning
+						color: var(--warning) 
+					&.message_ERROR_SENDING_EMAIL, &.ERROR
+						color: $danger
+						color: var(--danger) 
+
 .navbar-placeholder
 	height: 76px
 @media (max-width: 992px)

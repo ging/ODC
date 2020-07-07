@@ -25,8 +25,8 @@
 		</div>
 		<div class="col-xs-12 col-md-3 course-info">
 			<%if @user[:admin]%>
-				<a href="/webinar/<%=@webinar[:id]%>/edit" class="text-right d-block">
-					<button class="btn btn-dark orange" style="top:-10px;right:-10px;">
+				<a href="/webinar/<%=@webinar[:id]%>/edit" class="text-right d-block link-edit-course">
+					<button class="btn btn-dark orange btn-edit-course">
 						<i class="far fa-edit"></i>
 					</button>
 				</a>
@@ -45,14 +45,16 @@
 				<span class="course-field orange"><%= t("course.languages")%>:</span> 
 				<span><%=@webinar[:lang]%></span>
 			</div>
-			<div class="course-characteristic">
-				<span class="course-field orange"><%= t("course.tags")%>:</span> 
-				<span>
-					<% @webinar[:tags].each_with_index do |tag, index|%>
-						<span class="course-tag"><%=tag%></span><%if index != @webinar[:tags].length()-1%>, <%end%> 
-					<%end%>
-				</span>
-			</div>
+			<% if defined?@webinar[:tags] %>
+				<div class="course-characteristic">
+					<span class="course-field orange"><%= t("course.tags")%>:</span> 
+					<span>
+						<% @webinar[:tags].each_with_index do |tag, index|%>
+							<span class="course-tag"><%=t("tags." + tag)%></span><%if index != @webinar[:tags].length()-1%>, <%end%> 
+						<%end%>
+					</span>
+				</div>
+			<% end %>
 			<div class="course-characteristic">
 				<span class="course-field orange"><%= t("course.powered_by")%>:</span> 
 				<span><%=@webinar[:powered_by]%></span>

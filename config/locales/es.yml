@@ -114,10 +114,20 @@ es:
     your_courses: "Tus cursos y webinars"
   navbar: 
     courses: "Cursos"
+    forgot: "He olvidado mi contraseña"
     login: "Iniciar sesión"
     new_course: "Nuevo curso"
     new_webinar: "Nuevo webinar"
+    reset_codes:
+      OK: "Te hemos enviado un e-mail con instrucciones para restaurar tu contraseña."
+      EMAIL_NOT_FOUND: "No existe ningún usuario con este correo."
+      ERROR_SENDING_EMAIL: "Ha ocurrido un error al enviar el correo. Inténtalo de nuevo más tarde."
+      ERROR: "Ha ocurrido un error. Inténtalo de nuevo más tarde."
+    remember: "Recordarme"
+    reset_password: "Restaurar mi contraseña"
+    reset_go_back: "Volver"
     search: "Buscar"
+    signup: "¿Aún no tienes cuenta?¡Regístrate!"
     webinars: "Webinars"
     who: "¿Quienes somos?"
   profile: 
@@ -136,15 +146,12 @@ es:
     confirm_password: "Repetir contraseña"
     edit: "Editar usuario"
     email: "E-mail"
-    forgot: "He olvidado mi contraseña"
     name: "Nombre de usuario"
     new: "Registro"
     password: "Contraseña"
     picture: "Foto"
     register: "¡Regístrate!"
-    remember: "Recordarme"
     tags: "Etiquetas"
     update: "Actualizar"
-    signup: "¿Aún no tienes cuenta?¡Regístrate!"
 
 

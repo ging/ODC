@@ -10,7 +10,7 @@ compiled file. JavaScript code in this file should be added after the last requi
 Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 about supported directives.
 
-= require rails-ujs
+# = require rails-ujs
 = require activestorage
 = require turbolinks
 = require_tree .
