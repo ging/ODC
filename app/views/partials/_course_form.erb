@@ -1,4 +1,4 @@
-
+<%tag = course[:webinar]? "webinar" : "course"%>
 <div class="container">
 	<div class="row">
 		<div class="col-12">
@@ -15,52 +15,66 @@
 				<%= render partial: "partials/form_field", :locals => {
 						label: t('course.title'), 
 						type: "text", 
-						name:"course[name]", 
+						name:"#{tag}[name]", 
 						id: "name", 
 						required: true,
 						placeholder: t('course.title_placeholder'), 
 						value: course[:name] 
 					}  %>
 				<%= render partial: "partials/form_field", :locals => {
-						label: t('course.duration'), 
+						label: course[:webinar] ? t('webinar.date') : t('course.date'), 
 						type: "text", 
-						name:"course[duration]", 
+						name: course[:webinar] ? "webinar[date]" : "course[date]", 
+						id: "date", 
+						required: true,
+						placeholder: course[:webinar] ?  t('webinar.date_placeholder') :  t('course.date_placeholder'), 
+						value: ((course[:from] and course[:to]) ? "#{course[:from]}  -  #{course[:to]}" : "") 
+					}  %>
+				<%unless course[:webinar]%>		
+				<%= render partial: "partials/form_field", :locals => {
+						label: t('course.duration'), 
+						type: "url", 
+						name:"#{tag}[duration]", 
 						id: "duration", 
 						required: true,
-						placeholder: "", 
-						value: "#{course[:from] || Time.now.strftime("%d/%m/%Y")}  -  #{course[:to] || Time.now.strftime("%d/%m/%Y")}" 
+						placeholder: t('course.duration_placeholder'), 
+						value: course[:duration] 
 					}  %>
+				<%end%>
 				<%= render partial: "partials/form_field", :locals => {
-						label: t('course.url'), 
+						label: t("#{tag}.url"), 
 						type: "url", 
-						name:"course[url]", 
+						name:"#{tag}[url]", 
 						id: "url", 
 						required: true,
 						placeholder: t('course.url_placeholder'), 
 						value: course[:url] 
 					}  %>
+				<%unless course[:webinar]%>		
 				<%= render partial: "partials/form_field", :locals => {
 						label: t('course.video'), 
 						type: "url", 
-						name:"course[video]", 
+						name:"#{tag}[video]", 
 						id: "video", 
 						required: true,
 						placeholder: t('course.video_placeholder'), 
 						value: course[:video] 
-					}  %>				
+					}  %>
+						
 				<%= render partial: "partials/form_field", :locals => {
 						label: t('course.lessons'), 
 						type: "text", 
-						name:"course[lessons]", 
+						name:"#{tag}[lessons]", 
 						id: "lessons", 
 						required: true,
 						placeholder: t('course.lessons_placeholder'),  
 						value: course[:lessons] 
 					}  %>
+				<%end%>
 				<%= render partial: "partials/form_field", :locals => {
 						label: t('course.languages'), 
 						type: "text", 
-						name:"course[lang]", 
+						name:"#{tag}[lang]", 
 						id: "lang", 
 						required: true,
 						placeholder: t('course.languages_placeholder'),  
@@ -69,32 +83,34 @@
 				<%= render partial: "partials/form_field", :locals => {
 						label: t('course.powered_by'), 
 						type: "text", 
-						name:"course[powered_by]", 
+						name:"#{tag}[powered_by]", 
 						id: "powered_by", 
 						required: false,
 						placeholder: t('course.powered_by_placeholder'),  
 						value: course[:powered_by] 
 					}  %>
 
+				<%unless course[:webinar]%>
 				<div class="form-group">
 					<div class="row">
 						<legend class="col-form-label col-sm-2 pt-0"><%=t('course.type')%></legend>
 						<div class="col-sm-10">
 							<% t('course.course_formats').each do |name, format|%>
 								<div class="custom-control custom-radio ">
-									<input type="radio" id="<%=name%>" name="course[type]" class="custom-control-input" value="<%=name%>" <%=course[:type].eql?(name.to_s) ? "checked":"" %>/>
+									<input type="radio" id="<%=name%>" name="#{tag}[type]" class="custom-control-input" value="<%=name%>" <%=course[:type].eql?(name.to_s) ? "checked":"" %>/>
 									<label class="custom-control-label" for="<%=name%>"><%=format%></label>
 								</div>
 							<%end%>
 						</div>
 					</div>
 				</div>
+				<%end%>
 				<div class="form-group row">
 					<legend class="col-form-label col-sm-2 pt-0"><%=t('course.tags')%></legend>
 					<div class="col-sm-10">
 						<% t('tags').each do |name, category|%>
 							<div class="custom-control form-check custom-checkbox">  
-								<input type="checkbox" class="custom-control-input" id="tag-<%=name%>" name="course[tags]" value="<%=name%>"  <%=(course[:tags] || []).include?(name.to_s) ? "checked":"" %>>
+								<input type="checkbox" class="custom-control-input" id="tag-<%=name%>" name="#{tag}[tags]" value="<%=name%>"  <%=(course[:tags] || []).include?(name.to_s) ? "checked":"" %>>
 								<label class="custom-control-label" for="tag-<%=name%>"><%=category%></label>  
 							</div>  
 						<%end%>
@@ -103,12 +119,13 @@
 				<%= render partial: "partials/form_field", :locals => {
 						label: t('course.desc'), 
 						type: "textarea", 
-						name:"course[description]", 
+						name:"#{tag}[description]", 
 						id: "description", 
 						required: false,
 						placeholder: t('course.description_placeholder'), 
 						value: course[:desc] 
 					}  %>
+				<%unless course[:webinar]%>
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label"><%=t('course.contents')%></label>
 					<div class="col-sm-10">
@@ -119,7 +136,7 @@
 											label: "", 
 											icon: "fas fa-book",
 											type: "text", 
-											name:"course[contents][][title]", 
+											name:"#{tag}[contents][][title]", 
 											id: "lesson-#{index}", 
 											placeholder: t("course.lesson"), 
 											value: lesson[:title],
@@ -132,7 +149,7 @@
 													label: "", 
 													icon: "far fa-bookmark",
 													type: "text", 
-													name:"course[contents][][topics][]", 
+													name:"#{tag}[contents][][topics][]", 
 													id: "topic-#{index}-#{index2}", 
 													placeholder: t("course.topic"), 
 													value: topic,
@@ -150,9 +167,10 @@
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label"><%=t('course.guide')%></label>
 					<div class="col-sm-10">
-						<%=render partial: "partials/input_file_custom", :locals => {name: "course[guide]", file_name: course[:guide_file_name], label: t('course.upload'), file_path: course[:guide_file_path], id:"guide", accept: "application/pdf"} %>
+						<%=render partial: "partials/input_file_custom", :locals => {name: "#{tag}[guide]", file_name: course[:guide_file_name], label: t('course.upload'), file_path: course[:guide_file_path], id:"guide", accept: "application/pdf"} %>
 					</div>
 				</div>
+				<%end%>
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label"><%=t('course.teachers')%></label>
 					<div class="col-sm-10">

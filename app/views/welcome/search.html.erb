@@ -5,7 +5,6 @@
 		<div class="row search-row">
 			<div class="col-12 search-col">
 				<form class="custom-form" action="/search" autocomplete="off">
-					<%print(params[:query])%>
 					<span class="input input--hoshi <%=params[:query] && !params[:query].strip.empty? ? "input--filled" : ""%>">
 						<input class="input__field input__field--hoshi" type="text" id="input-search" name="query"  autocomplete="off" value="<%=params[:query]%>"/>
 						<button type="submit" class="btn btn-light search-icon">
@@ -39,17 +38,17 @@
 						<span class="page-link"><%=t("search.prev")%></span>
 					</li>
 					<li class="page-item active">
-						<a class="page-link" href="/search?query=<%=params[:query]%>&page=1">1</a>
+						<a class="page-link" href="?query=<%=params[:query]%>&page=1">1</a>
 						<span class="sr-only">(current)</span>
 					</li>
 					<li class="page-item ">
-						<a class="page-link" href="/search?query=<%=params[:query]%>&page=2">2</a>
+						<a class="page-link" href="?query=<%=params[:query]%>&page=2">2</a>
 					</li>
 					<li class="page-item">
-						<a class="page-link" href="/search?query=<%=params[:query]%>&page=2">3</a>
+						<a class="page-link" href="?query=<%=params[:query]%>&page=3">3</a>
 					</li>
 					<li class="page-item">
-						<a class="page-link" href="/search?query=<%=params[:query]%>"><%=t("search.next")%></a>
+						<a class="page-link" href="?query=<%=params[:query]%>&page=3"><%=t("search.next")%></a>
 					</li>
 				</ul>
 			</nav>

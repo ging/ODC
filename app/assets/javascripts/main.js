@@ -115,8 +115,9 @@ $(document).on('turbolinks:load', function() {
     $(".ui-corner-all").removeClass("ui-datepicker-prev-hover");
   });
 
-  $('input[name="duration"]').daterangepicker({
+  $('input[name="course[date]"]').daterangepicker({
     "opens": "left",
+    "autoUpdateInput": false,
     "locale": {
       "format": "DD/MM/YYYY",
       "separator": " - ",
@@ -132,6 +133,39 @@ $(document).on('turbolinks:load', function() {
     }
   }, function(start, end, label) {});
 
+  $('input[name="webinar[date]"]').daterangepicker({
+    "opens": "left",
+    "autoUpdateInput": false,
+    "timePicker": true,
+    "timePicker24Hour": true,
+    "locale": {
+      "format": "DD/MM/YYYY hh:mm",
+      "separator": " - ",
+      "applyLabel": calendarI18n.apply,
+      "cancelLabel": calendarI18n.cancel,
+      "fromLabel": calendarI18n.from,
+      "toLabel": calendarI18n.to,
+      "customRangeLabel": calendarI18n.custom,
+      "weekLabel": "W",
+      "daysOfWeek": dayArray.map(a=>a.slice(0,1)),
+      "monthNames": monthArray,
+      "firstDay": 1
+    }
+  }, function(start, end, label) {});
+
+
+  $('input[name="course[date]"]').on('apply.daterangepicker', function(ev, picker) {
+      $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+  });
+
+
+  $('input[name="webinar[date]"]').on('apply.daterangepicker', function(ev, picker) {
+      $(this).val(picker.startDate.format('MM/DD/YYYY hh:mm') + ' - ' + picker.endDate.format('MM/DD/YYYY hh:mm'));
+  });
+
+  $('input[name="webinar[date]"],input[name="course[date]"]').on('cancel.daterangepicker', function(ev, picker) {
+      $(this).val('');
+  });
   /**************************************** DATE-PICKER *****************************************/
 
 

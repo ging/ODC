@@ -12,20 +12,20 @@
       <li class="nav-item <%=active  == "/" ? "active" : ""%>">
         <a class="nav-link text-center" href="/"><%= t('navbar.who') %></a>
       </li>
-      <li class="nav-item <%=active  == "/search2" ? "active" : ""%>">
-        <a class="nav-link text-center" href="/search"><%= t('navbar.courses') %><!-- <span class="sr-only">(current)</span> --></a>
+      <li class="nav-item <%=active  == "/courses/search" ? "active" : ""%>">
+        <a class="nav-link text-center" href="/courses/search"><%= t('navbar.courses') %><!-- <span class="sr-only">(current)</span> --></a>
       </li>
-      <li class="nav-item <%=active  == "/search2" ? "active" : ""%>">
-        <a class="nav-link text-center" href="/search"><%= t('navbar.webinars') %></a>
+      <li class="nav-item <%=active  == "/webinars/search" ? "active" : ""%>">
+        <a class="nav-link text-center" href="/webinars/search"><%= t('navbar.webinars') %></a>
       </li>
       <%if @user[:admin]%>
         <li class="nav-item dropdown">
-          <a class="nav-link text-center dropdown-toggle orange" data-target="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           Admin
+          <a class="nav-link text-center dropdown-toggle" data-target="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           <span class="orange">Admin</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/course/new"><%= t('navbar.new_course') %></a>
-              <a class="dropdown-item" href="/webinar/new"><%= t('navbar.new_webinar') %></a>
+              <a class="dropdown-item" href="/courses/new"><%= t('navbar.new_course') %></a>
+              <a class="dropdown-item" href="/webinars/new"><%= t('navbar.new_webinar') %></a>
             <!-- <div class="dropdown-divider"></div> -->
           </div>
         </li>
@@ -48,56 +48,12 @@
         <button class="btn btn-outline-dark dropdown-toggle" type="button"  id="loginDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            <%= t('navbar.login') %>
         </button>
-        <div class="dropdown-menu dropdown-menu-right dropdown-login" aria-labelledby="loginDropdown">
-          <form class="custom-form px-4 py-4" action="/" id="loginForm" method="post" onclick="event.stopPropagation()">
-            <div class="form-group" >
-              <label for="email"><%= t("user.email")%></label>
-              <input type="email" class="form-control" id="email" placeholder="" required name="email">
-            </div>
-            <div class="form-group">
-              <label for="password"><%= t("user.password")%></label>
-              <input type="password" class="form-control" id="password" placeholder="" required name="password">
-            </div>
-            <div class="form-check custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="dropdownCheck" name="remember">
-              <label class="custom-control-label" for="dropdownCheck">
-                <%= t("navbar.remember")%>
-              </label>
-            </div>
-            <br>
-            <a class="dropdown-item px-0 text-underline" href="#" id="forgot"><%= t("navbar.forgot")%></a>
-            <a class="dropdown-item px-0" href="/register"><%= t("navbar.signup")%></a>
-            
-            <br>
-            <div class="text-right">
-              <button type="submit" class="btn btn-outline-dark"><%= t("navbar.login")%></button>
-            </div>
-          </form>
-
-          <form class="custom-form px-4 py-4 hide" id="forgotForm" style="display:none;" onclick="event.stopPropagation()">
-            <div class="form-group" >
-              <label for="forgotEmail"><%= t("user.email")%></label>
-              <input type="email" class="form-control" id="forgotEmail" placeholder="" required name="email">
-            </div>
-            <div id="forgotMessages" style="width: 100%;"></div>
-            <br>
-            <a class="dropdown-item px-0" href="/register"><%= t("navbar.signup")%></a>
-            
-            <br>
-            <div class="text-right">
-              <button type="button" class="btn btn-dark" id="backToLogin"><%= t("navbar.reset_go_back")%></button>
-              <button type="submit" class="btn btn-outline-dark" id="forgotButton"><%= t("navbar.reset_password")%></button>
-            </div>
-          </form>
-        </div>
+        <%=render partial: "partials/login_dropdown"%>
       </div>
       <%end%>
     </div>
 
   </div>
 </nav>
-<script>
-window.resetPasswordI18n = <%= (raw t('navbar.reset_codes').to_json)%>
 
-</script>
 <div class="navbar-placeholder"></div>

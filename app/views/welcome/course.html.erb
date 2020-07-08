@@ -5,7 +5,7 @@
     </div>
     <div class="col-xs-12 col-md-3 course-info">
 		<%if @user[:admin]%>
-			<a href="/course/<%=@course[:id]%>/edit" class="text-right d-block link-edit-course">
+			<a href="/courses/<%=@course[:id]%>/edit" class="text-right d-block link-edit-course">
 				<button class="btn btn-dark orange btn-edit-course">
 					<i class="far fa-edit"></i>
 				</button>
@@ -13,10 +13,13 @@
 		<%else%>
 			<br/>
 		<%end%>
-		<div class="course-characteristic">
-			<span class="course-field orange"><%= t("course.date")%>:</span> 
-			<span><%=@course[:from]%>-<%=@course[:to]%></span> 
-		</div>
+
+		<%if defined?@course[:from] and defined?@course[:to]%>
+			<div class="course-characteristic">
+				<span class="course-field orange"><%= t("course.date")%>:</span>
+				<span><%=@course[:from]%>-<%=@course[:to]%></span> 
+			</div>
+		<% end %>
 		<% if defined?@course[:duration] %>
 			<div class="course-characteristic">
 				<span class="course-field orange"><%= t("course.duration")%>:</span> 
@@ -51,10 +54,12 @@
 				</span>
 			</div>
 		<% end %>
-		<div class="course-characteristic">
-			<span class="course-field orange"><%= t("course.powered_by")%>:</span> 
-			<span><%=@course[:powered_by]%></span>
-		</div>
+		<%if (@course[:rating])%>
+			<div class="course-characteristic">
+				<span class="course-field orange"><%= t("course.powered_by")%>:</span> 
+				<span><%=@course[:powered_by]%></span>
+			</div>
+		<%end%>
 		<%if (@course[:rating])%>
 			<div class="course-characteristic">
 				<span class="course-field orange" ><%= t("course.rating")%>:</span>

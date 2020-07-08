@@ -1,5 +1,5 @@
-<%startDate = DateTime.parse(@webinar[:date])%>
-<%finishDate =  startDate + (@webinar[:duration] / 1440.0)%>
+<%startDate = DateTime.parse(@webinar[:from])%>
+<%finishDate = DateTime.parse(@webinar[:to])%>
 <%notYet = DateTime.now < startDate%>
 <%currentlyGoingOn = DateTime.now > startDate && DateTime.now < finishDate%>
 <%ended = !notYet && !currentlyGoingOn %>
@@ -12,7 +12,7 @@
 				<div class="live">
 					<div class="text-center">
 						<h2 class="orange"><%=t("course.live")%><img src="<%=@webinar[:platform_img]%>"/></h2>
-						<a href="">
+						<a href="<%=@webinar[:url]%>">
 							<button class="btn btn-orange"><%=t("course.join")%></button>
 						</a>
 						<br/>
@@ -25,7 +25,7 @@
 		</div>
 		<div class="col-xs-12 col-md-3 course-info">
 			<%if @user[:admin]%>
-				<a href="/webinar/<%=@webinar[:id]%>/edit" class="text-right d-block link-edit-course">
+				<a href="/webinars/<%=@webinar[:id]%>/edit" class="text-right d-block link-edit-course">
 					<button class="btn btn-dark orange btn-edit-course">
 						<i class="far fa-edit"></i>
 					</button>
@@ -33,18 +33,25 @@
 			<%else%>
 				<br/>
 			<%end%>
-			<div class="course-characteristic">
-				<span class="course-field orange"><%= t("course.date")%>:</span> 
-				<span><%=@webinar[:date]%></span>
-			</div>
-			<div class="course-characteristic">
-				<span class="course-field orange"><%= t("course.duration")%>:</span> 
-				<span><%=@webinar[:duration]%></span>
-			</div>
-			<div class="course-characteristic">
-				<span class="course-field orange"><%= t("course.languages")%>:</span> 
-				<span><%=@webinar[:lang]%></span>
-			</div>
+			<%if defined?@webinar[:from]%>
+				<div class="course-characteristic">
+					<span class="course-field orange"><%= t("course.date")%>:</span> 
+					<span><%=@webinar[:from]%></span> 
+				</div>
+			<%end%>
+			<%if defined?@webinar[:from] and @webinar[:to]%>
+				<div class="course-characteristic">
+					<span class="course-field orange"><%= t("webinar.duration")%>:</span> 
+					<%duration = ((DateTime.parse(@webinar[:to]) - DateTime.parse(@webinar[:from]))*24*3600).to_i%>
+					<span><%=formatted_duration(duration)%></span>
+				</div>
+			<%end%>
+			<%if defined?@webinar[:lang]%>
+				<div class="course-characteristic">
+					<span class="course-field orange"><%= t("course.languages")%>:</span> 
+					<span><%=@webinar[:lang]%></span>
+				</div>
+			<%end%>
 			<% if defined?@webinar[:tags] %>
 				<div class="course-characteristic">
 					<span class="course-field orange"><%= t("course.tags")%>:</span> 
@@ -55,12 +62,14 @@
 					</span>
 				</div>
 			<% end %>
-			<div class="course-characteristic">
-				<span class="course-field orange"><%= t("course.powered_by")%>:</span> 
-				<span><%=@webinar[:powered_by]%></span>
-			</div>
-			<%if ended%>
-				<%if (@webinar[:rating])%>
+			<% if defined?@webinar[:powered_by] %>
+				<div class="course-characteristic">
+					<span class="course-field orange"><%= t("course.powered_by")%>:</span> 
+					<span><%=@webinar[:powered_by]%></span>
+				</div>
+			<% end %>
+			<%if ended and defined?@webinar[:rating]%>
+				<%if defined?(@webinar[:rating])%>
 					<div class="course-characteristic">
 						<span class="course-field orange" ><%= t("course.rating")%>:</span>
 						<span class="course-rating-container">
@@ -79,11 +88,13 @@
 				</div>
 			<%end%>
 			<br/><br/><br/><br/><br/><br/>
-			<%if notYet%>
-				<button class="btn btn-orange btn-see" ><%= t("course.enroll_webinar")%></button>
-			<%elsif ended%>
-				<button class="btn btn-orange btn-see" ><%= t("course.see")%></button>
-			<%end%>
+			<a href="<%=@webinar[:url]%>">
+				<%if notYet%>
+					<button class="btn btn-orange btn-see" ><%= t("course.enroll_webinar")%></button>
+				<%elsif ended%>
+					<button class="btn btn-orange btn-see" ><%= t("course.see")%></button>
+				<%end%>
+			</a>
 			<br/>
 		</div>
 	</div>

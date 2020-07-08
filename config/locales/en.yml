@@ -70,14 +70,18 @@ en:
       spooc: "SPOOC (Self-Paced Private Online Course)"
     create: Create
     date: Date
+    date_placeholder: "Period in which the course will take place"
+    day: day
     days: days
     desc: Description
     download_guide: "Donwload teching guide"
-    duration: Duration
+    duration: Dedication
+    duration_placeholder: "Estimated time students will need to devote to the course (in weeks or hours)"
     edit: "Editar curso"
     enroll: "Enroll"
     enroll_webinar: "Enroll"
     guide: "Teaching guide"
+    hour: "hour"
     hours: "hours"
     interested_users: "Interested users"
     join: "Join!"
@@ -87,6 +91,7 @@ en:
     lesson: "Lesson name"
     lessons: "Lessons"
     live: "Live now in"
+    minute: "minute"
     minutes: "minutes"
     no_lessons: "You have not aded any lessons"
     no_teacher: "You have not added any teachers"
@@ -97,6 +102,7 @@ en:
     read_more: "Read more"
     related_courses: "Related courses"
     related_webinars: "Related webinars"
+    second: "second"
     seconds: "seconds"
     see: "See"
     tags: "Tags"
@@ -141,6 +147,7 @@ en:
   navbar: 
     courses: Courses
     forgot: "I forgot my password"
+    forgot_email: "Insert your e-mail to reset your password"
     login: "Sign in"
     new_course: "New course"
     new_webinar: "New webinar"
@@ -172,10 +179,21 @@ en:
     confirm_password: "Confirm password"
     edit: "Edit user"
     email: "Email"
-    name: "Nombre de usuario"
+    name: "User name"
     new: "Sign up"
     password: "Password"
     picture: "Picture"
     tags: "Tags"
     update: "Update"
+  webinar:
+    date: "Date"
+    date_placeholder: "Date in which the webinar will take place"
+    duration: "Duration"
+    duration_placeholder: "Duration of the webinar in minutes"
+    edit: "Edit webinar"
+    new: "New webinar"
+    url: "Enlace al webinar"
+    url_placeholder: "Enlace oficial donde los alumnos se deben apuntar al webinar"
+
+
 

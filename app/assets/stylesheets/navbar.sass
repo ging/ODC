@@ -4,6 +4,12 @@
 	box-shadow: 0px 2px 2px $gris
 	&.search
 		box-shadow: none
+	.navbar-toggler
+		border: 2px solid black
+		.navbar-toggler-icon
+			background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(0, 0, 0, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
+		&:focus
+			outline: 5px solid $orange
 	.navbar-brand
 		.navbar-logo
 			width: 50px
@@ -73,7 +79,9 @@
 		left: 0
 		box-shadow: 0px 0px 10px #aaa
 		form
+			width: calc(100% - 20px)
 			min-width: 450px
+			position: relative
 			.form-control
 				padding-left: 0px
 				border: none
@@ -123,7 +131,7 @@
 	.user-name-container
 		max-width: 23%
 @media (min-width: 768px)
-	.dropdown-login
+	.navbar .dropdown-login
 		width: auto !important
 		left: auto !important
 		right: 0
@@ -131,9 +139,12 @@
 		form
 			width: auto !important
 @media (min-width: 768px) and (max-width: 992px)
-	.dropdown-login
+	.navbar .dropdown-login
 		top: 104% !important
 		left: calc(50% - 250px) !important
 		right: calc(50% - 250px) !important
-
-
+@media (max-width: 768px)
+	.navbar .dropdown-login
+		form
+			min-width: 400px
+			min-width: 95vw

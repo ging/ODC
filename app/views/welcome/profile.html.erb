@@ -46,7 +46,7 @@
 <script>
 window.selectedDates = [
   <% @user[:events].each_with_index do |event, index| %>
-  new Date("<%= event[:date]%>") 
+  new Date("<%= Date.parse(event[:from])%>") 
   <%if (@user[:events].length() != index + 1) %>
   ,
   <%end%>

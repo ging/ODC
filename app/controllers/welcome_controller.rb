@@ -1,22 +1,47 @@
 class WelcomeController < ApplicationController
 	skip_before_action :verify_authenticity_token  
 
-	# GET /search
+	# GET /courses/search
 	# Returns the top 20 courses that match the query criteria (params[:query])
-	def search
+	def search_courses
 		query = params[:query]
+		# Use gems: will_paginate & bootstrap-will_paginate (for the view)
+      
+		# Query 
 		@courses = [
 			{:id=> 1, :name => "Conciencia ecológica", :rating=> 2.5, :photo_file_path => "https://picsum.photos/380/200?random=1", :from => "01/02/2020", :to=>"09/09/2021", :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
-			{:id=> 1, :name => "Big data webinar", :rating=> 4.5, :photo_file_path => "https://picsum.photos/380/200?random=2", :from => "01/02/2020", :to=>"09/09/2021", :webinar => true, :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
+			{:id=> 1, :name => "Big data webinar", :rating=> 4.5, :photo_file_path => "https://picsum.photos/380/200?random=2", :from => "01/02/2020", :to=>"09/09/2021", :webinar => false, :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
 			{:id=> 1, :name => "Ciberseguridad", :rating=> 5, :photo_file_path => "https://picsum.photos/380/200?random=3", :from => "01/02/2020", :to=>"09/09/2021", :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
-			{:id=> 1, :name => "Violencia de género", :rating=> 3.1, :photo_file_path => "https://picsum.photos/380/200?random=4", :from => "01/02/2020", :to=>"09/09/2021", :webinar => true, :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
+			{:id=> 1, :name => "Violencia de género", :rating=> 3.1, :photo_file_path => "https://picsum.photos/380/200?random=4", :from => "01/02/2020", :to=>"09/09/2021", :webinar => false, :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
 			{:id=> 1, :name => "Uso seguro de las TIC", :rating=> 2.3, :photo_file_path => "https://picsum.photos/380/200?random=5", :from => "01/02/2020", :to=>"09/09/2021", :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
-			{:id=> 1, :name => "VISH Editor", :rating=> 3.1, :photo_file_path => "https://picsum.photos/380/200?random=6", :from => "01/02/2020", :to=>"09/09/2021", :webinar => true, :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
+			{:id=> 1, :name => "VISH Editor", :rating=> 3.1, :photo_file_path => "https://picsum.photos/380/200?random=6", :from => "01/02/2020", :to=>"09/09/2021", :webinar => false, :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
 			{:id=> 1, :name => "Programación web", :rating=> 2.5, :photo_file_path => "https://picsum.photos/380/200?random=7", :from => "01/02/2020", :to=>"09/09/2021", :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
+			{:id=> 1, :name => "Matemáticas", :rating=> 3.1, :photo_file_path => "https://picsum.photos/380/200?random=8", :from => "01/02/2020", :to=>"09/09/2021", :webinar => false, :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
+		]
+
+		@searching = true # Do not show search bar in navbar since it is already on the main content of the page
+		render template: "welcome/search"
+	end
+
+	# GET /webinars/search
+	# Returns the top 20 webinars that match the query criteria (params[:query])
+	def search_webinars
+		query = params[:query]
+		# Use gems: will_paginate & bootstrap-will_paginate (for the view)
+	     
+		# Query 
+		@courses = [
+			{:id=> 1, :name => "Big data webinar", :rating=> 4.5, :photo_file_path => "https://picsum.photos/380/200?random=2", :from => "01/02/2020", :to=>"09/09/2021", :webinar => true, :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
+			{:id=> 1, :name => "Ciberseguridad", :rating=> 5, :photo_file_path => "https://picsum.photos/380/200?random=3", :from => "01/02/2020", :to=>"09/09/2021", :webinar => true, :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
+			{:id=> 1, :name => "Violencia de género", :rating=> 3.1, :photo_file_path => "https://picsum.photos/380/200?random=4", :from => "01/02/2020", :to=>"09/09/2021", :webinar => true, :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
+			{:id=> 1, :name => "Uso seguro de las TIC", :rating=> 2.3, :photo_file_path => "https://picsum.photos/380/200?random=5", :from => "01/02/2020", :to=>"09/09/2021", :webinar => true, :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
+			{:id=> 1, :name => "VISH Editor", :rating=> 3.1, :photo_file_path => "https://picsum.photos/380/200?random=6", :from => "01/02/2020", :to=>"09/09/2021", :webinar => true, :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
+			{:id=> 1, :name => "Programación web", :rating=> 2.5, :photo_file_path => "https://picsum.photos/380/200?random=7", :from => "01/02/2020", :to=>"09/09/2021", :webinar => true, :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
 			{:id=> 1, :name => "Matemáticas", :rating=> 3.1, :photo_file_path => "https://picsum.photos/380/200?random=8", :from => "01/02/2020", :to=>"09/09/2021", :webinar => true, :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
 		]
 
 		@searching = true # Do not show search bar in navbar since it is already on the main content of the page
+		render template: "welcome/search"
 	end
 
 	# GET /
@@ -58,16 +83,16 @@ class WelcomeController < ApplicationController
 		@course = {   
 			:id => 1,
 			:name => "Conciencia ecológica", 
-				:photo_file_path => "https://picsum.photos/380/200?random=1", 
-				:from => "01/02/2020", 
-				:duration => 50400,
-				:to=>"09/09/2021", 
-				:video=> "https://www.youtube.com/embed/Y3ywicffOj4",
-				:rating=> 3.5,
+			:photo_file_path => "https://picsum.photos/380/200?random=1", 
+			:from => "01/02/2020", 
+			:to=>"09/09/2021", 
+			:video=> "https://www.youtube.com/embed/Y3ywicffOj4",
+			:rating=> 3.5,
 			:lang => "Español",
-				:guide_file_name => "guia.pdf",
-				:guide_file_path => "/a.pdf",
+			:guide_file_name => "guia.pdf",
+			:guide_file_path => "/a.pdf",
 			:powered_by => "Cisco",
+			:duration => "5 semanas",
 			:lessons => "11 (50 min.)",
 			:type => "mooc",
 			:contents => [
@@ -88,7 +113,7 @@ class WelcomeController < ApplicationController
 		@related_courses = [
 			{:id => 1, :name => "Conciencia ecológica", :rating => 4.5, :photo_file_path => "https://picsum.photos/380/200?random=1", :from => "01/02/2020", :to=>"09/09/2021", :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
 			{:id => 1, :name => "Ciberseguridad", :rating => 2.5, :photo_file_path => "https://picsum.photos/380/200?random=3", :from => "01/02/2020", :to=>"09/09/2021", :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
-			{:id => 1, :name => "VISH Editor", :rating => 4, :photo_file_path => "https://picsum.photos/380/200?random=6", :from => "01/02/2020", :to=>"09/09/2021", :webinar => true, :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
+			{:id => 1, :name => "VISH Editor", :rating => 4, :photo_file_path => "https://picsum.photos/380/200?random=6", :from => "01/02/2020", :to=>"09/09/2021", :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
 			{:id => 1, :name => "Programación web", :rating => 3.5, :photo_file_path => "https://picsum.photos/380/200?random=7", :from => "01/02/2020", :to=>"09/09/2021", :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
 		]
 	end
@@ -105,16 +130,16 @@ class WelcomeController < ApplicationController
 		@course = {   
 			:id => 1,
 			:name => "Conciencia ecológica", 
-				:photo_file_path => "https://picsum.photos/800/400?random=1", 
-				:from => "01/02/2020", 
-				:duration => 50400,
-				:to =>"09/09/2021", 
-				:video=> "https://www.youtube.com/embed/Y3ywicffOj4",
-				:url => "https://miriadax.net/web/html5mooc",
-				:rating => 3.5,
+			:photo_file_path => "https://picsum.photos/800/400?random=1", 
+			:from => "01/02/2020", 
+			:to =>"09/09/2021", 
+			:duration => "5 semanas",
+			:video=> "https://www.youtube.com/embed/Y3ywicffOj4",
+			:url => "https://miriadax.net/web/html5mooc",
+			:rating => 3.5,
 			:lang => "Español",
 			:guide_file_name => "guia.pdf",
-				:guide_file_path => "/a.pdf",
+			:guide_file_path => "/a.pdf",
 			:powered_by => "Cisco",
 			:lessons => "11 (50 min.)",
 			:type => "mooc",
@@ -159,8 +184,8 @@ class WelcomeController < ApplicationController
 			:name => "Conciencia ecológica", 
 				:photo_file_path => "https://picsum.photos/380/200?random=1", 
 				:platform_img => "https://www3.gobiernodecanarias.org/educacion/cau_ce/servicios/web/sites/www3.gobiernodecanarias.org.educacion.cau_ce.servicios.web/files/inline-images/webex_0.png",
-				:date => "30/06/2020 21:33 GMT", 
-				:duration => 120,
+				:from => "30/06/2020 11:30", 
+				:to => "30/06/2020 12:30", 
 				:video=> "https://www.youtube.com/embed/Y3ywicffOj4",
 				:rating=> 3.5,
 			:lang => "Español",
@@ -177,10 +202,10 @@ class WelcomeController < ApplicationController
 		}
 
 		@related_webinars = [
-			{:id => 1, :name => "Conciencia ecológica", :photo_file_path => "https://picsum.photos/380/200?random=1", :from => "01/02/2020", :to=>"09/09/2021", :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
-			{:id => 1, :name => "Ciberseguridad", :photo_file_path => "https://picsum.photos/380/200?random=3", :from => "01/02/2020", :to=>"09/09/2021", :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
-			{:id => 1, :name => "VISH Editor", :photo_file_path => "https://picsum.photos/380/200?random=6", :from => "01/02/2020", :to=>"09/09/2021", :webinar => true, :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
-			{:id => 1, :name => "Programación web", :photo_file_path => "https://picsum.photos/380/200?random=7", :from => "01/02/2020", :to=>"09/09/2021", :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
+			{:id => 1, :name => "Conciencia ecológica", :photo_file_path => "https://picsum.photos/380/200?random=1", :from => "01/02/2020 10:00" , :to=>"09/09/2021", :webinar => true, :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
+			{:id => 1, :name => "Ciberseguridad", :photo_file_path => "https://picsum.photos/380/200?random=3", :from => "01/02/2020 9:00", :to=>"09/09/2021", :webinar => true, :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
+			{:id => 1, :name => "VISH Editor", :photo_file_path => "https://picsum.photos/380/200?random=6", :from => "01/02/2020 9:00", :to=>"09/09/2021", :webinar => true, :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
+			{:id => 1, :name => "Programación web", :photo_file_path => "https://picsum.photos/380/200?random=7", :from => "01/02/2020 9:00", :to=>"09/09/2021", :webinar => true, :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
 		]
 	end
 
@@ -188,7 +213,7 @@ class WelcomeController < ApplicationController
 	# GET /webinar/new
 	# New webinar page
 	def new_webinar
-		@webinar = {}
+		@webinar = {:webinar => true}
 	end
 	
 	# POST /webinar/
@@ -206,9 +231,8 @@ class WelcomeController < ApplicationController
 			:id => 1,
 			:name => "Conciencia ecológica", 
 			:photo_file_path => "https://picsum.photos/800/400?random=1", 
-			:from => "01/02/2020", 
-			:duration => 50400,
-			:to =>"09/09/2021", 
+			:from => "30/06/2020 11:30", 
+			:to => "30/06/2020 12:30",
 			:video=> "https://www.youtube.com/embed/Y3ywicffOj4",
 			:url => "https://miriadax.net/web/html5mooc",
 			:rating => 3.5,
@@ -243,18 +267,18 @@ class WelcomeController < ApplicationController
 	def profile
 	  	@user[:tags] = "Etiqueta 1,Etiqueta 2,Etiqueta 3"
 		@user[:events] = [
-			{:title => "Webinar 1", :date =>  DateTime.yesterday, :duration => "2 h", :language => "Español"},
-			{:title => "Webinar 2", :date =>  DateTime.now, :duration => "3 h", :language => "Español"},
-			{:title => "Webinar 3", :date =>  Date.parse("01/07/2020 22:00 GMT"), :duration => "3 h", :language => "Español"}, 
-			{:title => "Webinar 4", :date =>  Date.parse("01/07/2020 23:00 GMT"), :duration => "3 h", :language => "Español"}
+			{:title => "Webinar 1", :from => "30/06/2020 11:30", :to => "30/06/2020 12:30", :language => "Español"},
+			{:title => "Webinar 2", :from => "30/06/2020 11:30", :to => "30/06/2020 12:30", :language => "Español"},
+			{:title => "Webinar 3", :from => "30/07/2020 14:30", :to => "30/07/2020 18:30", :language => "Español"}, 
+			{:title => "Webinar 4", :from => "30/07/2020 11:30", :to => "30/07/2020 12:30", :language => "Español"}
 		]
 		@user[:courses] = [
-			{:id => 1, :name => "Conciencia ecológica", :rating=> 4.7, :photo_file_path => "https://picsum.photos/380/200?random=1", :from => "01/02/2020", :to=>"09/09/2021", :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
-			{:id => 1, :name => "Ciberseguridad", :rating=> 2.5, :photo_file_path => "https://picsum.photos/380/200?random=3", :from => "01/02/2020", :to=>"09/09/2021", :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
-			{:id => 1, :name => "VISH Editor", :rating=> 4.5, :photo_file_path => "https://picsum.photos/380/200?random=6", :from => "01/02/2020", :to=>"09/09/2021", :webinar => true, :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
-			{:id => 1, :name => "Programación web", :rating=> 3.5, :photo_file_path => "https://picsum.photos/380/200?random=7", :from => "01/02/2020", :to=>"09/09/2021", :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
-			{:id => 1, :name => "Ciberseguridad", :rating=> 2.5, :photo_file_path => "https://picsum.photos/380/200?random=3", :from => "01/02/2020", :to=>"09/09/2021", :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
-			{:id => 1, :name => "Conciencia ecológica", :rating=> 4.7, :photo_file_path => "https://picsum.photos/380/200?random=1", :from => "01/02/2020", :to=>"09/09/2021", :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
+			{:id => 1, :name => "Conciencia ecológica", :rating => 4.7, :photo_file_path => "https://picsum.photos/380/200?random=1", :from => "01/02/2020", :to=>"09/09/2021", :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
+			{:id => 1, :name => "Ciberseguridad", :rating => 2.5, :photo_file_path => "https://picsum.photos/380/200?random=3", :from => "01/02/2020", :to=>"09/09/2021", :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
+			{:id => 1, :name => "VISH Editor", :rating => 4.5, :photo_file_path => "https://picsum.photos/380/200?random=6", :from => "01/02/2020", :to=>"09/09/2021", :webinar => true, :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
+			{:id => 1, :name => "Programación web", :rating => 3.5, :photo_file_path => "https://picsum.photos/380/200?random=7", :from => "01/02/2020", :to=>"09/09/2021", :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
+			{:id => 1, :name => "Ciberseguridad", :rating => 2.5, :photo_file_path => "https://picsum.photos/380/200?random=3", :from => "01/02/2020", :to=>"09/09/2021", :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
+			{:id => 1, :name => "Conciencia ecológica", :rating => 4.7, :photo_file_path => "https://picsum.photos/380/200?random=1", :from => "01/02/2020", :to=>"09/09/2021", :desc=> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
 		]
   	end
   
@@ -270,10 +294,10 @@ class WelcomeController < ApplicationController
 	def edit_user
 		@user[:tags] = "Etiqueta 1,Etiqueta 2,Etiqueta 3"
 		@user[:events] = [
-			{:title => "Webinar 1", :date =>  DateTime.yesterday, :duration => "2 h", :language => "Español"},
-			{:title => "Webinar 2", :date =>  DateTime.now, :duration => "3 h", :language => "Español"},
-			{:title => "Webinar 3", :date =>  Date.parse("01/07/2020 22:00 GMT"), :duration => "3 h", :language => "Español"}, 
-			{:title => "Webinar 4", :date =>  Date.parse("01/07/2020 23:00 GMT"), :duration => "3 h", :language => "Español"}
+			{:title => "Webinar 1", :from => "30/06/2020 11:30", :to => "30/06/2020 12:30", :language => "Español"},
+			{:title => "Webinar 2", :from => "30/06/2020 11:30", :to => "30/06/2020 12:30", :language => "Español"},
+			{:title => "Webinar 3", :from => "30/07/2020 14:30", :to => "30/07/2020 18:30", :language => "Español"}, 
+			{:title => "Webinar 4", :from => "30/07/2020 11:30", :to => "30/07/2020 12:30", :language => "Español"}
 		]
 	end
 

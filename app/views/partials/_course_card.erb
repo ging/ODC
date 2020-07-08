@@ -11,7 +11,7 @@
 		<%end%>
 	</div>
 	<div class="card-body">
-	  <h5 class="course-date"><%=course[:from]%> - <%=course[:to]%></h5>
+	  <h5 class="course-date"><%=course[:from]%> <%unless course[:webinar]%>- <%=course[:to]%><%end%></h5>
 	  <h4 class="card-title"><%=course[:name]%></h4>
 	  <div class="course-description">
 	  	<span class="text-wrapper"><%=course[:desc]%></span>
@@ -24,13 +24,13 @@
 			  	<%= t("course.unenroll")%>
 			</button>
 		</a>
-		<a href="/<%=(course[:webinar] ? "webinar":"course")%>/<%=course[:id]%>">
+		<a href="/<%=(course[:webinar] ? "webinars":"courses")%>/<%=course[:id]%>">
 			<button class="btn btn-orange-light btn-smaller">
 			  	<%= t("course.continue")%>
 			</button>
 		</a>
 	  <%else%>
-		<a href="/<%=(course[:webinar] ? "webinar":"course")%>/<%=course[:id]%>">
+		<a href="/<%=(course[:webinar] ? "webinars":"courses")%>/<%=course[:id]%>">
 		  	<button class="btn btn-outline-dark">
 			  	<%= t("course.read_more")%>
 			</button>
