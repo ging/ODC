@@ -16,4 +16,14 @@ module WelcomeHelper
 	    end
 	    result
 	end
+
+	def youtube_parse(url)
+		if !url.match("/embed")
+			code = url.scan(/v=(\w+)/)
+			if code[0] and code[0][0]
+				url = "https://www.youtube.com/embed/#{code[0][0].to_s}"
+			end
+		end
+		url
+	end
 end

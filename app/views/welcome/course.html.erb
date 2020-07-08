@@ -1,7 +1,11 @@
 <div class="container-fluid course-detail">
   <div class="row">
     <div class="col-xs-12 col-md-9">
-    	<iframe class="course-video" src="https://www.youtube.com/embed/jCf4UZ6HS6A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		<% if @course[:video] %>
+    	<iframe class="course-video" src="<%=youtube_parse(@course[:video])%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    	<%else%>
+    	<img  class="course-video" src="<%=@course[:photo_file_path]%>" alt="">
+    	<%end%>
     </div>
     <div class="col-xs-12 col-md-3 course-info">
 		<%if @user[:admin]%>
