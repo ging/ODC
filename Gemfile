@@ -14,7 +14,8 @@ gem 'uglifier', '4.2.0'
 gem 'coffee-rails', '5.0.0'
 # UI basics
 gem 'font-awesome-sass', '5.13.0'
-
+gem 'will_paginate', '~> 3.3.0'
+gem 'bootstrap-will_paginate', '1.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails', '4.4.0'
 gem 'jquery-ui-rails', '6.0.1'

@@ -1,0 +1,25 @@
+<% days  = date - DateTime.now %>
+<% hours =(days-days.floor)*24.0 %>
+<% minutes =(hours - hours.floor) * 60 %>
+<% seconds = (minutes - minutes.floor) * 60 %>
+
+<div class="container countdown">
+	<div class="row ">
+		<div class="col-xs-12 col-sm-6 col-lg-3 countdown-block">
+			<div class="number days"><%= "%02d" % days.floor%></div>
+			<div class="label"><%=t("course.days")%></div>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-lg-3 countdown-block">
+			<div class="number hours"><%="%02d" % hours.floor%></div>
+			<div class="label"><%=t("course.hours")%></div>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-lg-3 countdown-block">
+			<div class="number minutes"><%="%02d" % minutes.floor%></div>
+			<div class="label"><%=t("course.minutes")%></div>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-lg-3 countdown-block">
+			<div class="number seconds"><%="%02d" % seconds.floor%></div>
+			<div class="label"><%=t("course.seconds")%></div>
+		</div>
+	</div>
+</div>

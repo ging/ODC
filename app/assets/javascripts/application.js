@@ -13,7 +13,7 @@
 //= require jquery3
 //= require jquery_ujs
 //= require jquery-ui
-//= require bootstrap
 //= require select2.min.js
 //= require polyfills.js
+//= require main.js
 //= require_tree .

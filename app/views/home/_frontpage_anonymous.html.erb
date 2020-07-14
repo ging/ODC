@@ -12,8 +12,8 @@
   </div>
 </div>
 <div class="highlight-background">
-  <%= render partial: "home/courselist", :locals => {title: t('landing.popular_courses'), courses: @top_courses, button: t('landing.see_all'), button_link: "/", link: "/", mine: false }  %>
+  <%= render partial: "courses/course_list_4", :locals => {title: t('landing.popular_courses'), courses: @top_courses, button: t('landing.see_all'), button_link: "/", link: "/", mine: false }  %>
 </div>
 <div>
-  <%= render partial: "home/courselist", :locals => {title: t('landing.popular_webinars'), courses: @top_webinars, button: t('landing.see_all'), button_link: "/", link: "/", mine: false  }  %>
+  <%= render partial: "courses/course_list_4", :locals => {title: t('landing.popular_webinars'), courses: @top_webinars, button: t('landing.see_all'), button_link: "/", link: "/", mine: false  }  %>
 </div>

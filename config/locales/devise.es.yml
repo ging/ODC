@@ -14,7 +14,7 @@ es:
       invalid_token: 'Token de autentificación inválido.'
       locked: 'Tu cuente está bloqueada.'
       last_attempt: "You have one more attempt before your account is locked."
-      not_found_in_database: "Invalid %{authentication_keys} or password."
+      not_found_in_database: "%{authentication_keys} o contraseña erróneos."
       timeout: 'Tu sesión ha expirado. Inicia sesión nuevamente.'
       unauthenticated: 'Tienes que registrarte o iniciar sesión antes de continuar.'
       unconfirmed: 'Tienes que confirmar tu cuenta antes de continuar.'
@@ -65,6 +65,7 @@ es:
       signed_in: 'Iniciaste sesión correctamente.'
       signed_out: 'Cerraste sesión correctamente.'
       already_signed_out: 'Cerraste sesión correctamente.'
+      logout: "Salir"
     unlocks:
       send_instructions: 'Recibirás un email con instrucciones para desbloquear tu cuenta en unos minutos'
       send_paranoid_instructions: 'Si tu cuenta existe, recibirás instrucciones para desbloquear tu cuenta en unos minutos'

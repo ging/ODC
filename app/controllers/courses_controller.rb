@@ -1,14 +1,18 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
-
+  skip_authorization_check :only => [:show,:index]
   # GET /courses
   def index
-    @courses = Course.all
+    @courses = Course
+    @courses = @courses.where(:webinar => params[:webinar] == "1") if !params[:webinar].blank?
+    @courses = @courses.where(["lower(name) LIKE ?", "%#{(params[:query]||"").downcase}%"])
+    .paginate(:per_page => 24, :page => params[:page].blank? ? 1 : params[:page])
   end
 
   # GET /courses/1
   def show
   end
+
 
   # GET /courses/new
   def new

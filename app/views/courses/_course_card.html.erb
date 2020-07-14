@@ -1,0 +1,43 @@
+<div class="card course" style="width: 100%;" id="course-<%=index%>">
+	<div class="card-img-container">
+		<img class="card-img-top" src="<%=course[:photo_file_path] || "https://picsum.photos/380/200?random=#{index}"%>" alt="">
+		<%if (course[:webinar])%>
+			<span class="webinar-corner">
+				<span><img src="/img/Video_camera_icon.svg" alt=""></span>
+			</span>
+		<%end%>
+		<%if (course[:rating])%>
+    	   	<%= render partial: "courses/rating", :locals => {rating: course[:rating]}  %>
+		<%end%>
+	</div>
+	<div class="card-body">
+		<%if (course[:webinar] and course[:from] and course[:to]) or (!course[:webinar] and course[:to])%>
+	 		 <h5 class="course-date"><%=course[:from]%> <%unless course[:webinar]%> -  <%=course[:to]%><%end%></h5>
+	  <%end%>
+	  <h4 class="card-title"><%=course[:name]%></h4>
+	  <div class="course-description">
+	  	<span class="text-wrapper"><%=course[:desc]%></span>
+	  </div>
+	  <br/>
+	  <br/>
+	  <%if (defined? mine and mine == true)%>
+		<a href="/desmatricularse">
+		  	<button class="btn btn-outline-dark btn-smaller">
+			  	<%= t("course.unenroll")%>
+			</button>
+		</a>
+		<a href="/courses/<%=course[:id]%>">
+			<button class="btn btn-orange-light btn-smaller">
+			  	<%= t("course.continue")%>
+			</button>
+		</a>
+	  <%else%>
+		<a href="/courses/<%=course[:id]%>">
+		  	<button class="btn btn-outline-dark">
+			  	<%= t("course.read_more")%>
+			</button>
+		</a>
+	  <%end%>
+
+	</div>
+</div>

@@ -1,4 +1,5 @@
-<div class="col2">
+<footer id="footer">
+<div class="col-12">
   <div class="dropup footer_dropdown">
     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <img src="/assets/flags/flag_<%=I18n.locale.to_s%>"/>
@@ -14,10 +15,12 @@
           <li value="<%=lanCode%>"><img src="/assets/flags/flag_<%=lanCode%>"/><%=t("languages." + lanCode)%></li>
         </form>
       <% end %>
+
     </ul>
+    <%= link_to(t("devise.sessions.logout"), destroy_user_session_path, :method => :delete, :class=> "orange") %>
   </div>
 </div>
-
+</footer>
 <script>
   $(document).ready(function(){
     $("#change_locale li").click(function(e){

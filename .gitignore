@@ -26,3 +26,6 @@ config/deploy/*
 !config/deploy/example.yml
 
 dumps/*
+**/*.DS_Store
+*.key
+node_modules/

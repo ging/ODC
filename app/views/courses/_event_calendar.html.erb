@@ -1,0 +1,7 @@
+<div class="event-calendar hidden" data-date="<%= DateTime.parse(event[:from]).strftime("%d-%m-%Y")%>">
+	<%duration = ((DateTime.parse(event[:to]) - DateTime.parse(event[:from]))*24*3600).to_i%>
+	<h2 class="event-title"><%=event[:title]%></h2>
+	<p class="event-date"><%=event[:from]%></p>
+	<p class="event-duration"><b><%=t("webinar.duration")%>:</b> <%=formatted_duration(duration)%></p>
+	<p class="event-language"><b><%=t("course.language")%>:</b> <%=event[:language]%></p>
+</div>

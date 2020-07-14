@@ -1,5 +1,11 @@
 /* Customizing */
-
+.ui-dialog {
+	z-index: 999;
+	background: white;
+	border-color: transparent;
+	padding: 10px;
+	box-shadow: 0px 0px 10px #ccc;
+}
 .ui-widget.ui-widget-content {
 	border: 2px solid black;
 }
@@ -14,19 +20,8 @@
 }
 
 .ui-dialog-buttonset > button {
-	background-color: white;
-	border: 1px solid black;
-	color: black;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	border-radius: 4px;
-	font-weight: normal;
-	font-size: 1.2rem !important;
-	opacity: 0.9;
-	padding: 2px 7px;
-	display: inline-block;
-	text-align: center;
-	min-width: 70px;
 	margin-bottom: 6px;
+	margin-right: 3px;
 	outline: none;
 }
 

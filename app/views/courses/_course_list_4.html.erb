@@ -1,0 +1,22 @@
+<%button ||= nil%>
+<div class="container popular-list courses-4">
+	<div class="row">
+		<div class="col-12">
+			<h2>
+			<span><%=title%></span>
+			<%unless button.nil?%>
+				<a href="<%=link%>">
+				  <button class="btn btn-outline-dark btn-more"><%=button%></button>
+				</a>
+			<%end%>
+			</h2>
+		 	<div class="row">
+				<% courses.each_with_index do |course, index| %>
+					<div class="col-xs-12 col-sm-6 col-lg-3 col-xl-3 col-course" style="position: relative;">
+				 		 <%= render partial: "courses/course_card", :locals => {index: index, course: course, mine: mine}        %>
+					</div>
+				<% end %>
+	  		</div>
+		</div>
+  	</div>
+</div>

@@ -1,0 +1,55 @@
+@import 'colors';
+
+.search-row
+	padding-top: 50px
+	padding-bottom: 50px
+	.search-col
+		text-align: center
+		.search-icon
+			position: absolute
+			bottom: 25px
+			right: 0px
+			background-color: transparent !important
+			border: none !important
+			outline: none !important
+			box-shadow: none
+			&:active, &:focus
+				border: none !important
+				outline: none !important
+				box-shadow: none !important
+			.search-icon-img
+				width: 40px
+				position: absolute
+				bottom: 0
+				right: 0
+.courses-search-results
+	min-height: calc(100vh - 374px)
+	padding-top: 50px
+.no-results
+	padding-top: 50px
+	padding-bottom: 150px
+	text-align: center
+	font-size: 1.5em
+.pagination
+	margin-bottom: 0px
+	.page-item
+		.page-link
+			color: black
+			background-color: transparent
+			border: transparent
+			font-weight: bolder
+			border-radius: 0px
+			min-width: 36px
+			text-align: center
+			&:focus
+				box-shadow: 0 0 0 0.2rem rgba($orange_light,.25)
+		&.disabled 
+			.page-link
+				color: #bbb
+				background-color: transparent
+				border-color: transparent
+		&.active 
+			.page-link 
+				color: white
+				background-color: $orange_light
+				border-color: $orange_light

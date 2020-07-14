@@ -35,7 +35,7 @@ en:
     errors:
       blank: "can't be blank"
       name_blank: "Name can't be blank"
-      page_not_found: "This page does not exists"
+      page_not_found: "This page does not exist"
       reserved_word: "is a reserved word"
       resource_not_found: "Resource not found"
       too_short: "is too short"

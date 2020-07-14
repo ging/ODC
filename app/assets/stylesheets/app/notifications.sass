@@ -1,0 +1,26 @@
+@import "colors";
+
+#layout_notifications
+	div.alert
+		margin-bottom: 0px
+		border: none
+		border-radius: 0
+		background-color: $highlight_yellow
+		font-size: smaller
+		&.alert-success
+			border-color: black
+			color: black
+			border-size: 3px
+			font-size: 1.2em
+		&.alert-danger
+			color: black
+			background-color: $redorange
+			font-size: 1.2em
+			border-size: 3px
+			border-color: black
+		.close
+			opacity: 1
+			line-height: 0.7
+			text-shadow: none
+			&:focus
+				outline: none

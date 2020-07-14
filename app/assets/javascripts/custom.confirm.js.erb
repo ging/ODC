@@ -37,22 +37,29 @@ var _showMOVLEDialogWithSettings = function(settings, showCancelButton, callback
     settings["cancel_button"] = '<%=I18n.t("dictionary.cancel",:locale => I18n.default_locale)%>'
   }
   
-  var dialogButtons = {};
-  dialogButtons[settings["ok_button"]] = function(){
-    $(this).dialog("close");
-    if(typeof callback == "function"){
-        callback(true);
-    }
-  };
-
-  if(showCancelButton===true){
-    dialogButtons[settings["cancel_button"]] = function(){
+  var dialogButtons = [];
+  dialogButtons.push({
+    "text": typeof settings["ok_button"] == "undefined" ? '<%=I18n.t("dictionary.ok",:locale => I18n.default_locale)%>' : settings["ok_button"] ,
+    "class": "btn btn-orange",
+    "click": function(){
       $(this).dialog("close");
       if(typeof callback == "function"){
-        callback(false);
+          callback(true);
       }
     }
-  }
+  });
+  if(showCancelButton===true){
+  dialogButtons.push({
+    "text":(typeof settings["cancel_button"] == "undefined") ? '<%=I18n.t("dictionary.ok",:locale => I18n.default_locale)%>' : settings["cancel_button"] ,
+    "class": "btn btn-outline-black",
+    "click": function(){
+      $(this).dialog("close");
+      if(typeof callback == "function"){
+          callback(false);
+      }
+    }
+  });
+}
 
   $(html).dialog({
     resizable: false,

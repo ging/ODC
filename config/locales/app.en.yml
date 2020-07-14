@@ -1,0 +1,202 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+en: 
+  calendar: 
+    apply: Apply
+    cancel: Cancel
+    custom: Custom
+    days: 
+      fri: Friday
+      mon: Monday
+      sat: Saturday
+      sun: Sunday
+      thu: Thursday
+      tue: Tuesday
+      wed: Wednesday
+    from: From
+    months: 
+      apr: April
+      aug: August
+      dec: December
+      feb: February
+      jan: January
+      jul: July
+      jun: June
+      mar: March
+      may: May
+      nov: November
+      oct: October
+      sep: September
+    to: To
+  course: 
+    add_new_lesson: "Add a new lesson"
+    add_new_teacher: "Add a new teacher"
+    add_new_topic: "Add a new topic"
+    contents: Contents
+    continue: Continue
+    course_formats: 
+      moc: "MOC (Massive Online Course)"
+      mooc: "MOOC (Massive Open Online Course)"
+      nooc: "NOOC (Nano Open Online Course)"
+      spoc: "SPOC (Small Private Online Course)"
+      spooc: "SPOOC (Self-Paced Private Online Course)"
+    create: Create
+    date: Date
+    date_placeholder: "Period in which the course will take place"
+    day: day
+    days: days
+    desc: Description
+    download_guide: "Donwload teching guide"
+    duration: Dedication
+    duration_placeholder: "Estimated time students will need to devote to the course (in weeks or hours)"
+    edit: "Editar curso"
+    enroll: "Enroll"
+    enroll_webinar: "Enroll"
+    guide: "Teaching guide"
+    hour: "hour"
+    hours: "hours"
+    interested_users: "Interested users"
+    join: "Join!"
+    language: "Language"
+    languages: "Languages"
+    languages_placeholder: "Languages in which the course is taught, separated by commas"
+    lesson: "Lesson name"
+    lessons: "Lessons"
+    live: "Live now in"
+    minute: "minute"
+    minutes: "minutes"
+    no_lessons: "You have not aded any lessons"
+    no_teacher: "You have not added any teachers"
+    new: "New course"
+    pictures: "Pictures"
+    powered_by: "Powered by"
+    rating: "Rating"
+    read_more: "Read more"
+    related_courses: "Related courses"
+    related_webinars: "Related webinars"
+    second: "second"
+    seconds: "seconds"
+    see: "See"
+    tags: "Tags"
+    teachers: "Teachers"
+    teacher:
+      bio: "Short biography"
+      facebook: "Facebook username"
+      instagram: "Instagram username"
+      linkedin: " Linkedin public name"
+      name: "Teacher name"
+      position: "Position (e.g. Professor t University of X)"
+      twitter: "Twitter username (without the @)"
+      upload: "Upload..."
+    title: "Title"
+    title_placeholder: "Course title"
+    topic: "Topic name"
+    type: "Course type"
+    unenroll: "Unenroll"
+    update: "Update"
+    upload: "Choose a file"
+    url: "Link to course"
+    url_placeholder: "Official link where students will enroll in the course"
+    video: "Video"
+    video_placeholder: "Link to the intro video (Youtube)"
+    visits: "Visits"
+  landing: 
+    intro_new: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    intro_old: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    popular_courses: "Popular courses"
+    popular_courses_intro: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    popular_courses_week: "Popular courses this week"
+    popular_courses_week_intro: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    popular_webinars: "Popular webinars"
+    popular_webinars_intro: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    popular_webinars_week: "Popular webinars this week"
+    popular_webinars_week_intro: "Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    see_all: "See all"
+    start: "¡Start training now!"
+    welcome_new: Welcome
+    welcome_old: "Welcome back"
+    your_courses: "Your courses and webinars"
+  navbar: 
+    courses: Courses
+    forgot: "I forgot my password"
+    forgot_email: "Insert your e-mail to reset your password"
+    login: "Sign in"
+    new_course: "New course"
+    new_webinar: "New webinar"
+    remember: "Remember me"
+    reset_codes:
+      OK: "We have sent you an e-mail with instructions to reset your password"
+      EMAIL_NOT_FOUND: "The e-mail you have provided is not linked to any account."
+      ERROR_SENDING_EMAIL: "An error has ocurred when sending an e-mail to you. Try again later."
+      ERROR: "An error has ocurred. Try again later."
+    reset_password: "Restore my password"
+    reset_go_back: "Back"
+    search: Search
+    signup: "You don't have an account yet? Sign up!"
+    webinars: Webinars
+    who: "Who are we?"
+  profile: 
+    edit: "Edit profile"
+    no_events: "There are not any events scheduled for this day"
+    your_courses_and_webinars: "Your courses and webinars"
+  search: 
+    next: Next
+    no_results: "No results"
+    prev: Previous
+    write: "Type here your search"
+  tags: 
+    environment: "Environment"
+    esafety: "E-safety"
+    inclusion: "Social digital inclusion"
+  user:
+    confirm_password: "Confirm password"
+    current_password: "Current password"
+    edit: "Edit user"
+    email: "Email"
+    name: "User name"
+    new: "Sign up"
+    new_password: "New password"
+    password: "Password"
+    picture: "Picture"
+    tags: "Tags"
+    update: "Update"
+  webinar:
+    date: "Date"
+    date_placeholder: "Date in which the webinar will take place"
+    duration: "Duration"
+    duration_placeholder: "Duration of the webinar in minutes"
+    edit: "Edit webinar"
+    new: "New webinar"
+    url: "Enlace al webinar"
+    url_placeholder: "Enlace oficial donde los alumnos se deben apuntar al webinar"
+
+
+

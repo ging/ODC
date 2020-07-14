@@ -4,7 +4,6 @@ MOVLE::Application.routes.draw do
 
   #Users
   devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations", :omniauth_callbacks => "users/omniauth_callbacks" }
-
   match '/users/:id/presentations' => 'users#show_presentations', via: [:get]
   match '/users/:id/files' => 'users#show_files', via: [:get]
   resources :users

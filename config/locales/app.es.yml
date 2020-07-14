@@ -1,0 +1,173 @@
+--- 
+es: 
+  calendar: 
+    apply: Aplicar
+    cancel: Cancelar
+    custom: Personalizado
+    days: 
+      fri: Viernes
+      mon: Lunes
+      sat: Sábado
+      sun: Domingo
+      thu: Jueves
+      tue: Martes
+      wed: Miércoles
+    from: Desde
+    months: 
+      apr: Abril
+      aug: Agosto
+      dec: Diciembre
+      feb: Febrero
+      jan: Enero
+      jul: Julio
+      jun: Junio
+      mar: Marzo
+      may: Mayo
+      nov: Noviembre
+      oct: Octubre
+      sep: Septiembre
+    to: Hasta
+  course: 
+    add_new_lesson: "Añadir nueva lección"
+    add_new_teacher: "Añadir nuevo profesor"
+    add_new_topic: "Añadir nuevo apartado"
+    contents: Contenidos
+    continue: Continuar
+    course_formats: 
+      moc: "MOC (Massive Online Course)"
+      mooc: "MOOC (Massive Open Online Course)"
+      nooc: "NOOC (Nano Open Online Course)"
+      spoc: "SPOC (Small Private Online Course)"
+      spooc: "SPOOC (Self-Paced Private Online Course)"
+    create: "Crear"
+    date: "Fecha"
+    date_placeholder: "Fechas de celebración del curso"
+    day: "día"
+    days: "días"
+    desc: "Descripción"
+    description_placeholder: "Descripción del curso"
+    download_guide: "Descargar guía didáctica"
+    duration: "Dedicación"
+    duration_placeholder: "Dedicación estimada por parte de los estudiantes (en semanas u horas)"
+    edit: "Editar curso"
+    enroll: "Matricularse"
+    enroll_webinar: "Apuntarme"
+    guide: "Guía didáctica"
+    hour: "hora"
+    hours: "horas"
+    interested_users: "Usuarios interesados"
+    join: "Únete"
+    language: "Idioma"
+    languages: "Idiomas"
+    languages_placeholder: "Idiomas en los que se imparte el curso separados por comas"
+    lesson: "Nombre de la lección"
+    lessons: "Lecciones"
+    lessons_placeholder: "Número de lecciones del curso y duración de las mismas"
+    live: "Live ahora en"
+    minute: "minuto"
+    minutes: "minutos"
+    no_lessons: "No has añadido ninguna lección"
+    no_teacher: "No has añadido ningún profesor"
+    new: "Nuevo curso"
+    pictures: "Imágenes"
+    powered_by: "Powered by"
+    powered_by_placeholder: "Organismo que ofrece el curso"
+    rating: "Valoración"
+    read_more: "Leer más"
+    related_courses: "Cursos relacionados"
+    related_webinars: "Webinars relacionados"
+    second: "segundo"
+    see: "Ver"
+    tags: "Etiquetas"
+    teachers: "Profesores"
+    teacher:
+      bio: "Breve biografía"
+      facebook: "Nombre público en Facebook"
+      instagram: "Nombre de usuario de Instagram"
+      linkedin: "Nombre público en Linkedin"
+      name: "Nombre del profesor"
+      position: "Puesto (ej. Profesor de la Universidad X)"
+      twitter: "Nombre de usuario de Twitter (sin @)"
+      upload: "Subir..."
+    title: "Título"
+    title_placeholder: "Título del curso"
+    topic: "Nombre del apartado"
+    type: "Tipo de curso"
+    unenroll: "Desmatricularse"
+    update: "Actualizar"
+    upload: "Elige un fichero"
+    url: "Enlace al curso"
+    url_placeholder: "Enlace oficial donde los alumnos se deben apuntar al curso"
+    video: "Vídeo"
+    video_placeholder: "Enlace al vídeo de introducción (Youtube)"
+    visits: "Visitas"
+  landing: 
+    intro_new: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    intro_old: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    popular_courses: "Cursos populares"
+    popular_courses_intro: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    popular_courses_week: "Cursos populares esta semana"
+    popular_courses_week_intro: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    popular_webinars: "Webinars populares"
+    popular_webinars_intro: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    popular_webinars_week: "Webinars populares esta semana"
+    popular_webinars_week_intro: "Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    see_all: "Ver todos"
+    start: "¡Empieza a fomarte ahora!"
+    welcome_new: Bienvenido
+    welcome_old: "Bienvenido de nuevo"
+    your_courses: "Tus cursos y webinars"
+  navbar: 
+    courses: "Cursos"
+    forgot: "He olvidado mi contraseña"
+    forgot_email: "Introduce tu e-mail para recuperar tu contraseña"
+    login: "Iniciar sesión"
+    new_course: "Nuevo curso"
+    new_webinar: "Nuevo webinar"
+    reset_codes:
+      OK: "Te hemos enviado un e-mail con instrucciones para restaurar tu contraseña."
+      EMAIL_NOT_FOUND: "No existe ningún usuario con este correo."
+      ERROR_SENDING_EMAIL: "Ha ocurrido un error al enviar el correo. Inténtalo de nuevo más tarde."
+      ERROR: "Ha ocurrido un error. Inténtalo de nuevo más tarde."
+    remember: "Recordarme"
+    reset_password: "Restaurar mi contraseña"
+    reset_go_back: "Volver"
+    search: "Buscar"
+    signup: "¿Aún no tienes cuenta?¡Regístrate!"
+    webinars: "Webinars"
+    who: "¿Quienes somos?"
+  profile: 
+    edit: "Editar perfil"
+    no_events: "No hay eventos programados para este día"
+    your_courses_and_webinars: "Tus cursos y webinars"
+  search: 
+    next: "Siguiente"
+    no_results: "No hay resultados"
+    prev: "Anterior"
+    write: "Escribe aquí tu búsqueda"
+  tags: 
+    environment: "Medio ambiente"
+    esafety: "Uso seguro de las TIC"
+    inclusion: "Inclusión social digital"
+  user:
+    current_password: "Contraseña actual"
+    confirm_password: "Repetir contraseña"
+    edit: "Editar usuario"
+    email: "E-mail"
+    name: "Nombre de usuario"
+    new_password: "Nueva contraseña"
+    new: "Registro"
+    password: "Contraseña"
+    picture: "Foto"
+    register: "¡Regístrate!"
+    tags: "Etiquetas"
+    update: "Actualizar"
+  webinar:
+    edit: "Editar webinar"
+    date: "Fecha"
+    date_placeholder: "Fecha de celebración del webinar"
+    duration: "Duración"
+    duration_placeholder: "Duración del webinar en minutos"
+    url: "Enlace al webinar"
+    url_placeholder: "Enlace oficial donde los alumnos se deben apuntar al webinar"
+    new: "Nuevo webinar"
