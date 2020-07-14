@@ -1,26 +1,49 @@
-Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root 'welcome#index'
-  get 'index',            to: 'welcome#index'
+MOVLE::Application.routes.draw do
+  root "home#frontpage"
 
-  get 'courses/search',    to: 'welcome#search_courses'
-  get 'courses/new',       to: 'welcome#new_course'
-  get 'courses/:id',       to: 'welcome#course'
-  get 'courses/:id/edit',  to: 'welcome#edit_course'
-  post 'courses',          to: 'welcome#create_course'
-  put 'courses/:id',       to: 'welcome#update_course'
+  #Users
+  devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations", :omniauth_callbacks => "users/omniauth_callbacks" }
 
-  get 'webinars/search',   to: 'welcome#search_webinars'
-  get 'webinars/new',      to: 'welcome#new_webinar'
-  get 'webinars/:id',      to: 'welcome#webinar'
-  get 'webinars/:id/edit', to: 'welcome#edit_webinar'
-  post 'webinars',         to: 'welcome#create_webinar'
-  put 'webinars/:id',      to: 'welcome#update_webinar'
+  match '/users/:id/presentations' => 'users#show_presentations', via: [:get]
+  match '/users/:id/files' => 'users#show_files', via: [:get]
+  resources :users
 
-  get 'profile',          to: 'welcome#profile'
-  put 'profile',          to: 'welcome#update_user'
-  get 'profile/edit',     to: 'welcome#edit_user'
-  get 'register',         to: 'welcome#new_user'
-  post 'register',        to: 'welcome#create_user'
-  post 'forgot',          to: 'welcome#forgot'
+  #Locale
+  match '/change_locale', to: 'locales#change_locale', via: [:get]
+
+  #Thumbnails
+  match '/thumbnails' => 'presentations#presentation_thumbnails', via: [:get]
+
+  #Documents
+  resources :documents
+  resources :pictures
+  resources :zipfiles
+  match '/documents/:id/download' => 'documents#download', :via => :get
+
+  #Presentations
+  match '/presentations/:id/metadata' => 'presentations#metadata', :via => :get
+  match '/presentations/:id/scormMetadata' => 'presentations#scormMetadata', :via => :get
+  match '/presentations/:id/clone' => 'presentations#clone', :via => :get
+  match '/presentations/last_slide' => 'presentations#last_slide', :via => :get
+  match '/presentations/preview' => 'presentations#preview', :via => :get
+  match '/presentations/tmpJson' => 'presentations#uploadTmpJSON', :via => :post
+  match '/presentations/tmpJson' => 'presentations#downloadTmpJSON', :via => :get
+
+  resources :presentations
+
+  #PDF to Presentation
+  # resources :pdfexes, :except => [:index], controller: 'pdfps'
+  resources :pdfps, :except => [:index]
+
+  #Tags
+  match "/tags" => 'tags#index', :via => :get
+
+  #Change ui language
+  match '/change_locale', to: 'locales#change_locale', via: [:get]
+
+  #Terms of use
+  match '/terms_of_use', to: "home#frontpage", via: [:get]
+
+  #Wildcard route (This rule should be placed the last)
+  match "*not_found", :to => 'application#page_not_found', via: [:get]
 end

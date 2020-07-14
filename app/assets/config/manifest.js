@@ -1,5 +1,6 @@
-//= link_tree ../images
-//= link_directory ../stylesheets .css
+// JS and CSS bundles
+//
 //= link_directory ../javascripts .js
-//= require main
-
+//= link_directory ../stylesheets .css
+//= link_tree ../fonts
+//= link_tree ../images

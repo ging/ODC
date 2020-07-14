@@ -1,0 +1,5 @@
+<% if current_user && current_user.signed_in? %>
+	<%= render "/home/frontpage_identified"  %>
+<% else %>
+	<%= render "/home/frontpage_anonymous"  %>
+<% end %>

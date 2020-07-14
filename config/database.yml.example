@@ -1,0 +1,8 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  database: puo_development
+  pool: 5
+  username: puo_dev
+  password: password
