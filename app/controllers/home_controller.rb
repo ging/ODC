@@ -3,6 +3,9 @@ class HomeController < ApplicationController
 	skip_authorization_check :only => [:frontpage]
 
 	def frontpage
+		@user_courses = (user_signed_in? ? current_user.courses : [])
+		@top_courses = Course.where(:webinar => false)
+		@top_webinars = Course.where(:webinar => true)
 		respond_to do |format|
 			format.html { render layout: "application" }
 		end

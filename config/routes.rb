@@ -1,4 +1,5 @@
 MOVLE::Application.routes.draw do
+  resources :courses
   root "home#frontpage"
 
   #Users
