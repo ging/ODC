@@ -33,8 +33,8 @@ class CoursesController < ApplicationController
     @course.webinar = params[:course][:webinar] == "1"
     if params[:course][:date] 
       split_date = params[:course][:date].split(" - ")
-      @course.start_date = parse_date(split_date[0], @course.webinar)
-      @course.end_date = parse_date(split_date[1], @course.webinar)
+      @course.start_date = helpers.parse_date(split_date[0], @course.webinar)
+      @course.end_date = helpers.parse_date(split_date[1], @course.webinar)
     end
     if @course.save
       redirect_to @course, notice: I18n.t("course.successfully_created")
