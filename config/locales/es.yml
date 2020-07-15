@@ -87,6 +87,7 @@ es:
   login:
     confirmation_instructions: "¿No has recibido las instrucciones de confirmación?"
     confirmation_instructions_resend: "Reenviar instrucciones para confirmar cuenta"
+    confirmation_instructions_resend_btn: "Reenviar"
     confirmation_waiting: "Actualmente esperando confirmación para"
     email_description: "Por favor asegúrese de ingresar una dirección de correo electrónico válida ya que se le enviará un email con un enlace para activar su cuenta"
     message:
@@ -100,14 +101,16 @@ es:
     password_new: "Nueva contraseña"
     password_new_confirmation: "Confirmar nueva contraseña"
     password_forgot: "¿Olvidaste tu contraseña?"
-    password_reset_instructions: "Envíame instrucciones para reestablecer mi contraseña"
+    password_reset_instructions: "Te enviaremos instrucciones para reestablecer tu contraseña"
     remember_me: "Recuérdame"
+    send: "Enviar"
     sign_in: "Iniciar sesión"
     sign_in_with: "Iniciar sesión con %{provider}"
     sign_out: "Cerrar sesión"
     sign_up: "Regístrate"
     unlock_instructions: "¿No has recibido las instrucciones para desbloquear la cuenta?"
     unlock_instructions_resend: "Reenviar instrucciones para desbloquear la cuenta"
+    unlock_instructions_resend_btn: "Reenviar"
     username_or_email: "Nombre de usuario o Correo electrónico"
   profile:
     title: "Perfil de %{name}"

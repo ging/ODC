@@ -55,3 +55,25 @@ div.field, div.actions
 			list-style: none
 			margin-top: 4px
 			padding-bottom: 8px
+.session-form
+	background-image: url("/img/landing_no_login.jpg")
+	background-size: cover
+
+	background-position: center
+	.actions
+		text-align: right
+	& > .row
+		justify-content: center
+		align-items: center
+		min-height: 500px
+		min-height: calc(100vh - 120px)
+
+		& > .col-12
+			background-color: white
+			padding: 50px
+@media (max-width: 768px)
+	.session-form 
+		& > .row 
+			& > .col-12
+				padding: 15px
+	

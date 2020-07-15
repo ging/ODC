@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 2020_07_14_120158) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.boolean "webinar", default: false
+    t.string "video"
+    t.string "lang"
+    t.string "url"
+    t.string "powered_by"
+    t.string "dedication"
+    t.string "lessons"
+    t.string "format"
+    t.string "contents", default: [], array: true
+    t.string "teachers", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -60,29 +60,29 @@
 					<span><%=to_dmy(@course[:start_date])%>-<%=to_dmy(@course[:end_date])%></span> 
 				</div>
 			<% end %>
-			<% if @course[:duration] %>
+			<% if @course[:dedication] %>
 				<div class="course-characteristic">
-					<span class="course-field orange"><%= t("course.duration")%>:</span> 
-					<span><%=@course[:duration]%></span>
+					<span class="course-field orange"><%= t("course.dedication")%>:</span> 
+					<span><%=@course[:dedication]%></span>
 				</div>
 			<% end %>
-			<% if @course[:type] %>
+			<% if @course[:format] %>
 				<div class="course-characteristic">
-					<span class="course-field orange"><%= t("course.type")%>:</span> 
-					<span><%=t("course.course_formats." + @course[:type])%></span>
+					<span class="course-field orange"><%= t("course.format")%>:</span> 
+					<span><%=t("course.course_formats." + @course[:format])%></span>
 				</div>
 			<% end %>
 			<% if @course[:lessons] %>
 				<div class="course-characteristic">
 					<span class="course-field orange"><%= t("course.lessons")%>:</span> 
-					<span><%=course[:lessons]%></span>
+					<span><%=@course[:lessons]%></span>
 				</div>
 			<% end %>
 		<% end %>
 		<% if @course[:lang] %>
 			<div class="course-characteristic">
 				<span class="course-field orange"><%= t("course.languages")%>:</span> 
-				<span><%=course[:lang]%></span>
+				<span><%=@course[:lang]%></span>
 			</div>
 		<% end %>
 		<% if @course[:tags] %>

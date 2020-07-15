@@ -74,9 +74,10 @@ en:
     day: day
     days: days
     desc: Description
+    description_placeholder: "Description of the course"
     download_guide: "Donwload teching guide"
-    duration: Dedication
-    duration_placeholder: "Estimated time students will need to devote to the course (in weeks or hours)"
+    dedication: Dedication
+    dedication_placeholder: "Estimated time students will need to devote to the course (in weeks or hours)"
     edit: "Editar curso"
     enroll: "Enroll"
     enroll_webinar: "Enroll"
@@ -90,6 +91,7 @@ en:
     languages_placeholder: "Languages in which the course is taught, separated by commas"
     lesson: "Lesson name"
     lessons: "Lessons"
+    lessons_placeholder: "Number of lessons in the course and duration"
     live: "Live now in"
     minute: "minute"
     minutes: "minutes"
@@ -99,6 +101,7 @@ en:
     new: "New course"
     pictures: "Pictures"
     powered_by: "Powered by"
+    powered_by_placeholder: "Who is offering this course?"
     rating: "Rating"
     read_more: "Read more"
     related_courses: "Related courses"
@@ -106,6 +109,9 @@ en:
     second: "second"
     seconds: "seconds"
     see: "See"
+    successfully_created: 'Course was successfully created.'
+    successfully_updated: 'Course was successfully updated.'
+    successfully_deleted: 'Course was successfully destroyed.'
     tags: "Tags"
     teachers: "Teachers"
     teacher:
@@ -120,7 +126,7 @@ en:
     title: "Title"
     title_placeholder: "Course title"
     topic: "Topic name"
-    type: "Course type"
+    format: "Course type"
     unenroll: "Unenroll"
     update: "Update"
     upload: "Choose a file"
@@ -196,8 +202,8 @@ en:
     duration_placeholder: "Duration of the webinar in minutes"
     edit: "Edit webinar"
     new: "New webinar"
-    url: "Enlace al webinar"
-    url_placeholder: "Enlace oficial donde los alumnos se deben apuntar al webinar"
+    url: "Link to webinar"
+    url_placeholder: "Official link where students can join the webinar"
 
 
 

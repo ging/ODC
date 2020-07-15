@@ -39,7 +39,7 @@ class CoursesController < ApplicationController
       end
     end
     if @course.save
-      redirect_to @course, notice: 'Course was successfully created.'
+      redirect_to @course, notice: I18n.t("course.successfully_created")
     else
       render :new
     end
@@ -58,7 +58,7 @@ class CoursesController < ApplicationController
       end
     end
     if @course.update(course_params)
-      redirect_to @course, notice: 'Course was successfully updated.'
+      redirect_to @course, notice: I18n.t("course.successfully_updated")
     else
       render :edit
     end
@@ -67,7 +67,7 @@ class CoursesController < ApplicationController
   # DELETE /courses/1
   def destroy
     @course.destroy
-    redirect_to courses_url, notice: 'Course was successfully destroyed.'
+    redirect_to courses_url, notice:  I18n.t("course.successfully_destroyed")
   end
 
   private
@@ -78,6 +78,6 @@ class CoursesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def course_params
-      params.require(:course).permit(:name,:description,:start_date,:end_date)
+      params.require(:course).permit(:name,:description,:start_date,:end_date,:format,:video,:type,:dedication,:powered_by,:lang,:url,:teachers,:contents,:lessons)
     end
 end

@@ -44,13 +44,13 @@
 					}  %>
 				<%unless course[:webinar]%>		
 				<%= render partial: "layouts/form_field", :locals => {
-						label: t('course.duration'), 
+						label: t('course.dedication'), 
 						type: "text", 
-						name:"course[duration]", 
-						id: "duration", 
+						name:"course[dedication]", 
+						id: "dedication", 
 						required: true,
-						placeholder: t('course.duration_placeholder'),
-						value: course[:duration] 
+						placeholder: t('course.dedication_placeholder'),
+						value: course[:dedication] 
 					}  %>
 				<%end%>
 				<%= render partial: "layouts/form_field", :locals => {
@@ -105,11 +105,11 @@
 				<%unless course[:webinar]%>
 				<div class="form-group">
 					<div class="row">
-						<legend class="col-form-label col-sm-2 pt-0"><%=t('course.type')%></legend>
+						<legend class="col-form-label col-sm-2 pt-0"><%=t('course.format')%></legend>
 						<div class="col-sm-10">
 							<% t('course.course_formats').each do |name, format|%>
 								<div class="custom-control custom-radio ">
-									<input type="radio" id="<%=name%>" name="course[type]" class="custom-control-input" value="<%=name%>" <%=course[:type].eql?(name.to_s) ? "checked":"" %>/>
+									<input type="radio" id="<%=name%>" name="course[format]" class="custom-control-input" value="<%=name%>" <%=course[:format].eql?(name.to_s) ? "checked":"" %>/>
 									<label class="custom-control-label" for="<%=name%>"><%=format%></label>
 								</div>
 							<%end%>

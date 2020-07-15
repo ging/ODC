@@ -79,6 +79,9 @@ es:
     related_webinars: "Webinars relacionados"
     second: "segundo"
     see: "Ver"
+    successfully_created: 'Curso creado con éxito.'
+    successfully_updated: 'Curso actualizado con éxito.'
+    successfully_deleted: 'Curso eliminado con éxito.'
     tags: "Etiquetas"
     teachers: "Profesores"
     teacher:
@@ -93,7 +96,7 @@ es:
     title: "Título"
     title_placeholder: "Título del curso"
     topic: "Nombre del apartado"
-    type: "Tipo de curso"
+    format: "Tipo de curso"
     unenroll: "Desmatricularse"
     update: "Actualizar"
     upload: "Elige un fichero"

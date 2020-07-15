@@ -87,6 +87,7 @@ en:
   login:
     confirmation_instructions: "Didn't receive confirmation instructions?"
     confirmation_instructions_resend: "Resend confirmation instructions"
+    confirmation_instructions_resend_btn: "Resend"
     confirmation_waiting: "Currently waiting confirmation for"
     email_description: "Please make sure you enter a valid email address since you will be sent an email including a link to activate your account"
     message:
@@ -100,14 +101,16 @@ en:
     password_in_settings: "Password (leave blank if you don't want to change it)"
     password_new: "New password"
     password_new_confirmation: "Confirm new password"
-    password_reset_instructions: "Send me reset password instructions"
+    password_reset_instructions: "We will send you instructions to reset your password "
     remember_me: "Remember me"
+    send: "Send"
     sign_in: "Sign in"
     sign_in_with: "Sign in with %{provider}"
     sign_out: "Sign out"
     sign_up: "Sign up"
     unlock_instructions: "Didn't receive unlock instructions?"
     unlock_instructions_resend: "Resend unlock instructions"
+    unlock_instructions_resend_btn: "Resend"
     username_or_email: "Username or Email"
   profile:
     title: "%{name}'s profile"

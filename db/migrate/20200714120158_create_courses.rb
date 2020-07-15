@@ -7,6 +7,15 @@ class CreateCourses < ActiveRecord::Migration[5.2]
       t.datetime :start_date
       t.datetime :end_date
       t.boolean :webinar, :default => false
+      t.string :video
+      t.string :lang
+      t.string :url
+      t.string :powered_by
+      t.string :dedication
+      t.string :lessons
+      t.string :format
+      t.string :contents, array: true, default: []
+      t.string :teachers, array: true, default: []
       t.timestamps
     end
     create_table :courses_users, id: false do |t|
