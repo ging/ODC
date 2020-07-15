@@ -3,10 +3,13 @@ class CoursesController < ApplicationController
   skip_authorization_check :only => [:show,:index,:edit,:new,:create,:update]
   # GET /courses
   def index
+    query = "%#{(params[:query]||"").downcase}%"
+
     @courses = Course
+
     @courses = @courses.where(:webinar => params[:webinar] == "1") if !params[:webinar].blank?
-    @courses = @courses.where(["lower(name) LIKE ?", "%#{(params[:query]||"").downcase}%"])
-    .paginate(:per_page => 24, :page => params[:page].blank? ? 1 : params[:page])
+    @courses = @courses.where(["lower(name) LIKE ? OR lower(description) LIKE ?", query,query])
+      .paginate(:per_page => 24, :page => params[:page].blank? ? 1 : params[:page])
   end
 
   # GET /courses/1
@@ -30,13 +33,8 @@ class CoursesController < ApplicationController
     @course.webinar = params[:course][:webinar] == "1"
     if params[:course][:date] 
       split_date = params[:course][:date].split(" - ")
-      if @course.webinar
-        @course.start_date = DateTime.strptime(split_date[0], "%d/%m/%Y %H:%m");
-        @course.end_date = DateTime.strptime(split_date[1], "%d/%m/%Y %H:%m")
-      else
-        @course.start_date = DateTime.strptime(split_date[0], "%d/%m/%Y");
-        @course.end_date = DateTime.strptime(split_date[1], "%d/%m/%Y")
-      end
+      @course.start_date = parse_date(split_date[0], @course.webinar)
+      @course.end_date = parse_date(split_date[1], @course.webinar)
     end
     if @course.save
       redirect_to @course, notice: I18n.t("course.successfully_created")
@@ -49,13 +47,8 @@ class CoursesController < ApplicationController
   def update
     if params[:course][:date] 
       split_date = params[:course][:date].split(" - ")
-      if @course.webinar
-        params[:course][:start_date] = DateTime.strptime(split_date[0], "%d/%m/%Y %H:%M")
-        params[:course][:end_date] = DateTime.strptime(split_date[1], "%d/%m/%Y %H:%M")
-      else
-        params[:course][:start_date] = DateTime.strptime(split_date[0], "%d/%m/%Y")
-        params[:course][:end_date] = DateTime.strptime(split_date[1], "%d/%m/%Y")
-      end
+      params[:course][:start_date] = helpers.parse_date(split_date[0], @course.webinar)
+      params[:course][:end_date] = helpers.parse_date(split_date[1], @course.webinar)
     end
     if @course.update(course_params)
       redirect_to @course, notice: I18n.t("course.successfully_updated")

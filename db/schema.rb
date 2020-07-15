@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 2020_07_14_120158) do
     t.string "dedication"
     t.string "lessons"
     t.string "format"
-    t.string "contents", default: [], array: true
-    t.string "teachers", default: [], array: true
+    t.text "contents", default: [], array: true
+    t.text "teachers", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
