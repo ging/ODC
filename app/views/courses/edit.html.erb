@@ -1,6 +1,3 @@
-<h1>Editing Course</h1>
+<%tag = @course[:webinar]? "webinar" : "course"%>
 
-<%= render 'form', course: @course %>
-
-<%= link_to 'Show', @course %> |
-<%= link_to 'Back', courses_path %>
+<%= render partial: "courses/form", :locals => {title: t("#{tag}.edit"), button_name: t("course.update", course: @course), action: "/courses/#{@course[:id]}", course: @course, method: "put"} %>

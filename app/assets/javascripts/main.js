@@ -6,7 +6,19 @@ var newTeacherTemplate = window.newTeacherTemplate || '';
 var newLessonTemplate = window.newLessonTemplate || '';
 var calendarI18n = window.calendarI18n || {};
 $(function() {
-console.log(2)
+
+
+  /****************************************** TIMEZONE*******************************************/
+  
+  var offset = (new Date()).getTimezoneOffset()
+  var date = new Date();
+  date.setTime(date.getTime()+3600000);
+  document.cookie = "utc_offset="+offset+"; expires="+date.toGMTString();+"; path=/";
+
+  /****************************************** TIMEZONE*******************************************/
+  
+
+
 
   /******************************************* SEARCH *******************************************/
   if (!String.prototype.trim) {
@@ -116,64 +128,55 @@ console.log(2)
     $(".ui-corner-all").removeClass("ui-datepicker-prev-hover");
   });
 
-  if ($('input[name="course[date]"]') && $('input[name="course[date]"]').daterangepicker) {
-    $('input[name="course[date]"]').daterangepicker({
-      "opens": "left",
-      "autoUpdateInput": false,
-      "locale": {
-        "format": "DD/MM/YYYY",
-        "separator": " - ",
-        "applyLabel": calendarI18n.apply,
-        "cancelLabel": calendarI18n.cancel,
-        "fromLabel": calendarI18n.from,
-        "toLabel": calendarI18n.to,
-        "customRangeLabel": calendarI18n.custom,
-        "weekLabel": "W",
-        "daysOfWeek": dayArray.map(a=>a.slice(0,1)),
-        "monthNames": monthArray,
-        "firstDay": 1
-      }
-    }, function(start, end, label) {});
-  }
+  $('#course-date').daterangepicker({
+    "opens": "left",
+    "autoUpdateInput": false,
+    "locale": {
+      "format": "DD/MM/YYYY",
+      "separator": " - ",
+      "applyLabel": calendarI18n.apply,
+      "cancelLabel": calendarI18n.cancel,
+      "fromLabel": calendarI18n.from,
+      "toLabel": calendarI18n.to,
+      "customRangeLabel": calendarI18n.custom,
+      "weekLabel": "W",
+      "daysOfWeek": dayArray.map(a=>a.slice(0,1)),
+      "monthNames": monthArray,
+      "firstDay": 1
+    }
+  }, function(start, end, label) {});
 
-  if ($('input[name="webinar[date]"]') && ('input[name="webinar[date]"]').daterangepicker) {
-    $('input[name="webinar[date]"]').daterangepicker({
-      "opens": "left",
-      "autoUpdateInput": false,
-      "timePicker": true,
-      "timePicker24Hour": true,
-      "locale": {
-        "format": "DD/MM/YYYY hh:mm",
-        "separator": " - ",
-        "applyLabel": calendarI18n.apply,
-        "cancelLabel": calendarI18n.cancel,
-        "fromLabel": calendarI18n.from,
-        "toLabel": calendarI18n.to,
-        "customRangeLabel": calendarI18n.custom,
-        "weekLabel": "W",
-        "daysOfWeek": dayArray.map(a=>a.slice(0,1)),
-        "monthNames": monthArray,
-        "firstDay": 1
-      }
-    }, function(start, end, label) {});
-  }  
+  $('#webinar-date').daterangepicker({
+    "opens": "left",
+    "autoUpdateInput": false,
+    "timePicker": true,
+    "timePicker24Hour": true,
+    "locale": {
+      "format": "DD/MM/YYYY HH:mm",
+      "separator": " - ",
+      "applyLabel": calendarI18n.apply,
+      "cancelLabel": calendarI18n.cancel,
+      "fromLabel": calendarI18n.from,
+      "toLabel": calendarI18n.to,
+      "customRangeLabel": calendarI18n.custom,
+      "weekLabel": "W",
+      "daysOfWeek": dayArray.map(a=>a.slice(0,1)),
+      "monthNames": monthArray,
+      "firstDay": 1
+    }
+  }, function(start, end, label) {});
 
-  if ($('input[name="course[date]"]')) {
-    $('input[name="course[date]"]').on('apply.daterangepicker', function(ev, picker) {
-      $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
-    });
-  }
+  $('#course-date').on('apply.daterangepicker', function(ev, picker) {
+    $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+  });
 
-  if ($('input[name="webinar[date]"]')) {
-    $('input[name="webinar[date]"]').on('apply.daterangepicker', function(ev, picker) {
-      $(this).val(picker.startDate.format('MM/DD/YYYY hh:mm') + ' - ' + picker.endDate.format('MM/DD/YYYY hh:mm'));
-    });
-  }
-  if ($('input[name="webinar[date]"]')) {
-    $('input[name="webinar[date]"],input[name="course[date]"]').on('cancel.daterangepicker', function(ev, picker) {
-      $(this).val('');
-    });
-  }
+  $('#webinar-date').on('apply.daterangepicker', function(ev, picker) {
+    $(this).val(picker.startDate.format('DD/MM/YYYY HH:mm') + ' - ' + picker.endDate.format('DD/MM/YYYY HH:mm'));
+  });
+
+  $('#course-date,#webinar-date').on('cancel.daterangepicker', function(ev, picker) {
+    $(this).val('');
+  });
 
   /**************************************** DATE-PICKER *****************************************/
 
@@ -329,7 +332,7 @@ console.log(2)
 
   /***************************************** COUNTDOWN ******************************************/
 
-  if ($('.countdown').length) {
+  if ($('.countdown').length && window.countdown_date) {
     function pad(n, width, z) {
       z = z || '0';
       n = n + '';
@@ -337,7 +340,7 @@ console.log(2)
     }
     var interval = setInterval(function(){
       var now = new Date();
-      var scheduled = new Date("<%=date%>");
+      var scheduled = new Date(window.countdown_date);
       var remaining = (scheduled - now) / 1000 / 60 / 60 / 24 ;
       if (remaining < 0) {
         clearInterval(interval);

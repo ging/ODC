@@ -1,5 +1,2 @@
-<h1>New Course</h1>
-
-<%= render 'form', course: @course %>
-
-<%= link_to 'Back', courses_path %>
+<%tag = @course[:webinar]? "webinar" : "course"%>
+<%= render partial: "courses/form", :locals => {title: t("#{tag}.new"), button_name: t("course.create"), action: "/courses", method: "post", course: @course}%>

@@ -1,15 +1,17 @@
-<%if @course[:webinar] and @course[:from] and @course[:to]%>
-<%startDate = DateTime.parse(@course[:from])%>
-<%finishDate = DateTime.parse(@course[:to])%>
-<%notYet = DateTime.now < startDate%>
-<%currentlyGoingOn = DateTime.now > startDate && DateTime.now < finishDate%>
-<%ended = !notYet && !currentlyGoingOn %>
-<%end%>
+<% is_admin = current_user and current_user[:role] == "admin"%>
+<% is_admin = true %>
+<% offset = (cookies()[:utc_offset] || "0").to_i %>
+<% now = (DateTime.now.to_time + offset / 60 ).to_datetime %>
+<% if @course[:webinar] and @course[:start_date] and @course[:end_date] %>
+	<% notYet = now < @course[:start_date]%>
+	<% currentlyGoingOn = now > @course[:start_date] && now < @course[:end_date] %>
+	<% ended = !notYet && !currentlyGoingOn %>
+<% end %>
 <div class="container-fluid course-detail">
   <div class="row">
     <div class="col-xs-12 col-md-9">
 		<% if @course[:webinar] and notYet %>
-			<%= render partial: "courses/countdown", :locals => { date: startDate} %>
+			<%= render partial: "courses/countdown", :locals => { date: @course[:start_date], now: now} %>
 		<% elsif (currentlyGoingOn)%>
 			<div class="live">
 				<div class="text-center">
@@ -28,7 +30,7 @@
     	<%end%>
     </div>
     <div class="col-xs-12 col-md-3 course-info">
-		<%if user_signed_in? and current_user[:role] == "admin"%>
+		<%if user_signed_in? and is_admin %>
 			<a href="/courses/<%=@course[:id]%>/edit" class="text-right d-block link-edit-course">
 				<button class="btn btn-dark orange btn-edit-course">
 					<i class="far fa-edit"></i>
@@ -38,24 +40,24 @@
 			<br/>
 		<%end%>
 		<% if @course[:webinar] %>
-			<%if @course[:from]%>
+			<%if @course[:start_date]%>
 				<div class="course-characteristic">
 					<span class="course-field orange"><%= t("course.date")%>:</span> 
-					<span><%=@course[:from]%></span> 
+					<span><%=to_dmyhm(@course[:start_date],offset)%> <%unless (offset)%>UTC<%end%></span> 
 				</div>
 			<%end%>
-			<%if @course[:from] and @course[:to]%>
+			<%if @course[:start_date] and @course[:end_date]%>
 				<div class="course-characteristic">
 					<span class="course-field orange"><%= t("webinar.duration")%>:</span> 
-					<%duration = ((DateTime.parse(@course[:to]) - DateTime.parse(@course[:from]))*24*3600).to_i%>
+					<%duration = ((@course[:end_date] - @course[:start_date]))%>
 					<span><%=formatted_duration(duration)%></span>
 				</div>
 			<%end%>
 		<% else %>
-			<%if @course[:from] and @course[:to]%>
+			<%if @course[:start_date] and @course[:end_date]%>
 				<div class="course-characteristic">
 					<span class="course-field orange"><%= t("course.date")%>:</span>
-					<span><%=@course[:from]%>-<%=@course[:to]%></span> 
+					<span><%=to_dmy(@course[:start_date])%>-<%=to_dmy(@course[:end_date])%></span> 
 				</div>
 			<% end %>
 			<% if @course[:duration] %>
@@ -130,8 +132,8 @@
 	    <div class="col-xs-12 col-lg-9"><br/><br/>
 	    	<div>
 				<h2 class="orange"><%=@course[:name]%></h2>
-				<%if @course[:desc] %>
-					<p><%=sanitize @course[:desc].html_safe%></p>
+				<%if @course[:description] %>
+					<p><%= @course[:description].html_safe%></p>
 				<% end %>
 			</div>
 			<%if @course[:contents] and @course[:contents].length() > 0 %>

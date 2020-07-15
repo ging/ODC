@@ -93,6 +93,7 @@ en:
     live: "Live now in"
     minute: "minute"
     minutes: "minutes"
+    no_courses_yet: "You have not enrolled in any courses yet"
     no_lessons: "You have not aded any lessons"
     no_teacher: "You have not added any teachers"
     new: "New course"

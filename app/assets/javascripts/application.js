@@ -12,8 +12,15 @@
 //
 //= require jquery3
 //= require jquery_ujs
+//= require popper.min.js
+//= require bootstrap.min.js
 //= require jquery-ui
+//= require moment.min.js
+//= require daterangepicker.min.js
+//= require cropper.min.js
+//= require jquery-cropper.min.js
 //= require select2.min.js
 //= require polyfills.js
 //= require main.js
 //= require_tree .
+

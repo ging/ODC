@@ -11,12 +11,20 @@
 		<%end%>
 	</div>
 	<div class="card-body">
-		<%if (course[:webinar] and course[:from] and course[:to]) or (!course[:webinar] and course[:to])%>
-	 		 <h5 class="course-date"><%=course[:from]%> <%unless course[:webinar]%> -  <%=course[:to]%><%end%></h5>
-	  <%end%>
+		<h5 class="course-date">
+		<%if course[:webinar]%>
+			<%if course[:start_date]%>
+				<%=to_dmyhm(course[:start_date])%>
+			<%end%>
+		<%else%>
+			<%if course[:start_date] and course[:end_date]%>
+	 			<%=to_dmy(course[:start_date])%> -  <%=to_dmy(course[:end_date])%>
+			<%end%>
+		<%end%>
+		</h5>
 	  <h4 class="card-title"><%=course[:name]%></h4>
 	  <div class="course-description">
-	  	<span class="text-wrapper"><%=course[:desc]%></span>
+	  	<span class="text-wrapper"><%=sanitize(course[:description].html_safe,{:tags => []})%></span>
 	  </div>
 	  <br/>
 	  <br/>

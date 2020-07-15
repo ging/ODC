@@ -1,3 +1,5 @@
+<% is_admin = current_user and current_user[:role] == "admin"%>
+<% is_admin = true %>
 <%@searching = current_page?("/courses") %>
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light2 <%=@searching ? "search" : ""%>">
   <a class="navbar-brand" href="#">
@@ -18,14 +20,14 @@
       <li class="nav-item <%=current_page?("/courses") and params[:webinar] == "1" ? "active" : ""%>">
         <a class="nav-link text-center" href="/courses?webinar=1"><%= t('navbar.webinars') %></a>
       </li>
-      <%if user_signed_in? and current_user[:role] == "admin"%>
+      <%if user_signed_in? and is_admin%>
         <li class="nav-item dropdown">
           <a class="nav-link text-center dropdown-toggle" data-target="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            <span class="orange">Admin</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="/courses/new"><%= t('navbar.new_course') %></a>
-              <a class="dropdown-item" href="/webinars/new"><%= t('navbar.new_webinar') %></a>
+              <a class="dropdown-item" href="/courses/new?webinar=1"><%= t('navbar.new_webinar') %></a>
             <!-- <div class="dropdown-divider"></div> -->
           </div>
         </li>

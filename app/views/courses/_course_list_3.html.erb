@@ -10,7 +10,7 @@
 	  		<br/>
 		</div>
 		<div class="col-xs-12 col-md-8">
-			<div class="row">
+			<div class="row ">
 				<% courses.each_with_index do |course, index| %>
 			  		<div class="col-xs-12 col-sm-6 col-lg-4 col-xl-4 col-course" style="position: relative;">
 					<%if index < 3%>
@@ -18,6 +18,9 @@
 					<% end %>
 					</div>
 				<% end %>
+				<%if courses.length() == 0  and  defined?empty_msg %>
+					<p class="d-flex no-results text-center" style="min-height: 300px; padding-top: 15px;"><%=empty_msg%></p>
+				<%end%>
 				</div>
 			</div>
 		</div>

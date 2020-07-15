@@ -12,7 +12,7 @@
     </div>
   </div>
 <div>
-  <%= render partial: "courses/course_list_3", :locals => {title: t("landing.your_courses"), desc:"", courses: @user_courses, button: t('landing.see_all'), button_link: "/", link: "/", mine: true }  %>
+  <%= render partial: "courses/course_list_3", :locals => {title: t("landing.your_courses"), desc:"", courses: @user_courses, button: t('landing.see_all'), button_link: "/", link: "/", mine: true, empty_msg: t("course.no_courses_yet") }  %>
 </div>
 <div class="highlight-background">
 	<%= render partial: "courses/course_list_3", :locals => {title: t('landing.popular_courses_week'), desc: t('landing.popular_courses_week_intro'), courses: @top_courses, button: t('landing.see_all'), button_link: "/", link: "/" }  %>

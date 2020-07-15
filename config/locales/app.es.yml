@@ -66,6 +66,7 @@ es:
     live: "Live ahora en"
     minute: "minuto"
     minutes: "minutos"
+    no_courses_yet: "No te has apuntado a ningún curso aún"
     no_lessons: "No has añadido ninguna lección"
     no_teacher: "No has añadido ningún profesor"
     new: "Nuevo curso"

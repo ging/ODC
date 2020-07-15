@@ -44,4 +44,14 @@ module ApplicationHelper
     url
   end
 
+  def to_dmy(date)
+    # DateTime.parse(date).strftime("%d-%m-%Y")
+    date.strftime("%d/%m/%Y")
+  end
+  def to_dmyhm(date, offset = 0)
+    date = (date.to_time + offset / 60 ).to_datetime
+    date.strftime("%d/%m/%Y %H:%M")
+  end
+
+
 end
