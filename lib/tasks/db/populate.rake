@@ -20,6 +20,18 @@ namespace :db do
 		user.save!
 		puts "User '" + user.name + "' created with email '" + user.email + "' and password 'demonstration'"
 
+		#Create admin user
+		admin = User.new
+		admin.roles.push(Role.admin)
+		admin.email = "admin@upm.es"
+		admin.password = "demonstration"
+		admin.name = "Admin"
+		admin.ui_language = I18n.default_locale
+		admin.confirmed_at = DateTime.now
+		admin.skip_confirmation!
+		admin.save!
+		puts "User '" + admin.name + "' created with email '" + admin.email + "' and password 'demonstration'"
+
 		#Create courses
 		Course.create! :name => "Conciencia ecológica",
 			:description   => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
