@@ -66,16 +66,10 @@
       <label for="photo" class="col-sm-2 col-form-label"><%=t('user.picture')%></label>
       <div class="col-sm-10">
         <div class="image-edit-actions">
-          <%=render partial: "layouts/input_file_custom", :locals => {name: "", file_name: @user[:photo_file_name], file_path: @user[:photo_file_path], id:"photo", label: t('course.upload'), data_name: "user[photo]",
-          data_img_id: "edit-uploaded-picture", width: 150, height: 150, accept: "image/*"} %>
+          <%= f.file_field :avatar %>
         </div>
-        <div class="image-container" style="width:150px;height:150px;">
-          <img id="edit-uploaded-picture" class="picture" src="<%= @user[:photo_file_path] || 'https://via.placeholder.com/150x150.png/ccc/fff?text=150x150'%>"/></div>
       </div>
-      <canvas class="canvas" style="width:150px;height:150px;"></canvas>
     </div>
-
-
 
     <% if  MOVLE::Application.config.recaptcha %>
       <div class="field">
