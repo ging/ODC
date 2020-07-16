@@ -84,7 +84,8 @@
       <label for="photo" class="col-sm-2 col-form-label"><%=t('user.picture')%></label>
       <div class="col-sm-10">
         <div class="image-edit-actions">
-          <%= f.file_field :avatar %>
+          <%=render partial: "layouts/input_file_custom", :locals => {name: "", file_name: user.avatar_file_name, file_path: user.avatar.url, id:"photo", label: t('course.upload'), data_name: "user[avatar]",
+          data_img_id: "edit-uploaded-picture", width: 150, height: 150, accept: "image/*"} %>
         </div>
         <div class="image-container" style="width:150px;height:150px;">
           <img id="edit-uploaded-picture" class="picture" src="<%= user.avatar.url || 'https://via.placeholder.com/150x150.png/ccc/fff?text=150x150'%>"/></div>

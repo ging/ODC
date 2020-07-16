@@ -41,7 +41,7 @@
     <div class=" my-2 my-lg-0 text-center user-name-container <%= user_signed_in? ? "logged-in" : ""%>">
       <%if user_signed_in?%>
         <a href="<%=user_path(current_user)%>">
-          <img src="<%=current_user[:photo_file_path] || "/img/user_placeholder.png" %>" class="user-img"/>
+          <img src="<%=current_user.avatar.url || "/img/user_placeholder.png" %>" class="user-img"/>
           <span class="user-name"><%=current_user[:name]%></span>
         </a>
       <%else%>

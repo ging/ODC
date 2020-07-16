@@ -79,6 +79,6 @@ class CoursesController < ApplicationController
     end
 
     def course_params
-      params.require(:course).permit(:name,:description,:start_date,:end_date,:format,:video,:type,:dedication,:powered_by,:lang,:url,:teachers,:contents,:lessons)
+      params.require(:course).permit(:name,:description,:start_date,:end_date,:format,:video,:type,:dedication,:powered_by,:powered_by_logo,:lang,:url,:teachers,:contents,:lessons,:thumb)
     end
 end

@@ -1,6 +1,6 @@
 <div class="card course" style="width: 100%;" id="course-<%=index%>">
 	<div class="card-img-container">
-		<img class="card-img-top" src="<%=course[:photo_file_path] || "https://picsum.photos/380/200?random=#{index}"%>" alt="">
+		<img class="card-img-top" src="<%=course.thumb.url%>" alt="">
 		<%if (course[:webinar])%>
 			<span class="webinar-corner">
 				<span><img src="/img/Video_camera_icon.svg" alt=""></span>

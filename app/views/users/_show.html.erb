@@ -5,7 +5,7 @@
 			<div class="user-block">
 				<div class="d-flex flex-column flex-md-row align-items-center align-items-md-start">
 					<div class="user-picture-container">
-						<img src="<%=current_user[:photo_file_path]|| "/img/user_placeholder.png"%>" onerror="function(){this.src=''}">
+						<img src="<%=@profile_user.avatar.url|| "/img/user_placeholder.png"%>" onerror="function(){this.src=''}">
 					</div>
 					<div class="user-info">
 						<h1 class="user-name"><%=@profile_user[:name]%></h1>

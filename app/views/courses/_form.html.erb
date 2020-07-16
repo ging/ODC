@@ -101,7 +101,20 @@
 						placeholder: t('course.powered_by_placeholder'),  
 						value: course[:powered_by] 
 					}  %>
+				<div class="form-group row"  >
+					<label for="photo" class="col-sm-2 col-form-label"><%=t('course.powered_by_logo')%></label>
+					<div class="col-sm-10">
+						<div class="image-edit-actions">
+							<!-- <input class="input-file" type="file" name="photo" class="form-control-file" accept="image/*"></input> -->
+							<%=render partial: "layouts/input_file_custom", :locals => {name: "", file_name: course.powered_by_logo_file_name, file_path: course.powered_by_logo.url, id:"photo", label: t('course.upload'), data_name: "course[powered_by_logo]",
+							data_img_id: "edit-uploaded-picture", width: 200, height: 200, accept: "image/*"} %>
+						</div>
+						<div class="image-container" style="width: 200px;height: 200px;">
+							<img id="edit-uploaded-picture" class="picture" src="<%= course.powered_by_logo_file_name.nil? ? 'https://via.placeholder.com/200x200.png/ccc/fff?text=200x200' : course.powered_by_logo.url%>"/></div>
+					</div>
+					<canvas class="canvas" style="width: 200px;height: 200px;"></canvas>
 
+				</div>
 				<%unless course[:webinar]%>
 				<div class="form-group">
 					<div class="row">
@@ -198,11 +211,11 @@
 					<div class="col-sm-10">
 						<div class="image-edit-actions">
 							<!-- <input class="input-file" type="file" name="photo" class="form-control-file" accept="image/*"></input> -->
-							<%=render partial: "layouts/input_file_custom", :locals => {name: "", file_name: course[:photo_file_name], file_path: course[:photo_file_path], id:"photo", label: t('course.upload'), data_name: "course[photo]",
+							<%=render partial: "layouts/input_file_custom", :locals => {name: "", file_name: course.thumb_file_name, file_path: course.thumb.url, id:"photo", label: t('course.upload'), data_name: "course[thumb]",
 							data_img_id: "edit-uploaded-picture", width: 800, height: 400, accept: "image/*"} %>
 						</div>
 						<div class="image-container" style="width: 800px;height: 400px;">
-							<img id="edit-uploaded-picture" class="picture" src="<%= course[:photo_file_path] || 'https://via.placeholder.com/800x400.png/ccc/fff?text=800x400'%>"/></div>
+							<img id="edit-uploaded-picture" class="picture" src="<%= course.thumb.url || 'https://via.placeholder.com/800x400.png/ccc/fff?text=800x400'%>"/></div>
 					</div>
 					<canvas class="canvas" style="width: 800px;height: 400px;"></canvas>
 

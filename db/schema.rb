@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_16_091448) do
+ActiveRecord::Schema.define(version: 2020_07_17_091448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,14 @@ ActiveRecord::Schema.define(version: 2020_07_16_091448) do
     t.text "teachers", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "thumb_file_name"
+    t.string "thumb_content_type"
+    t.bigint "thumb_file_size"
+    t.datetime "thumb_updated_at"
+    t.string "powered_by_logo_file_name"
+    t.string "powered_by_logo_content_type"
+    t.bigint "powered_by_logo_file_size"
+    t.datetime "powered_by_logo_updated_at"
   end
 
   create_table "courses_users", id: false, force: :cascade do |t|

@@ -13,7 +13,18 @@
 		<% elsif (currentlyGoingOn)%>
 			<div class="live">
 				<div class="text-center">
-					<h2 class="orange"><%=t("course.live")%><img src="<%=@course[:platform_img]%>"/></h2>
+					<h2 class="orange"><%=t("course.live")%>
+						<% if !@course.powered_by.blank? or !@course.powered_by_logo_file_name.nil? %>
+							<%=t("course.live_in")%>
+							<% if !@course.powered_by_logo_file_name.nil? %>
+							<img class="powered_by_logo" src="<%=@course.powered_by_logo%>"/>
+							<% else %>
+							<%=@course.powered_by%>
+							<% end %>
+						<%else%>
+						<% end %>
+
+					</h2>
 					<a href="<%=@course[:url]%>">
 						<button class="btn btn-orange"><%=t("course.join")%></button>
 					</a>
@@ -21,10 +32,10 @@
 					<br/>
 				</div>
 			</div>
-		<% elsif @course[:video] %>
+		<% elsif !@course.video.blank? %>
     		<iframe class="course-video" src="<%=youtube_parse(@course[:video])%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     	<%else%>
-    		<img  class="course-video" src="<%=@course[:photo_file_path]%>" alt="">
+    		<img  class="course-video" src="<%=@course.thumb.url%>" alt="">
     	<%end%>
     </div>
     <div class="col-xs-12 col-md-3 course-info">
@@ -77,7 +88,7 @@
 				</div>
 			<% end %>
 		<% end %>
-		<% if @course[:lang] %>
+		<% if !@course[:lang].blank? %>
 			<div class="course-characteristic">
 				<span class="course-field orange"><%= t("course.languages")%>:</span> 
 				<span><%=@course[:lang]%></span>
@@ -93,7 +104,7 @@
 				</span>
 			</div>
 		<% end %>
-		<%if (@course[:powered_by])%>
+		<%if (!@course[:powered_by].blank?)%>
 			<div class="course-characteristic">
 				<span class="course-field orange"><%= t("course.powered_by")%>:</span> 
 				<span><%=@course[:powered_by]%></span>
