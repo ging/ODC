@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>REDOrange</title> 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="/fontawesome-free-5.13.1-web/css/all.min.css" crossorigin="anonymous">
-  <script src="/ckeditor4/ckeditor.js"></script>
-  <%= stylesheet_link_tag    'application', media: 'all'%>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-  <%= favicon_link_tag "/favicon.ico" %>
-  <meta charset="UTF-8">
+	<title>REDOrange</title> 
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="/fontawesome-free-5.13.1-web/css/all.min.css" crossorigin="anonymous">
+	<script src="/ckeditor4/ckeditor.js"></script>
+	<%= stylesheet_link_tag    'application', media: 'all'%>
+	<%= javascript_include_tag 'application' %>
+	<%= csrf_meta_tags %>
+	<%= favicon_link_tag "/favicon.ico" %>
+	<meta charset="UTF-8">
 </head>
 <body>
-  <div id="wrapper">
-      <%= render partial: "layouts/header", :locals => {}  %>
-      <%= render '/layouts/notifications' %>
-      <%= yield %>
-      <%= render "layouts/footer" %>
-  </div>
+	<div id="wrapper">
+		<%= render partial: "layouts/header", :locals => {}  %>
+		<%= render '/layouts/notifications' %>
+		<%= yield %>
+		<%= render "layouts/footer" %>
+	</div>
 </body>
 </html>

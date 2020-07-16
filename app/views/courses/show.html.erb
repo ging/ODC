@@ -1,26 +1,26 @@
 <% offset = (cookies()[:utc_offset] || "0").to_i %>
 <% now = (DateTime.now.to_time + offset / 60 ).to_datetime %>
 <% if @course[:webinar] and @course[:start_date] and @course[:end_date] %>
-	<% notYet = now < @course[:start_date]%>
-	<% currentlyGoingOn = now > @course[:start_date] && now < @course[:end_date] %>
-	<% ended = !notYet && !currentlyGoingOn %>
+<% notYet = now < @course[:start_date]%>
+<% currentlyGoingOn = now > @course[:start_date] && now < @course[:end_date] %>
+<% ended = !notYet && !currentlyGoingOn %>
 <% end %>
 <div class="container-fluid course-detail">
-  <div class="row">
-    <div class="col-xs-12 col-md-9">
-		<% if @course[:webinar] and notYet %>
+	<div class="row">
+		<div class="col-xs-12 col-md-9">
+			<% if @course[:webinar] and notYet %>
 			<%= render partial: "courses/countdown", :locals => { date: @course[:start_date], now: now} %>
-		<% elsif (currentlyGoingOn)%>
+			<% elsif (currentlyGoingOn)%>
 			<div class="live">
 				<div class="text-center">
 					<h2 class="orange"><%=t("course.live")%>
 						<% if !@course.powered_by.blank? or !@course.powered_by_logo_file_name.nil? %>
-							<%=t("course.live_in")%>
-							<% if !@course.powered_by_logo_file_name.nil? %>
-							<img class="powered_by_logo" src="<%=@course.powered_by_logo%>"/>
-							<% else %>
-							<%=@course.powered_by%>
-							<% end %>
+						<%=t("course.live_in")%>
+						<% if !@course.powered_by_logo_file_name.nil? %>
+						<img class="powered_by_logo" src="<%=@course.powered_by_logo%>"/>
+						<% else %>
+						<%=@course.powered_by%>
+						<% end %>
 						<%else%>
 						<% end %>
 
@@ -32,153 +32,153 @@
 					<br/>
 				</div>
 			</div>
-		<% elsif !@course.video.blank? %>
-    		<iframe class="course-video" src="<%=youtube_parse(@course[:video])%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    	<%else%>
-    		<img  class="course-video" src="<%=@course.thumb.url%>" alt="">
-    	<%end%>
-    </div>
-    <div class="col-xs-12 col-md-3 course-info">
-		<%if can? :edit, @course%>
+			<% elsif !@course.video.blank? %>
+			<iframe class="course-video" src="<%=youtube_parse(@course[:video])%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			<%else%>
+			<img  class="course-video" src="<%=@course.thumb.url%>" alt="">
+			<%end%>
+		</div>
+		<div class="col-xs-12 col-md-3 course-info">
+			<%if can? :edit, @course%>
 			<a href="/courses/<%=@course[:id]%>/edit" class="text-right d-block link-edit-course">
 				<button class="btn btn-dark orange btn-edit-course">
 					<i class="far fa-edit"></i>
 				</button>
 			</a>
-		<%else%>
+			<%else%>
 			<br/>
-		<%end%>
-		<% if @course[:webinar] %>
+			<%end%>
+			<% if @course[:webinar] %>
 			<%if @course[:start_date]%>
-				<div class="course-characteristic">
-					<span class="course-field orange"><%= t("course.date")%>:</span> 
-					<span><%=to_dmyhm(@course[:start_date],offset)%> <%unless (offset)%>UTC<%end%></span> 
-				</div>
+			<div class="course-characteristic">
+				<span class="course-field orange"><%= t("course.date")%>:</span> 
+				<span><%=to_dmyhm(@course[:start_date],offset)%> <%unless (offset)%>UTC<%end%></span> 
+			</div>
 			<%end%>
 			<%if @course[:start_date] and @course[:end_date]%>
-				<div class="course-characteristic">
-					<span class="course-field orange"><%= t("webinar.duration")%>:</span> 
-					<%duration = ((@course[:end_date] - @course[:start_date]))%>
-					<span><%=formatted_duration(duration)%></span>
-				</div>
+			<div class="course-characteristic">
+				<span class="course-field orange"><%= t("webinar.duration")%>:</span> 
+				<%duration = ((@course[:end_date] - @course[:start_date]))%>
+				<span><%=formatted_duration(duration)%></span>
+			</div>
 			<%end%>
-		<% else %>
+			<% else %>
 			<%if @course[:start_date] and @course[:end_date]%>
-				<div class="course-characteristic">
-					<span class="course-field orange"><%= t("course.date")%>:</span>
-					<span><%=to_dmy(@course[:start_date])%>-<%=to_dmy(@course[:end_date])%></span> 
-				</div>
+			<div class="course-characteristic">
+				<span class="course-field orange"><%= t("course.date")%>:</span>
+				<span><%=to_dmy(@course[:start_date])%>-<%=to_dmy(@course[:end_date])%></span> 
+			</div>
 			<% end %>
 			<% if @course[:dedication] %>
-				<div class="course-characteristic">
-					<span class="course-field orange"><%= t("course.dedication")%>:</span> 
-					<span><%=@course[:dedication]%></span>
-				</div>
+			<div class="course-characteristic">
+				<span class="course-field orange"><%= t("course.dedication")%>:</span> 
+				<span><%=@course[:dedication]%></span>
+			</div>
 			<% end %>
 			<% if @course[:format] %>
-				<div class="course-characteristic">
-					<span class="course-field orange"><%= t("course.format")%>:</span> 
-					<span><%=t("course.course_formats." + @course[:format])%></span>
-				</div>
+			<div class="course-characteristic">
+				<span class="course-field orange"><%= t("course.format")%>:</span> 
+				<span><%=t("course.course_formats." + @course[:format])%></span>
+			</div>
 			<% end %>
 			<% if @course[:lessons] %>
-				<div class="course-characteristic">
-					<span class="course-field orange"><%= t("course.lessons")%>:</span> 
-					<span><%=@course[:lessons]%></span>
-				</div>
+			<div class="course-characteristic">
+				<span class="course-field orange"><%= t("course.lessons")%>:</span> 
+				<span><%=@course[:lessons]%></span>
+			</div>
 			<% end %>
-		<% end %>
-		<% if !@course[:lang].blank? %>
+			<% end %>
+			<% if !@course[:lang].blank? %>
 			<div class="course-characteristic">
 				<span class="course-field orange"><%= t("course.languages")%>:</span> 
 				<span><%=@course[:lang]%></span>
 			</div>
-		<% end %>
-		<% if @course[:tags] %>
+			<% end %>
+			<% if @course[:tags] %>
 			<div class="course-characteristic">
 				<span class="course-field orange"><%= t("course.tags")%>:</span> 
 				<span>
 					<% @course[:tags].each_with_index do |tag, index|%>
-						<span class="course-tag"><%=t("tags." + tag)%></span><%if index != @course[:tags].length()-1%>, <%end%> 
+					<span class="course-tag"><%=t("tags." + tag)%></span><%if index != @course[:tags].length()-1%>, <%end%> 
 					<%end%>
 				</span>
 			</div>
-		<% end %>
-		<%if (!@course[:powered_by].blank?)%>
+			<% end %>
+			<%if (!@course[:powered_by].blank?)%>
 			<div class="course-characteristic">
 				<span class="course-field orange"><%= t("course.powered_by")%>:</span> 
 				<span><%=@course[:powered_by]%></span>
 			</div>
-		<%end%>
-		<%if (@course[:rating])%>
+			<%end%>
+			<%if (@course[:rating])%>
 			<div class="course-characteristic">
 				<span class="course-field orange" ><%= t("course.rating")%>:</span>
 				<span class="course-rating-container">
-    	   		<%= render partial: "courses/rating", :locals => {rating: @course[:rating]}  %>
-    	   		</span>
-    	   	</div>
-		<%end%>
-		
-		<br/><br/><br/><br/>
-		<% if @course[:webinar] %>
+					<%= render partial: "courses/rating", :locals => {rating: @course[:rating]}  %>
+				</span>
+			</div>
+			<%end%>
+			
+			<br/><br/><br/><br/>
+			<% if @course[:webinar] %>
 			<br/><br/>
 			<a href="<%=@course[:url]%>">
 				<%if notYet%>
-					<button class="btn btn-orange btn-see" ><%= t("course.enroll_webinar")%></button>
+				<button class="btn btn-orange btn-see" ><%= t("course.enroll_webinar")%></button>
 				<%elsif ended%>
-					<button class="btn btn-orange btn-see" ><%= t("course.see")%></button>
+				<button class="btn btn-orange btn-see" ><%= t("course.see")%></button>
 				<%end%>
 			</a>
-		<% else %>
+			<% else %>
 			<button class="btn btn-orange btn-see" ><%=@course[:enrolled] ? t("course.continue") : t("course.enroll")%></button>
-		<% end %>
-		<br/>
-    </div>
-  </div>
-</div>
-<div class="container course-desc">
-	<div class="row">
-	    <div class="col-xs-12 col-lg-9"><br/><br/>
-	    	<div>
-				<h2 class="orange"><%=@course[:name]%></h2>
-				<%if @course[:description] %>
-					<p><%= @course[:description].html_safe%></p>
-				<% end %>
-			</div>
-			<%if @course[:contents] and @course[:contents].length() > 0 %>
-				<div>
-					<h3 class="orange-light"><%= t("course.contents")%>
-						<%if @course[:guide_file_name] %>
-							<a href="<%=@course[:guide_file_path]%>" download ="<%=@course[:guide_file_name]%>"  class="float-sm-right">
-								<button class="btn btn-outline-dark">
-									<%= t("course.download_guide")%>&nbsp;&nbsp;<i class="fas fa-download"></i>
-								</button>
-							</a>
-						<% end %>
-					</h3>
-					<ul class="content-list">
-						<% @course[:contents].each do |section|%>
-							<li class="content-section">
-								<span class="content-title"><%=section[:title]%></span>
-								<ul class="topic-list">
-									<% section[:topics].each do |topic|%>
-										<li class="topic"><span><%=topic%></span>
-									<%end%>
-								</ul>
-						<%end%>
-					</ul>
-				</div>
 			<% end %>
-	    	<br/>
-	    	<br/>
-			<% (@course[:teachers]||[]).each_with_index do |teacher, index| %>
-		   		<%= render partial: "courses/teacher_card", :locals => {index: index, teacher: teacher}  %>
-			<% end %>
-			<br>
+			<br/>
 		</div>
 	</div>
 </div>
-<div class="soft-background">
-  <%= render partial: "courses/course_list_4", 
-        :locals => {title: t("course.related_courses"), courses: @related_courses || [], link: "/", mine: false }  %>
-</div>
+<div class="container course-desc">
+	<div class="row">
+		<div class="col-xs-12 col-lg-9"><br/><br/>
+			<div>
+				<h2 class="orange"><%=@course[:name]%></h2>
+				<%if @course[:description] %>
+				<p><%= @course[:description].html_safe%></p>
+				<% end %>
+			</div>
+			<%if @course[:contents] and @course[:contents].length() > 0 %>
+			<div>
+				<h3 class="orange-light"><%= t("course.contents")%>
+					<%if @course[:guide_file_name] %>
+					<a href="<%=@course[:guide_file_path]%>" download ="<%=@course[:guide_file_name]%>"  class="float-sm-right">
+						<button class="btn btn-outline-dark">
+							<%= t("course.download_guide")%>&nbsp;&nbsp;<i class="fas fa-download"></i>
+						</button>
+					</a>
+					<% end %>
+				</h3>
+				<ul class="content-list">
+					<% @course[:contents].each do |section|%>
+					<li class="content-section">
+						<span class="content-title"><%=section[:title]%></span>
+						<ul class="topic-list">
+							<% section[:topics].each do |topic|%>
+							<li class="topic"><span><%=topic%></span>
+								<%end%>
+							</ul>
+							<%end%>
+						</ul>
+					</div>
+					<% end %>
+					<br/>
+					<br/>
+					<% (@course[:teachers]||[]).each_with_index do |teacher, index| %>
+					<%= render partial: "courses/teacher_card", :locals => {index: index, teacher: teacher}  %>
+					<% end %>
+					<br>
+				</div>
+			</div>
+		</div>
+		<div class="soft-background">
+			<%= render partial: "courses/course_list_4", 
+			:locals => {title: t("course.related_courses"), courses: @related_courses || [], link: "/", mine: false }  %>
+		</div>

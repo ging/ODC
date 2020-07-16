@@ -1,28 +1,28 @@
 <div class="dropdown-menu dropdown-menu-right dropdown-login" aria-labelledby="loginDropdown">
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'custom-form px-4 py-4', id:"loginForm", method: "post", onclick: "event.stopPropagation()" }) do |f| %>
-    <div class="form-group" >
-      <label for="email"><%= t("user.email")%></label>
-      <input type="email" class="form-control" id="email" placeholder="" required name="user[email]">
-    </div>
-    <div class="form-group">
-      <label for="password"><%= t("user.password")%></label>
-      <input type="password" class="form-control" id="password" placeholder="" required name="user[password]">
-    </div>
-    <div class="form-check custom-checkbox">
-      <input type="checkbox" class="custom-control-input" id="dropdownCheck" name="user[remember_me]">
-      <label class="custom-control-label" for="dropdownCheck">
-        <%= t("navbar.remember")%>
-      </label>
-    </div>
-    <br>
-    <a class="dropdown-item px-0 text-underline" href="/users/password/new"><%= t("navbar.forgot")%></a>
-    <a class="dropdown-item px-0" href="/users/sign_up"><%= t("navbar.signup")%></a>
-    
-    <br>
-    <div class="text-right">
-      <input type="submit" name="commit" class="btn btn-outline-dark" value="<%= t("navbar.login")%>" />
-    </div>
-  <%end%>
+	<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'custom-form px-4 py-4', id:"loginForm", method: "post", onclick: "event.stopPropagation()" }) do |f| %>
+	<div class="form-group" >
+		<label for="email"><%= t("user.email")%></label>
+		<input type="email" class="form-control" id="email" placeholder="" required name="user[email]">
+	</div>
+	<div class="form-group">
+		<label for="password"><%= t("user.password")%></label>
+		<input type="password" class="form-control" id="password" placeholder="" required name="user[password]">
+	</div>
+	<div class="form-check custom-checkbox">
+		<input type="checkbox" class="custom-control-input" id="dropdownCheck" name="user[remember_me]">
+		<label class="custom-control-label" for="dropdownCheck">
+			<%= t("navbar.remember")%>
+		</label>
+	</div>
+	<br>
+	<a class="dropdown-item px-0 text-underline" href="/users/password/new"><%= t("navbar.forgot")%></a>
+	<a class="dropdown-item px-0" href="/users/sign_up"><%= t("navbar.signup")%></a>
+	
+	<br>
+	<div class="text-right">
+		<input type="submit" name="commit" class="btn btn-outline-dark" value="<%= t("navbar.login")%>" />
+	</div>
+	<%end%>
 </div>
 <script>
 </script>

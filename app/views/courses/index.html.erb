@@ -1,53 +1,52 @@
-
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-12">
-      <div class="row search-row">
-        <div class="col-12 search-col">
-          <form class="custom-form" action="/search" autocomplete="off">
-            <span class="input input--hoshi <%=params[:q] && !params[:q].strip.empty? ? "input--filled" : ""%>">
-              <%if !params[:webinar].blank?%>
-              <input type="hidden" name="webinar" value="<%=params[:webinar]%>">
-              <%end%>
-              <input class="input__field input__field--hoshi" type="text" id="input-search" name="q" autocomplete="off" value="<%=params[:q]%>"/>
-              <button type="submit" class="btn btn-light search-icon">
-                <img src="/img/search.svg" class="search-icon-img"/>
-              </button>
-              <label class="input__label input__label--hoshi" for="input-search">
-                <span class="input__label-content input__label-content--hoshi">
-                  <%=t("search.write")%>
-                </span>
-              </label>
-            </span>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="row">
+		<div class="col-12">
+			<div class="row search-row">
+				<div class="col-12 search-col">
+					<form class="custom-form" action="/search" autocomplete="off">
+						<span class="input input--hoshi <%=params[:q] && !params[:q].strip.empty? ? "input--filled" : ""%>">
+							<%if !params[:webinar].blank?%>
+							<input type="hidden" name="webinar" value="<%=params[:webinar]%>">
+							<%end%>
+							<input class="input__field input__field--hoshi" type="text" id="input-search" name="q" autocomplete="off" value="<%=params[:q]%>"/>
+							<button type="submit" class="btn btn-light search-icon">
+								<img src="/img/search.svg" class="search-icon-img"/>
+							</button>
+							<label class="input__label input__label--hoshi" for="input-search">
+								<span class="input__label-content input__label-content--hoshi">
+									<%=t("search.write")%>
+								</span>
+							</label>
+						</span>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <div class="soft-background">
-  <div class="col-12">
-    <div class="container ">
-      <div class="row courses-row courses-search-results">
-        <% if @courses.length() > 0 %>
-        <% @courses.each_with_index do |course, index| %>
-        <div class="col-xs-12 col-sm-6 col-lg-4 col-xl-3 col-course" style="position: relative;">
-         <%= render partial: "courses/course_card", :locals => {index: index, course: course}  %>
-       </div>
-       <% end %>
-       <% else %>
-       <div class="col-12">
-        <p class="no-results">
-          <%=t("search.no_results")%>
-        </p>
-      </div>
-       <% end %>
-     </div> 
-     <nav aria-label="...">
-      <ul class="pagination justify-content-end">
-        <%= will_paginate(@courses, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, :previous_label => t("search.prev"), :next_label => t("search.next")) %>
-      </nav>
-    </div>
-  </div>
-</div>
+	<div class="col-12">
+		<div class="container ">
+			<div class="row courses-row courses-search-results">
+				<% if @courses.length() > 0 %>
+				<% @courses.each_with_index do |course, index| %>
+				<div class="col-xs-12 col-sm-6 col-lg-4 col-xl-3 col-course" style="position: relative;">
+					<%= render partial: "courses/course_card", :locals => {index: index, course: course}  %>
+				</div>
+				<% end %>
+				<% else %>
+				<div class="col-12">
+					<p class="no-results">
+						<%=t("search.no_results")%>
+					</p>
+				</div>
+				<% end %>
+			</div> 
+			<nav aria-label="...">
+				<ul class="pagination justify-content-end">
+					<%= will_paginate(@courses, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, :previous_label => t("search.prev"), :next_label => t("search.next")) %>
+				</nav>
+			</div>
+		</div>
+	</div>
 </div>

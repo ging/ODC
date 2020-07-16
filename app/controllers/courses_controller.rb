@@ -22,6 +22,7 @@ class CoursesController < ApplicationController
 
   # GET /courses/1
   def show
+    @related_courses = Course.where(:webinar => @course.webinar).where("id != :id", id: @course.id).limit(4)
   end
 
 
