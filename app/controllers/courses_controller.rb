@@ -1,15 +1,23 @@
 class CoursesController < ApplicationController
+  load_and_authorize_resource :except => [:webinars, :all_courses]
   before_action :set_course, only: [:show, :edit, :update, :destroy]
-  skip_authorization_check :only => [:show,:index,:edit,:new,:create,:update]
+  skip_authorization_check :only => [:webinars, :all_courses]
+  
   # GET /courses
   def index
-    query = "%#{(params[:query]||"").downcase}%"
+    @courses = Course.where(:webinar => false).paginate(:per_page => 24, :page => params[:page].blank? ? 1 : params[:page])
+  end
 
-    @courses = Course
+  # GET /webinars
+  def webinars
+    @courses = Course.webinars.paginate(:per_page => 24, :page => 1)
+    render "index"
+  end
 
-    @courses = @courses.where(:webinar => params[:webinar] == "1") if !params[:webinar].blank?
-    @courses = @courses.where(["lower(name) LIKE ? OR lower(description) LIKE ?", query,query])
-      .paginate(:per_page => 24, :page => params[:page].blank? ? 1 : params[:page])
+  # GET /all_courses
+  def all_courses
+    @courses = Course.all.paginate(:per_page => 24, :page => 1)
+    render "index"
   end
 
   # GET /courses/1
@@ -20,7 +28,7 @@ class CoursesController < ApplicationController
   # GET /courses/new
   def new
     @course = Course.new
-    @course.webinar = params[:webinar] == "1"
+    @course.webinar = (params[:webinar] == "1")
   end
 
   # GET /courses/1/edit
@@ -63,13 +71,13 @@ class CoursesController < ApplicationController
     redirect_to courses_url, notice:  I18n.t("course.successfully_destroyed")
   end
 
+
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_course
       @course = Course.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
     def course_params
       params.require(:course).permit(:name,:description,:start_date,:end_date,:format,:video,:type,:dedication,:powered_by,:lang,:url,:teachers,:contents,:lessons)
     end

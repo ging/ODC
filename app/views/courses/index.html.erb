@@ -4,12 +4,12 @@
     <div class="col-12">
       <div class="row search-row">
         <div class="col-12 search-col">
-          <form class="custom-form" action="/courses" autocomplete="off">
-            <span class="input input--hoshi <%=params[:query] && !params[:query].strip.empty? ? "input--filled" : ""%>">
+          <form class="custom-form" action="/search" autocomplete="off">
+            <span class="input input--hoshi <%=params[:q] && !params[:q].strip.empty? ? "input--filled" : ""%>">
               <%if !params[:webinar].blank?%>
               <input type="hidden" name="webinar" value="<%=params[:webinar]%>">
               <%end%>
-              <input class="input__field input__field--hoshi" type="text" id="input-search" name="query"  autocomplete="off" value="<%=params[:query]%>"/>
+              <input class="input__field input__field--hoshi" type="text" id="input-search" name="q" autocomplete="off" value="<%=params[:q]%>"/>
               <button type="submit" class="btn btn-light search-icon">
                 <img src="/img/search.svg" class="search-icon-img"/>
               </button>
