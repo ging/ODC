@@ -18,6 +18,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       resource.language = resource.ui_language if resource.language.blank?
     end
 
+    resource.roles.push(Role.default)
+
     resource.save
     yield resource if block_given?
     if resource.persisted?

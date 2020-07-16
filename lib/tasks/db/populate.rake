@@ -5,8 +5,12 @@ namespace :db do
 		desc "Populate database for a development environment"
 		t1 = Time.now
 
-		#1: Create demo user
+		#Create roles
+		Rake::Task["db:populate:roles"].invoke
+
+		#Create demo user
 		user = User.new
+		user.roles.push(Role.user)
 		user.email = "demo@upm.es"
 		user.password = "demonstration"
 		user.name = "Demo"
@@ -57,6 +61,29 @@ namespace :db do
 		puts "Populate finished"
 		t2 = Time.now - t1
 		puts "Elapsed time:" + t2.to_s
+	end
+
+
+	#############
+	## Subtasks
+	#############
+
+	namespace :populate do
+
+		task :roles => :environment do
+			roles = [
+				{name:"Admin", value:8},
+				{name:"User", value:1}
+			]
+			roles.each do |role|
+				r = Role.find_by_name(role[:name])
+				if r.nil?
+					puts "Creating new role: " + role[:name]
+					Role.create!  :name  => role[:name], :value => role[:value]
+				end
+			end
+		end
+
 	end
 
 end
