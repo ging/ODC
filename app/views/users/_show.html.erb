@@ -8,9 +8,9 @@
 						<img src="<%=current_user[:photo_file_path]|| "/img/user_placeholder.png"%>" onerror="function(){this.src=''}">
 					</div>
 					<div class="user-info">
-						<h1 class="user-name"><%=current_user[:name]%></h1>
+						<h1 class="user-name"><%=@profile_user[:name]%></h1>
 						<div class="d-flex justify-content-center justify-content-md-start user-tags">
-							<% (current_user[:tags]||"").split(',').each do |tag| %>
+							<% (@profile_user[:tags]||"").split(',').each do |tag| %>
 							<span class="user-tag"><%=tag%></span>
 							<% end %>
 						</div>
@@ -33,7 +33,7 @@
 		</div>
 		
 		<div class="col-xs-12 col-md-6 event-calendar-list">
-			<% (current_user[:events]||[]).each do |event| %>
+			<% (@profile_user[:events]||[]).each do |event| %>
 			<%= render partial: "courses/event_calendar", :locals => {event: event}%>
 			<% end %>
 			<div class="no-events hidden orange"><h4><%=t("profile.no_events")%></h4></div>
@@ -46,7 +46,7 @@
 <% if @isProfileOwner %>
 <div class="soft-background">
 	<%= render partial: "courses/course_list_4", 
-	:locals => {title: t("profile.your_courses_and_webinars"), courses: current_user[:courses]||[] , link: "/", mine: true }  %>
+	:locals => {title: t("profile.your_courses_and_webinars"), courses: @profile_user[:courses]||[] , link: "/", mine: true }  %>
 </div>
 <% end %>
 
@@ -54,9 +54,9 @@
 
 <script>
 window.selectedDates = [
-  <% (current_user[:events] || []) .each_with_index do |event, index| %>
+  <% (@profile_user[:events] || []) .each_with_index do |event, index| %>
   new Date("<%= Date.parse(event[:from])%>") 
-  <%if (current_user[:events].length() != index + 1) %>
+  <%if (@profile_user[:events].length() != index + 1) %>
   ,
   <%end%>
   <% end %>

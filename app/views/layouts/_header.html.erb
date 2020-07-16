@@ -1,5 +1,4 @@
-<% is_admin = current_user and current_user[:role] == "admin"%>
-<% is_admin = true %>
+<% can_create_course = can? :create, Course%>
 <%@searching = current_page?("/courses") %>
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light2 <%=@searching ? "search" : ""%>">
   <a class="navbar-brand" href="/">
@@ -20,7 +19,7 @@
       <li class="nav-item <%=current_page?("/webinars") ? "active" : ""%>">
         <a class="nav-link text-center" href="/webinars"><%= t('navbar.webinars') %></a>
       </li>
-      <%if user_signed_in? and is_admin%>
+      <%if can_create_course %>
         <li class="nav-item dropdown">
           <a class="nav-link text-center dropdown-toggle" data-target="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            <span class="orange">Admin</span>
