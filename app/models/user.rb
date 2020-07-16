@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
 	validates_presence_of :name
 	validates :roles, :presence => { :message => I18n.t("dictionary.errors.blank") }
 
+	# Alias for acts_as_taggable_on :tags
+	acts_as_taggable
+
+
 	def files
 		self.documents + self.scormfiles
 	end
