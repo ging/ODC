@@ -69,19 +69,19 @@
 				<span><%=to_dmy(@course[:start_date])%>-<%=to_dmy(@course[:end_date])%></span> 
 			</div>
 			<% end %>
-			<% if @course[:dedication] %>
+			<% if !@course[:dedication].blank? %>
 			<div class="course-characteristic">
 				<span class="course-field orange"><%= t("course.dedication")%>:</span> 
 				<span><%=@course[:dedication]%></span>
 			</div>
 			<% end %>
-			<% if @course[:format] %>
+			<% if !@course[:format].blank? %>
 			<div class="course-characteristic">
 				<span class="course-field orange"><%= t("course.format")%>:</span> 
 				<span><%=t("course.course_formats." + @course[:format])%></span>
 			</div>
 			<% end %>
-			<% if @course[:lessons] %>
+			<% if !@course[:lessons].blank? %>
 			<div class="course-characteristic">
 				<span class="course-field orange"><%= t("course.lessons")%>:</span> 
 				<span><%=@course[:lessons]%></span>
@@ -148,8 +148,8 @@
 			<%if @course[:contents] and @course[:contents].length() > 0 %>
 			<div>
 				<h3 class="orange-light"><%= t("course.contents")%>
-					<%if @course[:guide_file_name] %>
-					<a href="<%=@course[:guide_file_path]%>" download ="<%=@course[:guide_file_name]%>"  class="float-sm-right">
+					<%if !@course.teaching_guide.blank? %>
+					<a href="<%=@course.teaching_guide.url%>" download ="<%=@course.teaching_guide_file_name%>"  class="float-sm-right">
 						<button class="btn btn-outline-dark">
 							<%= t("course.download_guide")%>&nbsp;&nbsp;<i class="fas fa-download"></i>
 						</button>
@@ -161,26 +161,28 @@
 					<li class="content-section">
 						<span class="content-title"><%=section[:title]%></span>
 						<% unless section[:topics].blank? %>
-							<ul class="topic-list">
-								<% section[:topics].each do |topic|%>
-								<li class="topic"><span><%=topic%></span>
-									<%end%>
-								</ul>
-								<%end%>
-							</ul>
-						<% end %>
-					</div>
+						<ul class="topic-list">
+							<% section[:topics].each do |topic|%>
+							<li class="topic"><span><%=topic%></span></li>
+							<%end%>
+						</ul>
+						<%end%>
+					</li>
 					<% end %>
-					<br/>
-					<br/>
-					<% (@course[:teachers]||[]).each_with_index do |teacher, index| %>
-					<%= render partial: "courses/teacher_card", :locals => {index: index, teacher: teacher}  %>
-					<% end %>
-					<br>
-				</div>
+				</ul>
 			</div>
-		</div>
-		<div class="soft-background">
-			<%= render partial: "courses/course_list_4", 
-			:locals => {title: t("course.related_courses"), courses: @related_courses || [], link: "/", mine: false }  %>
-		</div>
+			<% end %>
+		</ul>
+		<br/>
+		<br/>
+		<% (@course[:teachers]||[]).each_with_index do |teacher, index| %>
+		<%= render partial: "courses/teacher_card", :locals => {index: index, teacher: teacher}  %>
+		<% end %>
+		<br>
+	</div>
+</div>
+</div>
+<div class="soft-background">
+	<%= render partial: "courses/course_list_4", 
+	:locals => {title: t("course.related_courses"), courses: @related_courses || [], link: "/", mine: false }  %>
+</div>

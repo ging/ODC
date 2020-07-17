@@ -7,7 +7,7 @@
 			<br/>
 			<br/>
 
-			<%= form_with(model: course, local: true, html: {class:"custom-form"}) do |form| %>
+			<%= form_with(model: course, multipart: true, local: true, html: {class:"custom-form"}) do |form| %>
 
 			<%if (method == "put") %>
 			<input name="_method" type="hidden" value="put" />
@@ -161,7 +161,7 @@
 										label: "", 
 										icon: "fas fa-book",
 										type: "text", 
-										name:"course[contents][title]", 
+										name:"course[contents][][title]", 
 										id: "lesson-#{index}", 
 										placeholder: t("course.lesson"), 
 										value: lesson[:title],
@@ -174,7 +174,7 @@
 											label: "", 
 											icon: "far fa-bookmark",
 											type: "text", 
-											name:"course[contents][topics][]", 
+											name:"course[contents][][topics][]", 
 											id: "topic-#{index}-#{index2}", 
 											placeholder: t("course.topic"), 
 											value: topic,
@@ -192,7 +192,7 @@
 						<div class="form-group row">
 							<label class="col-sm-2 col-form-label"><%=t('course.guide')%></label>
 							<div class="col-sm-10">
-								<%=render partial: "layouts/input_file_custom", :locals => {name: "course[guide]", file_name: course[:guide_file_name], label: t('course.upload'), file_path: course[:guide_file_path], id:"guide", accept: "application/pdf"} %>
+								<%=render partial: "layouts/input_file_custom", :locals => {name: "course[teaching_guide]", file_name: course[:teaching_guide_file_name], label: t('course.upload'), file_path: course.teaching_guide.url, id:"guide", accept: "application/pdf"} %>
 							</div>
 						</div>
 						<%end%>
@@ -233,9 +233,9 @@
 						window.lang = "<%=I18n.locale%>";
 						window.dayArray = ["<%=t('calendar.days.sun')%>", "<%=t('calendar.days.mon')%>", "<%=t('calendar.days.tue')%>", "<%=t('calendar.days.wed')%>", "<%=t('calendar.days.thu')%>", "<%=t('calendar.days.fri')%>", "<%=t('calendar.days.sat')%>"];
 						window.monthArray = ["<%=t('calendar.months.jan')%>", "<%=t('calendar.months.feb')%>", "<%=t('calendar.months.mar')%>", "<%=t('calendar.months.apr')%>", "<%=t('calendar.months.may')%>", "<%=t('calendar.months.jun')%>", "<%=t('calendar.months.jul')%>", "<%=t('calendar.months.aug')%>", "<%=t('calendar.months.sep')%>", "<%=t('calendar.months.oct')%>", "<%=t('calendar.months.nov')%>", "<%=t('calendar.months.dec')%>"];
-						window.newTeacherTemplate = '<%= escape_javascript(render partial: "courses/teacher_card_edit", :locals => { index: "${index}" , teacher: {}}) %>'
-						window.newLessonTemplate = '<div class="content-block"><%= escape_javascript(render partial: "layouts/form_field_icon", :locals => { label: "",  icon: "fas fa-book", type: "text",  name:"course[contents][][title]",  id: "lesson-${index}",  placeholder: t("course.lesson"),  value: "", delete: "delete-lesson" } ) %><span class="add-topic"><i class="fas fa-plus"></i></span><div class="lesson-topics"></div></div>';
-						window.newTopicTemplate = '<%= escape_javascript(render partial: "layouts/form_field_icon", :locals => {label: "", icon: "far fa-bookmark",type: "text", name:"course[contents][][topics][]", id: "topic-${index}-${index2}", placeholder: t("course.topic"), value: "",delete: "delete-topic"})  %>'
+						window.newTeacherTemplate = `<%= escape_javascript(render partial: "courses/teacher_card_edit", :locals => { index: "${index}" , teacher: {}}) %>`;
+						window.newLessonTemplate = `<div class="content-block"><%= escape_javascript(render partial: "layouts/form_field_icon", :locals => { label: "",  icon: "fas fa-book", type: "text",  name:"course[contents][][title]",  id: "lesson-${index}",  placeholder: t("course.lesson"),  value: "", delete: "delete-lesson" } ) %><span class="add-topic"><i class="fas fa-plus"></i></span><div class="lesson-topics"></div></div>`;
+						window.newTopicTemplate = `<%= escape_javascript(render partial: "layouts/form_field_icon", :locals => {label: "", icon: "far fa-bookmark",type: "text", name:"course[contents][][topics][]", id: "topic-${index}-${index2}", placeholder: t("course.topic"), value: "",delete: "delete-topic"})  %>`
 						window.calendarI18n = <%= (raw t('calendar').to_json)%>
 					</script>
 					<script src="/ckeditor4/ckeditor.js"></script>

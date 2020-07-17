@@ -198,23 +198,29 @@ $(function() {
     $(this).parent().remove();
   });
 
-  $('#add-teacher').click(function(){
+  $('#add-teacher').click(function(e){
+    e.stopPropagation();
     var index = Date.now();
     var newTeacher = $(newTeacherTemplate);
     $('#teacher-list').append(newTeacher);
+    newTeacher.find("input").first().focus();
   });
 
-  $('#add-lesson').click(function(){
+  $('#add-lesson').click(function(e){
+    e.stopPropagation();
     var index = Date.now();
     var newLesson = $(newLessonTemplate);
     $('.content-list-edit').append(newLesson);
+    newLesson.find("input").first().focus();
   });
 
-  $(document).on('click', '.add-topic', function(){
+  $(document).on('click', '.add-topic', function(e){
+    e.stopPropagation();
     var index = $(this).parent().data("contentId")
     var index2 = Date.now();
     var newTopic = $(newTopicTemplate);
     $(this).parent().find('.lesson-topics').append(newTopic);
+    newTopic.find("input").first().focus();
   });
 
   if ($('#description').length) {

@@ -2,7 +2,7 @@
 <%@searching = current_page?("/courses") %>
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light2 <%=@searching ? "search" : ""%>">
 	<a class="navbar-brand" href="/">
-		<img class="navbar-logo" src="/img/LogoOrange.jpg" alt=""/> <span class="navbar-brand-title"> Orange </span>
+		<img class="navbar-logo" src="/img/LogoOrange.jpg" alt=""/> <span class="navbar-brand-title"> Orange Digital Center </span>
 	</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
@@ -11,18 +11,41 @@
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item <%=current_page?("/") ? "active" : ""%>">
-				<a class="nav-link text-center" href="/"><%= t('navbar.who') %></a>
+				<a class="nav-link text-center" href="/">
+					<span class="d-inline d-sm-inline d-md-inline d-lg-none d-xl-inline">
+						<%= t('navbar.who') %>
+					</span>
+					<span class="d-none d-sm-none d-md-none d-lg-inline d-xl-none">
+						<i class="navbar-icon fas fa-home"></i>
+					</span>
+				</a>
 			</li>
 			<li class="nav-item <%=current_page?("/courses") ? "active" : ""%>">
-				<a class="nav-link text-center" href="/courses"><%= t('navbar.courses') %></a>
+				<a class="nav-link text-center" href="/courses">
+					<span class="d-inline d-sm-inline d-md-inline d-lg-none d-xl-inline">
+						<%= t('navbar.courses') %>
+					</span>
+					<span class="d-none d-sm-none d-md-none d-lg-inline d-xl-none">
+						<i class="navbar-icon fas fa-book"></i>
+					</span>
+				</a>
 			</li>
 			<li class="nav-item <%=current_page?("/webinars") ? "active" : ""%>">
-				<a class="nav-link text-center" href="/webinars"><%= t('navbar.webinars') %></a>
+				<a class="nav-link text-center" href="/webinars">
+					<span class="d-inline d-sm-inline d-md-inline d-lg-none d-xl-inline">
+						<%= t('navbar.webinars') %>
+					</span>
+					<span class="d-none d-sm-none d-md-none d-lg-inline d-xl-none">
+						<i class="navbar-icon fas fa-podcast"></i>
+					</span>
+
+				</a>
 			</li>
 			<%if can_create_course %>
 			<li class="nav-item dropdown">
 				<a class="nav-link text-center dropdown-toggle" data-target="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<span class="orange">Admin</span>
+					<span class="d-inline d-sm-inline d-md-inline d-lg-none d-xl-inline none">Admin</span>
+					<span class="d-none d-sm-none d-md-none d-lg-inline d-xl-none orange"><i class="navbar-icon fas fa-cog"></i></span>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="/courses/new"><%= t('navbar.new_course') %></a>
