@@ -94,12 +94,12 @@
 				<span><%=@course[:lang]%></span>
 			</div>
 			<% end %>
-			<% if @course[:tags] %>
+			<% if @course[:categories] %>
 			<div class="course-characteristic">
 				<span class="course-field orange"><%= t("course.tags")%>:</span> 
 				<span>
-					<% @course[:tags].each_with_index do |tag, index|%>
-					<span class="course-tag"><%=t("tags." + tag)%></span><%if index != @course[:tags].length()-1%>, <%end%> 
+					<% @course[:categories].each_with_index do |tag, index|%>
+					<span class="course-tag"><%=t("tags." + tag)%></span><%if index != @course[:categories].length()-1%>, <%end%> 
 					<%end%>
 				</span>
 			</div>

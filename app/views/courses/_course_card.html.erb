@@ -1,6 +1,8 @@
 <div class="card course" style="width: 100%;" id="course-<%=index%>">
 	<div class="card-img-container">
+		<a href="/courses/<%=course[:id]%>">
 		<img class="card-img-top" src="<%=course.thumb.url%>" alt="">
+		</a>
 		<%if (course[:webinar])%>
 			<span class="webinar-corner">
 				<span><img src="/img/Video_camera_icon.svg" alt=""></span>
