@@ -65,21 +65,21 @@ class CoursesController < ApplicationController
 
   private
 
-    def set_course
-      @course = Course.find(params[:id])
-    end
+  def set_course
+    @course = Course.find(params[:id])
+  end
 
-    def course_params
-      params.require(:course).permit(:name,:description,:start_date,:end_date,:format,:video,:type,:dedication,:powered_by,:powered_by_logo,:lang,:url,:teachers,:contents,:lessons,:thumb,:categories)
-    end
+  def course_params
+    params.require(:course).permit(:name,:description,:start_date,:end_date,:format,:video,:type,:dedication,:powered_by,:powered_by_logo,:lang,:url,:teachers,:contents,:lessons,:thumb, categories: [])
+  end
 
-    def parse_course_params
-      return if params[:course].blank?
-      params[:course][:webinar] = (params[:course][:webinar] == "1")
-      if params[:course][:date] 
-        split_date = params[:course][:date].split(" - ")
-        params[:course][:start_date] = helpers.parse_date(split_date[0], @course.webinar)
-        params[:course][:end_date] = helpers.parse_date(split_date[1], @course.webinar)
-      end
+  def parse_course_params
+    return if params[:course].blank?
+    params[:course][:webinar] = (params[:course][:webinar] == "1")
+    if params[:course][:date] 
+      split_date = params[:course][:date].split(" - ")
+      params[:course][:start_date] = helpers.parse_date(split_date[0], @course.webinar)
+      params[:course][:end_date] = helpers.parse_date(split_date[1], @course.webinar)
     end
+  end
 end
