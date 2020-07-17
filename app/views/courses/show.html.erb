@@ -160,13 +160,15 @@
 					<% @course[:contents].each do |section|%>
 					<li class="content-section">
 						<span class="content-title"><%=section[:title]%></span>
-						<ul class="topic-list">
-							<% section[:topics].each do |topic|%>
-							<li class="topic"><span><%=topic%></span>
+						<% unless section[:topics].blank? %>
+							<ul class="topic-list">
+								<% section[:topics].each do |topic|%>
+								<li class="topic"><span><%=topic%></span>
+									<%end%>
+								</ul>
 								<%end%>
 							</ul>
-							<%end%>
-						</ul>
+						<% end %>
 					</div>
 					<% end %>
 					<br/>

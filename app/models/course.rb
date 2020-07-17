@@ -1,5 +1,7 @@
 class Course < ApplicationRecord
 	serialize :categories
+	serialize :contents
+	serialize :teachers
 
 	has_and_belongs_to_many :users
 	has_attached_file :thumb, 
