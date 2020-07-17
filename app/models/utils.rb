@@ -19,6 +19,11 @@ class Utils
     I18n.t("languages." + lanCode.to_s, :default => lanCode.to_s)
   end
 
+
+  def self.getOptionsForCategories
+    I18n.t("categories").map{|k,v| [v,k.to_s]}
+  end
+
   #Change URLs to https when clientProtocol is HTTPs
   def self.checkUrlProtocol(url,clientProtocol)
     return url unless url.is_a? String and clientProtocol.include?("https")
@@ -40,54 +45,6 @@ class Utils
         end
     end
     return url
-  end
-
-  def self.getResourceTypes
-    ["Presentation","Document","Scormfile","Game"]
-  end
-
-  #ZipFile Utils
-  def self.extract_folder(zipFilePath,destination)
-    require "fileutils"
-    FileUtils.mkdir_p(destination)
-    
-    Zip::File.open(zipFilePath) { |zip_file|
-      zip_file.each { |f|
-        f_path = File.join(destination, f.name)
-        FileUtils.mkdir_p(File.dirname(f_path))
-        zip_file.extract(f, f_path) unless File.exist?(f_path)
-      }
-    }
-  end
-
-  def self.zip_folder(zipFilePath,root,dir=nil)
-    dir = root unless dir
-
-    folderNames = []
-    fileNames = []
-    Dir.entries(dir).reject{|i| i.start_with?(".")}.each do |itemName|
-      itemPath = "#{dir}/#{itemName}"
-      if File.directory?(itemPath)
-        folderNames << itemName
-      elsif File.file?(itemPath)
-        fileNames << itemName
-      end
-    end
-
-    #Subdirectories
-    folderNames.each do |subFolderName|
-      zip_folder(zipFilePath,root,"#{dir}/#{subFolderName}")
-    end
-
-    #Files
-    if fileNames.length > 0
-      Zip::File.open(zipFilePath, Zip::File::CREATE) { |zipfile|
-        fileNames.each do |fileName|
-          filePathInZip = String.new("#{dir}/#{fileName}").sub(root + "/","")
-          zipfile.add(filePathInZip,"#{dir}/#{fileName}")
-        end
-      }
-    end
   end
 
 end

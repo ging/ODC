@@ -18,6 +18,12 @@ en:
               blank: "can't be blank"
             password:
               blank: "can't be blank"
+  categories:
+    environment: "Environment"
+    inclusion: "Digital and social inclusion"
+    esafety: "Safe and reponsible ICT use"
+    digitalization: "Digitization of SMEs and freelancers"
+    other: "Other"
   dictionary:
     about: "About"
     add: "Add"

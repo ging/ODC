@@ -1,6 +1,7 @@
 class CoursesController < ApplicationController
   load_and_authorize_resource :except => [:webinars, :all_courses]
   before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :parse_course_params, only: [:create, :update]
   skip_authorization_check :only => [:webinars, :all_courses]
   
   # GET /courses
@@ -39,12 +40,6 @@ class CoursesController < ApplicationController
   # POST /courses
   def create
     @course = Course.new(course_params)
-    @course.webinar = params[:course][:webinar] == "1"
-    if params[:course][:date] 
-      split_date = params[:course][:date].split(" - ")
-      @course.start_date = helpers.parse_date(split_date[0], @course.webinar)
-      @course.end_date = helpers.parse_date(split_date[1], @course.webinar)
-    end
     if @course.save
       redirect_to @course, notice: I18n.t("course.successfully_created")
     else
@@ -54,11 +49,6 @@ class CoursesController < ApplicationController
 
   # PATCH/PUT /courses/1
   def update
-    if params[:course][:date] 
-      split_date = params[:course][:date].split(" - ")
-      params[:course][:start_date] = helpers.parse_date(split_date[0], @course.webinar)
-      params[:course][:end_date] = helpers.parse_date(split_date[1], @course.webinar)
-    end
     if @course.update(course_params)
       redirect_to @course, notice: I18n.t("course.successfully_updated")
     else
@@ -80,6 +70,16 @@ class CoursesController < ApplicationController
     end
 
     def course_params
-      params.require(:course).permit(:name,:description,:start_date,:end_date,:format,:video,:type,:dedication,:powered_by,:powered_by_logo,:lang,:url,:teachers,:contents,:lessons,:thumb)
+      params.require(:course).permit(:name,:description,:start_date,:end_date,:format,:video,:type,:dedication,:powered_by,:powered_by_logo,:lang,:url,:teachers,:contents,:lessons,:thumb,:categories)
+    end
+
+    def parse_course_params
+      return if params[:course].blank?
+      params[:course][:webinar] = (params[:course][:webinar] == "1")
+      if params[:course][:date] 
+        split_date = params[:course][:date].split(" - ")
+        params[:course][:start_date] = helpers.parse_date(split_date[0], @course.webinar)
+        params[:course][:end_date] = helpers.parse_date(split_date[1], @course.webinar)
+      end
     end
 end

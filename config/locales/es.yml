@@ -18,6 +18,12 @@ es:
               blank: "no puede estar en blanco"
             password:
               blank: "no puede estar en blanco"
+  categories:
+    environment: "Medio ambiente"
+    inclusion: "Inclusión digital y social"
+    esafety: "Uso seguro de las TIC"
+    digitalization: "Digitalización de PYMES y autónomos"
+    other: "Otros"
   dictionary:
     about: "About"
     add: "Añadir"

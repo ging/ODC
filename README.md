@@ -2,3 +2,5 @@
 
 # Create db and populate:
 bundle exec rake movle:rebuild
+
+sudo apt-get install imagemagick

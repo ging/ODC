@@ -27,7 +27,7 @@ module MOVLE
     config.full_domain = "http://" + config.domain
     config.full_code_domain = "http://" + (config.APP_CONFIG['code_domain'] || config.APP_CONFIG['domain'])
 
-    config.name = (config.APP_CONFIG["name"] || "MOVLE")
+    config.name = (config.APP_CONFIG["name"] || "ODC")
     config.platform_version = "0.1"
 
     # I18n (http://guides.rubyonrails.org/i18n.html)

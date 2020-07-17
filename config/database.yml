@@ -2,7 +2,7 @@ development:
   adapter: postgresql
   encoding: unicode
   host: localhost
-  database: puo_development
+  database: odc_development
   pool: 5
   username: movle_dev
   password: movlep1l0

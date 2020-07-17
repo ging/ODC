@@ -133,11 +133,11 @@
 					<div class="form-group row">
 						<legend class="col-form-label col-sm-2 pt-0"><%=t('course.tags')%></legend>
 						<div class="col-sm-10">
-							<% t('tags').each do |name, category|%>
-							<div class="custom-control form-check custom-checkbox">  
-								<input type="checkbox" class="custom-control-input" id="tag-<%=name%>" name="course[tags]" value="<%=name%>"  <%=(course[:tags] || []).include?(name.to_s) ? "checked":"" %>>
-								<label class="custom-control-label" for="tag-<%=name%>"><%=category%></label>  
-							</div>  
+							<% I18n.t('categories').each do |name, category|%>
+								<div class="custom-control form-check custom-checkbox">  
+									<input type="checkbox" class="custom-control-input" id="category-<%=name%>" name="course[categories][]" value="<%=name%>" <%=(course[:categories] || []).include?(name.to_s) ? "checked":"" %>>
+									<label class="custom-control-label" for="category-<%=name%>"><%=category%></label>
+								</div>  
 							<%end%>
 						</div>
 					</div>

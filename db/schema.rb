@@ -29,8 +29,9 @@ ActiveRecord::Schema.define(version: 2020_07_17_091448) do
     t.string "dedication"
     t.string "lessons"
     t.string "format"
-    t.text "contents", default: [], array: true
-    t.text "teachers", default: [], array: true
+    t.text "categories"
+    t.text "contents"
+    t.text "teachers"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "thumb_file_name"

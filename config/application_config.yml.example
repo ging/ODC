@@ -1,5 +1,5 @@
 development:
-  name: "MOVLE Platform"
+  name: "ODC"
   domain: "localhost:3000"
   no_reply_mail: "no-reply@example.com"
   main_mail: "movle@example.com"

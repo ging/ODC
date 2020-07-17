@@ -14,8 +14,9 @@ class CreateCourses < ActiveRecord::Migration[5.2]
       t.string :dedication
       t.string :lessons
       t.string :format
-      t.text :contents, array: true, default: []
-      t.text :teachers, array: true, default: []
+      t.text :categories
+      t.text :contents
+      t.text :teachers
       t.timestamps
     end
     create_table :courses_users, id: false do |t|
