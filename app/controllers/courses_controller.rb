@@ -71,7 +71,7 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:name,:description,:start_date,:end_date,:format,:video,:type,:dedication,:powered_by,:powered_by_logo,:teaching_guide,:lang,:url,:lessons,:thumb, categories: [], contents: [:title, topics: []], teachers_order: [])
+    params.require(:course).permit(:name,:description,:start_date,:end_date,:start_enrollment_date,:end_enrollment_date,:format,:video,:type,:dedication,:powered_by,:powered_by_logo,:teaching_guide,:lang,:url,:lessons,:thumb, categories: [], contents: [:title, topics: []], teachers_order: [])
   end
 
   def teachers_params
@@ -95,8 +95,9 @@ class CoursesController < ApplicationController
 
   def save_and_update_teachers
     @course.teachers = []
-    teachers_order = {}
+    return if teachers_params["teachers"].blank?
 
+    teachers_order = {}
     teachers_params["teachers"].each do |teacherParams|
       teacher = CourseTeacher.find_by_id(teacherParams["id"]) || CourseTeacher.new
 

@@ -128,7 +128,7 @@ $(function() {
     $(".ui-corner-all").removeClass("ui-datepicker-prev-hover");
   });
 
-  $('#course-date').daterangepicker({
+  $('#course-date, #course-enrollment-date').daterangepicker({
     "opens": "left",
     "autoUpdateInput": false,
     "locale": {
@@ -146,7 +146,7 @@ $(function() {
     }
   }, function(start, end, label) {});
 
-  $('#webinar-date').daterangepicker({
+  $('#webinar-date, #webinar-enrollment-date').daterangepicker({
     "opens": "left",
     "autoUpdateInput": false,
     "timePicker": true,
@@ -166,15 +166,15 @@ $(function() {
     }
   }, function(start, end, label) {});
 
-  $('#course-date').on('apply.daterangepicker', function(ev, picker) {
+  $('#course-date, #course-enrollment-date').on('apply.daterangepicker', function(ev, picker) {
     $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
   });
 
-  $('#webinar-date').on('apply.daterangepicker', function(ev, picker) {
+  $('#webinar-date, #webinar-enrollment-date').on('apply.daterangepicker', function(ev, picker) {
     $(this).val(picker.startDate.format('DD/MM/YYYY HH:mm') + ' - ' + picker.endDate.format('DD/MM/YYYY HH:mm'));
   });
 
-  $('#course-date,#webinar-date').on('cancel.daterangepicker', function(ev, picker) {
+  $('#course-date, #course-enrollment-date, #webinar-date, #webinar-enrollment-date').on('cancel.daterangepicker', function(ev, picker) {
     $(this).val('');
   });
 
