@@ -3,6 +3,7 @@ class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
   before_action :parse_course_params, only: [:create, :update]
   skip_authorization_check :only => [:webinars, :all_courses]
+  after_action :save_and_update_teachers, only: [:create, :update]
   
   # GET /courses
   def index
@@ -70,7 +71,11 @@ class CoursesController < ApplicationController
   end
 
   def course_params
-    params.require(:course).permit(:name,:description,:start_date,:end_date,:format,:video,:type,:dedication,:powered_by,:powered_by_logo,:teaching_guide,:lang,:url,:teachers,:lessons,:thumb, categories: [], contents: [:title, topics: []])
+    params.require(:course).permit(:name,:description,:start_date,:end_date,:format,:video,:type,:dedication,:powered_by,:powered_by_logo,:teaching_guide,:lang,:url,:lessons,:thumb, categories: [], contents: [:title, topics: []], teachers_order: [])
+  end
+
+  def teachers_params
+    params.require(:course).permit(teachers: [:name, :position, :facebook, :linkedin, :twitter, :instagram, :bio, :avatar])
   end
 
   def parse_course_params
@@ -80,6 +85,20 @@ class CoursesController < ApplicationController
       split_date = params[:course][:date].split(" - ")
       params[:course][:start_date] = helpers.parse_date(split_date[0], @course.webinar)
       params[:course][:end_date] = helpers.parse_date(split_date[1], @course.webinar)
+    end
+  end
+
+  def save_and_update_teachers
+    @course.teachers = []
+
+    teachers_params["teachers"].each do |teacherParams|
+      next if teacherParams["name"].blank?
+      teacher = CourseTeacher.find_by_name(teacherParams["name"]) || CourseTeacher.new
+      teacher.assign_attributes(teacherParams)
+
+      if teacher.save
+        teacher.courses.push(@course)
+      end
     end
   end
 end

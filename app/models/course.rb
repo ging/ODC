@@ -1,9 +1,11 @@
 class Course < ApplicationRecord
 	serialize :categories
 	serialize :contents
-	serialize :teachers
+	serialize :teachers_order
 
 	has_and_belongs_to_many :users
+	has_and_belongs_to_many :teachers, :class_name => "CourseTeacher"
+
 	has_attached_file :teaching_guide
 	has_attached_file :thumb, 
 		styles: { medium: "800x600>", thumb: "300x200>" }, 
@@ -18,4 +20,5 @@ class Course < ApplicationRecord
 	def self.webinars
 		Course.where(:webinar => true)
 	end
+
 end

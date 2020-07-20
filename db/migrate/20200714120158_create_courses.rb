@@ -16,7 +16,7 @@ class CreateCourses < ActiveRecord::Migration[5.2]
       t.string :format
       t.text :categories
       t.text :contents
-      t.text :teachers
+      t.text :teachers_order
       t.timestamps
     end
     create_table :courses_users, id: false do |t|

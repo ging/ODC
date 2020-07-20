@@ -105,7 +105,6 @@
 				<label for="photo" class="col-sm-2 col-form-label"><%=t('course.powered_by_logo')%></label>
 				<div class="col-sm-10">
 					<div class="image-edit-actions">
-						<!-- <input class="input-file" type="file" name="photo" class="form-control-file" accept="image/*"></input> -->
 						<%=render partial: "layouts/input_file_custom", :locals => {name: "", file_name: course.powered_by_logo_file_name, file_path: course.powered_by_logo.url, id:"powered_by_logo", label: t('course.upload'), data_name: "course[powered_by_logo]",
 							data_img_id: "edit-uploaded-picture-logo", width: 200, height: 200, accept: "image/*"} %>
 						</div>
@@ -200,7 +199,9 @@
 							<label class="col-sm-2 col-form-label"><%=t('course.teachers')%></label>
 							<div class="col-sm-10">
 								<style>:root{--no-teacher: "<%=t("course.no_teacher")%>";}</style>
-								<div id="teacher-list"><% teachers = (course[:teachers]||[])%><% teachers.each_with_index do |teacher, index|%><%=render partial: "layouts/teacher_card_edit", :locals => { index: index, teacher: teacher} %><% end %></div>
+								<div id="teacher-list">
+									<% teachers = (course.teachers||[])%>
+									<% teachers.each_with_index do |teacher, index|%><%=render partial: "courses/teacher_card_edit", :locals => { index: index, teacher: teacher} %><% end %></div>
 								<div class="text-left">
 									<button type="button" id="add-teacher" class="btn btn-outline-orange"><%=t('course.add_new_teacher')%></button>
 								</div>
