@@ -75,7 +75,7 @@ class CoursesController < ApplicationController
   end
 
   def teachers_params
-    params.require(:course).permit(teachers: [:name, :position, :facebook, :linkedin, :twitter, :instagram, :bio, :avatar])
+    params.require(:course).permit(teachers: [:id, :name, :position, :facebook, :linkedin, :twitter, :instagram, :bio, :avatar])
   end
 
   def parse_course_params
@@ -92,8 +92,8 @@ class CoursesController < ApplicationController
     @course.teachers = []
 
     teachers_params["teachers"].each do |teacherParams|
-      next if teacherParams["name"].blank?
-      teacher = CourseTeacher.find_by_name(teacherParams["name"]) || CourseTeacher.new
+      teacher = CourseTeacher.find_by_id(teacherParams["id"]) || CourseTeacher.new
+
       teacher.assign_attributes(teacherParams)
 
       if teacher.save
