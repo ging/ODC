@@ -6,6 +6,8 @@ class CreateCourses < ActiveRecord::Migration[5.2]
       t.decimal :rating, :precision => 12, :scale => 6
       t.datetime :start_date
       t.datetime :end_date
+      t.datetime :start_enrollment_date
+      t.datetime :end_enrollment_date
       t.boolean :webinar, :default => false
       t.string :video
       t.string :lang

@@ -86,6 +86,11 @@ class CoursesController < ApplicationController
       params[:course][:start_date] = helpers.parse_date(split_date[0], @course.webinar)
       params[:course][:end_date] = helpers.parse_date(split_date[1], @course.webinar)
     end
+    if params[:course][:enrollment_date] 
+      split_date = params[:course][:enrollment_date].split(" - ")
+      params[:course][:start_enrollment_date] = helpers.parse_date(split_date[0], @course.webinar)
+      params[:course][:end_enrollment_date] = helpers.parse_date(split_date[1], @course.webinar)
+    end
   end
 
   def save_and_update_teachers

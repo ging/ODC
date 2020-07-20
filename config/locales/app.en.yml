@@ -70,7 +70,9 @@ en:
       spooc: "SPOOC (Self-Paced Private Online Course)"
     create: Create
     date: Date
+    enrollment_date: "Enrollment period"
     date_placeholder: "Period in which the course will take place"
+    enrollment_date_placeholder: "Course enrollment period"
     day: day
     days: days
     desc: Description
@@ -199,6 +201,8 @@ en:
   webinar:
     date: "Date"
     date_placeholder: "Date in which the webinar will take place"
+    enrollment_date: "Enrollment period"
+    enrollment_date_placeholder: "Webinar enrollment period"
     duration: "Duration"
     duration_placeholder: "Duration of the webinar in minutes"
     edit: "Edit webinar"
