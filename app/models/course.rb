@@ -21,4 +21,9 @@ class Course < ApplicationRecord
 		Course.where(:webinar => true)
 	end
 
+	def sorted_teachers
+		return teachers if self.teachers_order.blank?
+		self.teachers.sort_by{|t| self.teachers_order[t.id.to_s].to_i }
+	end
+
 end

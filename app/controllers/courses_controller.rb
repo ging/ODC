@@ -75,7 +75,7 @@ class CoursesController < ApplicationController
   end
 
   def teachers_params
-    params.require(:course).permit(teachers: [:id, :name, :position, :facebook, :linkedin, :twitter, :instagram, :bio, :avatar])
+    params.require(:course).permit(teachers: [:id, :name, :position, :facebook, :linkedin, :twitter, :instagram, :bio, :order, :avatar])
   end
 
   def parse_course_params
@@ -90,15 +90,22 @@ class CoursesController < ApplicationController
 
   def save_and_update_teachers
     @course.teachers = []
+    teachers_order = {}
 
     teachers_params["teachers"].each do |teacherParams|
       teacher = CourseTeacher.find_by_id(teacherParams["id"]) || CourseTeacher.new
 
-      teacher.assign_attributes(teacherParams)
+      teacher.assign_attributes(teacherParams.reject{|k,v| k=="order"})
 
       if teacher.save
-        teacher.courses.push(@course)
+        @course.teachers.push(teacher)
+        teachers_order[teacher.id.to_s] = teacherParams[:order] unless teacherParams[:order].blank?
       end
+    end
+
+    unless teachers_order.blank?
+      @course.teachers_order = teachers_order
+      @course.save
     end
   end
 end

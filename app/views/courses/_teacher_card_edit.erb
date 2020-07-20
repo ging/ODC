@@ -29,6 +29,15 @@
 		}  %>
 		<%= render partial: "layouts/form_field_icon", :locals => {
 			label: "", 
+			icon: "",
+			type: "hidden", 
+			name:"course[teachers][][order]", 
+			id: "inputTeacher-#{index}-order", 
+			placeholder: "", 
+			value: (index.to_i+1) 
+		}  %>
+		<%= render partial: "layouts/form_field_icon", :locals => {
+			label: "", 
 			icon: "fas fa-building",
 			type: "text", 
 			name:"course[teachers][][position]", 
