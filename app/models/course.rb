@@ -3,7 +3,8 @@ class Course < ApplicationRecord
 	serialize :contents
 	serialize :teachers_order
 
-	has_and_belongs_to_many :users
+	has_many :enrollments, dependent: :destroy
+	has_many :users, through: :enrollments
 	has_and_belongs_to_many :teachers, :class_name => "CourseTeacher"
 
 	has_attached_file :teaching_guide
@@ -24,6 +25,26 @@ class Course < ApplicationRecord
 	def sorted_teachers
 		return teachers if self.teachers_order.blank?
 		self.teachers.sort_by{|t| self.teachers_order[t.id.to_s].to_i }
+	end
+
+	def enroll_user(user)
+		return if user.nil? or self.users.include?(@user)
+		e = Enrollment.new
+		e.course = self
+		e.user = user
+		e.date = Time.now
+		e.save
+	end
+
+	def unenroll_user(user)
+		return if user.nil? or !self.users.include?(user)
+		self.enrollments.find_by_user_id(user.id).destroy
+	end
+
+	def is_enrollment_period?
+		return true if self.start_enrollment_date.blank? or self.end_enrollment_date.blank?
+		tNow = Time.now
+		return ((tNow > self.start_enrollment_date) and (tNow < self.end_enrollment_date))
 	end
 
 end

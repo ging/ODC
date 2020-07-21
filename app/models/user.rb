@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
 		default_url: "/img/user_placeholder.png"
 
 	has_and_belongs_to_many :roles
-	has_and_belongs_to_many :courses
+	has_many :enrollments, dependent: :destroy
+	has_many :courses, through: :enrollments
 
 	before_save :fillTags
 	before_save :save_tag_array_text

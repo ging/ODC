@@ -18,6 +18,9 @@ es:
               blank: "no puede estar en blanco"
             password:
               blank: "no puede estar en blanco"
+  authorization:
+    errors:
+        generic: "No estás autorizado a acceder a este recurso o realizar esta acción"
   categories:
     environment: "Medio ambiente"
     inclusion: "Inclusión digital y social"

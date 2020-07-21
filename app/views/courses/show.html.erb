@@ -124,13 +124,25 @@
 			<br/><br/>
 			<a href="<%=@course[:url]%>">
 				<%if notYet%>
-				<button class="btn btn-orange btn-see" ><%= t("course.enroll_webinar")%></button>
+					<button class="btn btn-orange btn-see" ><%= t("course.enroll_webinar")%></button>
 				<%elsif ended%>
-				<button class="btn btn-orange btn-see" ><%= t("course.see")%></button>
+					<button class="btn btn-orange btn-see" ><%= t("course.see")%></button>
 				<%end%>
 			</a>
 			<% else %>
-			<button class="btn btn-orange btn-see" ><%=@course[:enrolled] ? t("course.continue") : t("course.enroll")%></button>
+				<% if user_signed_in? and @course.users.include?(current_user) %>
+					<button class="btn btn-orange btn-see" ><%=t("course.continue")%></button>
+					<br/><br/>
+					<%= button_to t("course.unenroll"), {:controller => "courses", :action => "unenroll"}, {:class=> "btn btn-orange btn-see", :method=>:post}  %>
+				<% else %>
+					<% if @course.is_enrollment_period? %>
+						<%= button_to t("course.enroll"), {:controller => "courses", :action => "enroll"}, {:class=> "btn btn-orange btn-see", :method=>:post}  %>
+					<% else %>
+						<div class="course-characteristic">
+							<span class="course-field orange"><%=t('course.enrollment_period_over')%></span>
+						</div>
+					<% end %>
+				<% end %>
 			<% end %>
 			<br/>
 		</div>

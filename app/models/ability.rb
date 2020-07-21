@@ -12,6 +12,7 @@ class Ability
 
     #Users
     can :read, User
+    can :enroll, Course
 
     #Courses
     can :read, Course
@@ -21,6 +22,7 @@ class Ability
       can :manage, User do |u|
         u.id === user.id
       end
+      can :unenroll, Course
     end
 
   end

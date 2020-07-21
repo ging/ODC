@@ -18,6 +18,9 @@ en:
               blank: "can't be blank"
             password:
               blank: "can't be blank"
+  authorization:
+    errors:
+        generic: "You are not authorized to access this resource or perform this action"
   categories:
     environment: "Environment"
     inclusion: "Digital and social inclusion"

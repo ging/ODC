@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
   load_and_authorize_resource :except => [:webinars, :all_courses]
+  before_action :authenticate_user!, :except => [:index, :webinars, :all_courses, :show]
   before_action :set_course, only: [:show, :edit, :update, :destroy]
   before_action :parse_course_params, only: [:create, :update]
   skip_authorization_check :only => [:webinars, :all_courses]
@@ -61,6 +62,40 @@ class CoursesController < ApplicationController
   def destroy
     @course.destroy
     redirect_to courses_url, notice:  I18n.t("course.successfully_destroyed")
+  end
+
+  def enroll
+    if user_signed_in?
+      if current_user.courses.include?(@course)
+        redirect_to @course, notice: I18n.t("course.errors.already_enrolled")
+      else
+        #Enroll
+        if @course.enroll_user(current_user)
+          redirect_to @course, notice: I18n.t("course.enrollment_success")
+        else
+          redirect_to @course, notice: I18n.t("course.errors.enrollment_generic")
+        end
+      end
+    else
+      redirect_to @course, notice: I18n.t("authorization.errors.generic")
+    end
+  end
+
+  def unenroll
+    if user_signed_in?
+      if current_user.courses.include?(@course)
+        #Unenroll
+        if @course.unenroll_user(current_user)
+          redirect_to @course, notice: I18n.t("course.unenrollment_success")
+        else
+          redirect_to @course, notice: I18n.t("course.errors.unenrollment_generic")
+        end
+      else
+        redirect_to @course, notice: I18n.t("course.errors.no_enrolled")
+      end
+    else
+      redirect_to @course, notice: I18n.t("authorization.errors.generic")
+    end
   end
 
 

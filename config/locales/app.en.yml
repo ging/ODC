@@ -71,8 +71,16 @@ en:
     create: Create
     date: Date
     enrollment_date: "Enrollment period"
+    enrollment_period_over: "The enrollment period of this course is over"
     date_placeholder: "Period in which the course will take place"
     enrollment_date_placeholder: "Course enrollment period"
+    enrollment_success: "You have been successfully enrolled in this course"
+    unenrollment_success: "You have been successfully unenrolled of this course"
+    errors:
+      already_enrolled: "You are already enrolled in this course"
+      enrollment_generic: "An error occurred and you could not be enrolled in the course"
+      no_enrolled: "You are not enrolled in this course"
+      unenrollment_generic: "An error occurred and you could not be unenrolled of the course"
     day: day
     days: days
     desc: Description

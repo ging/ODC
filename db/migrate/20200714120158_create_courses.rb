@@ -21,9 +21,5 @@ class CreateCourses < ActiveRecord::Migration[5.2]
       t.text :teachers_order
       t.timestamps
     end
-    create_table :courses_users, id: false do |t|
-      t.belongs_to :user, index: true
-      t.belongs_to :course, index: true
-    end
   end
 end

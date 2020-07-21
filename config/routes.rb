@@ -11,6 +11,8 @@ MOVLE::Application.routes.draw do
   resources :courses
   match '/webinars', to: 'courses#webinars', via: [:get]
   match '/all_courses', to: 'courses#all_courses', via: [:get]
+  match 'courses/:id/enroll' => 'courses#enroll', via: [:post]
+  match 'courses/:id/unenroll' => 'courses#unenroll', via: [:post]
 
   #Locale
   match '/change_locale', to: 'locales#change_locale', via: [:get]
