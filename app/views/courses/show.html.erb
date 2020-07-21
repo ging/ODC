@@ -1,9 +1,9 @@
 <% offset = (cookies()[:utc_offset] || "0").to_i %>
 <% now = (DateTime.now.to_time + offset / 60 ).to_datetime %>
 <% if @course[:webinar] and @course[:start_date] and @course[:end_date] %>
-<% notYet = now < @course[:start_date]%>
-<% currentlyGoingOn = now > @course[:start_date] && now < @course[:end_date] %>
-<% ended = !notYet && !currentlyGoingOn %>
+	<% notYet = now < @course[:start_date]%>
+	<% currentlyGoingOn = now > @course[:start_date] && now < @course[:end_date] %>
+	<% ended = !notYet && !currentlyGoingOn %>
 <% end %>
 <div class="container-fluid course-detail">
 	<div class="row">
@@ -39,14 +39,17 @@
 			<%end%>
 		</div>
 		<div class="col-xs-12 col-md-3 course-info">
-			<%if can? :edit, @course%>
-			<a href="/courses/<%=@course[:id]%>/edit" class="text-right d-block link-edit-course">
-				<button class="btn btn-dark orange btn-edit-course">
-					<i class="far fa-edit"></i>
-				</button>
-			</a>
+			<%if can? :edit, @course %>
+				<a href="/courses/<%=@course[:id]%>/edit" class="text-right d-block link-edit-course">
+					<button class="btn btn-dark orange btn-edit-course"><i class="far fa-edit"></i></button>
+				</a>
+				<% if can? :destroy, @course %>
+					<%= link_to url_for(controller: "courses", action: :destroy, id: @course.id), method: :delete, data: { confirm: t('common.confirm') }, class: 'text-right d-block link-remove-course' do %>
+  						<button class='btn btn-dark orange btn-delete-course'><i class='fa fa-trash'></i></button>
+					<% end %>
+				<% end %>
 			<%else%>
-			<br/>
+				<br/>
 			<%end%>
 			<% if @course[:webinar] %>
 			<%if @course[:start_date]%>
@@ -120,30 +123,21 @@
 			<%end%>
 			
 			<br/><br/><br/><br/>
-			<% if @course[:webinar] %>
-			<br/><br/>
-			<a href="<%=@course[:url]%>">
-				<%if notYet%>
-					<button class="btn btn-orange btn-see" ><%= t("course.enroll_webinar")%></button>
-				<%elsif ended%>
-					<button class="btn btn-orange btn-see" ><%= t("course.see")%></button>
-				<%end%>
-			</a>
+			
+			<% if user_signed_in? and @course.users.include?(current_user) %>
+				<button class="btn btn-orange btn-see" ><%=t("course.continue")%></button>
+				<br/><br/>
+				<%= button_to t("course.unenroll"), {:controller => "courses", :action => "unenroll"}, {:class=> "btn btn-orange btn-see", :method=>:post}  %>
 			<% else %>
-				<% if user_signed_in? and @course.users.include?(current_user) %>
-					<button class="btn btn-orange btn-see" ><%=t("course.continue")%></button>
-					<br/><br/>
-					<%= button_to t("course.unenroll"), {:controller => "courses", :action => "unenroll"}, {:class=> "btn btn-orange btn-see", :method=>:post}  %>
+				<% if @course.is_enrollment_period? and notYet %>
+					<%= button_to (@course[:webinar] ? t("course.enroll_webinar") : t("course.enroll")), {:controller => "courses", :action => "enroll"}, {:class=> "btn btn-orange btn-see", :method=>:post}  %>
 				<% else %>
-					<% if @course.is_enrollment_period? %>
-						<%= button_to t("course.enroll"), {:controller => "courses", :action => "enroll"}, {:class=> "btn btn-orange btn-see", :method=>:post}  %>
-					<% else %>
-						<div class="course-characteristic">
-							<span class="course-field orange"><%=t('course.enrollment_period_over')%></span>
-						</div>
-					<% end %>
+					<div class="course-characteristic">
+						<span class="course-field orange"><%=t('course.enrollment_period_over')%></span>
+					</div>
 				<% end %>
 			<% end %>
+			
 			<br/>
 		</div>
 	</div>
