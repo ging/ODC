@@ -26,7 +26,7 @@ class CoursesController < ApplicationController
 
   # GET /courses/1
   def show
-    @related_courses = Course.where(:webinar => @course.webinar).where("id != :id", id: @course.id).limit(4)
+    @related_courses = RecommenderSystem.getRecommendCourses(@course,4)
   end
 
 
@@ -155,4 +155,6 @@ class CoursesController < ApplicationController
     return if Utils.isUserAgentBot?(request.env["HTTP_USER_AGENT"])
     @course.update_column(:visit_count, @course.visit_count+1)
   end
+
+
 end
