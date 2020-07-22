@@ -107,6 +107,7 @@ class CoursesController < ApplicationController
   end
 
   def course_params
+    params.require(:course)[:categories] ||= []
     params.require(:course).permit(:name,:description,:start_date,:end_date,:start_enrollment_date,:end_enrollment_date,:format,:video,:type,:dedication,:powered_by,:powered_by_logo,:teaching_guide,:lang,:url,:lessons,:thumb, categories: [], contents: [:title, topics: []], teachers_order: [])
   end
 
