@@ -224,8 +224,18 @@ $(function() {
   $("#inputTeacher-search").autocomplete({
     "source": "/search_teachers",
     "minLength": 2,
+    "response": function( event, ui ) {
+      console.log(ui.content && ui.content.length )
+      if (!(ui.content && ui.content.length)) {
+        ui.content.push({label: "No results", value:"default"});
+      }
+      return false;
+    },
     "select": function( event, ui ) {
       var alreadyAdded = false;
+      if (ui.item.value === "default") {
+        return false;
+      }
       $('input[name="course[teachers][][id]"]').each((i,e)=>{
         if ($(e).val() == ui.item.id) {
           alreadyAdded = $(e).attr("id");
@@ -363,15 +373,17 @@ $(function() {
       if (imgId && $image.length) {
         var cropper = $image.data('cropper');
         if (cropper) {
-          var canvas = $image.cropper('getCroppedCanvas')// cropper.getCroppedCanvas({width: Number(w || 120), height: Number( h || 120)});
+          var canvas = $image.cropper('getCroppedCanvas');// cropper.getCroppedCanvas({width: Number(w || 120), height: Number( h || 120)});
           var canvasr = canvas.toDataURL();
           var photo = dataURItoBlob(canvasr);
-          $(form).append($(`<input type="hidden" name="${name}" value="${canvasr}"/>`))          
+          $image.parent().append($(`<input type="hidden" name="${name}" value="${canvasr}"/>`));
+        } else {
+          $image.parent().append($(`<input type="hidden" name="${name}" value=""/>`));
         }
       }
     });
     $('input[name="course[teachers][][order]"]').each(function(i,e){
-       $(e).val(i+1);
+       $(e).val(i);
     });
   });
 

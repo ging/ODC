@@ -1,12 +1,14 @@
 <%title = defined?(@course) ? @course.name : "Orange Digital Center"%>
 <%author = (defined?(@course) and !@course.powered_by.blank?) ? @course.powered_by : "Orange"%>
 <%description = (defined?(@course) and !@course.description.blank?) ? (strip_tags(@course.description).html_safe) : t("landing.intro_new") %>
-<%img = (defined?(@course) and !@course.thumb_file_name.blank?) ? @course.thumb.url : nil%>
+<%@host = request.protocol + request.host_with_port %>
+<%img = (defined?(@course) and !@course.thumb_file_name.blank?) ? (@host + @course.thumb.url) : nil%>
 <%course_item_list = @top_courses || @top_webinars || @courses%>
 <title><%=title%></title> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="description" content="<%=description%>"/>
 <meta name="author" content="<%=author%>" />
+<meta name="title" content="<%=title%>">
 
 <meta name="keywords" content="Orange, RSC, Cursos, Courses, Educación, Education, Formación, Training"/>
 <meta name="geo.region" content="ES"/>
@@ -20,34 +22,62 @@
 <%if img%>
 	<meta itemprop="image" content="<%=img%>">
 <%end%>
-<%if defined?(@course)%>
+<%if defined?(@course) and @course.id%>
 	<script type="application/ld+json">
 	{
 		"@context": "https://schema.org/",
 		"@type": "Course",
 		"name": "<%=title%>",
+		<%if !img.blank?%>
+		"thumbnailUrl": "<%=img%>",
+		<%end%>
+		"keywords": "<% (@course[:categories]||[]).each_with_index{|tag, index|%><%=t("tags." + tag)%><%if index != @course[:categories].length()-1%>,<%end%><%}%>",
+		<% if defined?(@course) and !@course.dedication.blank? %>
+		"courseWorkload": "<%=@course.dedication%>","
+		<%end%>
+		<% if defined?(@course) and !@course.rating.blank? %>
+		"aggregateRating": {
+		  "@type": "AggregateRating",
+		  "ratingValue": "<%=@course.rating%>"
+		},
+		<%end%>
+		"eventAttendanceMode": "online",
 		"description": "<%=description%>",
+		"datePublished": "<%=to_seo_datetime(@course.created_at)%>",
+		"dateModified": "<%=to_seo_datetime(@course.updated_at)%>",
+		"url": "<%=@host%>/courses/<%=@course.id%>",
 		"provider": {
 			"@type": "Organization",
 			"name": "<%=author%>"
-		}
+		},
+		"instructor": [<% (@course[:teachers]||[]).each_with_index{|teacher, index|%>
+          {
+            "@type": "Person",
+            "name": "<%=teacher.name%>",
+            "jobTitle": "<%=teacher.position%>",
+            "image": "<%=teacher.avatar.url%>"
+          }<%if index != @course[:teachers].length()-1%>,<%end%>",
+        <%}%>],
+		"hasCourseInstance": {
+		    "@type": "CourseInstance",
+		    "courseMode": [<% if !@course.format.blank?%>"<%=@course.format%>",<%elsif @course.webinar%>"webinar",<%end%>"online"],
+		    "startDate": "<%=to_ymd(@course.start_date)%>",
+		    "endDate": "<%=to_ymd(@course.end_date)%>"
+		  }
 	}
 	</script>
-<%elsif !course_item_list.nil?  and course_item_list.length > 0%>
+<%else%>
 	<script type="application/ld+json">
 	{
-		"@context":"https://schema.org",
-		"@type":"ItemList",
-		"itemListElement":[
-			<%course_item_list.each_with_index{|course,index| %>
-				{
-					"@type":"ListItem",
-					"position": <%=index+1%>,
-					"url":"<%=request.protocol + request.host_with_port %>/courses/<%=course.id%>"
-				}<%if course_item_list.length - 1 != index%>,<%end%>
-			<%}%>
-		]
-	}
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "<%=@host%>",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "<%=@host%>/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
 	</script>
 <%end%>
 <!-- Twitter Card data -->
@@ -59,6 +89,7 @@
 <!-- Twitter summary card with large image must be at least 280x150px -->
 <%if img%>
 	<meta name="twitter:image:src" content="<%=img%>">
+	<meta name="twitter:image" content="<%=img%>">
 <%end%>
 <!-- Open Graph data -->
 <meta property="og:title" content="<%=title%>" />

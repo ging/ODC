@@ -48,9 +48,18 @@ module ApplicationHelper
     # DateTime.parse(date).strftime("%d-%m-%Y")
     date.strftime("%d/%m/%Y")
   end
+
+  def to_ymd(date)
+    date.strftime("%Y-%m-%d")
+  end
+
   def to_dmyhm(date, offset = 0)
     date = (date.to_time + offset / 60 ).to_datetime
     date.strftime("%d/%m/%Y %H:%M")
+  end
+
+  def to_seo_datetime(date)
+    date.strftime("%Y-%m-%dT%H:%M:%S+00:00")
   end
 
 

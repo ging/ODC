@@ -231,10 +231,10 @@
 							<div class="col-sm-10">
 								<div class="image-edit-actions">
 									<%=render partial: "layouts/input_file_custom", :locals => {name: "", file_name: course.thumb_file_name, file_path: course.thumb.url, id:"photo", label: t('course.upload'), data_name: "course[thumb]",
-										data_img_id: "edit-uploaded-picture", width: 800, height: 400, accept: "image/*"} %>
+										data_img_id: "edit-uploaded-picture-course", width: 800, height: 400, accept: "image/*"} %>
 									</div>
 									<div class="image-container" style="width: 800px;height: 400px;">
-										<img id="edit-uploaded-picture" class="picture" src="<%= course.thumb.url || 'https://via.placeholder.com/800x400.png/ccc/fff?text=800x400'%>"/></div>
+										<img id="edit-uploaded-picture-course" class="picture" src="<%= course.thumb.url || 'https://via.placeholder.com/800x400.png/ccc/fff?text=800x400'%>"/></div>
 									</div>
 									<canvas class="canvas" style="width: 800px;height: 400px;"></canvas>
 								</div>

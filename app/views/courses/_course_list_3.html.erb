@@ -18,11 +18,28 @@
 					<% end %>
 					</div>
 				<% end %>
+				<script type="application/ld+json">
+				{
+					"@context":"https://schema.org",
+					"@type":"ItemList",
+					"itemListElement":[
+						<%courses.each_with_index{|course,index| %>
+							{
+								"@type":"ListItem",
+								"position": <%=index+1%>,
+								"url":"<%=@host%>/courses/<%=course.id%>"
+							}<%if courses.length - 1 != index%>,<%end%>
+						<%}%>
+					]
+				}
+				</script>
 				<%if courses.length() == 0  and  defined?empty_msg %>
 					<p class="d-flex no-results text-center" style="min-height: 300px; padding-top: 15px;"><%=empty_msg%></p>
 				<%end%>
 				</div>
+				
 			</div>
 		</div>
+
  	</div>
 </div>

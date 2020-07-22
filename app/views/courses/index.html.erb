@@ -34,6 +34,21 @@
 					<%= render partial: "courses/course_card", :locals => {index: index, course: course}  %>
 				</div>
 				<% end %>
+				<script type="application/ld+json">
+				{
+					"@context":"https://schema.org",
+					"@type":"ItemList",
+					"itemListElement":[
+						<%@courses.each_with_index{|course,index| %>
+							{
+								"@type":"ListItem",
+								"position": <%=index+1%>,
+								"url":"<%=@host%>/courses/<%=course.id%>"
+							}<%if @courses.length - 1 != index%>,<%end%>
+						<%}%>
+					]
+				}
+				</script>
 				<% else %>
 				<div class="col-12">
 					<p class="no-results">
