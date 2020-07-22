@@ -1,10 +1,9 @@
 <% offset = (cookies()[:utc_offset] || "0").to_i %>
 <% now = (DateTime.now.to_time + offset / 60 ).to_datetime %>
-<% if @course[:webinar] and @course[:start_date] and @course[:end_date] %>
-	<% notYet = now < @course[:start_date]%>
-	<% currentlyGoingOn = now > @course[:start_date] && now < @course[:end_date] %>
-	<% ended = !notYet && !currentlyGoingOn %>
-<% end %>
+<% notYet = now < @course[:start_date] %>
+<% currentlyGoingOn = now > @course[:start_date] && now < @course[:end_date] %>
+<% ended = !notYet && !currentlyGoingOn %>
+
 <div class="container-fluid course-detail">
 	<div class="row">
 		<div class="col-xs-12 col-md-9">
@@ -15,15 +14,14 @@
 				<div class="text-center">
 					<h2 class="orange"><%=t("course.live")%>
 						<% if !@course.powered_by.blank? or !@course.powered_by_logo_file_name.nil? %>
-						<%=t("course.live_in")%>
-						<% if !@course.powered_by_logo_file_name.nil? %>
-						<img class="powered_by_logo" src="<%=@course.powered_by_logo%>"/>
-						<% else %>
-						<%=@course.powered_by%>
-						<% end %>
+							<%=t("course.live_in")%>
+							<% if !@course.powered_by_logo_file_name.nil? %>
+								<img class="powered_by_logo" src="<%=@course.powered_by_logo%>"/>
+							<% else %>
+								<%=@course.powered_by%>
+							<% end %>
 						<%else%>
 						<% end %>
-
 					</h2>
 					<a href="<%=@course[:url]%>">
 						<button class="btn btn-orange"><%=t("course.join")%></button>
@@ -33,9 +31,9 @@
 				</div>
 			</div>
 			<% elsif !@course.video.blank? %>
-			<iframe class="course-video" src="<%=youtube_parse(@course[:video])%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				<iframe class="course-video" src="<%=youtube_parse(@course[:video])%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 			<%else%>
-			<img  class="course-video" src="<%=@course.thumb.url%>" alt="">
+				<img  class="course-video" src="<%=@course.thumb.url%>" alt="">
 			<%end%>
 		</div>
 		<div class="col-xs-12 col-md-3 course-info">

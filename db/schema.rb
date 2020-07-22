@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2020_07_21_101846) do
     t.text "categories"
     t.text "contents"
     t.text "teachers_order"
+    t.integer "visit_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "thumb_file_name"

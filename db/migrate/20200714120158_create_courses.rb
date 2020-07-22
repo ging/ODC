@@ -19,6 +19,7 @@ class CreateCourses < ActiveRecord::Migration[5.2]
       t.text :categories
       t.text :contents
       t.text :teachers_order
+      t.integer :visit_count, :default => 0
       t.timestamps
     end
   end
