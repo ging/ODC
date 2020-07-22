@@ -25,7 +25,7 @@ MOVLE::Application.routes.draw do
 
   #Search
   match "/search" => 'search#index', :via => :get
-
+  match "/search_teachers" => 'search#teacher_search', :via => :get
   #Terms of use
   match '/terms_of_use', to: "home#frontpage", via: [:get]
 

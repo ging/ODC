@@ -1,7 +1,7 @@
 <% offset = (cookies()[:utc_offset] || "0").to_i %>
 <% now = (DateTime.now.to_time + offset / 60 ).to_datetime %>
+<% notYet = now < @course[:start_date]%>
 <% if @course[:webinar] and @course[:start_date] and @course[:end_date] %>
-	<% notYet = now < @course[:start_date]%>
 	<% currentlyGoingOn = now > @course[:start_date] && now < @course[:end_date] %>
 	<% ended = !notYet && !currentlyGoingOn %>
 <% end %>
@@ -23,7 +23,6 @@
 						<% end %>
 						<%else%>
 						<% end %>
-
 					</h2>
 					<a href="<%=@course[:url]%>">
 						<button class="btn btn-orange"><%=t("course.join")%></button>
@@ -181,8 +180,9 @@
 		</ul>
 		<br/>
 		<br/>
-		<% (@course[:teachers]||[]).each_with_index do |teacher, index| %>
-		<%= render partial: "courses/teacher_card", :locals => {index: index, teacher: teacher}  %>
+		<% teachers = (@course.sorted_teachers||[])%>
+		<% teachers.each_with_index do |teacher, index| %>
+			<%= render partial: "courses/teacher_card", :locals => {index: index, teacher: teacher}  %>
 		<% end %>
 		<br>
 	</div>

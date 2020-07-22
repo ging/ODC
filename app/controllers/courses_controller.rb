@@ -127,7 +127,6 @@ class CoursesController < ApplicationController
       params[:course][:end_enrollment_date] = helpers.parse_date(split_date[1], @course.webinar)
     end
   end
-
   def save_and_update_teachers
     @course.teachers = []
     return if teachers_params["teachers"].blank?

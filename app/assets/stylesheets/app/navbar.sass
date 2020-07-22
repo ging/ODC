@@ -147,7 +147,16 @@
 		left: calc(50% - 250px) !important
 		right: calc(50% - 250px) !important
 @media (max-width: 768px)
-	.navbar .dropdown-login
-		form
-			min-width: 400px
-			min-width: 95vw
+	.navbar 
+		.dropdown-login
+			form
+				min-width: 400px
+				min-width: 95vw
+		.navbar-brand
+			.navbar-brand-title
+				font-size: 24px
+@media (max-width: 576px)
+	.navbar 
+		.navbar-brand
+			.navbar-brand-title
+				font-size: 16px

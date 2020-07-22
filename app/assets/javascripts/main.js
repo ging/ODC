@@ -180,9 +180,6 @@ $(function() {
 
   /**************************************** DATE-PICKER *****************************************/
 
-
-
-
   
   /************************************* COURSE FORM INPUTS *************************************/
 
@@ -198,18 +195,60 @@ $(function() {
     $(this).parent().remove();
   });
 
-  $('#add-teacher').click(function(e){
+  $( "#teacher-list" ).sortable({
+    handle: '.move-teacher',
+    forcePlaceholderSize:true,
+    cancel: ''
+  });
+  $( "#teacher-list" ).disableSelection();
+
+  const addNewTeacher = function(e, teacher = {}){
     e.stopPropagation();
     var index = Date.now();
-    var newTeacher = $(newTeacherTemplate);
+    var newTeacher = $(newTeacherTemplate.replace(/\${index}/gim, index));
+    if (teacher.avatar) { 
+      newTeacher.find('.teacher-picture-container img').attr('src', teacher.avatar); 
+    }
+    if (teacher.avatar_file_name) { 
+      newTeacher.find('.teacher-picture-container .custom-file-label').html(`<a href="${teacher.avatar}" download="data" onclick="event.stopPropagation()">${teacher.avatar_file_name}</a>`);
+    }
+    var fields = ["id", "name", "position", "facebook", "linkedin", "twitter", "instagram", "bio"];
+
+    for (var f of fields) {
+      newTeacher.find('input[name="course[teachers][]['+f+']"]').val(teacher[f] || "");
+    }
     $('#teacher-list').append(newTeacher);
     newTeacher.find("input").first().focus();
+  };
+
+  $("#inputTeacher-search").autocomplete({
+    "source": "/search_teachers",
+    "minLength": 2,
+    "select": function( event, ui ) {
+      var alreadyAdded = false;
+      $('input[name="course[teachers][][id]"]').each((i,e)=>{
+        if ($(e).val() == ui.item.id) {
+          alreadyAdded = $(e).attr("id");
+        }
+      });
+      if (alreadyAdded === false) {
+        addNewTeacher(event, ui.item);
+      } else {
+        try {
+          $('#'+alreadyAdded).parent().parent().find('img')[0].scrollIntoView({ behavior: 'instant', block: 'center' });
+        } catch (e) {}
+      }
+      this.value = "";
+      return false;
+
+    }
   });
 
+  $('#add-teacher').click(addNewTeacher);
   $('#add-lesson').click(function(e){
     e.stopPropagation();
     var index = Date.now();
-    var newLesson = $(newLessonTemplate);
+    var newLesson = $(newLessonTemplate.replace(/\${index}/gim, index));
     $('.content-list-edit').append(newLesson);
     newLesson.find("input").first().focus();
   });
@@ -218,7 +257,7 @@ $(function() {
     e.stopPropagation();
     var index = $(this).parent().data("contentId")
     var index2 = Date.now();
-    var newTopic = $(newTopicTemplate);
+    var newTopic = $(newTopicTemplate.replace(/\${index}/gim, index).replace(/\${index1}/gim, index1));
     $(this).parent().find('.lesson-topics').append(newTopic);
     newTopic.find("input").first().focus();
   });
@@ -232,7 +271,7 @@ $(function() {
       config.autoGrow_minHeight = 20;
       config.toolbarCanCollapse = true;
     };
-    CKEDITOR.replace( 'description' );
+    CKEDITOR.replace('description');
   }
 
   /************************************* COURSE FORM INPUTS *************************************/
@@ -244,11 +283,6 @@ $(function() {
 
   /*************************************** IMAGE CROPPER ****************************************/
 
-  $(".custom-file-input").on("change", function() {
-    var fileName = $(this).val().split("\\").pop();
-    console.log(fileName, $(this).siblings())
-    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-  });
 
   /**
   * Convert Base64 to Blob
@@ -280,13 +314,13 @@ $(function() {
         autoCropArea: 1,
         center: true,
         aspectRatio: Math.round(100*width/height)/100,
-        minContainerWidth: width-1,
+        minContainerWidth: width - 1,
         maxContainerWidth: width,
-        minContainerHeight: height-1,
+        minContainerHeight: height - 1,
         maxContainerHeight: height,
-        minCropBoxWidth: width-1,
+        minCropBoxWidth: width - 1,
         maxCropBoxWidth: width,
-        minCropBoxHeight: height-1,
+        minCropBoxHeight: height - 1,
         maxCropBoxHeight: height,
         background: false,
         guides: false,
@@ -294,7 +328,11 @@ $(function() {
       });
     }
   }
-  $(".custom-file-input").change(function(e){
+
+  var changeFile = function(e){
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+
     if (e.target.files[0]) {
       var reader = new FileReader();
       var $input = $(this);
@@ -309,7 +347,9 @@ $(function() {
       };
       reader.readAsDataURL(e.target.files[0]);
     }
-  });
+  };
+
+  $(document).on("change", ".custom-file-input", changeFile);
 
   $('form').on("submit", function(){
     var form = this;
@@ -330,7 +370,12 @@ $(function() {
         }
       }
     });
+    $('input[name="course[teachers][][order]"]').each(function(i,e){
+       $(e).val(i+1);
+    });
   });
+
+
 
   /*************************************** IMAGE CROPPER ****************************************/
 

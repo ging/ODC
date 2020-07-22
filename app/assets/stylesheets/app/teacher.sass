@@ -44,10 +44,21 @@
 		margin-bottom: 10px
 		padding-bottom: 20px
 		padding-top: 20px
+		background-color: white
+		&.ui-sortable-helper
+			border-top: 2px solid $orange-light
 		.teacher-edit-block
 			flex: 1
 			padding-left: 1.8rem
-		.delete-teacher
+		.btn-teacher
 			position: absolute
 			bottom: 0
 			left: 0
+			&.delete-teacher
+				left: 20px
+			&.move-teacher
+				cursor: grab
+
+.teacher-note
+	opacity: 0.5
+	font-size: smaller

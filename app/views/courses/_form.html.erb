@@ -208,10 +208,20 @@
 							<label class="col-sm-2 col-form-label"><%=t('course.teachers')%></label>
 							<div class="col-sm-10">
 								<style>:root{--no-teacher: "<%=t("course.no_teacher")%>";}</style>
-								<div id="teacher-list">
-									<% teachers = (course.sorted_teachers||[])%>
-									<% teachers.each_with_index do |teacher, index|%><%=render partial: "courses/teacher_card_edit", :locals => { index: index, teacher: teacher} %><% end %></div>
-								<div class="text-left">
+								<div id="teacher-list"><% teachers = course.sorted_teachers||[]%><% 
+									teachers.each_with_index do |teacher, index|%><%=render partial: "courses/teacher_card_edit", :locals => { index: index, teacher: teacher} %><% end %></div>
+								<div class="text-left ui-widget ui-front">
+									<%= render partial: "layouts/form_field_icon", :locals => {
+										label: "", 
+										icon: "fas fa-search",
+										type: "text", 
+										name: "",
+										id: "inputTeacher-search", 
+										placeholder: t("course.teacher.search"), 
+										value: "" 
+									}  %> 
+									<p class="teacher-note">(*) <%=t("course.teacher.note")%></p>	
+									<span><%=t("course.teacher.or")%></span>
 									<button type="button" id="add-teacher" class="btn btn-outline-orange"><%=t('course.add_new_teacher')%></button>
 								</div>
 							</div>

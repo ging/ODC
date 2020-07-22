@@ -16,5 +16,10 @@ class CourseTeacher < ActiveRecord::Base
 
 	# Alias for acts_as_taggable_on :tags
 	acts_as_taggable
+	def as_json(*)
+	  super.merge(:avatar => avatar.as_json).except("created_at", "updated_at").tap do |hash|
+	    hash["label"] = "#{name} (#{position})"
+	  end
+	end
 
 end

@@ -1,6 +1,6 @@
 class SearchController < ApplicationController
   include ActionView::Helpers::SanitizeHelper
-  skip_authorization_check :only => [:index]
+  skip_authorization_check :only => [:index, :teacher_search]
 
   RESULTS_SEARCH_PER_PAGE=24
 
@@ -40,6 +40,15 @@ class SearchController < ApplicationController
     results = results.paginate(:per_page => RESULTS_SEARCH_PER_PAGE, :page => params[:page])
     
     results
+  end
+
+  def teacher_search
+    query = "%#{(params[:term]||"").downcase}%"
+    results = CourseTeacher.all
+    results = results.where(["lower(name) LIKE ?", query]) unless query.blank?
+    results = results.paginate(:per_page => 5, :page => 1)
+    print results.as_json
+    render :json => results 
   end
   
 end

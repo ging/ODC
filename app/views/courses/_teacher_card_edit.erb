@@ -4,11 +4,15 @@
 	<div class="teacher-picture-container">
 		<img src="<%=teacher_avatar_url%>" id="teacher-photo-<%=index%>" alt="">
 		<%=render partial: "layouts/input_file_custom", :locals => { name: "", file_name: teacher[:avatar_file_name], file_path: teacher_avatar_url, id:"inputTeacher-#{index}-photo", data_img_id: "teacher-photo-#{index}", width: 120, height: 120, accept: "image/*", label: t('course.teacher.upload'), data_name: "course[teachers][][avatar]" } %>
-		<button type="button" class="btn delete-teacher">
+		<button type="button" class="btn btn-teacher delete-teacher" title="<%=t("course.teacher.delete")%>">
 			<i class="far fa-trash-alt"></i>
+		</button>
+		<button type="button" class="btn btn-teacher move-teacher" title="<%=t("course.teacher.reorder")%>">
+			<i class="fas fa-arrows-alt-v"></i>
 		</button>
 	</div>
 	<div class="teacher-edit-block">
+		<input type="hidden" name="course[teachers][][id]" id="teacher-<%=index%>" value="<%=teacher[:id]%>">
 		<%= render partial: "layouts/form_field_icon", :locals => {
 			label: "", 
 			icon: "fas fa-user",
@@ -17,15 +21,6 @@
 			id: "inputTeacher-#{index}-name", 
 			placeholder: t("course.teacher.name"), 
 			value: teacher[:name] 
-		}  %>
-		<%= render partial: "layouts/form_field_icon", :locals => {
-			label: "", 
-			icon: "",
-			type: "hidden", 
-			name:"course[teachers][][id]", 
-			id: "inputTeacher-#{index}-id", 
-			placeholder: "", 
-			value: teacher[:id] 
 		}  %>
 		<%= render partial: "layouts/form_field_icon", :locals => {
 			label: "", 

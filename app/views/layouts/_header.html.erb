@@ -12,40 +12,39 @@
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item <%=current_page?("/") ? "active" : ""%>">
 				<a class="nav-link text-center" href="/">
-					<span class="d-inline d-sm-inline d-md-inline d-lg-none d-xl-inline">
-						<%= t('navbar.who') %>
-					</span>
 					<span class="d-none d-sm-none d-md-none d-lg-inline d-xl-none">
 						<i class="navbar-icon fas fa-home"></i>
+					</span>
+					<span class="d-inline d-sm-inline d-md-inline d-lg-none d-xl-inline">
+						<%= t('navbar.who') %>
 					</span>
 				</a>
 			</li>
 			<li class="nav-item <%=current_page?("/courses") ? "active" : ""%>">
 				<a class="nav-link text-center" href="/courses">
-					<span class="d-inline d-sm-inline d-md-inline d-lg-none d-xl-inline">
-						<%= t('navbar.courses') %>
-					</span>
 					<span class="d-none d-sm-none d-md-none d-lg-inline d-xl-none">
 						<i class="navbar-icon fas fa-book"></i>
+					</span>
+					<span class="d-inline d-sm-inline d-md-inline d-lg-none d-xl-inline">
+						<%= t('navbar.courses') %>
 					</span>
 				</a>
 			</li>
 			<li class="nav-item <%=current_page?("/webinars") ? "active" : ""%>">
 				<a class="nav-link text-center" href="/webinars">
-					<span class="d-inline d-sm-inline d-md-inline d-lg-none d-xl-inline">
-						<%= t('navbar.webinars') %>
-					</span>
 					<span class="d-none d-sm-none d-md-none d-lg-inline d-xl-none">
 						<i class="navbar-icon fas fa-podcast"></i>
 					</span>
-
+					<span class="d-inline d-sm-inline d-md-inline d-lg-none d-xl-inline">
+						<%= t('navbar.webinars') %>
+					</span>
 				</a>
 			</li>
 			<%if can_create_course %>
 			<li class="nav-item dropdown">
 				<a class="nav-link text-center dropdown-toggle" data-target="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<span class="d-inline d-sm-inline d-md-inline d-lg-none d-xl-inline none">Admin</span>
 					<span class="d-none d-sm-none d-md-none d-lg-inline d-xl-none orange"><i class="navbar-icon fas fa-cog"></i></span>
+					<span class="d-inline d-sm-inline d-md-inline d-lg-none d-xl-inline none orange">Admin</span>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="/courses/new"><%= t('navbar.new_course') %></a>

@@ -1,33 +1,34 @@
+<% teacher_avatar_url = (teacher.respond_to? "avatar") ? teacher.avatar.url : '/img/user_placeholder.png' %>
 <div class="d-flex flex-lg-row flex-xs-column teacher-card">
 	<div class="teacher-picture-container">
-		<img src="<%=teacher[:photo_file_path]%>" alt="">
+		<img src="<%=teacher_avatar_url%>" alt="">
 	</div>
 	<div class="teacher-info">
 		<p class="teacher-name"><%=teacher[:name]%></p>
 		<p><%=teacher[:position]%>
 			<span class="social-list">
-				<%if !teacher[:linkedin].nil?%>
+				<%if !teacher[:linkedin].blank?%>
 				<a href="https://www.linkedin.com/in/<%=teacher[:linkedin]%>">
 					<button class="btn btn-outline-dark btn-social">
 						<i class="fab fa-linkedin-in"></i>
 					</button>
 				</a>
 				<%end%>
-				<%if !teacher[:facebook].nil?%>
+				<%if !teacher[:facebook].blank?%>
 				<a href="https://www.facebook.com/<%=teacher[:facebook]%>">
 					<button class="btn btn-outline-dark btn-social">
 						<i class="fab fa-facebook-f"></i>
 					</button>
 				</a>
 				<%end%>
-				<%if !teacher[:instagram].nil?%>
+				<%if !teacher[:instagram].blank?%>
 				<a href="https://instagram.com/<%=teacher[:instagram]%>">
 					<button class="btn btn-outline-dark btn-social">
 						<i class="fab fa-instagram"></i>
 					</button>
 				</a>
 				<%end%>
-				<%if !teacher[:twitter].nil?%>
+				<%if !teacher[:twitter].blank?%>
 				<a href="https://twitter.com/<%=teacher[:twitter]%>">
 					<button class="btn btn-outline-dark btn-social">
 						<i class="fab fa-twitter"></i>
