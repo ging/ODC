@@ -1,0 +1,71 @@
+<%title = defined?(@course) ? @course.name : "Orange Digital Center"%>
+<%author = (defined?(@course) and !@course.powered_by.blank?) ? @course.powered_by : "Orange"%>
+<%description = (defined?(@course) and !@course.description.blank?) ? (strip_tags(@course.description).html_safe) : t("landing.intro_new") %>
+<%img = (defined?(@course) and !@course.thumb_file_name.blank?) ? @course.thumb.url : nil%>
+<%course_item_list = @top_courses || @top_webinars || @courses%>
+<title><%=title%></title> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="<%=description%>"/>
+<meta name="author" content="<%=author%>" />
+
+<meta name="keywords" content="Orange, RSC, Cursos, Courses, Educación, Education, Formación, Training"/>
+<meta name="geo.region" content="ES"/>
+<meta name="resource-type" content="document"/>
+<meta name="theme-color" content="#ffffff">
+
+
+<!-- Schema.org markup for Google+ -->
+<meta itemprop="name" content="<%=title%>"/>
+<meta itemprop="description" content="<%=description%>"/>
+<%if img%>
+	<meta itemprop="image" content="<%=img%>">
+<%end%>
+<%if defined?(@course)%>
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org/",
+		"@type": "Course",
+		"name": "<%=title%>",
+		"description": "<%=description%>",
+		"provider": {
+			"@type": "Organization",
+			"name": "<%=author%>"
+		}
+	}
+	</script>
+<%elsif !course_item_list.nil?  and course_item_list.length > 0%>
+	<script type="application/ld+json">
+	{
+		"@context":"https://schema.org",
+		"@type":"ItemList",
+		"itemListElement":[
+			<%course_item_list.each_with_index{|course,index| %>
+				{
+					"@type":"ListItem",
+					"position": <%=index+1%>,
+					"url":"<%=request.protocol + request.host_with_port %>/courses/<%=course.id%>"
+				}<%if course_item_list.length - 1 != index%>,<%end%>
+			<%}%>
+		]
+	}
+	</script>
+<%end%>
+<!-- Twitter Card data -->
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:site" content="@orange_es"/>
+<meta name="twitter:title" content="<%=title%>"/>
+<meta name="twitter:description" content="<%=description%>"/>
+<meta name="twitter:creator" content="@orange_es"/>
+<!-- Twitter summary card with large image must be at least 280x150px -->
+<%if img%>
+	<meta name="twitter:image:src" content="<%=img%>">
+<%end%>
+<!-- Open Graph data -->
+<meta property="og:title" content="<%=title%>" />
+<meta property="og:type" content="school" />
+<meta property="og:url" content="<%=request.original_url %>" />
+<%if img%>
+	<meta property="og:image" content="<%=img%>">
+<%end%>
+<meta property="og:description" content="<%=description%>" />
+<meta property="og:site_name" content="Orange Digital Center" />
