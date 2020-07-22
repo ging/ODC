@@ -5,6 +5,7 @@ class CoursesController < ApplicationController
   before_action :parse_course_params, only: [:create, :update]
   skip_authorization_check :only => [:webinars, :all_courses]
   after_action :save_and_update_teachers, only: [:create, :update]
+  after_action :increase_visit_count, only: [:show]
   
   # GET /courses
   def index
@@ -25,7 +26,7 @@ class CoursesController < ApplicationController
 
   # GET /courses/1
   def show
-    @related_courses = Course.where(:webinar => @course.webinar).where("id != :id", id: @course.id).limit(4)
+    @related_courses = RecommenderSystem.getRecommendCourses(@course,4)
   end
 
 
@@ -148,4 +149,11 @@ class CoursesController < ApplicationController
       @course.save
     end
   end
+
+  def increase_visit_count
+    return if Utils.isUserAgentBot?(request.env["HTTP_USER_AGENT"])
+    @course.update_column(:visit_count, @course.visit_count+1)
+  end
+
+
 end
