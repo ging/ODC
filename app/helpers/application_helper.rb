@@ -49,6 +49,10 @@ module ApplicationHelper
     date.strftime("%d/%m/%Y")
   end
 
+  def to_dmy_alt(date)
+    date.strftime("%d-%m-%Y")
+  end
+
   def to_ymd(date)
     date.strftime("%Y-%m-%d")
   end

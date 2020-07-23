@@ -26,15 +26,15 @@
 			</div>
 		</div>
 		<% if @isProfileOwner %>
-		<div class="col-xs-12 col-md-6  calendar-container ">
+		<div class="col-xs-12 col-md-6 calendar-container ">
 			<div id="calendar"></div>
 			<br/>
 			<br/>
 		</div>
-		
+		<%events = (@profile_user.courses||[]).reject{|x| x.webinar == false} %>
 		<div class="col-xs-12 col-md-6 event-calendar-list">
-			<% (@profile_user[:events]||[]).each do |event| %>
-			<%= render partial: "courses/event_calendar", :locals => {event: event}%>
+			<% events.each do |event| %>
+				<%= render partial: "courses/event_calendar", :locals => {event: event}%>
 			<% end %>
 			<div class="no-events hidden orange"><h4><%=t("profile.no_events")%></h4></div>
 		</div>
@@ -52,11 +52,8 @@
 
 <script>
 window.selectedDates = [
-  <% (@profile_user[:events] || []) .each_with_index do |event, index| %>
-  new Date("<%= Date.parse(event[:from])%>") 
-  <%if (@profile_user[:events].length() != index + 1) %>
-  ,
-  <%end%>
+  <% events.each_with_index do |event, index| %>
+  	new Date("<%=event[:start_date]%>")<%if (events.length() != index + 1) %>,<%end%>
   <% end %>
   ].map(d=>{
   	d.setHours(0,0,0,0); 

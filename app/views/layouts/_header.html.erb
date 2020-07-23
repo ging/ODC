@@ -1,5 +1,4 @@
 <% can_create_course = can? :create, Course%>
-<%@searching = current_page?("/courses") %>
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light2 <%=@searching ? "search" : ""%>">
 	<a class="navbar-brand" href="/">
 		<img class="navbar-logo" src="/img/LogoOrange.jpg" alt=""/> <span class="navbar-brand-title"> Orange Digital Center </span>

@@ -9,17 +9,22 @@ class CoursesController < ApplicationController
   
   # GET /courses
   def index
+    @searching = true
     @courses = Course.where(:webinar => false).paginate(:per_page => 24, :page => params[:page].blank? ? 1 : params[:page])
+    params[:webinar] = 0
   end
 
   # GET /webinars
   def webinars
+    @searching = true
     @courses = Course.webinars.paginate(:per_page => 24, :page => 1)
+    params[:webinar] = 1
     render "index"
   end
 
   # GET /all_courses
   def all_courses
+    @searching = true
     @courses = Course.all.paginate(:per_page => 24, :page => 1)
     render "index"
   end

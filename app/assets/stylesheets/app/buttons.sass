@@ -8,6 +8,7 @@ button, input[type=submit]
 	line-height: 19px
 	cursor: pointer
 	border-width: 2px
+	font-family: Helvetica--Neue--75
 	&.focus, &:focus
 		box-shadow: 0 0 0 0.2rem rgba($orange_light, 0.25)
 .btn-smaller
@@ -49,14 +50,14 @@ button, input[type=submit]
 			background-color: $orange_light
 			border-color: $orange_light
 .btn-orange
-	&:not(.disabled)
+	&:not(.disabled),&:not(:disabled)
 		color: white
 		background-color: $orange
 		border: 2px solid $orange
 		&.active, &:active, &:focus, &:hover
-			color: $orange
-			background-color: transparent
-			border-color: $orange
+			color: $orange !important
+			background-color: transparent !important
+			border-color: $orange !important
 .btn-orange-light, .btn-primary
 	&:not(.disabled)
 		color: white

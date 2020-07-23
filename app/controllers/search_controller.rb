@@ -17,6 +17,7 @@ class SearchController < ApplicationController
 
   def search
     #Remove empty params   
+    @searching = true
     params.delete_if { |k, v| v == "" }
 
     params[:page] = (params[:page] || 1)
