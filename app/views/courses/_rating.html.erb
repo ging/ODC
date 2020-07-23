@@ -1,8 +1,36 @@
-<div class="star-ratings-css">
-	<div class="star-ratings-css-top" style="width: <%=rating*20%>%">
-		<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+<div class="star-ratings-css <%=defined?(actionable) and actionable == true ? "actionable":"" %>">
+	<div class="star-ratings-css-top" style="width: <%=(rating||0)*20%>%" data-rating="<%=rating||0%>">
+		<%5.times.each{|x|%>
+			<%if defined?(actionable) and actionable == true%>
+				<span><%= button_to "★", {:controller => "courses", :action => "rate", :rating => x+1}, {:class=> "transparent", :method=>:post, :data => {:star=>x+1}}  %></span>
+			<%else%>
+				<span>★</span>
+			<%end%>
+		<%}%>
 	</div>
 	<div class="star-ratings-css-bottom">
-		<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+		<%5.times.each{|x|%>
+			<%if defined?(actionable) and actionable == true%>
+				<span><%= button_to "★", {:controller => "courses", :action => "rate", :rating => x+1}, {:class=> "transparent", :method=>:post, :data => {:star=>x+1}}  %></span>
+			<%else%>
+				<span>★</span>
+			<%end%>
+		<%}%>
 	</div>
 </div>
+
+
+<script>
+$(".star-ratings-css.actionable span").on("mouseover",function(ev){
+	var star = $(ev.target).data("star");
+	var $parent = $(this).closest(".star-ratings-css").find(".star-ratings-css-top");
+	$parent.css("width", (parseFloat(star)*20)+"%");
+	console.log(star, $parent,(parseFloat(star)*20)+"%")
+});
+
+$(".star-ratings-css.actionable span").on("mouseleave",function(ev){
+	var $parent = $(this).closest(".star-ratings-css").find(".star-ratings-css-top");
+	var rating = $parent.data("rating");
+	$parent.css("width", (parseFloat(rating)*20)+"%");
+});
+</script>

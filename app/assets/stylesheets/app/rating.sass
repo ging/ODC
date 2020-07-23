@@ -2,8 +2,8 @@
 
 .star-ratings-css
 	display: inline-block
+	color: #ddd !important
 	unicode-bidi: bidi-override
-	color: #ddd
 	font-size: 1rem
 	height: 1.5rem
 	width: auto
@@ -17,16 +17,31 @@
 	vertical-align: bottom
 	span
 		padding: 0.2rem
+	input[type=submit]
+		color: #ddd !important
+		&:hover
+			color: $highlight_yellow !important
+	&:hover
+		.star-ratings-css-top input[type=submit]
+			color: $highlight_yellow !important
 	.star-ratings-css-top
-		color: $orange
 		padding: 0
+		color: $orange !important
 		position: absolute
 		z-index: 1
 		display: flex
 		top: 0
 		left: 0
 		overflow: hidden
+		input[type=submit]
+			color: $orange !important
 	.star-ratings-css-bottom
 		padding: 0
 		display: flex
 		z-index: 0
+	.transparent
+		background: none
+		border: none
+		padding: 0
+		margin: 0
+		outline: none

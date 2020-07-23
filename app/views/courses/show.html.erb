@@ -112,14 +112,12 @@
 					<span><%=@course[:powered_by]%></span>
 				</div>
 			<%end%>
-			<%if (@course[:rating])%>
-				<div class="course-characteristic">
-					<span class="course-field orange" ><%= t("course.rating")%>:</span>
-					<span class="course-rating-container">
-						<%= render partial: "courses/rating", :locals => {rating: @course[:rating]}  %>
-					</span>
-				</div>
-			<%end%>
+			<div class="course-characteristic">
+				<span class="course-field orange" ><%= t("course.rating")%>:</span>
+				<span class="course-rating-container">
+					<%= render partial: "courses/rating", :locals => {rating: @course[:rating], actionable: true}  %> (<%=@course.ratings.length%> <%=t("course.votes")%>)
+				</span>
+			</div>
 			
 			<br/><br/><br/><br/>
 			
@@ -128,7 +126,6 @@
 				<br/><br/>
 				<%= button_to t("course.unenroll"), {:controller => "courses", :action => "unenroll"}, {:class=> "btn btn-outline-orange btn-see", :method=>:post}  %>
 				<br/><br/>
-				<%= button_to t("course.rate"), {:controller => "courses", :action => "rate", :rating => 3.0}, {:class=> "btn btn-orange btn-see", :method=>:post}  %>
 			<% else %>
 				<% if @course.is_enrollment_period? and notYet %>
 					<%= button_to (@course[:webinar] ? t("course.enroll_webinar") : t("course.enroll")), {:controller => "courses", :action => "enroll"}, {:class=> "btn btn-orange btn-see", :method=>:post}  %>
