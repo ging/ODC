@@ -3,9 +3,10 @@ class Course < ApplicationRecord
 	serialize :contents
 	serialize :teachers_order
 
+	has_and_belongs_to_many :teachers, :class_name => "CourseTeacher"
 	has_many :enrollments, dependent: :destroy
 	has_many :users, through: :enrollments
-	has_and_belongs_to_many :teachers, :class_name => "CourseTeacher"
+	has_many :ratings, :class_name => "CourseRating"
 
 	has_attached_file :teaching_guide
 	has_attached_file :thumb, 
@@ -31,7 +32,7 @@ class Course < ApplicationRecord
 	end
 
 	def enroll_user(user)
-		return if user.nil? or self.users.include?(@user)
+		return if user.nil? or self.users.include?(user)
 		e = Enrollment.new
 		e.course = self
 		e.user = user
@@ -48,6 +49,25 @@ class Course < ApplicationRecord
 		return true if self.start_enrollment_date.blank? or self.end_enrollment_date.blank?
 		tNow = Time.now
 		return ((tNow > self.start_enrollment_date) and (tNow < self.end_enrollment_date))
+	end
+
+	def add_rating(user,rating)
+		return if user.nil? or rating.blank?
+		r = self.ratings.find_by_user_id(user.id) || CourseRating.new
+		r.course = self
+		r.user = user
+		r.value = rating
+		r.enrolled = self.users.include?(user)
+		r.date = Time.now
+		r.save
+	end
+
+	def update_rating
+		rating = nil 
+		unless self.ratings.blank?
+			rating = (self.ratings.map{|r| r.value}.sum.to_f)/(self.ratings.length.to_f)
+		end
+		self.update_column(:rating, rating) if rating != self.rating
 	end
 
 end

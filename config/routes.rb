@@ -13,6 +13,7 @@ MOVLE::Application.routes.draw do
   match '/all_courses', to: 'courses#all_courses', via: [:get]
   match 'courses/:id/enroll' => 'courses#enroll', via: [:post]
   match 'courses/:id/unenroll' => 'courses#unenroll', via: [:post]
+  match 'courses/:id/rate' => 'courses#rate', via: [:post]
 
   #Locale
   match '/change_locale', to: 'locales#change_locale', via: [:get]

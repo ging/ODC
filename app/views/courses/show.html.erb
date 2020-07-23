@@ -64,60 +64,60 @@
 			</div>
 			<%end%>
 			<% else %>
-			<%if @course[:start_date] and @course[:end_date]%>
-			<div class="course-characteristic">
-				<span class="course-field orange"><%= t("course.date")%>:</span>
-				<span><%=to_dmy(@course[:start_date])%>-<%=to_dmy(@course[:end_date])%></span> 
-			</div>
-			<% end %>
-			<% if !@course[:dedication].blank? %>
-			<div class="course-characteristic">
-				<span class="course-field orange"><%= t("course.dedication")%>:</span> 
-				<span><%=@course[:dedication]%></span>
-			</div>
-			<% end %>
-			<% if !@course[:format].blank? %>
-			<div class="course-characteristic">
-				<span class="course-field orange"><%= t("course.format")%>:</span> 
-				<span><%=t("course.course_formats." + @course[:format])%></span>
-			</div>
-			<% end %>
-			<% if !@course[:lessons].blank? %>
-			<div class="course-characteristic">
-				<span class="course-field orange"><%= t("course.lessons")%>:</span> 
-				<span><%=@course[:lessons]%></span>
-			</div>
-			<% end %>
+				<%if @course[:start_date] and @course[:end_date]%>
+					<div class="course-characteristic">
+						<span class="course-field orange"><%= t("course.date")%>:</span>
+						<span><%=to_dmy(@course[:start_date])%>-<%=to_dmy(@course[:end_date])%></span> 
+					</div>
+				<% end %>
+				<% if !@course[:dedication].blank? %>
+					<div class="course-characteristic">
+						<span class="course-field orange"><%= t("course.dedication")%>:</span> 
+						<span><%=@course[:dedication]%></span>
+					</div>
+				<% end %>
+				<% if !@course[:format].blank? %>
+					<div class="course-characteristic">
+						<span class="course-field orange"><%= t("course.format")%>:</span> 
+						<span><%=t("course.course_formats." + @course[:format])%></span>
+					</div>
+				<% end %>
+				<% if !@course[:lessons].blank? %>
+					<div class="course-characteristic">
+						<span class="course-field orange"><%= t("course.lessons")%>:</span> 
+						<span><%=@course[:lessons]%></span>
+					</div>
+				<% end %>
 			<% end %>
 			<% if !@course[:lang].blank? %>
-			<div class="course-characteristic">
-				<span class="course-field orange"><%= t("course.languages")%>:</span> 
-				<span><%=@course[:lang]%></span>
-			</div>
+				<div class="course-characteristic">
+					<span class="course-field orange"><%= t("course.languages")%>:</span> 
+					<span><%=@course[:lang]%></span>
+				</div>
 			<% end %>
 			<% if @course[:categories] %>
-			<div class="course-characteristic">
-				<span class="course-field orange"><%= t("course.tags")%>:</span> 
-				<span>
-					<% @course[:categories].each_with_index do |tag, index|%>
-					<span class="course-tag"><%=t("tags." + tag)%></span><%if index != @course[:categories].length()-1%>, <%end%> 
-					<%end%>
-				</span>
-			</div>
+				<div class="course-characteristic">
+					<span class="course-field orange"><%= t("course.tags")%>:</span> 
+					<span>
+						<% @course[:categories].each_with_index do |tag, index|%>
+						<span class="course-tag"><%=t("tags." + tag)%></span><%if index != @course[:categories].length()-1%>, <%end%> 
+						<%end%>
+					</span>
+				</div>
 			<% end %>
 			<%if (!@course[:powered_by].blank?)%>
-			<div class="course-characteristic">
-				<span class="course-field orange"><%= t("course.powered_by")%>:</span> 
-				<span><%=@course[:powered_by]%></span>
-			</div>
+				<div class="course-characteristic">
+					<span class="course-field orange"><%= t("course.powered_by")%>:</span> 
+					<span><%=@course[:powered_by]%></span>
+				</div>
 			<%end%>
 			<%if (@course[:rating])%>
-			<div class="course-characteristic">
-				<span class="course-field orange" ><%= t("course.rating")%>:</span>
-				<span class="course-rating-container">
-					<%= render partial: "courses/rating", :locals => {rating: @course[:rating]}  %>
-				</span>
-			</div>
+				<div class="course-characteristic">
+					<span class="course-field orange" ><%= t("course.rating")%>:</span>
+					<span class="course-rating-container">
+						<%= render partial: "courses/rating", :locals => {rating: @course[:rating]}  %>
+					</span>
+				</div>
 			<%end%>
 			
 			<br/><br/><br/><br/>
@@ -126,6 +126,8 @@
 				<button class="btn btn-orange btn-see" ><%=t("course.continue")%></button>
 				<br/><br/>
 				<%= button_to t("course.unenroll"), {:controller => "courses", :action => "unenroll"}, {:class=> "btn btn-orange btn-see", :method=>:post}  %>
+				<br/><br/>
+				<%= button_to t("course.rate"), {:controller => "courses", :action => "rate", :rating => 3.0}, {:class=> "btn btn-orange btn-see", :method=>:post}  %>
 			<% else %>
 				<% if @course.is_enrollment_period? and notYet %>
 					<%= button_to (@course[:webinar] ? t("course.enroll_webinar") : t("course.enroll")), {:controller => "courses", :action => "enroll"}, {:class=> "btn btn-orange btn-see", :method=>:post}  %>

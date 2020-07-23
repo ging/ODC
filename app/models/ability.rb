@@ -13,6 +13,7 @@ class Ability
     #Users
     can :read, User
     can :enroll, Course
+    can :rate, Course
 
     #Courses
     can :read, Course

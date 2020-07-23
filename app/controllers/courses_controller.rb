@@ -71,6 +71,7 @@ class CoursesController < ApplicationController
     redirect_to courses_url, notice:  I18n.t("course.successfully_destroyed")
   end
 
+  # POST /courses/1/enroll
   def enroll
     if user_signed_in?
       if current_user.courses.include?(@course)
@@ -88,6 +89,7 @@ class CoursesController < ApplicationController
     end
   end
 
+  # POST /courses/1/unenroll
   def unenroll
     if user_signed_in?
       if current_user.courses.include?(@course)
@@ -99,6 +101,23 @@ class CoursesController < ApplicationController
         end
       else
         redirect_to @course, notice: I18n.t("course.errors.no_enrolled")
+      end
+    else
+      redirect_to @course, notice: I18n.t("authorization.errors.generic")
+    end
+  end
+
+  # POST /courses/1/rate
+  def rate
+    return (redirect_to @course, notice: I18n.t("course.errors.no_rating")) if params[:rating].blank?
+
+    if user_signed_in? and current_user.courses.include?(@course)
+      #Rate
+      if @course.add_rating(current_user,params[:rating])
+        @course.update_rating
+        redirect_to @course, notice: "Rating success"
+      else
+        redirect_to @course, notice: "Rating error"
       end
     else
       redirect_to @course, notice: I18n.t("authorization.errors.generic")

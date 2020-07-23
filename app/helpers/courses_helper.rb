@@ -11,6 +11,10 @@ module CoursesHelper
 		return course_path(course) + "/unenroll"
 	end
 
+	def rate_path(course)
+		return course_path(course) + "/rate"
+	end
+
 	def parse_date(date, hour=false)
     	DateTime.strptime(date, hour ?  "%d/%m/%Y %H:%M" : "%d/%m/%Y")
   	end
