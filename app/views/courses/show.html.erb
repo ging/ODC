@@ -1,3 +1,4 @@
+<% offset_orig = cookies()[:utc_offset].blank? ? nil : (cookies()[:utc_offset]).to_i %>
 <% offset = (cookies()[:utc_offset] || "0").to_i %>
 <% now = (DateTime.now.to_time + offset / 60 ).to_datetime %>
 <% notYet = now < @course[:start_date] %>
@@ -53,7 +54,7 @@
 			<%if @course[:start_date]%>
 			<div class="course-characteristic">
 				<span class="course-field orange"><%= t("course.date")%>:</span> 
-				<span><%=to_dmyhm(@course[:start_date],offset)%> <%unless (offset)%>UTC<%end%></span> 
+				<span><%=to_dmyhm(@course[:start_date],offset_orig)%> <%unless (!offset_orig.blank?)%>UTC<%end%></span> 
 			</div>
 			<%end%>
 			<%if @course[:start_date] and @course[:end_date]%>
@@ -67,7 +68,7 @@
 			<%if @course[:start_date] and @course[:end_date]%>
 			<div class="course-characteristic">
 				<span class="course-field orange"><%= t("course.date")%>:</span>
-				<span><%=to_dmy(@course[:start_date])%>-<%=to_dmy(@course[:end_date])%></span> 
+				<span><%=to_dmy(@course[:start_date],offset_orig)%>-<%=to_dmy(@course[:end_date],offset_orig)%></span> 
 			</div>
 			<% end %>
 			<% if !@course[:dedication].blank? %>
@@ -95,7 +96,7 @@
 				<span><%=@course[:lang]%></span>
 			</div>
 			<% end %>
-			<% if @course[:categories] %>
+			<% if @course[:categories] and  @course[:categories].length > 0%>
 			<div class="course-characteristic">
 				<span class="course-field orange"><%= t("course.tags")%>:</span> 
 				<span>
@@ -125,7 +126,7 @@
 			<% if user_signed_in? and @course.users.include?(current_user) %>
 				<button class="btn btn-orange btn-see" ><%=t("course.continue")%></button>
 				<br/><br/>
-				<%= button_to t("course.unenroll"), {:controller => "courses", :action => "unenroll"}, {:class=> "btn btn-orange btn-see", :method=>:post}  %>
+				<%= button_to t("course.unenroll"), {:controller => "courses", :action => "unenroll"}, {:class=> "btn btn-outline-orange btn-see", :method=>:post}  %>
 			<% else %>
 				<% if @course.is_enrollment_period? and notYet %>
 					<%= button_to (@course[:webinar] ? t("course.enroll_webinar") : t("course.enroll")), {:controller => "courses", :action => "enroll"}, {:class=> "btn btn-orange btn-see", :method=>:post}  %>
