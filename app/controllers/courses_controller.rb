@@ -57,6 +57,7 @@ class CoursesController < ApplicationController
 
   # PATCH/PUT /courses/1
   def update
+    params.require(:course)[:webinar] = @course.webinar # do not allow to change from course to webinar or viceversa
     if @course.update(course_params)
       redirect_to @course, notice: I18n.t("course.successfully_updated")
     else
@@ -113,7 +114,7 @@ class CoursesController < ApplicationController
 
   def course_params
     params.require(:course)[:categories] ||= []
-    params.require(:course).permit(:name,:description,:start_date,:end_date,:start_enrollment_date,:end_enrollment_date,:format,:video,:type,:dedication,:powered_by,:powered_by_logo,:teaching_guide,:lang,:url,:lessons,:thumb, categories: [], contents: [:title, topics: []], teachers_order: [])
+    params.require(:course).permit(:name,:description,:start_date,:end_date,:start_enrollment_date,:end_enrollment_date,:format,:video,:type,:dedication,:powered_by,:powered_by_logo,:teaching_guide,:lang,:url,:lessons,:thumb, :webinar, categories: [], contents: [:title, topics: []], teachers_order: [])
   end
 
   def teachers_params

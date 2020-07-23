@@ -1,4 +1,4 @@
-<%tag = course[:webinar]? "webinar" : "course"%>
+<%tag = course[:webinar] ? "webinar" : "course"%>
 <div class="container">
 	<div class="row">
 		<div class="col-12">
@@ -23,7 +23,7 @@
 				</ul>
 			</div>
 			<% end %>
-			<input name="course[webinar]" type="hidden" value="<%=params[:webinar]%>" />
+			<input name="course[webinar]" type="hidden" value="<%=course[:webinar] ? "1": "0"%>" />
 			<%= render partial: "layouts/form_field", :locals => {
 				label: t('course.title'), 
 				type: "text", 
