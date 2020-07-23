@@ -4,20 +4,89 @@ es:
     edit: "Editar cuenta"
     update: "Actualizar cuenta"
   activerecord:
+    models:
+        user: Usuario
+        course: Curso
+        course_teachers: Profesores
+    attributes:
+        user:
+            password: La contraseña
+            current_password: "La contraseña actual"
+            password_confirmation: "La confirmación de la contraseña"
+            name: "El nombre"
+            email: "El e-mail"
+            tags: "Las etiquetas"
+        course:
+            name: "El nombre del curso"
+            start_date: "La fecha de inicio"
+            end_date: "La fecha de finalización"
+            description: "La descripción del curso"
+            rating: "La puntuación"
+            start_enrollment_date: "La fecha de comienzo de matriculación"
+            end_enrollment_date: "La fecha de fin de matriculación"
+            video: "El vídeo introductorio"
+            lang: "Los idiomas del curso"
+            url: "El enlace al curso"
+            powered_by: "El proveedor del curso (powered by)"
+            dedication: "La dedicación estimada"
+            lessons: "El nº de lecciones"
+            format: "El formato del curso"
+            categories: "Las categorías del curso"
+            contents: "El contenido del curso"
+        course_teachers:
+            name: "El nombre del profesor"
+            position: "El puesto del profesor"
+            facebook: "El id de Facebook del profesor"
+            linkedin: "El perfil de Linkedin del profesor"
+            twitter: "El usuario de Twitter del profesor"
+            instagram: "El usuario de Instagram del profesor"
+            bio: "La biografía del profesor"
+
     errors:
       messages:
         confirmation: "no coincide con %{attribute}"
+        accepted: "debe estar aceptado"
+        blank: "no puede estar en blanco"
+        confirmation: "no coincide con la confirmación"
+        empty: "no puede estar vacío"
+        equal_to: "debe ser igual a %{count}"
+        even: "debe ser par"
+        exclusion: "está reservado"
+        greater_than: "debe ser mayor que %{count}"
+        greater_than_or_equal_to: "debe ser mayor o igual a %{count}"
+        inclusion: "no está en la lista"
+        invalid: "no es válido"
+        less_than: "debe ser menor que %{count}"
+        less_than_or_equal_to: "debe ser menor que o igual a %{count}"
+        not_a_number: "no es un número"
+        odd: "debe ser impar"
+        taken: "ya existe"
+        too_long: "es demasiado largo (máximo %{count} caracteres)"
+        too_short: "es demasiado corto (mínimo %{count} caracteres)"
+        wrong_length: "no tiene la longitud correcta (debería tener %{count} caracteres)"
       models:
         user:
           attributes:
             email:
               blank: "no puede estar en blanco"
+              empty: "no puede estar en blanco"
+              taken: "ya existe"
             language:
               blank: "no puede estar en blanco"
+              empty: "no puede estar en blanco"
             name:
               blank: "no puede estar en blanco"
+              empty: "no puede estar en blanco"
             password:
               blank: "no puede estar en blanco"
+              empty: "no puede estar en blanco"
+              length: "demasiado corta"
+              invalid: "no es válida"
+              record_invalid: "no es válida"
+              too_short: "es demasiado corta (mínimo %{count} caracteres)"
+            current_password:
+              record_invalid: "no es válida"
+              invalid: "no es válida"
   authorization:
     errors:
         generic: "No estás autorizado a acceder a este recurso o realizar esta acción"

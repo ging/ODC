@@ -4,6 +4,44 @@ en:
     edit: "Edit account"
     update: "Update account"
   activerecord:
+    models:
+        user: User
+        course: Course
+        course_teachers: Teachers
+    attributes:
+        user:
+            password: La password
+            current_password: "The current password"
+            password_confirmation: "The confirmation password"
+            name: "The user name"
+            email: "The e-mail"
+            tags: "The tags"
+        course:
+            name: "The course name"
+            start_date: "The start date"
+            end_date: "The end date"
+            description: "The course description"
+            rating: "The rating score"
+            start_enrollment_date: "The enrollment start date"
+            end_enrollment_date: "The enrollment end date"
+            video: "The intro video"
+            lang: "The languages"
+            url: "The link to the course"
+            powered_by: "The course provider (powered by)"
+            dedication: "The estimated dedication"
+            lessons: "The lessons"
+            format: "The course format"
+            categories: "The categories"
+            contents: "The course content"
+        course_teachers:
+            name: "The name of the teacher"
+            position: "The position of the teacher"
+            facebook: "The teachers's FB id"
+            linkedin: "The teacher's Linkedin profile"
+            twitter: "The teacher's Twitter handle"
+            instagram: "The teacher's Instagram user"
+            bio: "The teacher's bio"
+
     errors:
       messages:
         confirmation: "doesn't match %{attribute}"

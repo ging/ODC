@@ -13,11 +13,14 @@ module DeviseHelper
     end
     messages = (messages + resource.errors.full_messages)
     return "" if messages.empty?
+    flash.now[:alert] = messages
 
     message = messages.map { |msg| content_tag(:li, msg) }.join
     sentence = I18n.t("errors.messages.not_saved",
                       count: messages.length,
                       resource: resource.class.model_name.human.downcase)
+    
+
 
     html = <<-HTML
     <div id="error_explanation">

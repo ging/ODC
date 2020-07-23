@@ -18,6 +18,7 @@ class Course < ApplicationRecord
 	validates :webinar, inclusion: { in: [ true, false ], allow_blank: true }
 	validates_presence_of :start_date
 	validates_presence_of :end_date
+	validates_presence_of :name
 	validates_attachment :teaching_guide, content_type: { content_type: ["application/pdf"] }
 	validates_attachment :thumb, content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
 	validates_attachment :powered_by_logo, content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }

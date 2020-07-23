@@ -51,6 +51,7 @@ class CoursesController < ApplicationController
     if @course.save
       redirect_to @course, notice: I18n.t("course.successfully_created")
     else
+      flash.now[:alert] = @course.errors.full_messages.join(". ")
       render :new
     end
   end
@@ -61,6 +62,7 @@ class CoursesController < ApplicationController
     if @course.update(course_params)
       redirect_to @course, notice: I18n.t("course.successfully_updated")
     else
+      flash.now[:alert] = @course.errors.full_messages.join(". ")
       render :edit
     end
   end

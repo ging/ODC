@@ -46,18 +46,30 @@ module ApplicationHelper
 
   def to_dmy(date, offset=0)
     # DateTime.parse(date).strftime("%d-%m-%Y")
-    date = date - (offset||0).minutes
-    date.strftime("%d/%m/%Y")
+    if date.methods.include? :strftime
+      date = date - (offset||0).minutes
+      date.strftime("%d/%m/%Y")
+    else
+      nil
+    end
   end
 
   def to_dmy_alt(date, offset=0)
-    date = date - (offset||0).minutes
-    date.strftime("%d-%m-%Y")
+    if date.methods.include? :strftime
+      date = date - (offset||0).minutes
+      date.strftime("%d-%m-%Y")
+    else
+      nil
+    end
   end
 
   def to_ymd(date, offset=0)
-    date = date - (offset||0).minutes
-    date.strftime("%Y-%m-%d")
+    if date.methods.include? :strftime
+      date = date - (offset||0).minutes
+      date.strftime("%Y-%m-%d")
+    else
+      nil
+    end
   end
 
   # def to_dmyhm(date, offset)
@@ -66,13 +78,21 @@ module ApplicationHelper
   # end
 
   def to_dmyhm(date, offset=0)
-    date = date - (offset||0).minutes
-    date.strftime("%d/%m/%Y %H:%M")
+    if date.methods.include? :strftime
+      date = date - (offset||0).minutes
+      date.strftime("%d/%m/%Y %H:%M")
+    else
+      nil
+    end
   end
 
 
   def to_seo_datetime(date)
-    date.strftime("%Y-%m-%dT%H:%M:%S+00:00")
+    if date.methods.include? :strftime
+      date.strftime("%Y-%m-%dT%H:%M:%S+00:00")
+    else
+      nil
+    end
   end
 
 

@@ -13,7 +13,7 @@
 			<%if (method == "put") %>
 			<input name="_method" type="hidden" value="put" />
 			<%end%>
-			<% if course.errors.any? %>
+			<!--<% if course.errors.any? %>
 			<div id="error_explanation">
 				<h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
 
@@ -23,7 +23,7 @@
 					<% end %>
 				</ul>
 			</div>
-			<% end %>
+			<% end %>-->
 			<input name="course[webinar]" type="hidden" value="<%=course[:webinar] ? "1": "0"%>" />
 			<%= render partial: "layouts/form_field", :locals => {
 				label: t('course.title'), 

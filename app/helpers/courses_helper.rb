@@ -16,8 +16,12 @@ module CoursesHelper
 	end
 
 	def parse_date(date, hour=false, offset = 0)
-		date = DateTime.strptime(date, hour ?  "%d/%m/%Y %H:%M" : "%d/%m/%Y")
-		date = (date + (offset).minutes)
-		date
+		begin
+			date = DateTime.strptime(date, hour ?  "%d/%m/%Y %H:%M" : "%d/%m/%Y")
+			date = (date + (offset).minutes)
+			date
+		rescue
+			nil
+		end
 	end
 end
