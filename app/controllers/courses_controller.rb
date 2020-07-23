@@ -143,15 +143,16 @@ class CoursesController < ApplicationController
   def parse_course_params
     return if params[:course].blank?
     params[:course][:webinar] = (params[:course][:webinar] == "1")
+    offset = (cookies()[:utc_offset] || "0").to_i 
     if params[:course][:date] 
       split_date = params[:course][:date].split(" - ")
-      params[:course][:start_date] = helpers.parse_date(split_date[0], @course.webinar)
-      params[:course][:end_date] = helpers.parse_date(split_date[1], @course.webinar)
+      params[:course][:start_date] = helpers.parse_date(split_date[0], @course.webinar, offset)
+      params[:course][:end_date] = helpers.parse_date(split_date[1], @course.webinar, offset)
     end
     if params[:course][:enrollment_date] 
       split_date = params[:course][:enrollment_date].split(" - ")
-      params[:course][:start_enrollment_date] = helpers.parse_date(split_date[0], @course.webinar)
-      params[:course][:end_enrollment_date] = helpers.parse_date(split_date[1], @course.webinar)
+      params[:course][:start_enrollment_date] = helpers.parse_date(split_date[0], @course.webinar, offset)
+      params[:course][:end_enrollment_date] = helpers.parse_date(split_date[1], @course.webinar, offset)
     end
   end
   def save_and_update_teachers

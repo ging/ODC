@@ -1,3 +1,4 @@
+<%offset = cookies()[:utc_offset].blank? ? nil : (cookies()[:utc_offset]).to_i %>
 <%tag = course[:webinar] ? "webinar" : "course"%>
 <div class="container">
 	<div class="row">
@@ -40,7 +41,7 @@
 				id: "#{tag}-date", 
 				required: true,
 				placeholder: course[:webinar] ?  t('webinar.date_placeholder') :  t('course.date_placeholder'), 
-				value: ((course[:start_date] and course[:end_date]) ? course[:webinar] ? ("#{to_dmyhm(course[:start_date])} - #{to_dmyhm(course[:end_date])}"): ("#{to_dmy(course[:start_date])} - #{to_dmy(course[:end_date])}") : "") 
+				value: ((course[:start_date] and course[:end_date]) ? course[:webinar] ? ("#{to_dmyhm(course[:start_date],offset)} - #{to_dmyhm(course[:end_date],offset)}"): ("#{to_dmy(course[:start_date],offset)} - #{to_dmy(course[:end_date],offset)}") : "") 
 			}  %>
 			<%= render partial: "layouts/form_field", :locals => {
 				label: course[:webinar] ? t('webinar.enrollment_date') : t('course.enrollment_date'), 
@@ -49,7 +50,7 @@
 				id: "#{tag}-enrollment-date", 
 				required: true,
 				placeholder: course[:webinar] ?  t('webinar.enrollment_date_placeholder') :  t('course.enrollment_date_placeholder'), 
-				value: ((course[:start_enrollment_date] and course[:end_enrollment_date]) ? course[:webinar] ? ("#{to_dmyhm(course[:start_enrollment_date])} - #{to_dmyhm(course[:end_enrollment_date])}"): ("#{to_dmy(course[:start_enrollment_date])} - #{to_dmy(course[:end_enrollment_date])}") : "") 
+				value: ((course[:start_enrollment_date] and course[:end_enrollment_date]) ? course[:webinar] ? ("#{to_dmyhm(course[:start_enrollment_date],offset)} - #{to_dmyhm(course[:end_enrollment_date],offset)}"): ("#{to_dmy(course[:start_enrollment_date],offset)} - #{to_dmy(course[:end_enrollment_date],offset)}") : "") 
 			}  %>
 			<% unless course[:webinar] %>		
 				<%= render partial: "layouts/form_field", :locals => {

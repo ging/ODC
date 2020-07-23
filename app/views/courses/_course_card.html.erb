@@ -1,3 +1,4 @@
+<%offset = cookies()[:utc_offset].blank? ? nil : (cookies()[:utc_offset]).to_i %>
 <div class="card course" style="width: 100%;" id="course-<%=index%>">
 	<div class="card-img-container">
 		<a href="/courses/<%=course[:id]%>">
@@ -16,11 +17,11 @@
 		<h5 class="course-date">
 		<%if course[:webinar]%>
 			<%if course[:start_date]%>
-				<%=to_dmyhm(course[:start_date])%>
+				<%=to_dmyhm(course[:start_date],offset)%> <%unless (!cookies()[:utc_offset].blank?)%>UTC<%end%>
 			<%end%>
 		<%else%>
 			<%if course[:start_date] and course[:end_date]%>
-	 			<%=to_dmy(course[:start_date])%> -  <%=to_dmy(course[:end_date])%>
+	 			<%=to_dmy(course[:start_date],offset)%> -  <%=to_dmy(course[:end_date],offset)%>
 			<%end%>
 		<%end%>
 		</h5>

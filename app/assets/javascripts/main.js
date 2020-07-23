@@ -12,7 +12,7 @@ $(function() {
   
   var offset = (new Date()).getTimezoneOffset()
   var date = new Date();
-  date.setTime(date.getTime()+3600000);
+  date.setTime(date.getTime()+24*3600000);
   document.cookie = "utc_offset="+offset+"; expires="+date.toGMTString();+"; path=/";
 
   /****************************************** TIMEZONE*******************************************/
