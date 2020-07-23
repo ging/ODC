@@ -4,13 +4,13 @@
 <% notYet = now < @course[:start_date] %>
 <% currentlyGoingOn = now > @course[:start_date] && now < @course[:end_date] %>
 <% ended = !notYet && !currentlyGoingOn %>
-
+<% user_enrolled = user_signed_in? ? @course.users.include?(current_user) : false%>
 <div class="container-fluid course-detail">
 	<div class="row">
 		<div class="col-xs-12 col-md-9">
 			<% if @course[:webinar] and notYet %>
 			<%= render partial: "courses/countdown", :locals => { date: @course[:start_date], now: now} %>
-			<% elsif (currentlyGoingOn)%>
+			<% elsif (@course[:webinar] and currentlyGoingOn)%>
 			<div class="live">
 				<div class="text-center">
 					<h2 class="orange"><%=t("course.live")%>
@@ -24,7 +24,7 @@
 						<%else%>
 						<% end %>
 					</h2>
-					<a href="<%=@course[:url]%>">
+					<a href="<%=@course[:url]%>" target="_blank">
 						<button class="btn btn-orange"><%=t("course.join")%></button>
 					</a>
 					<br/>
@@ -44,7 +44,7 @@
 				</a>
 				<% if can? :destroy, @course %>
 					<%= link_to url_for(controller: "courses", action: :destroy, id: @course.id), method: :delete, data: { confirm: t('common.confirm') }, class: 'text-right d-block link-remove-course' do %>
-  						<button class='btn btn-dark orange btn-delete-course'><i class='fa fa-trash'></i></button>
+						<button class='btn btn-dark orange btn-delete-course'><i class='fa fa-trash'></i></button>
 					<% end %>
 				<% end %>
 			<%else%>
@@ -115,19 +115,21 @@
 			<div class="course-characteristic">
 				<span class="course-field orange" ><%= t("course.rating")%>:</span>
 				<span class="course-rating-container">
-					<%= render partial: "courses/rating", :locals => {rating: @course[:rating], actionable: true}  %> (<%=@course.ratings.length%> <%=t("course.votes")%>)
+					<%= render partial: "courses/rating", :locals => {rating: @course[:rating], 
+						actionable:  user_enrolled == true }  %> (<%=@course.ratings.length%> <%=t("course.votes")%>)
 				</span>
 			</div>
 			
 			<br/><br/><br/><br/>
-			
-			<% if user_signed_in? and @course.users.include?(current_user) %>
-				<button class="btn btn-orange btn-see" ><%=t("course.continue")%></button>
+			<% if user_enrolled == true %>
+				<a href="<%=@course[:url]%>" target="_blank">
+					<button class="btn btn-orange btn-see" ><%=t("course.continue")%></button>
+				</a>
 				<br/><br/>
-				<%= button_to t("course.unenroll"), {:controller => "courses", :action => "unenroll"}, {:class=> "btn btn-outline-orange btn-see", :method=>:post}  %>
+				<%= button_to t("course.unenroll"), {:controller => "courses", :action => "unenroll"}, {:class=> "btn btn-outline-light btn-see", :method=>:post}  %>
 				<br/><br/>
 			<% else %>
-				<% if @course.is_enrollment_period? and notYet %>
+				<% if @course.is_enrollment_period? %>
 					<%= button_to (@course[:webinar] ? t("course.enroll_webinar") : t("course.enroll")), {:controller => "courses", :action => "enroll"}, {:class=> "btn btn-orange btn-see", :method=>:post}  %>
 				<% else %>
 					<div class="course-characteristic">

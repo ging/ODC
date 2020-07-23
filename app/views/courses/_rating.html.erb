@@ -1,7 +1,7 @@
 <div class="star-ratings-css <%=defined?(actionable) and actionable == true ? "actionable":"" %>">
 	<div class="star-ratings-css-top" style="width: <%=(rating||0)*20%>%" data-rating="<%=rating||0%>">
 		<%5.times.each{|x|%>
-			<%if defined?(actionable) and actionable == true%>
+			<%if defined?(actionable) and actionable == true %>
 				<span><%= button_to "★", {:controller => "courses", :action => "rate", :rating => x+1}, {:class=> "transparent", :method=>:post, :data => {:star=>x+1}}  %></span>
 			<%else%>
 				<span>★</span>
