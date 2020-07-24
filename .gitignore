@@ -21,6 +21,7 @@ config/initializers/exception_notification.rb
 # ignore documents folder
 /documents
 /public/system
+/public/assets
 
 config/deploy/*
 !config/deploy/example.yml

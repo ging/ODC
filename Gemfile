@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
 #Bundler
-gem 'bundler', '2.1.4' 
+gem 'bundler', '2.1.4'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '= 5.2.4.3'
 # Use postgreSQL as the database for Active Record
-gem 'pg', '= 0.18'
+gem 'pg', '= 0.18.4'
 # Use SCSS for stylesheets
 gem 'sass-rails', '6.0.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -41,6 +41,9 @@ group :development do
   gem 'spring'
   gem 'pry-rails'
   gem 'thin'
+  gem 'capistrano',           require: false
+  gem 'capistrano-rails',     require: false
+  gem 'capistrano-rbenv',     require: false
+  gem 'capistrano-passenger', require: false
+  gem 'capistrano-bundler', require: false
 end
-
-gem 'capistrano'
