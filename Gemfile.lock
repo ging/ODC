@@ -141,7 +141,7 @@ GEM
       mime-types
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
-    pg (0.18.4)
+    pg (1.2.3)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -249,7 +249,7 @@ DEPENDENCIES
   jquery-ui-rails (= 6.0.1)
   omniauth (= 1.9.1)
   paperclip (= 6.1.0)
-  pg (= 0.18.4)
+  pg (= 1.2.3)
   pry-rails
   rails (= 5.2.4.3)
   recaptcha (= 4.3.1)

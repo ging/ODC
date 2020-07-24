@@ -5,7 +5,7 @@ gem 'bundler', '2.1.4'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '= 5.2.4.3'
 # Use postgreSQL as the database for Active Record
-gem 'pg', '= 0.18.4'
+gem 'pg', '= 1.2.3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '6.0.0'
 # Use Uglifier as compressor for JavaScript assets
