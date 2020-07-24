@@ -134,6 +134,7 @@ en:
       linkedin: "Linkedin public name"
       name: "Teacher name"
       note: "If you make any changes to an existing teacher, these changes will apply to all courses in which said teacher takes part"
+      no_results: "No results"
       position: "Position (e.g. Professor at University of X)"
       or: "or"
       reorder: "Drag to change the order of this teacher"

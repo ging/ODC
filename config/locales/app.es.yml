@@ -107,6 +107,7 @@ es:
       linkedin: "Nombre público en 135in"
       name: "Nombre del profesor"
       note: "Si realizas alguna modificación en un profesor ya existente, los cambios surtirán efecto en todos los cursos en los que participe dicho profesor"
+      no_results: "No hay resultados"
       position: "Puesto (ej. Profesor de la Universidad X)"
       or: "o"
       reorder: "Arrastra para cambiar de orden a este profesor"

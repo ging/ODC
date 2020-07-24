@@ -224,13 +224,6 @@ $(function() {
   $("#inputTeacher-search").autocomplete({
     "source": "/search_teachers",
     "minLength": 2,
-    "response": function( event, ui ) {
-      console.log(ui.content && ui.content.length )
-      if (!(ui.content && ui.content.length)) {
-        ui.content.push({label: "No results", value:"default"});
-      }
-      return false;
-    },
     "select": function( event, ui ) {
       var alreadyAdded = false;
       if (ui.item.value === "default") {

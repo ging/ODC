@@ -32,10 +32,7 @@ class SearchController < ApplicationController
       #order by relevance
       order = nil
     end
-
-    
     results = Course.all
-
     results = results.where(["lower(name) LIKE ? OR lower(description) LIKE ?", query, query]) unless query.blank?
     results = results.where(:webinar => params[:webinar]) if params[:webinar].present?
     results = results.paginate(:per_page => RESULTS_SEARCH_PER_PAGE, :page => params[:page])
@@ -48,8 +45,10 @@ class SearchController < ApplicationController
     results = CourseTeacher.all
     results = results.where(["lower(name) LIKE ?", query]) unless query.blank?
     results = results.paginate(:per_page => 5, :page => 1)
-    print results.as_json
-    render :json => results 
+    if results.length == 0
+      results = [{:label => I18n.t("course.teacher.no_results"), :value =>"default"}]
+    end
+    render :json => results
   end
   
 end
