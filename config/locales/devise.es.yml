@@ -13,8 +13,8 @@ es:
       invalid: 'Email o contraseña inválidos.'
       invalid_token: 'Token de autentificación inválido.'
       locked: 'Tu cuente está bloqueada.'
-      last_attempt: "You have one more attempt before your account is locked."
-      not_found_in_database: "%{authentication_keys} o contraseña erróneos."
+      last_attempt: "Sólo te queda un intento hasta que se bloquee tu cuenta."
+      not_found_in_database: "%{authentication_keys} o contraseña son erróneos."
       timeout: 'Tu sesión ha expirado. Inicia sesión nuevamente.'
       unauthenticated: 'Tienes que registrarte o iniciar sesión antes de continuar.'
       unconfirmed: 'Tienes que confirmar tu cuenta antes de continuar.'
