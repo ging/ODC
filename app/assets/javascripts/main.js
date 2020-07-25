@@ -436,4 +436,17 @@ $('input[data-role="tagsinput"]').tagsinput({
 });
   /******************************************* TAGS *********************************************/
   
+
+  /***************************************** LANDING ********************************************/
+  $('.arrow_down').click(function(){
+    const element = document.getElementById("popular_courses")
+    const topPos = element.getBoundingClientRect().top + window.pageYOffset - 76
+
+    window.scrollTo({
+      top: topPos, // scroll so that the element is at the top of the view
+      behavior: 'smooth' // smooth scroll
+    })
+  });
+  /***************************************** LANDING ********************************************/
+  
 });

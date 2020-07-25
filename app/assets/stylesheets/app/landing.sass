@@ -34,7 +34,7 @@
 		background-image: url("/img/landing_login.jpg")
 .initial-info-no-login
 	min-height: 600px
-	min-height: calc(100vh - 60px)
+	min-height: calc(100vh - 76px)
 	height: auto
 	text-align: right
 	position: relative
@@ -50,4 +50,15 @@
 		padding: 2rem
 	&.landing-bckg
 		padding-top: 0px
-
+.arrow_down
+	position: absolute
+	bottom: 0
+	left: 50%
+	transform: translateX(-50%)
+	i
+		font-size: 50px
+		color: white
+		transition: ease-in 0.1s all
+		cursor: pointer
+		&:hover
+			transform: scale(1.3)

@@ -10,10 +10,11 @@
       </div>
     </div>
   </div>
+  <span class="arrow_down"><i class="fa fa-chevron-down"></i></span>
 </div>
-<div class="highlight-background">
+<div class="highlight-background" id="popular_courses">
   <%= render partial: "courses/course_list_4", :locals => {title: t('landing.popular_courses'), courses: @top_courses, button: t('landing.see_all'), button_link: "/courses", link: "/courses", mine: false }  %>
 </div>
-<div>
+<div id="popular_webinars">
   <%= render partial: "courses/course_list_4", :locals => {title: t('landing.popular_webinars'), courses: @top_webinars, button: t('landing.see_all'), button_link: "/webinars", link: "/webinars", mine: false  }  %>
 </div>
