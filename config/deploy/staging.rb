@@ -3,12 +3,25 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 
-server "odc.dit.upm.es", user: "ubuntu", roles: %w{app db web}
+begin
+  config = YAML.load_file(File.expand_path('../' + ENV['DEPLOY'] + '.yml', __FILE__))
+  server_url = config["server_url"]
+  username = config["username"]
+  keys = config["keys"]
+  branch = config["branch"] || "master"
+rescue Exception => e
+  # puts e.message
+  puts "Sorry, the file config/deploy/" + ENV['DEPLOY'] + '.yml does not exist.'
+  exit
+end
+
+server server_url, user: username, roles: %w{app db web}
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
 set :default_env, { 'PASSENGER_INSTANCE_REGISTRY_DIR' => '/home/ubuntu/passenger_tmp' }
 
+set :branch, branch
 
 # role-based syntax
 # ==================
@@ -43,7 +56,7 @@ set :default_env, { 'PASSENGER_INSTANCE_REGISTRY_DIR' => '/home/ubuntu/passenger
 # Global options
 # --------------
   set :ssh_options, {
-    keys: %w(~/.ssh/odc.pem),
+    keys: keys,
 #    forward_agent: false,
 #    auth_methods: %w(password)
   }
