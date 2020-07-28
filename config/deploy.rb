@@ -1,8 +1,22 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.14.1"
 
+require 'yaml'
+
+begin
+  config = YAML.load_file(File.expand_path('../deploy/' + ENV['DEPLOY'] + '.yml', __FILE__))
+  puts config["message"] unless config["message"].nil?
+  repository = config["repository"]
+rescue Exception => e
+  # puts e.message
+  puts "Sorry, the file config/deploy/" + ENV['DEPLOY'] + '.yml does not exist.'
+  exit
+end
+
 set :application, "ODC"
-set :repo_url, "https://github.com/ging/ODC.git"
+set :repo_url, repository
+
+set :default_stage, "production"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
