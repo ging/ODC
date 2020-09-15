@@ -25,7 +25,6 @@ $(".star-ratings-css.actionable span").on("mouseover",function(ev){
 	var star = $(ev.target).data("star");
 	var $parent = $(this).closest(".star-ratings-css").find(".star-ratings-css-top");
 	$parent.css("width", (parseFloat(star)*20)+"%");
-	console.log(star, $parent,(parseFloat(star)*20)+"%")
 });
 
 $(".star-ratings-css.actionable span").on("mouseleave",function(ev){
