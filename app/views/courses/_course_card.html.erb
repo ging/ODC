@@ -3,7 +3,7 @@
 	<div class="card-img-container">
 		<a href="/courses/<%=course[:id]%>">
 		<img class="card-img-top" src="<%=course.thumb.url%>" alt="">
-		</a>
+		
 		<%if (course[:webinar])%>
 			<span class="webinar-corner">
 				<span><img src="/img/Video_camera_icon.svg" alt=""></span>
@@ -12,6 +12,7 @@
 		<%if (course[:rating])%>
     	   	<%= render partial: "courses/rating", :locals => {rating: course[:rating]}  %>
 		<%end%>
+		</a>
 	</div>
 	<div class="card-body">
 		<h5 class="course-date">

@@ -18,9 +18,9 @@
 					<% if @isProfileOwner %>
 						<a href="/users/edit" style="float:right;">
 							<button class="btn btn-outline-dark"><%=t("profile.edit")%></button>
-						</a>
+						</a>&nbsp;
 					<% end %>
-					
+					<%= button_to(t("devise.sessions.logout"), destroy_user_session_path, :method => :delete, :class=> "btn btn-outline-orange") %>
 				</div>
 				<br>
 			</div>

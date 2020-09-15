@@ -33,7 +33,7 @@ class SearchController < ApplicationController
       order = nil
     end
     results = Course.all
-    results = results.where(["lower(name) LIKE ? OR lower(description) LIKE ?", query, query]) unless query.blank?
+    results = results.where(["lower(name) LIKE ? OR lower(description) LIKE ? OR lower(categories) LIKE ?", query, query, sanitize(query)]) unless query.blank?
     results = results.where(:webinar => params[:webinar]) if params[:webinar].present?
     results = results.paginate(:per_page => RESULTS_SEARCH_PER_PAGE, :page => params[:page])
     

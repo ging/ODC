@@ -31,6 +31,7 @@ es:
     add_new_lesson: "Añadir nueva lección"
     add_new_teacher: "Añadir nuevo profesor"
     add_new_topic: "Añadir nuevo apartado"
+    confirm_delete: "¿Seguro que quieres borrar este curso/webinar?"
     contents: Contenidos
     continue: Continuar
     course_formats:

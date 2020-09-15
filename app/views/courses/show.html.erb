@@ -43,7 +43,7 @@
 					<button class="btn btn-dark orange btn-edit-course"><i class="far fa-edit"></i></button>
 				</a>
 				<% if can? :destroy, @course %>
-					<%= link_to url_for(controller: "courses", action: :destroy, id: @course.id), method: :delete, data: { confirm: t('common.confirm') }, class: 'text-right d-block link-remove-course' do %>
+					<%= link_to url_for(controller: "courses", action: :destroy, id: @course.id), method: :delete, data: { confirm: t('course.confirm_delete') }, class: 'text-right d-block link-remove-course' do %>
 						<button class='btn btn-dark orange btn-delete-course'><i class='fa fa-trash'></i></button>
 					<% end %>
 				<% end %>
@@ -101,7 +101,8 @@
 					<span class="course-field orange"><%= t("course.tags")%>:</span> 
 					<span>
 						<% @course[:categories].each_with_index do |tag, index|%>
-						<span class="course-tag"><%=t("tags." + tag)%></span><%if index != @course[:categories].length()-1%>, <%end%> 
+						<a href="/search?q=<%=tag%>">
+							<span class="course-tag"><%=t("tags." + tag)%></span></a><%if index != @course[:categories].length()-1%>, <%end%> 
 						<%end%>
 					</span>
 				</div>

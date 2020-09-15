@@ -28,7 +28,7 @@
 	type: "password", 
 	name: "user[current_password]", 
 	id: "current_password", 
-	required: true,
+	required: false,
 	placeholder: "", 
 	value: "" 
 }  %>
@@ -57,7 +57,7 @@
 	type: "password", 
 	name: "user[password_confirmation]", 
 	id: "confirm_password", 
-	required: false,
+	required:  user.id ? false : true,
 	placeholder: "", 
 	value: "" 
 }  %>

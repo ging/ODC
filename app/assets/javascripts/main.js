@@ -260,7 +260,7 @@ $(function() {
     e.stopPropagation();
     var index = $(this).parent().data("contentId")
     var index2 = Date.now();
-    var newTopic = $(newTopicTemplate.replace(/\${index}/gim, index).replace(/\${index1}/gim, index1));
+    var newTopic = $(newTopicTemplate.replace(/\${index}/gim, index).replace(/\${index2}/gim, index2));
     $(this).parent().find('.lesson-topics').append(newTopic);
     newTopic.find("input").first().focus();
   });
@@ -276,6 +276,13 @@ $(function() {
     };
     CKEDITOR.replace('description');
   }
+
+  $(document).on('keydown','.form-control',function(e){
+    if (e.keyCode == 13) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+  });
 
   /************************************* COURSE FORM INPUTS *************************************/
 

@@ -60,6 +60,7 @@ en:
     add_new_lesson: "Add a new lesson"
     add_new_teacher: "Add a new teacher"
     add_new_topic: "Add a new topic"
+    confirm_delete: "Are you sure you want to delete this course/webinar?"
     contents: Contents
     continue: Continue
     course_formats: 
