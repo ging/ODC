@@ -35,18 +35,14 @@ module ApplicationHelper
   end
 
   def youtube_parse(url)
-    if !url.match("/embed")
-      code = url.scan(/v=(\w+)/)
-      if code[0] and code[0][0]
-        url = "https://www.youtube.com/embed/#{code[0][0].to_s}"
-      else
-        code = url.scan(/watch\/(\w+)/)
-        if code[0] and code[0][0]
-          url = "https://www.youtube.com/embed/#{code[0][0].to_s}"
+      if !url.match("/embed")
+        code = url.scan(/(.*?)(^|\/|v=)([a-z0-9_-]{11})(.*)?/im)
+        print code
+        if code[0] and code[0][2]
+          url = "https://www.youtube.com/embed/#{code[0][2].to_s}"
         end
       end
-    end
-    url
+      url
   end
 
   def to_dmy(date, offset=0)
