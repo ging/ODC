@@ -8,32 +8,16 @@
 		<p><%=teacher[:position]%>
 			<span class="social-list">
 				<%if !teacher[:linkedin].blank?%>
-				<a href="https://www.linkedin.com/in/<%=teacher[:linkedin]%>">
-					<button class="btn btn-outline-dark btn-social">
-						<i class="fab fa-linkedin-in"></i>
-					</button>
-				</a>
+					<a class="btn btn-social btn-linkedin" href="https://www.linkedin.com/in/<%=teacher[:linkedin]%>" aria-label="Linkedin" target="_blank"></a>
 				<%end%>
 				<%if !teacher[:facebook].blank?%>
-				<a href="https://www.facebook.com/<%=teacher[:facebook]%>">
-					<button class="btn btn-outline-dark btn-social">
-						<i class="fab fa-facebook-f"></i>
-					</button>
-				</a>
+					<a class="btn btn-social btn-facebook" href="https://www.facebook.com/<%=teacher[:facebook]%>" aria-label="Facebook" target="_blank"></a>
 				<%end%>
 				<%if !teacher[:instagram].blank?%>
-				<a href="https://instagram.com/<%=teacher[:instagram]%>">
-					<button class="btn btn-outline-dark btn-social">
-						<i class="fab fa-instagram"></i>
-					</button>
-				</a>
+					<a class="btn btn-social btn-instagram" href="https://instagram.com/<%=teacher[:instagram]%>" aria-label="Instagram" target="_blank"></a>
 				<%end%>
 				<%if !teacher[:twitter].blank?%>
-				<a href="https://twitter.com/<%=teacher[:twitter]%>">
-					<button class="btn btn-outline-dark btn-social">
-						<i class="fab fa-twitter"></i>
-					</button>
-				</a>
+					<a class="btn btn-social btn-twitter" href="https://twitter.com/<%=teacher[:twitter]%>" aria-label="Twitter" target="_blank"></a>
 				<%end%>
 			</span>
 		</p>

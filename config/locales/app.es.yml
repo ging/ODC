@@ -1,5 +1,6 @@
 ---
 es:
+  lang: es
   calendar:
     apply: Aplicar
     cancel: Cancelar
@@ -190,6 +191,8 @@ es:
     tags: "Etiquetas"
     update: "Actualizar"
   webinar:
+    alt_link: "Enlace al webinar (WebEx)"
+    alt_link_placeholder: "Enlace oficial de WebEx donde tendrá lugar el webinar (si está disponible)"
     edit: "Editar webinar"
     date: "Fecha"
     enrollment_date: "Periodo de matriculación"
@@ -197,6 +200,8 @@ es:
     enrollment_date_placeholder: "Periodo de matriculación del webinar"
     duration: "Duración"
     duration_placeholder: "Duración del webinar en minutos"
-    url: "Enlace al webinar"
-    url_placeholder: "Enlace oficial donde los alumnos se deben apuntar al webinar"
+    retransmission: "Enlace a la grabación"
+    retransmission_placeholder: "Enlace a la grabación del webinar en Youtube (si está disponible)"
+    url: "Enlace al webinar (Youtube)"
+    url_placeholder: "Enlace oficial de Youtube donde tendrá lugar el webinar (si está disponible)"
     new: "Nuevo webinar"

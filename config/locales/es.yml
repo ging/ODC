@@ -27,6 +27,8 @@ es:
             video: "El vídeo introductorio"
             lang: "Los idiomas del curso"
             url: "El enlace al curso"
+            alt_link: "En enlace alternativo al webinar"
+            retransmission: "La grabación del webinar"
             powered_by: "El proveedor del curso (powered by)"
             dedication: "La dedicación estimada"
             lessons: "El nº de lecciones"
@@ -96,6 +98,12 @@ es:
     esafety: "Uso seguro de las TIC"
     digitalization: "Digitalización de PYMES y autónomos"
     other: "Otros"
+  cookies:
+    msg: ORANGE utiliza cookies propias y de terceros para analizar y personalizar tu navegación, así como para mostrarte publicidad basada en tus intereses teniendo en cuenta el perfil realizado mediante el seguimiento de su navegación. Pulsa “Aceptar” si aceptas todas las cookies. También puedes configurar o rechazar las cookies clicando en CONFIGURAR COOKIES u obtener más información en nuestra POLÍTICA DE COOKIES.
+    terms: Términos y condiciones
+    title: Tu privacidad importa
+    agree: Aceptar
+    more: Configurar cookies
   dictionary:
     about: "About"
     add: "Añadir"

@@ -1,7 +1,26 @@
 <% can_create_course = can? :create, Course%>
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light2 <%=@searching ? "search" : ""%>">
+<div class="cookie-panel-section py-4 show-cookie-msg" style="">
+	<div class="container-fluid">
+		<a class="close hide-cookie-section-header-close">
+		
+		</a>
+		<h1><%=t("cookies.title")%></h1>
+		<p class="small-text font-weight-bold w-100 w-md-75">
+				<%=t('cookies.msg') %>		</p>
+		<p>
+			<a href="#" class="hide-cookie-section-header-button">
+				<button class="btn btn-primary btn-orange ">
+					<%=t("cookies.agree")%>
+				</button>
+			</a>
+			<a href="https://design.orange.com/privacy-policy" class="small-text ml-4 font-weight-bold"><%=t("cookies.more")%></a>
+		</p>
+	</div>
+</div>	
+<nav class=" navbar navbar-expand-md navbar-dark bg-dark2 <%=@searching ? "search" : ""%>">
+	<div class="container-fluid">
 	<a class="navbar-brand" href="/">
-		<img class="navbar-logo" src="/img/LogoOrange.jpg" alt=""/> <span class="navbar-brand-title">  Digital Center </span>
+		<img class="navbar-logo" src="/img/orange_logo.svg" alt=""/> <span class="navbar-brand-title">  Digital Center </span>
 	</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
@@ -9,32 +28,32 @@
 
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item <%=current_page?("/") ? "active" : ""%>">
-				<a class="nav-link text-center" href="/">
-					<span class="d-none d-sm-none d-md-none d-lg-inline d-xl-none">
+			<li class="nav-item ">
+				<a class="nav-link text-center <%=current_page?("/") ? "active" : ""%>" href="/">
+					<span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-none">
 						<i class="navbar-icon fas fa-home"></i>
 					</span>
-					<span class="d-inline d-sm-inline d-md-inline d-lg-none d-xl-inline">
+					<span class="d-inline d-sm-inline d-md-none d-lg-none d-xl-inline">
 						<%= t('navbar.home') %>
 					</span>
 				</a>
 			</li>
-			<li class="nav-item <%=current_page?("/courses") ? "active" : ""%>">
-				<a class="nav-link text-center" href="/courses">
-					<span class="d-none d-sm-none d-md-none d-lg-inline d-xl-none">
+			<li class="nav-item ">
+				<a class="nav-link text-center <%=current_page?("/courses") ? "active" : ""%>" href="/courses">
+					<span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-none">
 						<i class="navbar-icon fas fa-book"></i>
 					</span>
-					<span class="d-inline d-sm-inline d-md-inline d-lg-none d-xl-inline">
+					<span class="d-inline d-sm-inline d-md-none d-lg-none d-xl-inline">
 						<%= t('navbar.courses') %>
 					</span>
 				</a>
 			</li>
-			<li class="nav-item <%=current_page?("/webinars") ? "active" : ""%>">
-				<a class="nav-link text-center" href="/webinars">
-					<span class="d-none d-sm-none d-md-none d-lg-inline d-xl-none">
+			<li class="nav-item">
+				<a class="nav-link text-center  <%=current_page?("/webinars") ? "active" : ""%>" href="/webinars">
+					<span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-none">
 						<i class="navbar-icon fas fa-podcast"></i>
 					</span>
-					<span class="d-inline d-sm-inline d-md-inline d-lg-none d-xl-inline">
+					<span class="d-inline d-sm-inline d-md-none d-lg-none d-xl-inline">
 						<%= t('navbar.webinars') %>
 					</span>
 				</a>
@@ -42,8 +61,8 @@
 			<%if can_create_course %>
 			<li class="nav-item dropdown">
 				<a class="nav-link text-center dropdown-toggle" data-target="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<span class="d-none d-sm-none d-md-none d-lg-inline d-xl-none orange"><i class="navbar-icon fas fa-cog"></i></span>
-					<span class="d-inline d-sm-inline d-md-inline d-lg-none d-xl-inline none orange">Admin</span>
+					<span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-none orange"><i class="navbar-icon fas fa-cog"></i></span>
+					<span class="d-inline d-sm-inline d-md-none d-lg-none d-xl-inline none orange">Admin</span>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" href="/courses/new"><%= t('navbar.new_course') %></a>
@@ -56,26 +75,50 @@
 		<% unless (@searching) %>
 		<form class="form-inline my-2 my-lg-0 search-bar d-none d-lg-inline" action="/search">
 			<input class="form-control mr-sm-2 search-bar input input-search" name="q" placeholder="" aria-label="<%= t('navbar.search') %>" type="dsearch" autocomplete="off">
-			<button class="btn my-2 my-sm-0 btn-link btn-search" type="submit"><img src="/img/search.svg" class="search-icon"/></button>
+			<button class="btn my-2 my-sm-0 btn-link btn-search" type="submit"><img src="/img/search_ES.svg" class="search-icon"/></button>
 		</form>
 		<% end %>
-		<div class=" my-2 my-lg-0 text-center user-name-container <%= user_signed_in? ? "logged-in" : ""%>">
+		<ul class="navbar-nav lang">
+			<li class="nav-item user">
 			<%if user_signed_in?%>
-			<a href="<%=user_path(current_user)%>">
+			<div class="user-name-container">
+				<a class="user-profile" href="<%=user_path(current_user)%>">
+					<img src="<%=current_user.avatar.url || "/img/user_placeholder.png" %>" class="user-img"/>
+					<span class="nav-link user-name "><%=current_user[:name]%></span>
+				</a></div> 	
+				<%else%>
+					<a href="/users/sign_in" class="nav-link icon-my-account d-none d-md-block"></a>
+				<%end%>
+			</li>
+
+			<% I18n.available_locales.map(&:to_s).each do |lanCode| %>
+			<form class="change_locale" action="/change_locale" action="GET" class="lang nav-item ">
+				<input name="locale" value="" type="hidden"/>
+				<li class="nav-item <%= t('lang') == lanCode ? "active":""%>" value="<%=lanCode%>">
+					<span class="nav-link"><%=lanCode%>
+					</span>
+				</li>
+			</form>
+			<% end %>
+
+		</ul>
+		<div style="display:none" class="text-center user-name-container navbar-nav <%= user_signed_in? ? "logged-in" : ""%>">
+			<%if user_signed_in?%>
+			<a class="user-profile" href="<%=user_path(current_user)%>">
 				<img src="<%=current_user.avatar.url || "/img/user_placeholder.png" %>" class="user-img"/>
-				<span class="user-name"><%=current_user[:name]%></span>
+				<span class="nav-link user-name "><%=current_user[:name]%></span>
 			</a>
 			<%else%>
-			<div class="btn-group">
-				<button class="btn btn-outline-dark dropdown-toggle" type="button"  id="loginDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<%= t('navbar.login') %>
-				</button>
-				<%=render partial: "layouts/login_dropdown"%>
-			</div>
+				<a href="/users/sign_in" class="nav-link icon-my-account d-none d-md-block"></a>
 			<%end%>
+			<% I18n.available_locales.map(&:to_s).each do |lanCode| %>
+			<form id="change_locale" action="/change_locale" action="GET" class="lang nav-item ">
+				<input name="locale" value="" type="hidden"/>
+				<li class="nav-link <%= t('lang') == lanCode ? "active":""%>" value="<%=lanCode%>"><%=lanCode%></li>
+			</form>
+			<% end %>
 		</div>
 
 	</div>
+	</div>
 </nav>
-
-<div class="navbar-placeholder"></div>

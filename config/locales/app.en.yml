@@ -29,6 +29,7 @@
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
 en:
+  lang: en
   calendar: 
     apply: Apply
     cancel: Cancel
@@ -216,6 +217,8 @@ en:
     tags: "Tags"
     update: "Update"
   webinar:
+    alt_link: "Link to webinar (WebEx)"
+    alt_link_placeholder: "Official link where students can join the webinar on WebEx (if available)"
     date: "Date"
     date_placeholder: "Date in which the webinar will take place"
     enrollment_date: "Enrollment period"
@@ -224,8 +227,10 @@ en:
     duration_placeholder: "Duration of the webinar in minutes"
     edit: "Edit webinar"
     new: "New webinar"
-    url: "Link to webinar"
-    url_placeholder: "Official link where students can join the webinar"
+    retransmission: "Link to recording"
+    retransmission_placeholder: "Link to the recording of the webinar on Youtube (if available)"
+    url: "Link to webinar (Youtube)"
+    url_placeholder: "Official link where students can join the webinar on Youtube (if available)"
 
 
 

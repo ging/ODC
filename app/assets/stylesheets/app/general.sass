@@ -2,57 +2,9 @@
 html
 	min-height: 100%
 	body
-		margin:  0
-		font-family:  Helvetica--Neue--55,Arial,sans-serif
-		font-size:  16px
-		line-height:  20px
-		min-height: 100%
-		min-height: 100vh
-		height: 100%
-		color:  #000
-		text-align:  left
-		background-color:  #fff
-		--contrast-border: #ddd
-		-webkit-font-smoothing: antialiased
-		-moz-font-smoothing: antialiased
-		-moz-osx-font-smoothing: grayscale
-		-ms-font-smoothing: antialiased
-		h1, h2, h3, h4, h5, h6, button
-			font-family: Helvetica--Neue--75
-		h1
-			font-size: 54px
-			line-height: 58px
-		h2
-			font-size: 44px
-			line-height: 48px
-		h3
-			font-size: 36px
-			line-height: 40px
-		h4
-			font-size: 22px
-			line-height: 26px
-		h5
-			font-size: 15px
-			line-height: 19px
-		p, ul, li, input
-			font-size: 16px
-			line-height: 20px
-		button
-			font-size: 15px
-			line-height: 19px	
-		a
-			color: black
-			&:hover
-				color: black
-				text-decoration: none !important
-			&.underlined
-				text-decoration: underline
-				&:hover
-					color: $orange
-					text-decoration: underline !important
-		::selection
-			background-color: rgba($orange, 0.25)
-			color: black
+		.container-fluid-all
+			width: 100%
+			max-width: 100%
 		.soft-background
 			background-color: $gris
 			padding-bottom: 15px
@@ -74,6 +26,9 @@ html
 					flex: 1
 			.col-course
 				margin-bottom: 15px
+			&.courses-4
+				h2
+					font-size: 2.9rem
 			&.courses-3
 				.course-left-info
 					padding-right: 40px
@@ -87,3 +42,5 @@ html
 				h4
 					font-size: 20px
 					line-height: 23px
+		.o-footer
+			margin-top: 0px

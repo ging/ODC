@@ -4,6 +4,6 @@
 <% dismissableClass = (dismissable==true) ? "alert-dismissable" : "" %>
 
 <div class="alert <%=alertClass=%> <%=dismissableClass%> ">
-	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-	<%= msg %>
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+	<span class="text"><%= msg %></span>
 </div>

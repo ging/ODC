@@ -27,6 +27,8 @@ en:
             video: "The intro video"
             lang: "The languages"
             url: "The link to the course"
+            alt_link: "The alternative link to the webinar"
+            retransmission: "The recording of the webinar"
             powered_by: "The course provider (powered by)"
             dedication: "The estimated dedication"
             lessons: "The lessons"
@@ -65,6 +67,13 @@ en:
     esafety: "Safe and reponsible ICT use"
     digitalization: "Digitization of SMEs and freelancers"
     other: "Other"
+  cookies:
+    msg: ORANGE uses its own and third party cookies to analyze and personalize your browsing, as well as to show you advertising based on your interests by tracking your browsing. Click "Accept" if you accept all cookies. You can also set or reject cookies by clicking on SET UP COOKIES or obtain more information in our COOKIES POLICY.
+    terms: Terms and conditions
+    title: Your privacy counts
+    agree: Acceptar
+    more: Set up cookies
+
   dictionary:
     about: "About"
     add: "Add"

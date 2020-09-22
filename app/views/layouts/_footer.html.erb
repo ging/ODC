@@ -1,4 +1,4 @@
-<footer id="footer">
+<footer id="footer" style="display: none;">
 	<div class="col-12">
 		<div class="dropup footer_dropdown">
 			<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -21,11 +21,92 @@
 		</div>
 	</div>
 </footer>
-<script>
-	$(document).ready(function(){
-		$("#change_locale li").click(function(e){
-			$("#change_locale input[name]").attr("value",$(this).attr("value"));
-			$("#change_locale").submit();
-		});
-	});
-</script>
+<footer   class="o-footer clearfix " role="contentinfo">
+
+	<h1 class="sr-only">footer - site map &amp; informations</h1>
+	<!-- <div class="o-footer-body">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 col-sm-6">
+					<h2>
+						<a href="https://design.orange.com/guidelines/" class="nav-link pr-0 pl-0">Guidelines</a>
+					</h2>
+					<ul class="nav flex-column">
+						<li class="nav-item"><a class="nav-link" href="https://design.orange.com/guidelines/android/">Android</a></li>
+						<li class="nav-item"><a class="nav-link" href="https://design.orange.com/guidelines/digital-colour-palettes/">Colour Palettes</a></li>
+						<li class="nav-item"><a class="nav-link" href="https://design.orange.com/guidelines/conversational-ui/">Conversational UI</a></li>
+						<li class="nav-item"><a class="nav-link" href="https://design.orange.com/guidelines/orange-iconography/">Orange Iconography</a></li>
+						<li class="nav-item"><a class="nav-link" href="https://design.orange.com/guidelines/ios-mobile/">iOS</a></li>
+						<li class="nav-item"><a class="nav-link" href="https://design.orange.com/guidelines/digital-experience-principles/">Digital Experience Principles</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<h2>
+						<a href="https://design.orange.com/libraries/" class="nav-link pr-0 pl-0">Libraries</a>
+					</h2>
+					<ul class="nav flex-column">
+						<li class="nav-item"><a class="nav-link" href="https://design.orange.com/libraries/solaris-icons-for-sketch/">Base UI for Sketch</a></li>
+						<li class="nav-item"><a class="nav-link" href="https://design.orange.com/libraries/web-ui-for-adobe/">Web UI for Adobe</a></li>
+						<li class="nav-item"><a class="nav-link" href="https://design.orange.com/libraries/web-ui-for-sketch/">Web UI for Sketch</a></li>
+						<li class="nav-item"><a class="nav-link" href="https://design.orange.com/libraries/ios-bars-photoshop/">iOS UI for Photoshop</a></li>
+						<li class="nav-item"><a class="nav-link" href="https://design.orange.com/icons-libraries">Solaris Icons</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<h2>
+						<a href="https://design.orange.com/how-tos/" class="nav-link pr-0 pl-0">How To’s</a>
+					</h2>
+					<ul class="nav flex-column">
+						<li class="nav-item"><a class="nav-link" href="https://design.orange.com/how_tos/publishing-your-android-app/">Publish your app Android</a></li>
+						<li class="nav-item"><a class="nav-link" href="https://design.orange.com/how_tos/publish-your-app-ios/">Publish your app iOS</a></li>
+						<li class="nav-item"><a class="nav-link" href="https://design.orange.com/how_tos/the-gdpr-toolkit/">The GDPR toolkit</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<h2>
+						<a href="https://design.orange.com/guidelines/" class="nav-link pr-0 pl-0">Handy Links</a>
+					</h2>
+					<ul class="nav flex-column">
+						<li class="nav-item"><a class="nav-link" target="_blank" href="https://a11y-guidelines.orange.com/home_EN/index.html">Accessibility Site</a></li>
+						<li class="nav-item"><a class="nav-link" target="_blank" href="https://brand.orange.com/">Brand site</a></li>
+						<li class="nav-item"><a class="nav-link" target="_blank" href="https://boosted.orange.com/">Boosted</a></li>
+						<li class="nav-item"><a class="nav-link" target="_blank" href="https://www.orange.com">orange.com</a></li>
+						<li class="nav-item"><a class="nav-link" target="_blank" href="https://plazza.orange.com/groups/communaute-uci">Plazza design d' experience</a></li>
+						<li class="nav-item"><a class="nav-link" target="_blank" href="https://hellofuture.orange.com/en/">Hello Future</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+ -->
+
+	<div class="o-footer-bottom clearfix pb-5 pb-md-3">
+		<div class="container">
+			<ul class="nav float-left">
+				<li class="nav-item"><span class="nav-link">©Orange 2020</span></li>
+				<hr>
+				
+				<hr>
+				<li class="nav-item">
+					<a class="nav-link" href="https://www.orange.es/politicaprotecciondatos.html"><%=t('cookies.terms')%></a>
+				</li>
+
+
+				<li>
+				</li></ul>
+				<div class="social-icons float-right mt-2">
+					<a class="btn btn-inverse btn-social btn-facebook" href="https://www.facebook.com/orange/" aria-label="Facebook" target="_blank"></a>
+					<a class="btn btn-inverse btn-social btn-twitter" href="https://twitter.com/orange/" aria-label="Twitter" target="_blank"></a>
+					<a class="btn btn-inverse btn-social btn-linkedin" href="https://www.linkedin.com/company/orange/" aria-label="Linkedin" target="_blank"></a>
+                                                            <!--
+                    <form role="search" method="get" class="search-form" action="https://design.orange.com">
+                    
+                            <input type="search" class="search-field" placeholder="Search …" value="" name="s">
+                            <input type="submit" class="search-submit" value="Search">
+                    </form>
+                -->
+            </div>
+        </div>
+    </div>
+
+</footer>

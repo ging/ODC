@@ -277,7 +277,7 @@ $(function() {
     CKEDITOR.replace('description');
   }
 
-  $(document).on('keydown','.form-control',function(e){
+  $(document).on('keydown','.form-control:not(.input-search)',function(e){
     if (e.keyCode == 13) {
       e.stopPropagation();
       e.preventDefault();
@@ -455,5 +455,22 @@ $('input[data-role="tagsinput"]').tagsinput({
     })
   });
   /***************************************** LANDING ********************************************/
+  
+
+  /******************************************* LANG *********************************************/
+  $(".change_locale li").click(function(e){
+    $(".change_locale input[name]").attr("value",$(this).attr("value"));
+    $(".change_locale").submit();
+  });
+  /******************************************* LANG *********************************************/
+ 
+  /***************************************** COOKIES ********************************************/
+
+  $(".cookie-panel-section .close").click(function(e){
+    $('.show-cookie-msg').removeClass('show-cookie-msg');
+  });
+
+  /***************************************** COOKIES ********************************************/
+
   
 });

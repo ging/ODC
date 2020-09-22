@@ -42,8 +42,12 @@ CKEDITOR.editorConfig = function( config ) {
 	// 	attributes: { 'style': 'var(--#(color))' }
 	// };
 	config.toolbarCanCollapse = false;
-	config.contentsCss = "/assets/application.css";
-
+	config.contentsCss = [
+		"https://cdn.jsdelivr.net/npm/boosted@4.5.2/dist/css/orangeHelvetica.min.css",
+		"https://cdn.jsdelivr.net/npm/boosted@4.5.2/dist/css/orangeIcons.min.css",
+		"https://cdn.jsdelivr.net/npm/boosted@4.5.2/dist/css/boosted.min.css",
+		"/assets/application.css"
+	]
 };
 
 CKEDITOR.addCss(`#cke_bottom_detail,.cke_bottom{display:none}`);
