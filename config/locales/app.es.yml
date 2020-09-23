@@ -107,7 +107,7 @@ es:
       delete: "Elimina a este profesor de este curso"
       facebook: "Nombre público en Facebook"
       instagram: "Nombre de usuario de Instagram"
-      linkedin: "Nombre público en 135in"
+      linkedin: "Nombre público en Linkedin"
       name: "Nombre del profesor"
       note: "Si realizas alguna modificación en un profesor ya existente, los cambios surtirán efecto en todos los cursos en los que participe dicho profesor"
       no_results: "No hay resultados"
