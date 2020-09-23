@@ -3,17 +3,10 @@ button, input[type=submit]
 	border-radius: 0 !important
 a:not(.o-link)
 	text-decoration: none !important
+.close 
+	cursor: pointer	
 .btn-smaller
 	font-size: smaller
-.btn-dark
-	&:not(.disabled)
-		color: white
-		background-color: black
-		border: 2px solid black
-		&.active, &:active, &:focus, &:hover
-			color: black
-			border-color: black
-			background-color: transparent
 .btn-outline-dark
 	&:not(.disabled), .dropdown-toggle
 		color: black
@@ -23,34 +16,13 @@ a:not(.o-link)
 			color: white
 			background-color: black
 			border-color: black
-.btn-outline-light
+.btn-primary2
 	&:not(.disabled)
-		color: white
-		border-color: white
-		border-color:  white
+		border-color: $orange
 		&.active, &:active, &:focus, &:hover
-			color: black
-			background-color: white
-			border-color: white
-.btn-outline-orange
-	&:not(.disabled)
-		color: $orange_light
-		background: transparent
-		border-color: $orange_light
-		&.active, &:active, &:focus, &:hover
-			color: white
-			background-color: $orange_light
-			border-color: $orange_light
-.btn-orange
-	&:not(.disabled),&:not(:disabled)
-		color: white
-		background-color: $orange
-		border-color:  $orange
-		&.active, &:active, &:focus, &:hover
-			color: $orange !important
-			background-color: transparent !important
-			border-color: $orange !important
-.btn-orange-light, .btn-primary
+			color: $orange_light
+			border-color: $orange
+.btn-orange-light
 	&:not(.disabled)
 		color: white
 		background-color: $orange_light
@@ -70,4 +42,16 @@ a:not(.o-link)
 .btn-more
 	float: right
 	color: black
-	
+.btn-logo
+	padding-left: 10px 
+	height: 1.7rem
+
+.btn-join
+	border: 0.3rem solid white
+	&:hover, &:active, &:focus
+		background-color: white !important
+		border: 0.3rem solid $orange
+		color: $orange
+	&.btn-lg
+		.btn-logo
+			height: 2rem

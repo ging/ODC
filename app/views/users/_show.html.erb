@@ -17,10 +17,10 @@
 					</div>
 					<% if @isProfileOwner %>
 						<a href="/users/edit" style="float:right;">
-							<button class="btn btn-outline-dark"><%=t("profile.edit")%></button>
+							<button class="btn btn-primary"><%=t("profile.edit")%></button>
 						</a>&nbsp;
 					<% end %>
-					<%= button_to(t("devise.sessions.logout"), destroy_user_session_path, :method => :delete, :class=> "btn btn-outline-orange") %>
+					<%= button_to(t("devise.sessions.logout"), destroy_user_session_path, :method => :delete, :class=> "btn btn-secondary") %>
 				</div>
 				<br>
 			</div>

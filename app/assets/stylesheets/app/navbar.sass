@@ -9,26 +9,16 @@
 	.navbar-toggler
 		.navbar-toggler-icon
 			background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
-	.navbar-brand
-		.navbar-brand-title
-			font-size: 38px
 	.user-img
 		border-radius: 50%
 		width: 40px
 		height: 40px
 		background-color: $gris
 	.nav-item
-		position: relative
-		&.active
-			span
-				color: $orange
 		.nav-link
 			&.dropdown-toggle
 				background-color: transparent
-				padding: .625rem .3125rem
-	.change-locale
-		span.nav-link
-			cursor: pointer
+				padding: .625rem .3125rem !important
 	.navbar-nav 
 		.nav-link
 			&.active
@@ -37,15 +27,11 @@
 				font-size: 25px
 				margin-right: 5px
 				margin-left: 5px
-	
 
 	.user-name-container
 		white-space: nowrap
 		display: flex
 		text-overflow: ellipsis
-
-		&.logged-in
-			// overflow: hidden
 		.user-profile
 			border:  none !important
 			outline: none !important
@@ -57,7 +43,6 @@
 				padding-left: 5px
 				text-overflow: ellipsis
 				white-space: nowrap
-				line-height: 1
 				vertical-align: bottom
 				display: inline-block
 				padding-right: 8px
@@ -136,9 +121,14 @@
 		border: 1px solid grey
 	.user-name-container
 		max-width: 23%
-@media (min-width: 768px) and (max-width: 992px)
-	.navbar 
-
+@media (max-width: 768px)
+	.navbar-expand-md .navbar-nav.lang
+		flex-direction: column-reverse
+	.navbar .user-name-container .user-profile .user-name
+		max-width: 90vw
+@media (min-width: 768px)
+	.navbar-expand-md .navbar-nav .dropdown-menu
+		box-shadow: 0px 0px 10px grey;
 @media (max-width: 768px)
 	.navbar 
 		.navbar-brand

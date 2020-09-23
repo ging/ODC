@@ -33,19 +33,12 @@
 			line-height: 20px !important
 	.col-form-label
 		font-weight: 750
-	.custom-control-input:checked~.custom-control-label::before 
-		color: black
-		border-color: $orange_light
-		background-color: $orange_light
 	.custom-control-input:focus~.custom-control-label::before
-		box-shadow: 0 0 0 0.2rem rgba($orange,.25)
+		outline: none
 	.custom-control-input:focus:not(:checked)~.custom-control-label::before, 
 	.custom-control-input:not(:disabled):active~.custom-control-label::before
 		border-color: $orange_light
 		background-color: white
-	.custom-radio .custom-control-input:disabled:checked~.custom-control-label::before
-		background-color: rgba($gris, 0.3)
-		border-color: $gris
 	.custom-control-label::before
 	    border-radius: 50%
 	    border-width: 2px

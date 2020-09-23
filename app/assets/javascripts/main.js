@@ -277,7 +277,7 @@ $(function() {
     CKEDITOR.replace('description');
   }
 
-  $(document).on('keydown','.form-control:not(.input-search)',function(e){
+  $(document).on('keydown','.forbid-enter .form-control',function(e){
     if (e.keyCode == 13) {
       e.stopPropagation();
       e.preventDefault();

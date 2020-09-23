@@ -2,7 +2,7 @@
 <nav class=" navbar navbar-expand-md navbar-dark bg-dark2 <%=@searching ? "search" : ""%>">
 	<div class="container-fluid">
 	<a class="navbar-brand" href="/">
-		<img class="navbar-logo" src="/img/orange_logo.svg" alt=""/> <span class="navbar-brand-title">  Digital Center </span>
+		<img class="navbar-logo" src="/img/orange_logo.svg" alt=""/> <span class="navbar-brand-title h1 mb-0">  Digital Center </span>
 	</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
@@ -77,8 +77,8 @@
 			<form class="change_locale" action="/change_locale" action="GET" class="lang nav-item ">
 				<input name="locale" value="" type="hidden"/>
 				<li class="nav-item <%= t('lang') == lanCode ? "active":""%>" value="<%=lanCode%>">
-					<span class="nav-link"><%=lanCode%>
-					</span>
+					<a class="nav-link"><%=lanCode%>
+					</a>
 				</li>
 			</form>
 			<% end %>

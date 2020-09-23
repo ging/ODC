@@ -8,7 +8,7 @@
 			<br/>
 			<br/>
 
-			<%= form_with(model: course, multipart: true, local: true, html: {class:"custom-form"}) do |form| %>
+			<%= form_with(model: course, multipart: true, local: true, html: {class:"forbid-enter custom-form"}) do |form| %>
 
 			<%if (method == "put") %>
 			<input name="_method" type="hidden" value="put" />
@@ -213,7 +213,7 @@
 								</div>
 								<%end%></div>
 								<div class="text-left">
-									<button type="button" id="add-lesson" class="btn btn-secondary btn-outline-orange"><%=t('course.add_new_lesson')%></button>
+									<button type="button" id="add-lesson" class="btn btn-secondary btn-inverse"><%=t('course.add_new_lesson')%></button>
 								</div>
 							</div>
 						</div>	
@@ -242,7 +242,7 @@
 									}  %> 
 									<p class="teacher-note">(*) <%=t("course.teacher.note")%></p>	
 									<span><%=t("course.teacher.or")%></span>
-									<button type="button" id="add-teacher" class="btn btn-secondary btn-outline-orange"><%=t('course.add_new_teacher')%></button>
+									<button type="button" id="add-teacher" class="btn btn-secondary btn-inverse"><%=t('course.add_new_teacher')%></button>
 								</div>
 							</div>
 						</div>

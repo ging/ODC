@@ -97,7 +97,7 @@ en:
     hour: "hour"
     hours: "hours"
     interested_users: "Interested users"
-    join: "Join!"
+    join: "Join"
     language: "Language"
     languages: "Languages"
     languages_placeholder: "Languages in which the course is taught, separated by commas"
@@ -217,8 +217,8 @@ en:
     tags: "Tags"
     update: "Update"
   webinar:
-    alt_link: "Link to webinar (WebEx)"
-    alt_link_placeholder: "Official link where students can join the webinar on WebEx (if available)"
+    alt_link: "Link to webinar (external tool)"
+    alt_link_placeholder: "Official link where students can join the webinar on an external tool such as Webex, Zoom (if available)"
     date: "Date"
     date_placeholder: "Date in which the webinar will take place"
     enrollment_date: "Enrollment period"
@@ -231,6 +231,9 @@ en:
     retransmission_placeholder: "Link to the recording of the webinar on Youtube (if available)"
     url: "Link to webinar (Youtube)"
     url_placeholder: "Official link where students can join the webinar on Youtube (if available)"
-
+    enroll: "Register"
+    unenroll: "Unregister"
+    over: "Finished"
+  with: with
 
 

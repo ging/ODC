@@ -13,7 +13,6 @@
 //= require jquery3
 //= require jquery_ujs
 //= require popper.min.js
-//= require bootstrap.min.js
 //= require jquery-ui
 //= require moment.min.js
 //= require daterangepicker.min.js

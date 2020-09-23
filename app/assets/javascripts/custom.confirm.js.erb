@@ -40,7 +40,7 @@ var _showMOVLEDialogWithSettings = function(settings, showCancelButton, callback
   var dialogButtons = [];
   dialogButtons.push({
     "text": typeof settings["ok_button"] == "undefined" ? '<%=I18n.t("dictionary.ok",:locale => I18n.default_locale)%>' : settings["ok_button"] ,
-    "class": "btn btn-orange",
+    "class": "btn btn-primary",
     "click": function(){
       $(this).dialog("close");
       if(typeof callback == "function"){
@@ -51,7 +51,7 @@ var _showMOVLEDialogWithSettings = function(settings, showCancelButton, callback
   if(showCancelButton===true){
   dialogButtons.push({
     "text":(typeof settings["cancel_button"] == "undefined") ? '<%=I18n.t("dictionary.ok",:locale => I18n.default_locale)%>' : settings["cancel_button"] ,
-    "class": "btn btn-outline-black",
+    "class": "btn btn-secondary",
     "click": function(){
       $(this).dialog("close");
       if(typeof callback == "function"){

@@ -33,7 +33,7 @@
 	  <br/>
 	  <br/>
 	  <%if (defined? mine and mine == true)%>
-	  <%= button_to t("course.unenroll"), "/courses/#{course.id}/unenroll", {:class=> "btn btn-outline-dark btn-smaller", :method=>:post}  %>
+	  <%= button_to (course[:webinar] ? t("webinar.unenroll") : t("course.unenroll")), "/courses/#{course.id}/unenroll", {:class=> "btn btn-outline-dark btn-smaller", :method=>:post}  %>
 		<a href="/courses/<%=course[:id]%>">
 			<button class="btn btn-primary btn-orange-light btn-smaller">
 			  	<%= t("course.continue")%>

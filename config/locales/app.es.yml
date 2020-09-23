@@ -191,8 +191,8 @@ es:
     tags: "Etiquetas"
     update: "Actualizar"
   webinar:
-    alt_link: "Enlace al webinar (WebEx)"
-    alt_link_placeholder: "Enlace oficial de WebEx donde tendrá lugar el webinar (si está disponible)"
+    alt_link: "Enlace al webinar (herramienta externa)"
+    alt_link_placeholder: "Enlace oficial para compartir la sala donde tendrá lugar el webinar ya sea en Zoom, Webex, etc. (si está disponible)"
     edit: "Editar webinar"
     date: "Fecha"
     enrollment_date: "Periodo de matriculación"
@@ -205,3 +205,8 @@ es:
     url: "Enlace al webinar (Youtube)"
     url_placeholder: "Enlace oficial de Youtube donde tendrá lugar el webinar (si está disponible)"
     new: "Nuevo webinar"
+    enroll: "Apuntarme"
+    unenroll: "Desapuntarme"
+    over: "Finalizado"
+  with: con
+      

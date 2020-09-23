@@ -24,13 +24,40 @@
 						<%else%>
 						<% end %>
 					</h2>
-					<a href="<%=@course[:url]%>" target="_blank">
-						<button class="btn btn-orange"><%=t("course.join")%></button>
-					</a>
+					<%if user_enrolled %>
+					<div class="join-btns">
+						<%if @course[:url] %>
+						<a href="<%=@course[:url]%>" target="_blank">
+							<%platform1 = url_to_platform(@course[:url])%>
+							<%url1 = platform_to_logo(platform1)%>
+							<button class="btn <%if !@course[:alt_link] %>btn-lg<%end%> btn-join btn-secondary">
+								<%=t("course.join")%> <%if platform1%><%=t("with")%><%end%>
+								<img class="btn-logo logo-youtube" src="<%=url1%>">
+							</button>
+						</a>
+						<%end%>
+						<%if @course[:alt_link] %>
+						<a href="<%=@course[:alt_link]%>" target="_blank">
+							<%platform2 = url_to_platform(@course[:alt_link])%>
+							<%url2 = platform_to_logo(platform2)%>
+							<button class="btn <%if !@course[:url] %>btn-lg<%end%> btn-join btn-secondary">
+								<%=t("course.join")%> <%if platform2%><%=t("with")%><%end%>
+								<img class="btn-logo logo-youtube" src="<%=url2%>">
+							</button>
+						</a>
+						<%end%>
+					</div>
+					<%end%>
 					<br/>
 					<br/>
 				</div>
 			</div>
+			<% elsif (@course[:webinar])%>
+				<%if !(@course[:retransmission].blank?)%>		
+					<iframe class="course-video" src="<%=youtube_parse(@course[:retransmission])%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				<%else%>
+					<img  class="course-video webinar-finished"  src="<%=@course.thumb.url%>" alt="">
+				<%end%>
 			<% elsif !@course.video.blank? %>
 				<iframe class="course-video" src="<%=youtube_parse(@course[:video])%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 			<%else%>
@@ -42,12 +69,12 @@
 			<%if can? :edit, @course %>
 			<div class="course-btn-toolbar btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 			  <div class="btn-group mr-2" role="group" aria-label="First group">
-				<a href="/courses/<%=@course[:id]%>/edit" class="text-right d-block link-edit-course">
-					<button  class="btn btn-outline-light"><i class="far fa-edit"></i></button>
+				<a href="/courses/<%=@course[:id]%>/edit" class="  link-edit-course">
+					<button  class="btn btn-secondary btn-inverse"><i class="far fa-edit"></i></button>
 				</a>
 				<% if can? :destroy, @course %>
-					<%= link_to url_for(controller: "courses", action: :destroy, id: @course.id), method: :delete, data: { confirm: t('course.confirm_delete') }, class: 'text-right d-block link-remove-course' do %>
-						<button  class="btn btn-outline-light"><i class='fa fa-trash'></i></button>
+					<%= link_to url_for(controller: "courses", action: :destroy, id: @course.id), method: :delete, data: { confirm: t('course.confirm_delete') }, class: 'text-right link-remove-course' do %>
+						<button  class="btn btn-secondary btn-inverse"><i class='fa fa-trash'></i></button>
 					<% end %>
 				<% end %>
 				 </div>
@@ -122,21 +149,27 @@
 				<span class="course-field orange" ><%= t("course.rating")%>:</span>
 				<span class="course-rating-container">
 					<%= render partial: "courses/rating", :locals => {rating: @course[:rating], 
-						actionable:  user_enrolled == true }  %> (<%=@course.ratings.length%> <%=t("course.votes")%>)
+						actionable:  (user_enrolled == true  and !notYet) }  %> (<%=@course.ratings.length%> <%=t("course.votes")%>)
 				</span>
 			</div>
 			
 			<br/><br/><br/><br/>
 			<% if user_enrolled == true %>
+				<% unless  @course[:webinar] %>
 				<a href="<%=@course[:url]%>" target="_blank">
-					<button class="btn btn-primary btn-orange btn-see2" ><%=t("course.continue")%></button>
+					<button class="btn btn-inverse btn-primary" >
+						<%=t("course.continue")%>
+					</button>
 				</a>
 				<br/><br/>
-				<%= button_to t("course.unenroll"), {:controller => "courses", :action => "unenroll"}, {:class=> "btn btn-outline-light btn-see2", :method=>:post}  %>
+				<%end%>
+				<%if !ended %>
+				<%= button_to (@course[:webinar] ? t("webinar.unenroll") : t("course.unenroll")), {:controller => "courses", :action => "unenroll"}, {:class=> "btn btn-secondary btn-inverse", :method=>:post}  %>
+				<%end%>
 				<br/><br/>
 			<% else %>
-				<% if @course.is_enrollment_period? %>
-					<%= button_to (@course[:webinar] ? t("course.enroll_webinar") : t("course.enroll")), {:controller => "courses", :action => "enroll"}, {:class=> "btn btn-primary btn-orange btn-see2", :method=>:post}  %>
+				<% if @course.is_enrollment_period? and  (@course[:end_date].blank? or  @course[:end_date] >= now) %>
+					<%= button_to (@course[:webinar] ? t("webinar.enroll") : t("course.enroll")), {:controller => "courses", :action => "enroll"}, {:class=> "btn btn-inverse btn-primary", :method=>:post}  %>
 				<% else %>
 					<div class="course-characteristic">
 						<span class="course-field orange"><%=t('course.enrollment_period_over')%></span>

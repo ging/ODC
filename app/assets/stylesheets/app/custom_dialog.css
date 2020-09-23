@@ -3,12 +3,12 @@
 	z-index: 999;
 	background: white;
 	border-color: transparent;
-	padding: 10px;
-	box-shadow: 0px 0px 10px #ccc;
+	padding: 20px;
+	box-shadow: 0px 0px 10px #bbb;
 
 }
 .ui-widget.ui-widget-content {
-	border: 2px solid black;
+	/*border: 2px solid black;*/
 }
 
 .ui-dialog-content {

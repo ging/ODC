@@ -8,8 +8,22 @@
 	max-width: 100%
 	.course-video
 		width: 100%
-		min-height: 400px
 		height: 100%
+		
+		&:not(img)
+			min-height: 400px
+		&.webinar-finished
+			filter: grayscale(1)
+			opacity: 0.4
+	.join-btns
+		display: flex
+		flex-direction: row
+		justify-content: space-around
+		width: 500px
+		max-width: 80vw
+		margin: auto
+		align-items: center
+		align-content: center
 	.course-info
 		padding: 30pt
 		.course-characteristic

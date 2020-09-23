@@ -8,7 +8,16 @@
 		background-color: $highlight_yellow
 		font-size: smaller
 		span.text
-			line-height: 30px
+			line-height: 15px
+		.close
+			width: 1rem
+			height: 1rem
+			transform: scale(0.8)
+			transition: 0.4s all ease-in 
+			outline: none
+			&:hover,&:focus
+				transform: scale(0.5)
+
 		&.alert-success
 			border-color: black
 			color: black
