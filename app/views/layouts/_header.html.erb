@@ -1,22 +1,4 @@
 <% can_create_course = can? :create, Course%>
-<div class="cookie-panel-section py-4 show-cookie-msg" style="">
-	<div class="container-fluid">
-		<a class="close hide-cookie-section-header-close">
-		
-		</a>
-		<h1><%=t("cookies.title")%></h1>
-		<p class="small-text font-weight-bold w-100 w-md-75">
-				<%=t('cookies.msg') %>		</p>
-		<p>
-			<a href="#" class="hide-cookie-section-header-button">
-				<button class="btn btn-primary btn-orange ">
-					<%=t("cookies.agree")%>
-				</button>
-			</a>
-			<a href="https://design.orange.com/privacy-policy" class="small-text ml-4 font-weight-bold"><%=t("cookies.more")%></a>
-		</p>
-	</div>
-</div>	
 <nav class=" navbar navbar-expand-md navbar-dark bg-dark2 <%=@searching ? "search" : ""%>">
 	<div class="container-fluid">
 	<a class="navbar-brand" href="/">
@@ -102,23 +84,6 @@
 			<% end %>
 
 		</ul>
-		<div style="display:none" class="text-center user-name-container navbar-nav <%= user_signed_in? ? "logged-in" : ""%>">
-			<%if user_signed_in?%>
-			<a class="user-profile" href="<%=user_path(current_user)%>">
-				<img src="<%=current_user.avatar.url || "/img/user_placeholder.png" %>" class="user-img"/>
-				<span class="nav-link user-name "><%=current_user[:name]%></span>
-			</a>
-			<%else%>
-				<a href="/users/sign_in" class="nav-link icon-my-account d-none d-md-block"></a>
-			<%end%>
-			<% I18n.available_locales.map(&:to_s).each do |lanCode| %>
-			<form id="change_locale" action="/change_locale" action="GET" class="lang nav-item ">
-				<input name="locale" value="" type="hidden"/>
-				<li class="nav-link <%= t('lang') == lanCode ? "active":""%>" value="<%=lanCode%>"><%=lanCode%></li>
-			</form>
-			<% end %>
-		</div>
-
 	</div>
 	</div>
 </nav>

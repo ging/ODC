@@ -68,11 +68,36 @@ en:
     digitalization: "Digitization of SMEs and freelancers"
     other: "Other"
   cookies:
-    msg: ORANGE uses its own and third party cookies to analyze and personalize your browsing, as well as to show you advertising based on your interests by tracking your browsing. Click "Accept" if you accept all cookies. You can also set or reject cookies by clicking on SET UP COOKIES or obtain more information in our COOKIES POLICY.
+    msg: ORANGE uses its own and third party cookies to analyze and personalize your browsing, as well as to show you advertising based on your interests by tracking your browsing. Click "Accept" if you accept all cookies. You can also set or reject cookies by clicking on Set up cookies” or obtain more information in our
     terms: Terms and conditions
+    privacy_policy: Privacy policy
+    cookie_policy: Cookie policy
+    cookies_panel_title: Cookie settings panel
+    cookies_panel_explanation: These are the advanced settings for first-party and third-party cookies. Here you can change the parameters that will affect your browsing experience on this website.
+    close_without_saving: "Discard changes"
+    save_changes: "Save my preferences"
     title: Your privacy counts
-    agree: Acceptar
+    agree: Accept
     more: Set up cookies
+    technical:
+        label: Technical Cookies (required)
+        description: These cookies are used to give you secure access to areas with personal information and to identify you when you log in.
+    analytics:
+        label: I don't want analytics cookies
+        checked: Your browsing experience is constantly improving.
+        unchecked: With your selection, we cannot offer you a continuously improved browsing experience.
+        description: They are used to track the activity or number of visits anonymously. Thanks to them we can constantly improve your browsing experience.
+    ad:
+        label: I don't want advertising cookies
+        checked: The advertising is customized to you and your preferences.
+        unchecked: Your choice means you will not see customized ads, only generic ones.
+        description: They allow the advertising shown to you to be customized and relevant to you. Thanks to these cookies, you will not see ads that you are not interested in.
+
+    custom:
+        label: I don't want customization cookies
+        checked: Your experience and content have been customized.
+        unchecked: With your selection, we cannot offer you customized browsing and content.
+        description: These cookies are related to general features such as the browser you use.
 
   dictionary:
     about: "About"

@@ -17,6 +17,7 @@
 </head>
 <body>
 	<div id="wrapper">
+		<%= render partial: "home/cookies", :locals => {} %>
 		<%= render partial: "layouts/header", :locals => {}  %>
 		<%= render '/layouts/notifications' %>
 		<%= yield %>

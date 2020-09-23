@@ -13,7 +13,7 @@ $(function() {
   var offset = (new Date()).getTimezoneOffset()
   var date = new Date();
   date.setTime(date.getTime()+24*3600000);
-  document.cookie = "utc_offset="+offset+"; expires="+date.toGMTString();+"; path=/";
+  document.cookie = "utc_offset="+offset+"; expires="+date.toGMTString()+"; path=/";
 
   /****************************************** TIMEZONE*******************************************/
   
@@ -466,9 +466,45 @@ $('input[data-role="tagsinput"]').tagsinput({
  
   /***************************************** COOKIES ********************************************/
 
+
+  const sendCookies = ()=>{
+    var token = $("meta[name='csrf-token']").attr('content');
+    return fetch("/setcookies", {
+      "method": "POST", 
+      "body": JSON.stringify({"cookies": cookie_state}),
+      "credentials": 'same-origin',
+      "headers": {
+        "Content-Type": "application/json",
+        'X-CSRF-Token': token
+      }
+    })
+      .then(res=>res.json())
+      .then(console.log)
+      .catch(console.error);
+  };
+
   $(".cookie-panel-section .close").click(function(e){
     $('.show-cookie-msg').removeClass('show-cookie-msg');
   });
+
+  $(".cookie-panel-section .accept").click(async function(e){
+    $('.show-cookie-msg').removeClass('show-cookie-msg');
+    await sendCookies();
+  });
+
+  $("#cookiesModal .accept").click(async function(e){
+    $('.show-cookie-msg').removeClass('show-cookie-msg');
+    cookie_state["analytics"] = $("#analytics-cookie").prop("checked");
+    cookie_state["ad"] = $("#ad-cookie").prop("checked");
+    cookie_state["custom"] = $("#custom-cookie").prop("checked");
+    await sendCookies();
+  });
+
+  $('.cookie-checkbox input').click(function(e){
+    var id = $(this).data("cookie");
+    $(`.cookie-${id}-feedback`).toggleClass("d-none");
+  });
+
 
   /***************************************** COOKIES ********************************************/
 

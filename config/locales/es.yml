@@ -99,11 +99,35 @@ es:
     digitalization: "Digitalización de PYMES y autónomos"
     other: "Otros"
   cookies:
-    msg: ORANGE utiliza cookies propias y de terceros para analizar y personalizar tu navegación, así como para mostrarte publicidad basada en tus intereses teniendo en cuenta el perfil realizado mediante el seguimiento de su navegación. Pulsa “Aceptar” si aceptas todas las cookies. También puedes configurar o rechazar las cookies clicando en CONFIGURAR COOKIES u obtener más información en nuestra POLÍTICA DE COOKIES.
+    msg: ORANGE utiliza cookies propias y de terceros para analizar y personalizar tu navegación, así como para mostrarte publicidad basada en tus intereses teniendo en cuenta el perfil realizado mediante el seguimiento de su navegación. Pulsa “Aceptar” si aceptas todas las cookies. También puedes configurar o rechazar las cookies clicando en “Configurar cookies” u obtener más información en nuestra
+    cookies_panel_title: Panel de configuración de cookies
+    cookies_panel_explanation: Este es el configurador avanzado de cookies propias y de terceros. Aquí puedes modificar parámetros que afectarán directamente a tu experiencia de navegación en esta web.
+    close_without_saving: "Descartar cambios"
+    save_changes: "Guardar configuración"
     terms: Términos y condiciones
+    privacy_policy: Política de privacidad
+    cookie_policy: Política de cookies
     title: Tu privacidad importa
     agree: Aceptar
     more: Configurar cookies
+    technical:
+        label: Cookies técnicas (necesarias)
+        description: Estas cookies son importantes para darte acceso seguro a zonas con información personal o para reconocerte cuando inicias sesión.
+    analytics:
+        label:  No quiero cookies de Analítica
+        checked: Dispones de una mejora continua en la experiencia de navegación.
+        unchecked: Con tu selección no podemos ofrecerte una mejora continua en la experiencia de navegación.
+        description: Permiten medir, de forma anónima, el número de visitas o la actividad. Gracias a ellas podemos mejorar constantemente tu experiencia de navegación.
+    ad:
+        label: No quiero cookies de Publicidad
+        checked: Dispones de una publicidad adaptada a ti y a tus preferencias.
+        unchecked: Con tu selección pierdes la personalización de la publicidad, solo verás anuncios genéricos.
+        description: Permiten que la publicidad que te mostramos sea personalizada y relevante para ti. Gracias a estas cookies no verás anuncios que no te interesen.
+    custom:
+        label: No quiero cookies de Personalización
+        checked: Dispones de una experiencia y contenidos personalizados.
+        unchecked: Con tu selección no podemos ofrecerte una navegación y contenidos personalizados.
+        description: Estas cookies están relacionadas con características generales como, por ejemplo, el navegador que utilizas.
   dictionary:
     about: "About"
     add: "Añadir"

@@ -1,0 +1,84 @@
+<%
+visible = @cookies_set != true
+cookies_technical = true
+cookie_types =["analytics", "ad", "custom"] 
+cookie_values = {
+	"analytics"=> cookies.permanent[:analytics] == "true", 
+	"ad"=> cookies.permanent[:ad] == "true", 
+	"custom"=> cookies.permanent[:custom] == "true"
+} 
+%>
+
+<div class="cookie-panel-section py-4 show-cookie-msg <%=visible ? '' : 'd-none' %>" style="">
+	<div class="container-fluid">
+		<a class="close hide-cookie-section-header-close"></a>
+		<h1><%=t("cookies.title")%></h1>
+		<p class="small-text font-weight-bold w-100 w-md-75">
+			<%=t('cookies.msg') %>
+			<a class="o-link o-caps" target="_blank" href="https://www.orange.es/cookies.html">
+				<%=t('cookies.cookie_policy') %>
+			</a>
+		</p>
+		<p>
+			<a href="#" class="hide-cookie-section-header-button accept">
+				<button class="btn btn-primary btn-orange "><%=t("cookies.agree")%></button>
+			</a>
+			<button class="btn btn-secondary" id="manage-cookies" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#cookiesModal"><%=t("cookies.more")%></button>
+		</p>
+	</div>
+</div>	
+<!-- Modal -->
+<div class="modal modal-lg fade" id="cookiesModal" tabindex="-1" aria-labelledby="cookiesModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><%=t("cookies.cookies_panel_title")%></h5>
+      </div>
+      <div class="modal-body">
+       	<p><%=t("cookies.cookies_panel_explanation")%></p>
+       	<h6><%=t("cookies.technical.label")%></h6>
+       	<p><%=t("cookies.technical.description")%></p>
+		<hr>
+		<%cookie_types.each do |name|%>
+			<%checked = cookie_values[name] == true %>
+			<div class="form-group">
+				<div class="custom-control custom-checkbox cookie-checkbox">
+					<input 
+						class="custom-control-input " 
+						type="checkbox" <%= checked ? 'checked  ': ' '%> 
+						id="<%=name%>-cookie" name="cookies[<%=name%>]" data-cookie="<%=name%>">
+					<label class="custom-control-label" for="<%=name%>-cookie">
+					<%=t("cookies.#{name}.label")%>
+					</label>
+				</div>
+			</div>
+			<p><%=t("cookies.#{name}.description")%></p>
+				<div class="alert alert-danger cookie-<%=name%>-feedback non-valid-feedback <%=!checked ? 'd-none': '' %> " id="invalid-<%=name%>-cookie-feedback">
+  				<span class="alert-icon"><span class="sr-only">Danger</span></span>
+				<p><%=t("cookies.#{name}.unchecked")%></p>
+			</div>
+			<div class="alert alert-success cookie-<%=name%>-feedback yes-valid-feedback <%=!checked ? '': 'd-none' %> " id="valid-<%=name%>-cookie-feedback">
+  				<span class="alert-icon"><span class="sr-only">Success</span></span>
+				<p><%=t("cookies.#{name}.checked")%></p>
+			</div>
+			<hr>
+
+
+		<%end%>
+       <!-- Ver listado completo de este tipo de cookies -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-link" data-dismiss="modal"><%=t("cookies.close_without_saving")%></button>
+        <button type="button" class="btn btn-primary accept" data-dismiss="modal"><%=t("cookies.save_changes")%></button>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<script>
+	var cookie_state = {
+		"analytics": <%=cookie_values["analytics"]%>,
+		"ad": <%=cookie_values["ad"]%>,
+		"custom": <%=cookie_values["custom"]%>,
+	}
+</script>
