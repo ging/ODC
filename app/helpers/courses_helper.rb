@@ -28,6 +28,8 @@ module CoursesHelper
 	def platform_to_logo(platform)
 		if platform == "Youtube"
 			return "/img/vendors/youtube.svg"
+		elsif platform == "Webex"
+			return "/img/vendors/webex2.png"
 		elsif platform == "Zoom"
 			return "/img/vendors/zoom.png"
 		elsif platform == "Teams"
@@ -44,6 +46,8 @@ module CoursesHelper
 	def url_to_platform(url)
 		if url.match("youtu")
 			return "Youtube"
+		elsif url.match("webex")
+			return "Webex"
 		elsif url.match("zoom")
 			return "Zoom"
 		elsif url.match("teams")
