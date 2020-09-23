@@ -86,6 +86,7 @@ es:
     no_lessons: "No has añadido ninguna lección"
     no_teacher: "No has añadido ningún profesor"
     new: "Nuevo curso"
+    over: "El curso ha finalizado"
     pictures: "Imágenes"
     powered_by: "Powered by"
     powered_by_placeholder: "Organismo que ofrece el curso"
@@ -207,6 +208,6 @@ es:
     new: "Nuevo webinar"
     enroll: "Apuntarme"
     unenroll: "Desapuntarme"
-    over: "Finalizado"
+    over: "El webinar ha finalizado"
   with: con
       

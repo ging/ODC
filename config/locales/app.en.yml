@@ -112,6 +112,7 @@ en:
     no_lessons: "You have not aded any lessons"
     no_teacher: "You have not added any teachers"
     new: "New course"
+    over: "The course is over"
     pictures: "Pictures"
     powered_by: "Powered by"
     powered_by_placeholder: "Who is offering this course?"
@@ -233,7 +234,7 @@ en:
     url_placeholder: "Official link where students can join the webinar on Youtube (if available)"
     enroll: "Register"
     unenroll: "Unregister"
-    over: "Finished"
+    over: "The webinar has already finished"
   with: with
 
 
