@@ -6,7 +6,7 @@ module Taggable
 	def fillTags
 		return true if !self.respond_to?("tag_list") or self.tag_list.blank?
 
-		tagsConfig = MOVLE::Application.config.tagsSettings
+		tagsConfig = ODC::Application.config.tagsSettings
 		self.tag_list = self.tag_list.first(tagsConfig["maxTags"]) if self.tag_list.length > tagsConfig["maxTags"]
 
 		tagsToDelete = []
@@ -35,7 +35,7 @@ module Taggable
 	def checkTags
 		return true if !self.respond_to?("tag_list") or self.tag_list.blank?
 
-		tagsConfig = MOVLE::Application.config.tagsSettings
+		tagsConfig = ODC::Application.config.tagsSettings
 		return errors[:base] << ("Tag limit is " + tagsConfig["maxTags"].to_s) if self.tag_list.length > tagsConfig["maxTags"]
 
 		self.tag_list.each do |tag|
@@ -63,7 +63,7 @@ module Taggable
 
 	def save_tag_array_text
 		return unless self.respond_to?("tag_array_text")
-		stopTags = MOVLE::Application.config.stoptags || []
+		stopTags = ODC::Application.config.stoptags || []
 		self.tag_array_text = self.tag_list.map{|tag| ActsAsTaggableOn::Tag.getPlainName(tag)}.uniq.reject{|tag| stopTags.include? tag}.join(",") unless self.tag_list.blank?
 	end
 end

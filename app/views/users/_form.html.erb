@@ -92,7 +92,7 @@
 			<canvas class="canvas" style="width:150px;height:150px;"></canvas>
 		</div>
 		
-		<% if  !user.id and MOVLE::Application.config.recaptcha %>
+		<% if  !user.id and ODC::Application.config.recaptcha %>
 		<div class="field">
 			<%= recaptcha_tags %>
 		</div>

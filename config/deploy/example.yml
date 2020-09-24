@@ -1,5 +1,5 @@
-message: "Deploying MOVLE"
-repository: git@github.com:ging/movle.git
+message: "Deploying ODC"
+repository: git@github.com:ging/odc.git
 branch: master
 server_url: 127.0.0.1 #put here the server URL (e.g. example.com)
 username: ubuntu

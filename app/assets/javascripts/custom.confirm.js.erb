@@ -12,7 +12,7 @@ $.rails.confirmed = function(link){
 };
 
 $.rails.showConfirmDialog = function(link){
-  _showMOVLEDialogWithSettings({"msg":link.attr('data-confirm'), "ok_button":link.attr('data-ok-button'), "cancel_button":link.attr('data-cancel-button')}, true, function(result){
+  _showODCDialogWithSettings({"msg":link.attr('data-confirm'), "ok_button":link.attr('data-ok-button'), "cancel_button":link.attr('data-cancel-button')}, true, function(result){
     if(link.attr('data-callback')){
       if(typeof window[link.attr('data-callback')] == "function"){
         window[link.attr('data-callback')](result);
@@ -27,7 +27,7 @@ $.rails.showConfirmDialog = function(link){
   })
 };
 
-var _showMOVLEDialogWithSettings = function(settings, showCancelButton, callback){
+var _showODCDialogWithSettings = function(settings, showCancelButton, callback){
   var html = '<div id="dialog" title="Basic dialog"><p>'+settings["msg"]+'</p></div>';
 
   if (typeof settings["ok_button"] == "undefined"){
@@ -81,5 +81,5 @@ var _showMOVLEDialogWithSettings = function(settings, showCancelButton, callback
 
 $(document).on('click', '[promptOkAlertDialog="true"]', function(event){
   var link = $(event.target);
-  _showMOVLEDialogWithSettings({"msg":link.attr('data-confirm'), "ok_button":link.attr('data-ok-button'), "cancel_button":link.attr('data-cancel-button')}, false);
+  _showODCDialogWithSettings({"msg":link.attr('data-confirm'), "ok_button":link.attr('data-ok-button'), "cancel_button":link.attr('data-cancel-button')}, false);
 });

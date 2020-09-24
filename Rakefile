@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-MOVLE::Application.load_tasks
+ODC::Application.load_tasks

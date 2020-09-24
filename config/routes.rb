@@ -1,4 +1,4 @@
-MOVLE::Application.routes.draw do
+ODC::Application.routes.draw do
   root "home#frontpage"
 
   #Users

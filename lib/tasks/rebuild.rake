@@ -1,9 +1,9 @@
-namespace :movle do
-	#bundle exec rake movle:rebuild
-	#bundle exec rake movle:rebuild RAILS_ENV=production
+namespace :odc do
+	#bundle exec rake odc:rebuild
+	#bundle exec rake odc:rebuild RAILS_ENV=production
 	task :rebuild do
 		desc "Rebuild"
-		system "rake movle:reset"
+		system "rake odc:reset"
 		system "rake db:populate"
 		puts "Rebuild finished"
 	end

@@ -9,7 +9,7 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-module MOVLE
+module ODC
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -20,8 +20,8 @@ module MOVLE
       ActiveRecord::Base.connection
     end
     
-    #Load MOVLE Platform configuration
-    #Accesible here: MOVLE::Application.config.APP_CONFIG
+    #Load ODC Platform configuration
+    #Accesible here: ODC::Application.config.APP_CONFIG
     config.APP_CONFIG = YAML.load_file("config/application_config.yml")[Rails.env]
     config.domain = (config.APP_CONFIG["domain"] || "localhost:3000")
     config.full_domain = "http://" + config.domain
@@ -81,8 +81,8 @@ module MOVLE
 
     if config.recaptcha
         Recaptcha.configure do |config|
-            config.site_key  = MOVLE::Application.config.APP_CONFIG["recaptcha"]["site_key"]
-            config.secret_key = MOVLE::Application.config.APP_CONFIG["recaptcha"]["secret_key"]
+            config.site_key  = ODC::Application.config.APP_CONFIG["recaptcha"]["site_key"]
+            config.secret_key = ODC::Application.config.APP_CONFIG["recaptcha"]["secret_key"]
         end
     end
 
@@ -97,7 +97,7 @@ module MOVLE
           end
 
           #Demo user
-          config.demo_user = User.find_by_email("demo@movle.dit.upm.es") if (ActiveRecord::Base.connection.table_exists? "users" and !User.find_by_email("demo@movle.dit.upm.es").nil?) 
+          config.demo_user = User.find_by_email("demo@odc.dit.upm.es") if (ActiveRecord::Base.connection.table_exists? "users" and !User.find_by_email("demo@odc.dit.upm.es").nil?) 
         end 
     end
 

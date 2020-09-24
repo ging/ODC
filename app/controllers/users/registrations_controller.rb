@@ -1,7 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-  prepend_before_action :check_captcha, only: [:create] if  MOVLE::Application.config.recaptcha
+  prepend_before_action :check_captcha, only: [:create] if  ODC::Application.config.recaptcha
 
 
   # GET /resource/sign_up
