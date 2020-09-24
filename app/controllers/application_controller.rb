@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 	protect_from_forgery
 	before_action :configure_permitted_parameters, if: :devise_controller?
-	before_action :set_locale, :set_cookies
+	before_action :set_locale
 	check_authorization :unless => :devise_controller?
 	skip_authorization_check :only => [:page_not_found]
 
@@ -64,10 +64,6 @@ class ApplicationController < ActionController::Base
 				render json: I18n.t("dictionary.errors.page_not_found")
 			}
 		end
-	end
-
-	def set_cookies
-		@cookies_set = !cookies.permanent[:cookies_set].blank?
 	end
 
 	protected

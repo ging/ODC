@@ -1,4 +1,4 @@
-<%visible = @cookies_set != true%>
+<%visible = !cookies.permanent[:cookies_set].blank? != true%>
 
 <div class="cookie-panel-section py-4 show-cookie-msg <%=visible ? '' : 'd-none' %>" style="">
 	<div class="container-fluid">
@@ -15,7 +15,6 @@
 				<button class="btn btn-orange-light" onclick="acceptCookies()"><%=t("cookies.agree")%></button>
 			</a>
 			<button class="btn btn-secondary" onclick="privacy(event)"><%=t("cookies.more")%></button>
-			<!-- <button class="btn btn-secondary" id="manage-cookies" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#cookiesModal"><%=t("cookies.more")%></button> -->
 		</p>
 	</div>
 </div>	
@@ -43,7 +42,6 @@ function declineCookies(event){
 	$('.cookie-panel-section').addClass("d-none");
 
 }
-
 </script>
 <!-- Loading script asynchronously -->
 <script type="text/javascript">
