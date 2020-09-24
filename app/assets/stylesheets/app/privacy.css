@@ -1,0 +1,389 @@
+
+
+.privacy_prompt {
+    width: 90%;
+    max-height: 86vh;
+    overflow-y: auto;
+    margin-left: -45%;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    text-align: left;
+    background-color: #fff;
+    z-index: 1000;
+}
+@media only screen and (min-width: 768px) {
+    .privacy_prompt {
+        margin-left: -300px;
+        width: 600px;
+    }
+}
+.privacy_prompt a {
+    text-decoration: none;
+}
+.privacy_prompt .privacy_prompt_content {
+    padding: 10px 10px 0;
+    overflow: hidden;
+    height: auto;
+}
+@media only screen and (min-width: 768px) {
+    .privacy_prompt .privacy_prompt_content {
+        padding-top: 20px;
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+}
+.privacy_prompt .privacy_prompt_content h2 {
+    margin: 0 0 15px;
+    padding: 0;
+    width: 90%;
+    font-family: HelvNeueOrange,Helvetica Neue,Helvetica,Arial,Liberation Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 18px;
+    text-align: left;
+}
+@media only screen and (min-width: 768px) {
+    .privacy_prompt .privacy_prompt_content h2 {
+        font-size: 24px;
+        line-height: 26px;
+    }
+}
+.privacy_prompt .privacy_prompt_content p {
+    display: block;
+    margin: 0 0 5px;
+    padding: 0;
+    font-family: HelvNeueOrange,Helvetica Neue,Helvetica,Arial,Liberation Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    color: #000;
+    text-align: left;
+}
+.privacy_prompt .privacy_prompt_content p a {
+    color: #ff7900;
+    text-decoration: underline;
+}
+.privacy_prompt .option {
+    margin: 10px 0;
+}
+.privacy_prompt .logo {
+    float: right;
+}
+.privacy_prompt > .close_btn_thick {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    line-height: 24px;
+    color: #000;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    -webkit-transition: color 0.25s ease-in;
+    -o-transition: color 0.25s ease-in;
+    transition: color 0.25s ease-in;
+}
+.privacy_prompt > .close_btn_thick:after {
+    content: "\2716";
+}
+.privacy_prompt > .close_btn_thick:focus,
+.privacy_prompt > .close_btn_thick:hover {
+    color: #ff7900;
+}
+@media only screen and (min-width: 1280px) {
+    .privacy_prompt > .close_btn_thick:focus {
+        outline-width: 2px;
+        outline-style: dotted;
+        outline-offset: 4px;
+        outline-color: #ff6300;
+    }
+}
+.privacy_prompt input[type="checkbox"].toggle {
+    opacity: 0;
+    position: absolute;
+    left: -99999px;
+}
+.privacy_prompt input[type="checkbox"].toggle + label {
+    display: inline-block;
+    overflow: hidden;
+    padding: 0 16px;
+    position: relative;
+    height: 24px;
+    max-height: 24px;
+    font-family: HelvNeueOrange,Helvetica Neue,Helvetica,Arial,Liberation Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    font-weight: 700;
+    line-height: 24px;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    background-color: #ccc;
+    border-radius: 16px;
+    cursor: pointer;
+    -webkit-transition: all 0.25s ease-in;
+    -o-transition: all 0.25s ease-in;
+    transition: all 0.25s ease-in;
+}
+.privacy_prompt input[type="checkbox"].toggle + label:before,
+.privacy_prompt input[type="checkbox"].toggle + label:hover:before {
+    content: " ";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 26px;
+    height: 20px;
+    background-color: #fff;
+    z-index: 2;
+    -webkit-transition: all 0.25s ease-in;
+    -o-transition: all 0.25s ease-in;
+    transition: all 0.25s ease-in;
+    border-radius: 14px;
+}
+.privacy_prompt input[type="checkbox"].toggle + label .off {
+    margin-left: 20px;
+    display: inline-block;
+    color: #000;
+}
+.privacy_prompt input[type="checkbox"].toggle + label .on {
+    display: none;
+    color: #fff;
+}
+.privacy_prompt input[type="checkbox"].toggle:checked + label {
+    background-color: #50be87;
+}
+.privacy_prompt input[type="checkbox"].toggle:checked + label:before,
+.privacy_prompt input[type="checkbox"].toggle:checked + label:hover:before {
+    background-position: 0 0;
+    top: 2px;
+    left: 100%;
+    margin-left: -28px;
+}
+.privacy_prompt input[type="checkbox"].toggle:checked + label .off {
+    display: none;
+}
+.privacy_prompt input[type="checkbox"].toggle:checked + label .on {
+    margin-right: 20px;
+    display: inline-block;
+}
+.privacy_prompt input[type="checkbox"].toggle:focus:checked + label {
+    background-color: #50be87;
+}
+.privacy_prompt input[type="checkbox"].toggle:focus:checked + label:before,
+.privacy_prompt input[type="checkbox"].toggle:focus:checked + label:hover:before {
+    background-position: 0 0;
+    top: 2px;
+    left: 100%;
+    margin-left: -28px;
+}
+.privacy_prompt input[type="checkbox"].toggle[readonly="readonly"] + label {
+    opacity: 0;
+    cursor: default;
+}
+.privacy_prompt .privacy_prompt_footer {
+    padding: 10px;
+    width: auto;
+    overflow: auto;
+}
+@media only screen and (min-width: 768px) {
+    .privacy_prompt .privacy_prompt_footer {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+}
+.privacy_prompt .privacy_prompt_footer .button {
+    padding: 10px;
+    font-family: HelvNeueOrange,Helvetica Neue,Helvetica,Arial,Liberation Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    color: #fff;
+    text-align: center;
+    background-color: #ff7900;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    white-space: normal;
+    word-wrap: break-word;
+    border-style: solid;
+    border: 2px;
+    border-color: #ff7900;
+    cursor: pointer;
+    -webkit-transition: border-color 0.2s ease-in, background-color 0.25s ease-in, color 0.25s ease-in;
+    -o-transition: border-color 0.2s ease-in, background-color 0.25s ease-in, color 0.25s ease-in;
+    transition: border-color 0.2s ease-in, background-color 0.25s ease-in, color 0.25s ease-in;
+}
+.privacy_prompt .privacy_prompt_footer .button:focus,
+.privacy_prompt .privacy_prompt_footer .button:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: #000;
+    border-color: #000;
+}
+@media only screen and (min-width: 1280px) {
+    .privacy_prompt .privacy_prompt_footer .button:focus {
+        outline-width: 2px;
+        outline-style: dotted;
+        outline-offset: 4px;
+        outline-color: #ff6300;
+    }
+}
+.privacy_prompt .privacy_prompt_footer .button.right {
+    float: right;
+}
+.privacy_prompt .privacy_prompt_footer .button.left {
+    float: left;
+}
+.privacy_prompt .tabs {
+    padding-top: 10px;
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+}
+@media only screen and (min-width: 768px) {
+    .privacy_prompt .tabs {
+        display: -webkit-inline-box;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        padding-top: 15px;
+    }
+}
+.privacy_prompt .tab {
+    background-color: transparent;
+}
+@media only screen and (min-width: 768px) {
+    .privacy_prompt .tab {
+        width: 30%;
+        border-style: solid;
+        border-color: #000;
+        border-width: 1px 0 1px 1px;
+        background-color: #f2f2f2;
+    }
+}
+.privacy_prompt .tab button {
+    display: block;
+    padding: 10px;
+    margin: 0;
+    width: 100%;
+    font-family: HelvNeueOrange,Helvetica Neue,Helvetica,Arial,Liberation Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+    color: #000;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    text-align: left;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+@media only screen and (min-width: 768px) {
+    .privacy_prompt .tab button {
+        padding: 15px;
+        cursor: pointer;
+    }
+    .privacy_prompt .tab button:active,
+    .privacy_prompt .tab button:hover {
+        color: #fff;
+        background-color: #000;
+    }
+}
+.privacy_prompt .tab .tablinks {
+    padding: 10px 0;
+    margin: 0;
+    position: relative;
+    border-style: solid;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 1px;
+    border-left-width: 0;
+    border-color: #000;
+}
+@media only screen and (min-width: 768px) {
+    .privacy_prompt .tab .tablinks {
+        padding: 15px;
+        background-color: #f2f2f2;
+        border-color: #e6e6e6;
+    }
+    .privacy_prompt .tab .tablinks:last-child {
+        border-bottom-width: 0;
+    }
+}
+.privacy_prompt .tab .tablinks.active {
+    color: #000;
+    background-color: #fff;
+}
+@media only screen and (min-width: 768px) {
+    .privacy_prompt .tab .tablinks.active {
+        cursor: auto;
+    }
+}
+.privacy_prompt .tabcontent {
+    padding: 10px;
+    margin-top: 15px;
+    width: 100%;
+    border-left: none;
+    position: relative;
+    border: 1px solid #000;
+}
+@media only screen and (min-width: 768px) {
+    .privacy_prompt .tabcontent {
+        padding: 15px;
+        margin-top: 0;
+        width: 70%;
+        height: auto;
+        border-left-width: 0;
+    }
+}
+.privacy_prompt .tabcontent h3 {
+    padding: 0 0 10px;
+    margin: 0;
+    width: 75%;
+    font-family: HelvNeueOrange,Helvetica Neue,Helvetica,Arial,Liberation Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 18px;
+    color: #000;
+    text-align: left;
+}
+.privacy_prompt .tabcontent:not(#cat1):not(#cat15) {
+    display: none;
+}
+
+.privacy_prompt .tabcontent p {
+    margin-top: 10px;
+    font-family: HelvNeueOrange,Helvetica Neue,Helvetica,Arial,Liberation Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+}
+.privacy_prompt .tabcontent p strong {
+    font-family: HelvNeueOrange,Helvetica Neue,Helvetica,Arial,Liberation Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
+}
+.privacy_prompt .tabcontent .checkboxContent {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    z-index: 2;
+}
+#__tealiumGDPRcpPrefs {
+    position: absolute;
+    z-index: 10000;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+#__tealiumGDPRcpPrefs .privacy_prompt_bg {
+    position: absolute;
+    background: #000;
+    opacity: 0.6;
+    width: 100%;
+    height: 100%;
+}
+
+

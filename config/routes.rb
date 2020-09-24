@@ -18,9 +18,6 @@ MOVLE::Application.routes.draw do
   #Locale
   match '/change_locale', to: 'locales#change_locale', via: [:get]
 
-  #Cookies
-  match '/setcookies' => "application#manage_cookies", via: [:post]
-  
   #Thumbnails
   match '/thumbnails' => 'presentations#presentation_thumbnails', via: [:get]
 

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 	before_action :configure_permitted_parameters, if: :devise_controller?
 	before_action :set_locale, :set_cookies
 	check_authorization :unless => :devise_controller?
-	skip_authorization_check :only => [:page_not_found, :manage_cookies]
+	skip_authorization_check :only => [:page_not_found]
 
 	def set_locale
 		I18n.locale = extract_locale_from_params || extract_locale_from_user_profile || extract_locale_from_session || extract_locale_from_webclient || I18n.default_locale
@@ -64,15 +64,6 @@ class ApplicationController < ActionController::Base
 				render json: I18n.t("dictionary.errors.page_not_found")
 			}
 		end
-	end
-
-	def manage_cookies
-		cookie_setup = params.require(:cookies)
-		cookies.permanent[:cookies_set] = 1
-		cookies.permanent[:analytics] = cookie_setup["analytics"]
-		cookies.permanent[:ad] = cookie_setup["ad"]
-		cookies.permanent[:custom] = cookie_setup["custom"]
-		render json: cookie_setup
 	end
 
 	def set_cookies

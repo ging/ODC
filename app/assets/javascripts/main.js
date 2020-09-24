@@ -466,7 +466,7 @@ $('input[data-role="tagsinput"]').tagsinput({
  
   /***************************************** COOKIES ********************************************/
 
-
+/*
   const sendCookies = ()=>{
     var token = $("meta[name='csrf-token']").attr('content');
     return fetch("/setcookies", {
@@ -504,7 +504,7 @@ $('input[data-role="tagsinput"]').tagsinput({
     var id = $(this).data("cookie");
     $(`.cookie-${id}-feedback`).toggleClass("d-none");
   });
-
+*/
 
   /***************************************** COOKIES ********************************************/
 
