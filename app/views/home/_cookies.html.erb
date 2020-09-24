@@ -2,7 +2,7 @@
 
 <div class="cookie-panel-section py-4 show-cookie-msg <%=visible ? '' : 'd-none' %>" style="">
 	<div class="container-fluid">
-		<a class="close hide-cookie-section-header-close"></a>
+		<a class="close hide-cookie-section-header-close" onclick="declineCookies()"></a>
 		<h1><%=t("cookies.title")%></h1>
 		<p class="small-text font-weight-bold col-xs-12 col-sm-9 col-md-6">
 			<%=t('cookies.msg') %>
@@ -35,7 +35,13 @@ function privacy(event){
 
 function acceptCookies(event){
 	Cookies.set('cookies_set', 1, { expires: Infinity });
+	utag.gdpr.setConsentValue("true");
 	$('.cookie-panel-section').addClass("d-none");
+}
+
+function declineCookies(event){
+	$('.cookie-panel-section').addClass("d-none");
+
 }
 
 </script>
