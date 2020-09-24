@@ -174,10 +174,6 @@ es:
     no_results: "No hay resultados"
     prev: "Anterior"
     write: "Escribe aquí tu búsqueda"
-  tags:
-    environment: "Medio ambiente"
-    esafety: "Uso seguro de las TIC"
-    inclusion: "Inclusión social digital"
   user:
     current_password: "Contraseña actual"
     confirm_password: "Repetir contraseña"

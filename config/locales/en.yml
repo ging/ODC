@@ -62,10 +62,10 @@ en:
     errors:
         generic: "You are not authorized to access this resource or perform this action"
   categories:
-    environment: "Environment"
-    inclusion: "Digital and social inclusion"
+    climate: "Climate Change"
+    inclusion: "Digital Inclusion"
     esafety: "Safe and reponsible ICT use"
-    digitalization: "Digitization of SMEs and freelancers"
+    entrepreneurship: Entrepreneurship
     other: "Other"
   cookies:
     msg: ORANGE uses its own and third party cookies to analyze and personalize your browsing, as well as to show you advertising based on your interests by tracking your browsing. Click "Accept" if you accept all cookies. You can also set or reject cookies by clicking on Set up cookies” or obtain more information in our

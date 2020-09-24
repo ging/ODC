@@ -93,10 +93,10 @@ es:
     errors:
         generic: "No estás autorizado a acceder a este recurso o realizar esta acción"
   categories:
-    environment: "Medio ambiente"
-    inclusion: "Inclusión digital y social"
-    esafety: "Uso seguro de las TIC"
-    digitalization: "Digitalización de PYMES y autónomos"
+    climate: "Cambio Climático"
+    inclusion: "Inclusión Digital"
+    esafety: "Uso Responsable de la tecnología"
+    entrepreneurship: Emprendimiento
     other: "Otros"
   cookies:
     msg: ORANGE utiliza cookies propias y de terceros para analizar y personalizar tu navegación, así como para mostrarte publicidad basada en tus intereses teniendo en cuenta el perfil realizado mediante el seguimiento de su navegación. Pulsa “Aceptar” si aceptas todas las cookies. También puedes configurar o rechazar las cookies clicando en “Configurar cookies” u obtener más información en nuestra

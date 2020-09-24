@@ -201,10 +201,6 @@ en:
     no_results: "No results"
     prev: Previous
     write: "Type here your search"
-  tags: 
-    environment: "Environment"
-    esafety: "E-safety"
-    inclusion: "Social digital inclusion"
   user:
     confirm_password: "Confirm password"
     current_password: "Current password"

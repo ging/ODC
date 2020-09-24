@@ -134,7 +134,7 @@
 					<span>
 						<% @course[:categories].each_with_index do |tag, index|%>
 						<a href="/search?q=<%=tag%>">
-							<span class="course-tag"><%=t("tags." + tag)%></span></a><%if index != @course[:categories].length()-1%>, <%end%> 
+							<span class="course-tag"><%=t("categories." + tag)%></span></a><%if index != @course[:categories].length()-1%>, <%end%> 
 						<%end%>
 					</span>
 				</div>
