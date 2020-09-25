@@ -60,6 +60,14 @@ class CoursesController < ApplicationController
   def update
     params.require(:course)[:webinar] = @course.webinar # do not allow to change from course to webinar or viceversa
     if @course.update(course_params)
+      if params.require(:course)[:thumb_delete]
+        @course.thumb = nil
+      end
+
+      if params.require(:course)[:powered_by_logo_delete]
+         @course.powered_by_logo = nil
+      end
+      @course.save!
       redirect_to @course, notice: I18n.t("course.successfully_updated")
     else
       flash.now[:alert] = @course.errors.full_messages.join(". ")
@@ -135,11 +143,12 @@ class CoursesController < ApplicationController
 
   def course_params
     params.require(:course)[:categories] ||= []
-    params.require(:course).permit(:name,:description,:start_date,:end_date,:start_enrollment_date,:end_enrollment_date,:format,:alt_link,:retransmission,:video,:type,:dedication,:powered_by,:powered_by_logo,:teaching_guide,:lang,:url,:lessons,:thumb, :webinar, categories: [], contents: [:title, topics: []], teachers_order: [])
+
+    params.require(:course).permit(:name,:description,:start_date,:end_date,:start_enrollment_date,:end_enrollment_date,:format,:alt_link,:retransmission,:video,:type,:dedication,:powered_by,:powered_by_logo,:powered_by_link,:teaching_guide,:lang,:url,:lessons,:thumb,:webinar, categories: [], contents: [:title, topics: []], teachers_order: [])
   end
 
   def teachers_params
-    params.require(:course).permit(teachers: [:id, :name, :position, :facebook, :linkedin, :twitter, :instagram, :bio, :order, :avatar])
+    params.require(:course).permit(teachers: [:id, :name, :position, :facebook, :linkedin, :twitter, :instagram, :bio, :order, :avatar, :avatar_delete])
   end
 
   def parse_course_params
@@ -163,12 +172,17 @@ class CoursesController < ApplicationController
 
     teachers_order = {}
     teachers_params["teachers"].each do |teacherParams|
-      teacher = CourseTeacher.find_by_id(teacherParams["id"]) || CourseTeacher.new
-
-      teacher.assign_attributes(teacherParams.reject{|k,v| k=="order"})
+      teacher = CourseTeacher.find_by_id(teacherParams["id"]) || CourseTeacher.where(:name => teacherParams[:name]).first || CourseTeacher.new
+      id = teacher.id || teacherParams["id"] 
+      teacher.assign_attributes(teacherParams.reject{|k,v| k=="order" or k == "avatar_delete"})
+      teacher.id = id
+      if teacherParams["avatar_delete"] == "1"
+        teacher.avatar = nil
+      end
 
       if teacher.save
         @course.teachers.push(teacher)
+        @course.teachers = @course.teachers.uniq { |f| [ f.id ] }
         teachers_order[teacher.id.to_s] = teacherParams[:order] unless teacherParams[:order].blank?
       end
     end

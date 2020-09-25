@@ -5,6 +5,7 @@ canvas.canvas
 .image-container
 	display: inline-block
 	max-width: 100%
+	position: relative
 	.picture
 		max-width: 100%
 .image-edit-actions
@@ -26,3 +27,8 @@ canvas.canvas
 	background-color: $orange !important
 .cropper-wrap-box
 	overflow: hidden
+.delete-cropper
+	position: absolute
+	left: 0px
+	z-index: 99999
+	top: 0px

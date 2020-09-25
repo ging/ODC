@@ -1,32 +1,41 @@
 <% offset_orig = cookies()[:utc_offset].blank? ? nil : (cookies()[:utc_offset]).to_i %>
 <% offset = (cookies()[:utc_offset] || "0").to_i %>
 <% now = (DateTime.now.to_time + offset / 60 ).to_datetime %>
-<% notYet = now < @course[:start_date] %>
-<% currentlyGoingOn = now > @course[:start_date] && now < @course[:end_date] %>
+<% notYet = @course[:start_date].blank? or now < @course[:start_date] %>
+<% currentlyGoingOn = !@course[:start_date].blank?  && now > @course[:start_date] && now < @course[:end_date] %>
+<% comingUp = @course[:start_date].blank? %>
 <% ended = !notYet && !currentlyGoingOn %>
 <% user_enrolled = user_signed_in? ? @course.users.include?(current_user) : false%>
+<% noVotes = notYet or comingUp%>
 <div class="container-fluid course-detail">
 	<div class="row">
 		<div class="col-xs-12 col-md-9">
-			<% if @course[:webinar] and notYet %>
-			<%= render partial: "courses/countdown", :locals => { date: @course[:start_date], now: now} %>
+			
+			<% if @course[:webinar] and notYet and !comingUp%>
+				<%= render partial: "courses/countdown", :locals => { date: @course[:start_date], now: now} %>
 			<% elsif (@course[:webinar] and currentlyGoingOn)%>
 			<div class="live">
 				<div class="text-center">
 					<h2 class="orange"><%=t("course.live")%>
 						<% if !@course.powered_by.blank? or !@course.powered_by_logo_file_name.nil? %>
 							<%=t("course.live_in")%>
-							<% if !@course.powered_by_logo_file_name.nil? %>
-								<img class="powered_by_logo" src="<%=@course.powered_by_logo%>"/>
-							<% else %>
-								<%=@course.powered_by%>
-							<% end %>
+							<%if !@course[:powered_by_link].blank?%>
+								<a href="<%=@course[:powered_by_link]%>" class="o-link text-primary">
+							<%end%>	
+								<% if !@course.powered_by_logo_file_name.nil? %>
+									<img class="powered_by_logo" src="<%=@course.powered_by_logo%>"/>
+								<% else %>
+									<%=@course.powered_by%>
+								<% end %>
+							<%if !@course[:powered_by_link].blank?%>
+								</a>
+							<%end%>	
 						<%else%>
 						<% end %>
 					</h2>
 					<%if user_enrolled %>
 					<div class="join-btns">
-						<%if @course[:url] %>
+						<%if !@course[:url].blank? %>
 						<a href="<%=@course[:url]%>" target="_blank">
 							<%platform1 = url_to_platform(@course[:url])%>
 							<%url1 = platform_to_logo(platform1)%>
@@ -36,7 +45,7 @@
 							</button>
 						</a>
 						<%end%>
-						<%if @course[:alt_link] %>
+						<%if !@course[:alt_link].blank? %>
 						<a href="<%=@course[:alt_link]%>" target="_blank">
 							<%platform2 = url_to_platform(@course[:alt_link])%>
 							<%url2 = platform_to_logo(platform2)%>
@@ -52,7 +61,7 @@
 					<br/>
 				</div>
 			</div>
-			<% elsif (@course[:webinar])%>
+			<% elsif (@course[:webinar]) and !comingUp%>
 				<%if !(@course[:retransmission].blank?)%>		
 					<iframe class="course-video" src="<%=youtube_parse(@course[:retransmission])%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 				<%else%>
@@ -73,7 +82,7 @@
 					<button  class="btn btn-secondary btn-inverse"><i class="far fa-edit"></i></button>
 				</a>
 				<% if can? :destroy, @course %>
-					<%= link_to url_for(controller: "courses", action: :destroy, id: @course.id), method: :delete, data: { confirm: t('course.confirm_delete') }, class: 'text-right link-remove-course' do %>
+					<%= link_to url_for(controller: "courses", action: :destroy, id: @course.id), method: :delete, data: { confirm: t('course.confirm_delete'), "ok-button": t('accept'), "cancel-button": t('cancel')}, class: 'text-right link-remove-course' do %>
 						<button  class="btn btn-secondary btn-inverse"><i class='fa fa-trash'></i></button>
 					<% end %>
 				<% end %>
@@ -83,26 +92,36 @@
 				<br/>
 			<%end%>
 			<% if @course[:webinar] %>
-			<%if @course[:start_date]%>
-			<div class="course-characteristic">
-				<span class="course-field orange"><%= t("course.date")%>:</span> 
-				<span><%=to_dmyhm(@course[:start_date],offset_orig)%> <%unless (!offset_orig.blank?)%>UTC<%end%></span> 
-			</div>
-			<%end%>
-			<%if @course[:start_date] and @course[:end_date]%>
-			<div class="course-characteristic">
-				<span class="course-field orange"><%= t("webinar.duration")%>:</span> 
-				<%duration = ((@course[:end_date] - @course[:start_date]))%>
-				<span><%=formatted_duration(duration)%></span>
-			</div>
-			<%end%>
+				<%if @course[:start_date]%>
+					<div class="course-characteristic">
+						<span class="course-field orange"><%= t("course.date")%>:</span> 
+						<span><%=to_dmyhm(@course[:start_date],offset_orig)%> <%unless (!offset_orig.blank?)%>UTC<%end%></span> 
+					</div>
+				<%else%>
+					<div class="course-characteristic">
+						<span class="course-field orange"><%= t("course.date")%>:</span> 
+						<span class="coming-up"><%=t("course.coming_up").upcase%></span> 
+					</div>
+				<%end%>
+				<%if @course[:start_date] and @course[:end_date]%>
+					<div class="course-characteristic">
+						<span class="course-field orange"><%= t("webinar.duration")%>:</span> 
+						<%duration = ((@course[:end_date] - @course[:start_date]))%>
+						<span><%=formatted_duration(duration)%></span>
+					</div>
+				<%end%>
 			<% else %>
 				<%if @course[:start_date] and @course[:end_date]%>
 					<div class="course-characteristic">
 						<span class="course-field orange"><%= t("course.date")%>:</span>
 						<span><%=to_dmy(@course[:start_date],offset_orig)%>-<%=to_dmy(@course[:end_date],offset_orig)%></span> 
 					</div>
-				<% end %>
+				<%else%>
+					<div class="course-characteristic">
+						<span class="course-field orange"><%= t("course.date")%>:</span> 
+						<span class="coming-up"><%=t("course.coming_up").upcase%></span> 
+					</div>
+				<%end%>
 				<% if !@course[:dedication].blank? %>
 					<div class="course-characteristic">
 						<span class="course-field orange"><%= t("course.dedication")%>:</span> 
@@ -142,17 +161,24 @@
 			<%if (!@course[:powered_by].blank?)%>
 				<div class="course-characteristic">
 					<span class="course-field orange"><%= t("course.powered_by")%>:</span> 
-					<span><%=@course[:powered_by]%></span>
+					<span>
+						<%if !@course[:powered_by_link].blank?%>
+							<a class="text-white o-link" href="<%=@course[:powered_by_link]%>"><%=@course[:powered_by]%></a>
+						<%else%>
+							<%=@course[:powered_by]%>
+						<%end%>
+					</span>
 				</div>
 			<%end%>
-			<div class="course-characteristic">
-				<span class="course-field orange" ><%= t("course.rating")%>:</span>
-				<span class="course-rating-container">
-					<%= render partial: "courses/rating", :locals => {rating: @course[:rating], 
-						actionable:  (user_enrolled == true  and !notYet) }  %> (<%=@course.ratings.length%> <%=t("course.votes")%>)
-				</span>
-			</div>
-			
+			<%if !noVotes%>
+				<div class="course-characteristic">
+					<span class="course-field orange" ><%= t("course.rating")%>:</span>
+					<span class="course-rating-container">
+						<%= render partial: "courses/rating", :locals => {rating: @course[:rating], 
+							actionable:  (user_enrolled == true  and !notYet) }  %> (<%=@course.ratings.length%> <%=t("course.votes")%>)
+					</span>
+				</div>
+			<%end%>
 			<br/><br/><br/><br/>
 			<% if user_enrolled == true %>
 				<% unless  @course[:webinar] %>

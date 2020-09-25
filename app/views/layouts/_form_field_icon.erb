@@ -3,7 +3,7 @@
     <%if type == "textarea" %>
 		<textarea  class="form-control" name="<%=name%>" autocomplete="off" id="<%=id%>" placeholder="<%=placeholder %>" rows="3"><%=value%></textarea>
 	<%else%>
-		<input type="<%=type%>" name="<%=name%>" autocomplete="off" class="form-control" id="<%=id%>" placeholder="<%=placeholder %>" value="<%=value%>">
+		<input type="<%=type%>" name="<%=name%>" autocomplete="off" class="form-control" id="<%=id%>" placeholder="<%=placeholder %>" value="<%=value%>" >
 	<%end%>
 	<%if defined? delete%>
     	<span class="input-group-addon input-group-addon-right <%=delete%>">

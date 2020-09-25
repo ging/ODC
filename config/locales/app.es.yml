@@ -32,6 +32,7 @@ es:
     add_new_lesson: "Añadir nueva lección"
     add_new_teacher: "Añadir nuevo profesor"
     add_new_topic: "Añadir nuevo apartado"
+    coming_up: "Próximamente"
     confirm_delete: "¿Seguro que quieres borrar este curso/webinar?"
     contents: Contenidos
     continue: Continuar
@@ -44,7 +45,7 @@ es:
     create: "Crear"
     date: "Fecha"
     enrollment_date: "Fecha"
-    enrollment_period_over: "El periodo de matriculación de este curso ha terminado"
+    enrollment_period_over: "El periodo de matriculación de este curso no está activo"
     date_placeholder: "Fechas de celebración del curso"
     enrollment_date_placeholder: "Periodo de matriculación del curso"
     enrollment_success: "Te has matriculado con éxito en este curso"
@@ -90,6 +91,8 @@ es:
     pictures: "Imágenes"
     powered_by: "Powered by"
     powered_by_placeholder: "Organismo que ofrece el curso"
+    powered_by_link: "Powered by enlace"
+    powered_by_link_placeholder: "Link a la web del proveedor del curso"
     rate: "Valorar"
     rating: "Valoración"
     read_more: "Leer más"
@@ -99,6 +102,7 @@ es:
     see: "Ver"
     successfully_created: 'Curso creado con éxito.'
     successfully_updated: 'Curso actualizado con éxito.'
+    successfully_destroyed: "Curso borrado con éxito."
     successfully_deleted: 'Curso eliminado con éxito.'
     tags: "Etiquetas"
     teachers: "Profesores"

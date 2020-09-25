@@ -1,4 +1,5 @@
 en:
+  accept: "Ok"
   account:
     cancel: "Cancel my account"
     edit: "Edit account"
@@ -35,6 +36,7 @@ en:
             format: "The course format"
             categories: "The categories"
             contents: "The course content"
+            successfully_destroyed: "Successfully deleted"
         course_teachers:
             name: "The name of the teacher"
             position: "The position of the teacher"
@@ -61,6 +63,7 @@ en:
   authorization:
     errors:
         generic: "You are not authorized to access this resource or perform this action"
+  cancel: "Cancel"
   categories:
     climate: "Climate Change"
     inclusion: "Digital Inclusion"

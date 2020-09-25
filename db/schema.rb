@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_23_005544) do
+ActiveRecord::Schema.define(version: 2020_09_26_005544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_005544) do
     t.datetime "teaching_guide_updated_at"
     t.string "alt_link"
     t.string "retransmission"
+    t.string "powered_by_link"
   end
 
   create_table "enrollments", force: :cascade do |t|

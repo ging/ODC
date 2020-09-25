@@ -10,14 +10,14 @@ class Course < ApplicationRecord
 
 	has_attached_file :teaching_guide
 	has_attached_file :thumb, 
-		styles: { medium: "800x600>", thumb: "300x200>" }, 
+		styles: { medium: "1105x700>", thumb: "316x200>" }, 
 		default_url: "/img/course_placeholder.png"
 	has_attached_file :powered_by_logo, 
 		styles: { medium: "300x300>", thumb: "100x100>" }
 	
 	validates :webinar, inclusion: { in: [ true, false ], allow_blank: true }
-	validates_presence_of :start_date
-	validates_presence_of :end_date
+	# validates_presence_of :start_date
+	# validates_presence_of :end_date
 	validates_presence_of :name
 	validates_attachment :teaching_guide, content_type: { content_type: ["application/pdf"] }
 	validates_attachment :thumb, content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
@@ -47,7 +47,7 @@ class Course < ApplicationRecord
 	end
 
 	def is_enrollment_period?
-		return true if self.start_enrollment_date.blank? or self.end_enrollment_date.blank?
+		return false if self.start_enrollment_date.blank? or self.end_enrollment_date.blank?
 		tNow = Time.now
 		return ((tNow > self.start_enrollment_date) and (tNow < self.end_enrollment_date))
 	end

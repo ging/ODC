@@ -1,4 +1,5 @@
 es:
+  accept: "Aceptar"
   account:
     cancel: "Cancelar mi cuenta"
     edit: "Editar cuenta"
@@ -30,11 +31,14 @@ es:
             alt_link: "En enlace alternativo al webinar"
             retransmission: "La grabación del webinar"
             powered_by: "El proveedor del curso (powered by)"
+            powered_by_link: "El enlace al proveedor del curso (powered by)"
             dedication: "La dedicación estimada"
             lessons: "El nº de lecciones"
             format: "El formato del curso"
             categories: "Las categorías del curso"
             contents: "El contenido del curso"
+            successfully_destroyed: "Se ha borrado con éxito"
+
         course_teachers:
             name: "El nombre del profesor"
             position: "El puesto del profesor"
@@ -92,6 +96,7 @@ es:
   authorization:
     errors:
         generic: "No estás autorizado a acceder a este recurso o realizar esta acción"
+  cancel: "Cancelar"
   categories:
     climate: "Cambio Climático"
     inclusion: "Inclusión Digital"

@@ -184,7 +184,7 @@ $(function() {
   /************************************* COURSE FORM INPUTS *************************************/
 
   $(document).on('click','.delete-teacher',function(){
-    $(this).parent().parent().remove();
+    $(this).parent().remove();
   });
 
   $(document).on('click','.delete-lesson',function(){
@@ -337,6 +337,26 @@ $(function() {
         crop: function(event) {}
       });
     }
+    /**/
+    if ($image.siblings(".delete-cropper").length == 0) {
+      $(`<button type="button" class="btn btn-secondary btn-icon btn-sm delete-cropper">
+          <span class="fas fa-trash"></i>
+        </button>`).insertAfter($image);
+    }
+  }
+
+  var destroyFile = function(e){
+    var $parentNode = $(this.parentNode);
+    var $img = $parentNode.find("img")
+    console.log($parentNode, $img)
+    $img.attr('style', '');
+    $img.attr('src', $img.data("placeholder"));
+    $parentNode.attr('style', '');
+    $img.cropper("destroy");
+    var id = $img.attr("id");
+    $(`input[data-img-id="${id}"]`).val(''); 
+    $(`input[data-img-id="${id}"]`).parents().first().find("label").html(uploadFile);
+    $(this).remove();
   }
 
   var changeFile = function(e){
@@ -360,6 +380,7 @@ $(function() {
   };
 
   $(document).on("change", ".custom-file-input", changeFile);
+  $(document).on("click", ".delete-cropper", destroyFile);
 
   $('form').on("submit", function(){
     var form = this;
@@ -370,6 +391,7 @@ $(function() {
       var h = $input.data("h");
       var name = $input.data("name");
       var $image = $('#'+imgId);
+      console.log(imgId)
       if (imgId && $image.length) {
         var cropper = $image.data('cropper');
         if (cropper) {
@@ -377,7 +399,9 @@ $(function() {
           var canvasr = canvas.toDataURL();
           var photo = dataURItoBlob(canvasr);
           $image.parent().append($(`<input type="hidden" name="${name}" value="${canvasr}"/>`));
-        } else {
+        } else if ($image.data("placeholder") === $image.attr("src")) {
+          $image.parent().append($(`<input type="hidden" name="${name.replace(/\]$/,"_delete]")}" value="1"/>`));
+        } else  { // TODO _delete bien
           $image.parent().append($(`<input type="hidden" name="${name}" value=""/>`));
         }
       }
@@ -438,9 +462,9 @@ $(function() {
 
   /******************************************* TAGS *********************************************/
   
-$('input[data-role="tagsinput"]').tagsinput({
-    "cancelConfirmKeysOnEmpty": false
-});
+  $('input[data-role="tagsinput"]').tagsinput({
+      "cancelConfirmKeysOnEmpty": false
+  });
   /******************************************* TAGS *********************************************/
   
 
@@ -464,49 +488,6 @@ $('input[data-role="tagsinput"]').tagsinput({
   });
   /******************************************* LANG *********************************************/
  
-  /***************************************** COOKIES ********************************************/
-
-/*
-  const sendCookies = ()=>{
-    var token = $("meta[name='csrf-token']").attr('content');
-    return fetch("/setcookies", {
-      "method": "POST", 
-      "body": JSON.stringify({"cookies": cookie_state}),
-      "credentials": 'same-origin',
-      "headers": {
-        "Content-Type": "application/json",
-        'X-CSRF-Token': token
-      }
-    })
-      .then(res=>res.json())
-      .then(console.log)
-      .catch(console.error);
-  };
-
-  $(".cookie-panel-section .close").click(function(e){
-    $('.show-cookie-msg').removeClass('show-cookie-msg');
-  });
-
-  $(".cookie-panel-section .accept").click(async function(e){
-    $('.show-cookie-msg').removeClass('show-cookie-msg');
-    await sendCookies();
-  });
-
-  $("#cookiesModal .accept").click(async function(e){
-    $('.show-cookie-msg').removeClass('show-cookie-msg');
-    cookie_state["analytics"] = $("#analytics-cookie").prop("checked");
-    cookie_state["ad"] = $("#ad-cookie").prop("checked");
-    cookie_state["custom"] = $("#custom-cookie").prop("checked");
-    await sendCookies();
-  });
-
-  $('.cookie-checkbox input').click(function(e){
-    var id = $(this).data("cookie");
-    $(`.cookie-${id}-feedback`).toggleClass("d-none");
-  });
-*/
-
-  /***************************************** COOKIES ********************************************/
 
   
 });

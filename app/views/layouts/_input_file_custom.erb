@@ -1,6 +1,7 @@
 <div class="custom-file">
 	<label class="custom-file-label" for="customFile">
 		<%if file_name %>
+			<%file_name  = file_name == "data" ? "image.png" : file_name%>
 			<a href="<%=file_path%>" download="<%=file_name%>" onclick="event.stopPropagation()"><%=file_name%></a>
 		<%else%>
 			<%=defined?(local_assigns[:label]) ? local_assigns[:label] : t('course.upload')%>

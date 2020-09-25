@@ -61,6 +61,7 @@ en:
     add_new_lesson: "Add a new lesson"
     add_new_teacher: "Add a new teacher"
     add_new_topic: "Add a new topic"
+    coming_up: "To be defined"
     confirm_delete: "Are you sure you want to delete this course/webinar?"
     contents: Contents
     continue: Continue
@@ -73,7 +74,7 @@ en:
     create: Create
     date: Date
     enrollment_date: "Enrollment period"
-    enrollment_period_over: "The enrollment period of this course is over"
+    enrollment_period_over: "The enrollment period of this course is not active"
     date_placeholder: "Period in which the course will take place"
     enrollment_date_placeholder: "Course enrollment period"
     enrollment_success: "You have been successfully enrolled in this course"
@@ -116,6 +117,8 @@ en:
     pictures: "Pictures"
     powered_by: "Powered by"
     powered_by_placeholder: "Who is offering this course?"
+    powered_by_link: "Powered by link"
+    powered_by_link_placeholder: "Link to the webpage of the provider of this course"
     rate: "Rate"
     rating: "Rating"
     read_more: "Read more"
@@ -127,6 +130,7 @@ en:
     successfully_created: 'Course was successfully created.'
     successfully_updated: 'Course was successfully updated.'
     successfully_deleted: 'Course was successfully destroyed.'
+    successfully_destroyed: 'Course was successfully destroyed.'
     tags: "Tags"
     teachers: "Teachers"
     teacher:

@@ -39,7 +39,7 @@
 				type: "text", 
 				name: "course[date]", 
 				id: "#{tag}-date", 
-				required: true,
+				required: false,
 				placeholder: course[:webinar] ?  t('webinar.date_placeholder') :  t('course.date_placeholder'), 
 				value: ((course[:start_date] and course[:end_date]) ? course[:webinar] ? ("#{to_dmyhm(course[:start_date],offset)} - #{to_dmyhm(course[:end_date],offset)}"): ("#{to_dmy(course[:start_date],offset)} - #{to_dmy(course[:end_date],offset)}") : "") 
 			}  %>
@@ -48,7 +48,7 @@
 				type: "text", 
 				name: "course[enrollment_date]", 
 				id: "#{tag}-enrollment-date", 
-				required: true,
+				required: false,
 				placeholder: course[:webinar] ?  t('webinar.enrollment_date_placeholder') :  t('course.enrollment_date_placeholder'), 
 				value: ((course[:start_enrollment_date] and course[:end_enrollment_date]) ? course[:webinar] ? ("#{to_dmyhm(course[:start_enrollment_date],offset)} - #{to_dmyhm(course[:end_enrollment_date],offset)}"): ("#{to_dmy(course[:start_enrollment_date],offset)} - #{to_dmy(course[:end_enrollment_date],offset)}") : "") 
 			}  %>
@@ -130,15 +130,32 @@
 				placeholder: t('course.powered_by_placeholder'),  
 				value: course[:powered_by] 
 			}  %>
+			<%= render partial: "layouts/form_field", :locals => {
+				label: t('course.powered_by_link'), 
+				type: "url", 
+				name:"course[powered_by_link]", 
+				id: "powered_by_link", 
+				required: false,
+				placeholder: t('course.powered_by_link_placeholder'),  
+				value: course[:powered_by_link] 
+			}  %>
 			<div class="form-group row"  >
 				<label for="photo" class="col-sm-2 col-form-label"><%=t('course.powered_by_logo')%></label>
 				<div class="col-sm-10">
 					<div class="image-edit-actions">
-						<%=render partial: "layouts/input_file_custom", :locals => {name: "", file_name: course.powered_by_logo_file_name, file_path: course.powered_by_logo.url, id:"powered_by_logo", label: t('course.upload'), data_name: "course[powered_by_logo]",
+						<%=render partial: "layouts/input_file_custom", :locals => {name: "", file_name: course.powered_by_logo_file_name == "data" ? "image.png" : course.powered_by_logo_file_name,  file_path: course.powered_by_logo.url, id:"powered_by_logo", label: t('course.upload'), data_name: "course[powered_by_logo]",
 							data_img_id: "edit-uploaded-picture-logo", width: 200, height: 200, accept: "image/*"} %>
 						</div>
+						<%logo_placeholder = 'https://via.placeholder.com/200x200.png/ccc/fff?text=200x200'%>
 						<div class="image-container" style="width: 200px;height: 200px;">
-							<img id="edit-uploaded-picture-logo" class="picture" src="<%= course.powered_by_logo_file_name.nil? ? 'https://via.placeholder.com/200x200.png/ccc/fff?text=200x200' : course.powered_by_logo.url%>"/></div>
+							<img id="edit-uploaded-picture-logo" class="picture" src="<%= course.powered_by_logo_file_name.nil? ?  logo_placeholder : course.powered_by_logo.url%>"data-placeholder="<%=logo_placeholder%>"/>
+							<%if !course.powered_by_logo_file_name.nil? and course.powered_by_logo_file_name != logo_placeholder%>
+								<button type="button" class="btn btn-secondary btn-icon btn-sm delete-cropper">
+							        <span class="fas fa-trash"></i>
+							    </button>
+							<%end%>
+
+						</div>
 						</div>
 						<canvas class="canvas" style="width: 200px;height: 200px;"></canvas>
 
@@ -220,7 +237,7 @@
 						<div class="form-group row">
 							<label class="col-sm-2 col-form-label"><%=t('course.guide')%></label>
 							<div class="col-sm-10">
-								<%=render partial: "layouts/input_file_custom", :locals => {name: "course[teaching_guide]", file_name: course[:teaching_guide_file_name], label: t('course.upload'), file_path: course.teaching_guide.url, id:"guide", accept: "application/pdf"} %>
+								<%=render partial: "layouts/input_file_custom", :locals => {name: "course[teaching_guide]", file_name: course[:teaching_guide_file_name] == "data" ? "image.png" : course[:teaching_guide_file_name], label: t('course.upload'), file_path: course.teaching_guide.url, id:"guide", accept: "application/pdf"} %>
 							</div>
 						</div>
 						<%end%>
@@ -250,11 +267,18 @@
 							<label for="photo" class="col-sm-2 col-form-label"><%=t('course.pictures')%></label>
 							<div class="col-sm-10">
 								<div class="image-edit-actions">
-									<%=render partial: "layouts/input_file_custom", :locals => {name: "", file_name: course.thumb_file_name, file_path: course.thumb.url, id:"photo", label: t('course.upload'), data_name: "course[thumb]",
+									<%=render partial: "layouts/input_file_custom", :locals => {name: "", file_name: course.thumb_file_name == "data" ? "image.png" : course.thumb_file_name, file_path: course.thumb.url, id:"photo", label: t('course.upload'), data_name: "course[thumb]",
 										data_img_id: "edit-uploaded-picture-course", width: 1105, height: 700, accept: "image/*"} %>
 									</div>
+									<%img_placeholder = '/img/course_placeholder.png'%>
 									<div class="image-container" style="width: 1105px;height: 700px;">
-										<img id="edit-uploaded-picture-course" class="picture" src="<%= course.thumb.url || 'https://via.placeholder.com/1105x700.png/ccc/fff?text=1105x700'%>"/></div>
+										<img id="edit-uploaded-picture-course" class="picture" src="<%= course.thumb.url || img_placeholder%>" data-placeholder="<%=img_placeholder%>"/>
+										<%if course.thumb.url and course.thumb.url != img_placeholder%>
+											<button type="button" class="btn btn-secondary btn-icon btn-sm delete-cropper">
+												<span class="fas fa-trash"></i>
+											</button>
+										<%end%>
+									</div>
 									</div>
 									<canvas class="canvas" style="width: 1105px;height: 700px;"></canvas>
 								</div>
@@ -269,6 +293,7 @@
 					</div>
 					<script>
 						window.lang = "<%=I18n.locale%>";
+						window.uploadFile = "<%=t('course.upload')%>";
 						window.dayArray = ["<%=t('calendar.days.sun')%>", "<%=t('calendar.days.mon')%>", "<%=t('calendar.days.tue')%>", "<%=t('calendar.days.wed')%>", "<%=t('calendar.days.thu')%>", "<%=t('calendar.days.fri')%>", "<%=t('calendar.days.sat')%>"];
 						window.monthArray = ["<%=t('calendar.months.jan')%>", "<%=t('calendar.months.feb')%>", "<%=t('calendar.months.mar')%>", "<%=t('calendar.months.apr')%>", "<%=t('calendar.months.may')%>", "<%=t('calendar.months.jun')%>", "<%=t('calendar.months.jul')%>", "<%=t('calendar.months.aug')%>", "<%=t('calendar.months.sep')%>", "<%=t('calendar.months.oct')%>", "<%=t('calendar.months.nov')%>", "<%=t('calendar.months.dec')%>"];
 						window.newTeacherTemplate = `<%= escape_javascript(render partial: "courses/teacher_card_edit", :locals => { index: "${index}" , teacher: {}}) %>`;
