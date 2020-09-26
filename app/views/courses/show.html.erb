@@ -216,6 +216,17 @@
 	</div>
 </div>
 <div class="container course-desc">
+	<% if !@course.powered_by.blank? or !@course.powered_by_logo_file_name.nil? %>
+		<%if !@course[:powered_by_link].blank?%>
+			<a href="<%=@course[:powered_by_link]%>" class="o-link text-primary">
+		<%end%>	
+			<% if !@course.powered_by_logo_file_name.nil? %>
+				<img class="powered_by_logo float-sm-right" src="<%=@course.powered_by_logo%>"/>
+			<% end %>
+		<%if !@course[:powered_by_link].blank?%>
+			</a>
+		<%end%>	
+	<% end %>
 	<div class="row">
 		<div class="col-xs-12 col-lg-9"><br/><br/>
 			<div>

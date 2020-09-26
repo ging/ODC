@@ -319,7 +319,6 @@ $(function() {
   function initCropper(width = 200, height = 200, $image){
     if ($image.attr('src') !==  `https://via.placeholder.com/${width}x${height}.png/09f/fff?text=${width}x${height}`) {
       $image.cropper({
-        viewMode: 2,
         dragMode: "move",
         autoCropArea: 1,
         center: true,
@@ -395,7 +394,7 @@ $(function() {
       if (imgId && $image.length) {
         var cropper = $image.data('cropper');
         if (cropper) {
-          var canvas = $image.cropper('getCroppedCanvas');// cropper.getCroppedCanvas({width: Number(w || 120), height: Number( h || 120)});
+          var canvas = $image.cropper('getCroppedCanvas', {fillColor: '#fff'});// cropper.getCroppedCanvas({width: Number(w || 120), height: Number( h || 120)});
           var canvasr = canvas.toDataURL();
           var photo = dataURItoBlob(canvasr);
           $image.parent().append($(`<input type="hidden" name="${name}" value="${canvasr}"/>`));
