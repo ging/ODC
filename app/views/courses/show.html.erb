@@ -1,12 +1,13 @@
 <% offset_orig = cookies()[:utc_offset].blank? ? nil : (cookies()[:utc_offset]).to_i %>
 <% offset = (cookies()[:utc_offset] || "0").to_i %>
 <% now = (DateTime.now.to_time + offset / 60 ).to_datetime %>
-<% notYet = @course[:start_date].blank? or now < @course[:start_date] %>
-<% currentlyGoingOn = !@course[:start_date].blank?  && now > @course[:start_date] && now < @course[:end_date] %>
+<% currentlyGoingOn = (!@course[:start_date].blank?  && (now > @course[:start_date]) && (now < @course[:end_date])) %>
 <% comingUp = @course[:start_date].blank? %>
-<% ended = !notYet && !currentlyGoingOn %>
-<% user_enrolled = user_signed_in? ? @course.users.include?(current_user) : false%>
-<% noVotes = notYet or comingUp%>
+<% notYet = (comingUp or (now < @course[:start_date])) %>
+<% ended = !(comingUp or notYet or currentlyGoingOn) %>
+<% noVotes = (notYet or comingUp) %>
+<% user_enrolled = user_signed_in? ? @course.users.include?(current_user) : false %>
+
 <div class="container-fluid course-detail">
 	<div class="row">
 		<div class="col-xs-12 col-md-9">
@@ -191,7 +192,7 @@
 				<%end%>
 				<%if !ended %>
 				<%= button_to (@course[:webinar] ? t("webinar.unenroll") : t("course.unenroll")), {:controller => "courses", :action => "unenroll"}, {:class=> "btn btn-secondary btn-inverse", :method=>:post}  %>
-				<% else %>
+				<% elsif ended %>
 					<div class="course-characteristic">
 					<span class="course-field orange"><%=(@course[:webinar] ? t("webinar.over") : t("course.over"))%></span>
 					</div>
