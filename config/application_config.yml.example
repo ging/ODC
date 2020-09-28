@@ -10,6 +10,15 @@ development:
   # recaptcha: # Get keys from https://www.google.com/recaptcha
   #  site_key: ""
   #  secret_key: ""
+  GITHUB:
+    client_id: '????'
+    client_secret: '????'
+  IDM:
+    app_id: "????"
+    app_secret: "????"
+    site: "http://idmodc.dit.upm.es/"
+    authorize_path: "/oauth2/authorize"
+    token_url: "/oauth2/token"
 
 # More configuration options
 

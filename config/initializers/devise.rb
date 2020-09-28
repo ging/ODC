@@ -6,7 +6,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  config.secret_key = '2cde9846b5e9d935df4fd9b7184c6b1517604ab0b5bf3f33e55d76a13ad06e715c1ccbe0b01be710b7cd26a9de6f87cd00abafd4d6dde2ef72ba2dbe8d5fb9d0'
+  config.secret_key = ODC::Application.config.APP_CONFIG["secret_token"]
   
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -250,7 +250,15 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+
+  unless ODC::Application.config.APP_CONFIG["GITHUB"].blank?
+    config.omniauth :github, ODC::Application.config.APP_CONFIG["GITHUB"]["client_id"], ODC::Application.config.APP_CONFIG["GITHUB"]["client_secret"], scope: 'email'
+  end
+
+  require 'strategies/idm'
+  unless ODC::Application.config.APP_CONFIG["IDM"].blank?
+    config.omniauth :idm, ODC::Application.config.APP_CONFIG["IDM"]["app_id"], ODC::Application.config.APP_CONFIG["IDM"]["app_secret"]
+  end
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

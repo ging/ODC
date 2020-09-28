@@ -26,6 +26,8 @@ gem 'cancancan', '3.1.0'
 gem 'warden', '1.2.8'
 gem "recaptcha", '4.3.1', require: "recaptcha/rails"
 gem 'omniauth', '1.9.1'
+gem 'omniauth-oauth2', '1.7.0'
+gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
 
 gem 'acts-as-taggable-on', '6.5.0'
 gem 'paperclip', '6.1.0'
