@@ -2,6 +2,9 @@
 html
 	min-height: 100%
 	body
+		letter-spacing: -.00625rem
+		-webkit-font-smoothing: subpixel-antialiased
+		text-rendering: optimizeSpeed
 		.container-fluid-all
 			width: 100%
 			max-width: 100%
@@ -11,6 +14,9 @@ html
 		.highlight-background
 			background-color: $highlight_yellow
 			--contrast-border: #{$highlight_yellow}
+			.course.card
+				border-color: $highlight_yellow
+
 		.orange
 			color: $orange
 		.orange-light
