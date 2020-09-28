@@ -38,7 +38,7 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= access_token.get('/user').parsed
+        @raw_info ||= access_token.get(ODC::Application.config.APP_CONFIG["IDM"]["user_url"]).parsed
       end
 
       def callback_url
