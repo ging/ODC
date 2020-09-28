@@ -90,9 +90,7 @@
 				<%usr_placeholder = '/img/user_placeholder.png'%>
 				<img id="edit-uploaded-picture" class="picture" src="<%= user.avatar.url || usr_placeholder %>" data-placeholder="<%=usr_placeholder%>"/>
 				<%if user.avatar.url != usr_placeholder %>
-					<button type="button" class="btn btn-secondary btn-icon btn-sm delete-cropper">
-						<span class="fas fa-trash"></i>
-					</button>
+					<%=render partial: "layouts/cropper_buttons"%>
 				<%end%>
 			</div>
 			</div>
@@ -113,4 +111,6 @@
 
 <script>
 	window.uploadFile = "<%=t('course.upload')%>";
+	window.cropperButtons = `<%= escape_javascript(render partial: "layouts/cropper_buttons")%>`
+
 </script>

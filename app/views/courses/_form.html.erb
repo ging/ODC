@@ -150,9 +150,7 @@
 						<div class="image-container" style="width: 200px;height: 200px;">
 							<img id="edit-uploaded-picture-logo" class="picture" src="<%= course.powered_by_logo_file_name.nil? ?  logo_placeholder : course.powered_by_logo.url%>"data-placeholder="<%=logo_placeholder%>"/>
 							<%if !course.powered_by_logo_file_name.nil? and course.powered_by_logo_file_name != logo_placeholder%>
-								<button type="button" class="btn btn-secondary btn-icon btn-sm delete-cropper">
-							        <span class="fas fa-trash"></i>
-							    </button>
+								<%= render partial: "layouts/cropper_buttons" %>
 							<%end%>
 
 						</div>
@@ -274,9 +272,7 @@
 									<div class="image-container" style="width: 1105px;height: 700px;">
 										<img id="edit-uploaded-picture-course" class="picture" src="<%= course.thumb.url || img_placeholder%>" data-placeholder="<%=img_placeholder%>"/>
 										<%if course.thumb.url and course.thumb.url != img_placeholder%>
-											<button type="button" class="btn btn-secondary btn-icon btn-sm delete-cropper">
-												<span class="fas fa-trash"></i>
-											</button>
+											<%= render partial: "layouts/cropper_buttons" %>
 										<%end%>
 									</div>
 									</div>
@@ -300,5 +296,6 @@
 						window.newLessonTemplate = `<div class="content-block"><%= escape_javascript(render partial: "layouts/form_field_icon", :locals => { label: "",  icon: "fas fa-book", type: "text",  name:"course[contents][][title]",  id: "lesson-${index}",  placeholder: t("course.lesson"),  value: "", delete: "delete-lesson" } ) %><span class="add-topic"><i class="fas fa-plus"></i></span><div class="lesson-topics"></div></div>`;
 						window.newTopicTemplate = `<%= escape_javascript(render partial: "layouts/form_field_icon", :locals => {label: "", icon: "far fa-bookmark",type: "text", name:"course[contents][][topics][]", id: "topic-${index}-${index2}", placeholder: t("course.topic"), value: "",delete: "delete-topic"})  %>`
 						window.calendarI18n = <%= (raw t('calendar').to_json)%>
+						window.cropperButtons = `<%= escape_javascript(render partial: "layouts/cropper_buttons")%>`
 					</script>
 					<script src="/ckeditor4/ckeditor.js"></script>

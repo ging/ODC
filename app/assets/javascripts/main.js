@@ -321,7 +321,6 @@ $(function() {
       $image.cropper({
         viewMode: 2,
         dragMode: "move",
-        autoCropArea: 1,
         center: true,
         aspectRatio: Math.round(100*width/height)/100,
         minContainerWidth: width - 1,
@@ -339,10 +338,9 @@ $(function() {
     }
     /**/
     if ($image.siblings(".delete-cropper").length == 0) {
-      $(`<button type="button" class="btn btn-secondary btn-icon btn-sm delete-cropper">
-          <span class="fas fa-trash"></i>
-        </button>`).insertAfter($image);
+      $(window.cropperButtons).insertAfter($image);
     }
+    //$image.siblings(".reset-cropper").show();
   }
 
   var destroyFile = function(e){
@@ -379,8 +377,15 @@ $(function() {
     }
   };
 
+  var resetCropper = function(e){
+    var $parentNode = $(this.parentNode);
+    var $image = $parentNode.find("img")
+    $image.cropper('reset');
+  };
+
   $(document).on("change", ".custom-file-input", changeFile);
   $(document).on("click", ".delete-cropper", destroyFile);
+  //$(document).on("click", ".reset-cropper", resetCropper);
 
   $('form').on("submit", function(){
     var form = this;

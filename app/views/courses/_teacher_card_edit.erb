@@ -8,9 +8,7 @@
 		<img src="<%=teacher_avatar_url%>" id="teacher-photo-<%=index%>" alt="" data-placeholder="<%=teacher_placeholder%>">
 		<%=render partial: "layouts/input_file_custom", :locals => { name: "", file_name: teacher[:avatar_file_name], file_path: teacher_avatar_url, id:"inputTeacher-#{index}-photo", data_img_id: "teacher-photo-#{index}", width: 120, height: 120, accept: "image/*", label: t('course.teacher.upload'), data_name: "course[teachers][][avatar]" } %>
 		<%if has_avatar and teacher_avatar_url != teacher_placeholder%>
-			<button type="button" class="btn btn-secondary btn-icon btn-sm delete-cropper">
-				<span class="fas fa-trash"></i>
-			</button>
+			<%=render partial: "layouts/cropper_buttons"%>
 		<%end%>
 	</div>
 	<div class="teacher-edit-block">
