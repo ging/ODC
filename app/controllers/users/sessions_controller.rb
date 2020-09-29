@@ -17,7 +17,7 @@ class Users::SessionsController < Devise::SessionsController
 
   # DELETE /resource/sign_out
   def destroy
-    if !session["devise.idm_data"].nil?
+    if !ODC::Application.config.APP_CONFIG["IDM"].blank? # current_user.provider == "idm"
       if current_user
         sign_out(current_user)
       end
