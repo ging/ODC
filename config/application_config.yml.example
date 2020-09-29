@@ -20,6 +20,7 @@ development:
     authorize_path: "https://idmodc.dit.upm.es/oauth2/authorize"
     token_url: "https://idmodc.dit.upm.es/oauth2/token"
     user_url: "https://idmodc.dit.upm.es/user"
+    signout_url: "https://idmodc.dit.upm.es/auth/external_logout?_method=DELETE&client_id="
 
 # More configuration options
 
