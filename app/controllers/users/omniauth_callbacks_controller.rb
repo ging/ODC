@@ -25,6 +25,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     redirect_to root_path
   end
 
+  def signout_callback
+    if !ODC::Application.config.APP_CONFIG["IDM"].blank?
+      redirect_to destroy_user_session_path #/users/sign_out
+    else 
+      client_id = ODC::Application.config.APP_CONFIG["IDM"]["app_id"]
+      redirect_to "#{ODC::Application.config.APP_CONFIG["IDM"]["signout_url"]}#{client_id}"
+  end
   # protected
 
   # The path used when OmniAuth fails

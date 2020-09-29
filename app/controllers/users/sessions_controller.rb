@@ -1,10 +1,14 @@
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
-  # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+  #GET /resource/sign_in
+  def new
+    if !ODC::Application.config.APP_CONFIG["IDM"].blank?
+      super
+    else
+      redirect_to user_idm_omniauth_authorize_path
+    end
+  end
 
   # POST /resource/sign_in
   # def create
@@ -12,9 +16,17 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    if current_user.provider == "idm"
+      if current_user
+        sign_out(current_user)
+      end
+      client_id = ODC::Application.config.APP_CONFIG["IDM"]["app_id"]
+      redirect_to "#{ODC::Application.config.APP_CONFIG["IDM"]["signout_url"]}#{client_id}"
+    else
+      super
+    end
+  end
 
   # protected
 

@@ -69,7 +69,7 @@
 					<span class="nav-link user-name "><%=current_user[:name]%></span>
 				</a></div> 	
 				<%else%>
-					<a href="/users/sign_in" class="nav-link icon-my-account d-md-block"></a>
+				<%= link_to "", new_user_session_url, class: "nav-link icon-my-account d-md-block"%>
 				<%end%>
 			</li>
 
