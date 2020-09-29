@@ -9,6 +9,7 @@
 					</div>
 					<div class="user-info">
 						<h1 class="user-name"><%=@profile_user[:name]%></h1>
+						<p style="color:white;">provider:<%=@profile_user[:provider]%></p>
 						<div class="d-flex justify-content-center justify-content-md-start user-tags">
 							<% (@profile_user.tag_list.join(",")||"").split(',').each do |tag| %>
 							<span class="user-tag"><%=tag%></span>
