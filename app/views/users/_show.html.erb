@@ -48,6 +48,11 @@
 	<%= render partial: "courses/course_list_4", 
 	:locals => {title: t("profile.your_courses_and_webinars"), courses: @profile_user.courses ||[] , link: "/", mine: true }  %>
 </div>
+<% else %>
+<br/>
+<br/>
+<br/>
+<br/>
 <% end %>
 <script>
 console.log("<%=@profile_user[:provider]%>");
