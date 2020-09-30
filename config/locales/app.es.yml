@@ -29,6 +29,7 @@ es:
       sep: Septiembre
     to: Hasta
   course:
+    access: "Acceder al curso"
     add_new_lesson: "Añadir nueva lección"
     add_new_teacher: "Añadir nuevo profesor"
     add_new_topic: "Añadir nuevo apartado"

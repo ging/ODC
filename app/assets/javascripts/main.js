@@ -319,6 +319,7 @@ $(function() {
   function initCropper(width = 200, height = 200, $image){
     if ($image.attr('src') !==  `https://via.placeholder.com/${width}x${height}.png/09f/fff?text=${width}x${height}`) {
       $image.cropper({
+        viewMode: 2,
         dragMode: "move",
         autoCropArea: 1,
         center: true,

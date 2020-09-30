@@ -58,6 +58,7 @@ en:
       sep: September
     to: To
   course: 
+    access: "Access course"
     add_new_lesson: "Add a new lesson"
     add_new_teacher: "Add a new teacher"
     add_new_topic: "Add a new topic"
