@@ -43,7 +43,7 @@
 </div>
 <br/>
 <br/>
-<% if @isProfileOwner %>
+<% if @isProfileOwner and (@profile_user.courses ||[]).length() > 0 %>
 <div class="soft-background">
 	<%= render partial: "courses/course_list_4", 
 	:locals => {title: t("profile.your_courses_and_webinars"), courses: @profile_user.courses ||[] , link: "/", mine: true }  %>
