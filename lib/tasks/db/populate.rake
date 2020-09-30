@@ -13,24 +13,24 @@ namespace :db do
 		user.roles.push(Role.user)
 		user.email = "demo@upm.es"
 		user.password = "demonstration"
-		user.name = "Demo"
+		user.username = "Demo"
 		user.ui_language = I18n.default_locale
 		user.confirmed_at = DateTime.now
 		user.skip_confirmation!
 		user.save!
-		puts "User '" + user.name + "' created with email '" + user.email + "' and password 'demonstration'"
+		puts "User '" + user.username + "' created with email '" + user.email + "' and password 'demonstration'"
 
 		#Create admin user
 		admin = User.new
 		admin.roles.push(Role.admin)
 		admin.email = "admin@upm.es"
 		admin.password = "demonstration"
-		admin.name = "Admin"
+		admin.username = "Admin"
 		admin.ui_language = I18n.default_locale
 		admin.confirmed_at = DateTime.now
 		admin.skip_confirmation!
 		admin.save!
-		puts "User '" + admin.name + "' created with email '" + admin.email + "' and password 'demonstration'"
+		puts "User '" + admin.username + "' created with email '" + admin.email + "' and password 'demonstration'"
 
 		#Create courses
 		Course.create! :name => "Conciencia ecológica",

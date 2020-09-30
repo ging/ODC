@@ -2,13 +2,31 @@
     <!--<%= devise_error_messages! %>-->
 
 <%= render partial: "layouts/form_field", :locals => {
+	label: t('user.username'), 
+	type: "text", 
+	name:"user[username]", 
+	id: "username", 
+	required: true,
+	placeholder: "", 
+	value: user[:username] 
+}  %>
+<%= render partial: "layouts/form_field", :locals => {
 	label: t('user.name'), 
 	type: "text", 
 	name:"user[name]", 
 	id: "name", 
-	required: true,
+	required: false,
 	placeholder: "", 
 	value: user[:name] 
+}  %>
+<%= render partial: "layouts/form_field", :locals => {
+	label: t('user.surname'), 
+	type: "text", 
+	name:"user[surname]", 
+	id: "surname", 
+	required: false,
+	placeholder: "", 
+	value: user[:surname] 
 }  %>
 <%= render partial: "layouts/form_field", :locals => {
 	label: t('user.email'), 
