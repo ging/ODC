@@ -149,7 +149,9 @@ ActiveRecord::Schema.define(version: 2020_09_28_074819) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
     t.string "name"
+    t.string "surname"
     t.string "language"
     t.string "ui_language"
     t.text "tag_array_text", default: ""

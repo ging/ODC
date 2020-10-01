@@ -80,7 +80,7 @@ es:
             language:
               blank: "no puede estar en blanco"
               empty: "no puede estar en blanco"
-            name:
+            username:
               blank: "no puede estar en blanco"
               empty: "no puede estar en blanco"
             password:

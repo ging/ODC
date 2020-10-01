@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
     before_save :fillTags
     before_save :save_tag_array_text
 
-    validates_presence_of :name
+    validates_presence_of :username
     validates_presence_of :email
     validates_presence_of :encrypted_password
     validates :roles, :presence => { :message => I18n.t("dictionary.errors.blank") }
@@ -88,7 +88,6 @@ class User < ActiveRecord::Base
         case auth.provider
         when "github"
             email = auth["extra"]["raw_info"]["email"]
-            email = "agordillos@gmail.com"
         when "idm"
             email = auth["extra"]["raw_info"]["email"]
         else
