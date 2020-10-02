@@ -92,6 +92,7 @@
 			<%else%>
 				<br/>
 			<%end%>
+			<% free_spots = 1 %>
 			<% if @course[:webinar] %>
 				<%if @course[:start_date]%>
 					<div class="course-characteristic">
@@ -112,7 +113,12 @@
 					</div>
 				<%end%>
 			<% else %>
-				<%if @course[:start_date] and @course[:end_date]%>
+				<%if @course[:selfpaced]%>
+					<div class="course-characteristic">
+						<span class="course-field orange"><%= t("course.date")%>:</span>
+						<span class="self-paced"><%=t("course.selfpaced").upcase%></span>
+					</div>
+				<%elsif @course[:start_date] and @course[:end_date]%>
 					<div class="course-characteristic">
 						<span class="course-field orange"><%= t("course.date")%>:</span>
 						<span><%=to_dmy(@course[:start_date],offset_orig)%>-<%=to_dmy(@course[:end_date],offset_orig)%></span> 
@@ -141,6 +147,14 @@
 						<span><%=@course[:lessons]%></span>
 					</div>
 				<% end %>
+			<% end %>
+			<% if !@course[:spots].blank? %>
+				<% free_spots = [(@course[:spots] - @course.enrollments.length),0].max  %>
+
+				<div class="course-characteristic">
+					<span class="course-field orange"><%= t("course.free_spots")%>:</span> 
+					<span><%=free_spots%>/<%=@course[:spots]%></span>
+				</div>
 			<% end %>
 			<% if !@course[:lang].blank? %>
 				<div class="course-characteristic">
@@ -194,16 +208,24 @@
 				<%= button_to (@course[:webinar] ? t("webinar.unenroll") : t("course.unenroll")), {:controller => "courses", :action => "unenroll"}, {:class=> "btn btn-secondary btn-inverse", :method=>:post}  %>
 				<% elsif ended %>
 					<div class="course-characteristic">
-					<span class="course-field orange"><%=(@course[:webinar] ? t("webinar.over") : t("course.over"))%></span>
+						<span class="course-field orange"><%=(@course[:webinar] ? t("webinar.over") : t("course.over"))%></span>
 					</div>
 				<%end%>
 				<br/><br/>
 			<% else %>
-				<% if @course.is_enrollment_period? and  (@course[:end_date].blank? or  @course[:end_date] >= now) %>
-					<%= button_to (@course[:webinar] ? t("webinar.enroll") : t("course.enroll")), {:controller => "courses", :action => "enroll"}, {:class=> "btn btn-inverse btn-primary", :method=>:post}  %>
+				<% if (@course.is_enrollment_period? and  (@course[:end_date].blank? or  @course[:end_date] >= now)) %>
+
+					<%if free_spots < 1%>
+						<div class="course-characteristic">
+							<span class="course-field orange"><%= t("course.max_capacity") %></span>
+						</div>
+					<%else%>
+
+						<%= button_to (@course[:webinar] ? t("webinar.enroll") : t("course.enroll")), {:controller => "courses", :action => "enroll"}, {:class=> "btn btn-inverse btn-primary", :method=>:post}  %>
+					<%end%>
 				<% elsif (!@course[:end_date].blank? and @course[:end_date] < now) %>
 					<div class="course-characteristic">
-					<span class="course-field orange"><%=(@course[:webinar] ? t("webinar.over") : t("course.over"))%></span>
+						<span class="course-field orange"><%=(@course[:webinar] ? t("webinar.over") : t("course.over"))%></span>
 					</div>
 				<% else %>
 					<div class="course-characteristic">

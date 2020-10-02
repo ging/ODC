@@ -34,6 +34,7 @@ en:
             dedication: "The estimated dedication"
             lessons: "The lessons"
             format: "The course format"
+            spots: "The capacity"
             categories: "The categories"
             contents: "The course content"
             successfully_destroyed: "Successfully deleted"

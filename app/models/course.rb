@@ -15,6 +15,10 @@ class Course < ApplicationRecord
 	has_attached_file :powered_by_logo, 
 		styles: { medium: "300x300>", thumb: "100x100>" }
 	
+	validates :spots, :numericality => true, :allow_nil => true
+
+	validates_numericality_of :spots, greater_than_or_equal_to: 0, :allow_nil => true
+
 	validates :webinar, inclusion: { in: [ true, false ], allow_blank: true }
 	# validates_presence_of :start_date
 	# validates_presence_of :end_date
@@ -47,7 +51,7 @@ class Course < ApplicationRecord
 	end
 
 	def is_enrollment_period?
-		return false if self.start_enrollment_date.blank? or self.end_enrollment_date.blank?
+		return self.selfpaced == true if self.start_enrollment_date.blank? or self.end_enrollment_date.blank?
 		tNow = Time.now
 		return ((tNow > self.start_enrollment_date) and (tNow < self.end_enrollment_date))
 	end

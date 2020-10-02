@@ -23,7 +23,9 @@
 				<span class="coming-up"><%=t("course.coming_up").upcase%></span> 
 			<%end%>
 		<%else%>
-			<%if course[:start_date] and course[:end_date]%>
+			<%if course[:selfpaced]%>
+				<span class="self-paced"><%=t("course.selfpaced").upcase%></span>
+			<%elsif course[:start_date] and course[:end_date]%>
 	 			<%=to_dmy(course[:start_date],offset)%> -  <%=to_dmy(course[:end_date],offset)%>
 			<%else%>
 				<span class="coming-up"><%=t("course.coming_up").upcase%></span> 

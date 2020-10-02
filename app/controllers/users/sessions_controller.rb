@@ -3,7 +3,7 @@ class Users::SessionsController < Devise::SessionsController
 
   #GET /resource/sign_in
   def new
-    if ODC::Application.config.APP_CONFIG["IDM"].blank?
+    if !ODC::Application.config.APP_CONFIG["IDM"].blank?
       super
     else
       redirect_to user_idm_omniauth_authorize_path

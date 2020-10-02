@@ -40,9 +40,21 @@
 				name: "course[date]", 
 				id: "#{tag}-date", 
 				required: false,
+				disabled: course[:selfpaced],
 				placeholder: course[:webinar] ?  t('webinar.date_placeholder') :  t('course.date_placeholder'), 
 				value: ((course[:start_date] and course[:end_date]) ? course[:webinar] ? ("#{to_dmyhm(course[:start_date],offset)} - #{to_dmyhm(course[:end_date],offset)}"): ("#{to_dmy(course[:start_date],offset)} - #{to_dmy(course[:end_date],offset)}") : "") 
 			}  %>
+			<% unless course[:webinar] %>
+				<div class="form-group row">
+					<legend class="col-form-label col-sm-2 pt-0"></legend>
+					<div class="col-sm-10">
+						<div class="custom-control form-check custom-checkbox"> 
+							<input type="checkbox" class="custom-control-input" id="selfpaced" name="course[selfpaced]" value="selfpaced" <%=course[:selfpaced] ? "checked":"" %>>
+							<label class="custom-control-label option-label" for="selfpaced"><%=t("course.selfpaced")%> (<%=t("course.selfpaced_explanation")%>)</label>
+						</div>
+					</div>
+				</div>
+			<% end %>
 			<%= render partial: "layouts/form_field", :locals => {
 				label: course[:webinar] ? t('webinar.enrollment_date') : t('course.enrollment_date'), 
 				type: "text", 
@@ -71,6 +83,15 @@
 				required: !course[:webinar],
 				placeholder: t("#{tag}.url_placeholder"), 
 				value: course[:url] 
+			}  %>
+			<%= render partial: "layouts/form_field", :locals => {
+				label: t("course.spots"), 
+				type: "number", 
+				required: false,
+				name:"course[spots]", 
+				id: "spots", 
+				placeholder: t("course.spots_placeholder"), 
+				value: course[:spots] 
 			}  %>
 			<%if course[:webinar]%>		
 			<%= render partial: "layouts/form_field", :locals => {

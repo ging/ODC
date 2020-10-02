@@ -35,6 +35,7 @@ es:
             dedication: "La dedicación estimada"
             lessons: "El nº de lecciones"
             format: "El formato del curso"
+            spots: "El nº de plazas"
             categories: "Las categorías del curso"
             contents: "El contenido del curso"
             successfully_destroyed: "Se ha borrado con éxito"

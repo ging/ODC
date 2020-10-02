@@ -85,6 +85,8 @@ en:
       enrollment_generic: "An error occurred and you could not be enrolled in the course"
       no_enrolled: "You are not enrolled in this course"
       unenrollment_generic: "An error occurred and you could not be unenrolled of the course"
+      overcrowded: "This course is already full"
+      not_active: "The enrollment period is not active"
     day: day
     days: days
     desc: Description
@@ -95,6 +97,7 @@ en:
     edit: "Editar curso"
     enroll: "Enroll"
     enroll_webinar: "Enroll"
+    free_spots: "Remaining spots"
     guide: "Teaching guide"
     hour: "hour"
     hours: "hours"
@@ -108,6 +111,7 @@ en:
     lessons_placeholder: "Number of lessons in the course and duration"
     live: "Live now "
     live_in: "in"
+    max_capacity: "This course is full"
     minute: "minute"
     minutes: "minutes"
     no_courses_yet: "You have not enrolled in any courses yet"
@@ -128,7 +132,11 @@ en:
     second: "second"
     seconds: "seconds"
     see: "See"
+    selfpaced: "Self-paced"
+    selfpaced_explanation: "Students can complete the course any time"
     successfully_created: 'Course was successfully created.'
+    spots: "Capacity"
+    spots_placeholder: "Number of spots available. Leave this field blank if you do not want to set a limit."
     successfully_updated: 'Course was successfully updated.'
     successfully_deleted: 'Course was successfully destroyed.'
     successfully_destroyed: 'Course was successfully destroyed.'

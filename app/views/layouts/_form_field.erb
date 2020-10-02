@@ -2,9 +2,9 @@
 	<label for="inputDuration" class="col-12 col-sm-2 col-form-label <%=required ? "is-required":"" %>"><%=label%></label>
 	<div class="col-12 col-sm-10">
 		<%if type == "textarea" %>
-			<textarea  class="form-control" autocomplete="off" name="<%=name%>" id="<%=id%>" placeholder="<%=placeholder %>" required="<%=required%>"rows="6" ><%=value%></textarea>
+			<textarea  class="form-control" autocomplete="off" name="<%=name%>" id="<%=id%>" placeholder="<%=placeholder %>" required="<%=defined?(required) and required == true%>"rows="6" ><%=value%></textarea>
 		<%else%>
-			<input type="<%=type%>" name="<%=name%>" <%=defined?(data_role) ? "data-role=#{data_role}": ''%> autocomplete="off" class="form-control" id="<%=id%>" placeholder="<%=placeholder %>" value="<%=value%>" <%=defined?(required) and required == true ? "required":""%>>
+			<input type="<%=type%>" name="<%=name%>" <%=defined?(data_role) ? "data-role=#{data_role}": ''%> autocomplete="off" class="form-control" id="<%=id%>" placeholder="<%=placeholder %>" value="<%=value%>" <%=defined?(required) and required == true ? "required":""%> <%= (defined?(disabled) and disabled == true) ? "disabled" : "" %> min=0>
 		<%end%>
 	</div>
 </div>

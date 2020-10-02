@@ -2,12 +2,13 @@
 .custom-form
 	.form-control
 		border-radius: 0 !important
-		color: black
-		border: 2px solid black
 		font-weight: 500
 		-webkit-box-shadow: 0 0 0 1000px white inset !important
 		font-size: 16px
 		line-height: 20px
+		&:not(:disabled)
+			color: black
+			border: 2px solid black
 		&:-internal-autofill-selected
 			background-color: transparent !important
 		&:focus
@@ -31,6 +32,9 @@
 		&:-webkit-autofill::first-line
 			font-size: 16px !important
 			line-height: 20px !important
+
+	select.form-control
+		-webkit-appearance: none
 	.col-form-label
 		font-weight: 750
 	.custom-control-input:focus~.custom-control-label::before
@@ -39,10 +43,13 @@
 	.custom-control-input:not(:disabled):active~.custom-control-label::before
 		border-color: $orange_light
 		background-color: white
-	.custom-control-label::before
-	    border-radius: 50%
-	    border-width: 2px
-	    border-color: black
+	.custom-control-label
+		&.option-label
+			font-weight: 500
+		&::before
+			border-radius: 50%
+			border-width: 2px
+			border-color: black
 	.custom-file
 		position: relative
 		.custom-file-input
@@ -82,6 +89,7 @@
 				font-family: "Font Awesome 5 Free" !important 
 				-webkit-font-smoothing: antialiased
 				font-weight: 900
+			
 	.custom-checkbox .custom-control-label::before
 		border-radius: 0
 	.input-group-addon-float

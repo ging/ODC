@@ -48,6 +48,11 @@ class CoursesController < ApplicationController
   # POST /courses
   def create
     @course = Course.new(course_params)
+    @course.selfpaced =  course_params[:selfpaced] == "selfpaced"
+    if @course.selfpaced
+      @course.start_date = nil
+      @course.end_date = nil
+    end
     if @course.save
       redirect_to @course, notice: I18n.t("course.successfully_created")
     else
@@ -60,6 +65,12 @@ class CoursesController < ApplicationController
   def update
     params.require(:course)[:webinar] = @course.webinar # do not allow to change from course to webinar or viceversa
     if @course.update(course_params)
+      @course.selfpaced = course_params[:selfpaced] == "selfpaced"
+      if @course.selfpaced
+        @course.start_date = nil
+        @course.end_date = nil
+      end
+
       if params.require(:course)[:thumb_delete] == "1"
         @course.thumb = nil
       end
@@ -86,7 +97,11 @@ class CoursesController < ApplicationController
     if user_signed_in?
       if current_user.courses.include?(@course)
         redirect_to @course, notice: I18n.t("course.errors.already_enrolled")
-      else
+      elsif !@course.spots.blank? and (@course.enrollments.length >= @course.spots)
+          redirect_to @course, notice: I18n.t("course.errors.overcrowded")
+      elsif !@course.is_enrollment_period?
+          redirect_to @course, notice: I18n.t("course.errors.not_active")
+      else  
         #Enroll
         if @course.enroll_user(current_user)
           redirect_to @course, notice: I18n.t("course.enrollment_success")
@@ -144,7 +159,7 @@ class CoursesController < ApplicationController
   def course_params
     params.require(:course)[:categories] ||= []
 
-    params.require(:course).permit(:name,:description,:start_date,:end_date,:start_enrollment_date,:end_enrollment_date,:format,:alt_link,:retransmission,:video,:type,:dedication,:powered_by,:powered_by_logo,:powered_by_link,:teaching_guide,:lang,:url,:lessons,:thumb,:webinar, categories: [], contents: [:title, topics: []], teachers_order: [])
+    params.require(:course).permit(:name,:description,:start_date,:end_date,:start_enrollment_date,:end_enrollment_date,:format,:alt_link,:retransmission,:video,:type,:dedication,:powered_by,:powered_by_logo,:powered_by_link,:teaching_guide,:lang,:url,:lessons,:thumb,:webinar, :selfpaced, :spots, categories: [], contents: [:title, topics: []], teachers_order: [])
   end
 
   def teachers_params
