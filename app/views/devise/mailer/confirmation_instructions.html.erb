@@ -1,5 +1,6 @@
-<p>Welcome <%= @email %>!</p>
+<p><%=t("mailer.welcome")%> <%= @email %>!</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p><%=t("mailer.welcome_msg")%></p>
+<p><%=t("mailer.link_msg")%></p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= link_to t("mailer.confirm"), confirmation_url(@resource, confirmation_token: @token) %></p>

@@ -178,6 +178,22 @@ en:
     welcome_new: Welcome
     welcome_old: "Welcome back"
     your_courses: "Your courses and webinars"
+  mailer:
+    welcome: "Welcome"
+    welcome_msg: "In the free educational platform of the Orange Foundation you will find courses and webinars adapted to your needs. Have fun learning with training prepared by specialists to face the challenges of this new digital era: 3D manufacturing, environment or responsible use of technology are just some examples of what you will discover."
+    link_msg: "You can confirm your account email through the link below"
+    confirm: "Confirm my account"
+    hello: "Hello"
+    confirmed: "We're contacting you to notify you that your email has been changed to"
+    unconfirmed: "We're contacting you to notify you that your email is being changed to"
+    password: We're contacting you to notify you that your password has been changed.
+    reset: "Someone has requested a link to change your password. You can do this through the link below."
+    password_change: "Change my password"
+    ignore: "If you didn't request this, please ignore this email."
+    above: "Your password won't change until you access the link above and create a new one."
+    locked: "Your account has been locked due to an excessive number of unsuccessful sign in attempts."
+    unlocked: "Click the link below to unlock your account:"
+    unlock: "Unlock my account"
   navbar: 
     courses: Courses
     forgot: "I forgot my password"

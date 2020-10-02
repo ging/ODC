@@ -151,6 +151,23 @@ es:
     welcome_new: Bienvenido
     welcome_old: "Bienvenido de nuevo"
     your_courses: "Tus cursos y webinars"
+  mailer:
+    welcome: "¡Bienvenido/a, "
+    welcome_msg: "En la plataforma educativa gratuita de la Fundación Orange encontrarás cursos y webinars adaptados a tus necesidades. Diviértete aprendiendo con formación preparada por especialistas para afrontar los retos de esta nueva era digital: fabricación 3D, medio ambiente o uso responsable de la tecnología son solo algunos ejemplos de lo que descubrirás."
+    link_msg: "Puedes confirmar tu correo haciendo click en el siguiente enlace:"
+    confirm: "Confirmar mi cuenta"
+    hello: "Hola"
+    confirmed: "Nos ponemos en contacto contigo para notificarte que tu correo se ha cambiado a"
+    unconfirmed: "Nos ponemos en contacto contigo para notificarte que tu correo se va a cambiar a"
+    password: Nos ponemos en contacto contigo para notificarte que tu contraseña se ha cambiado
+    reset: "Alguien ha solicitado cambiar tu contraseña. Puedes hacerlo con el siguiente enlace:"
+    password_change: "Cambiar mi contraseña"
+    ignore: "Si no has sido tú, por favor ignora este correo."
+    above: "Tu contraseña no será cambiada hasta que accedas al siguiente enlace y crees una nueva."
+    locked: "Tu cuenta se ha bloqueado debido a un excesivo número de intentos fallidos de inicio de sesión."
+    unlocked: "Haz click en el siguiente enlace para desbloquear tu cuenta:"
+    unlock: "Desbloquear mi cuenta"
+    
   navbar:
     courses: "Cursos"
     forgot: "He olvidado mi contraseña"
