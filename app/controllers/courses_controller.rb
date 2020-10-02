@@ -60,11 +60,11 @@ class CoursesController < ApplicationController
   def update
     params.require(:course)[:webinar] = @course.webinar # do not allow to change from course to webinar or viceversa
     if @course.update(course_params)
-      if params.require(:course)[:thumb_delete]
+      if params.require(:course)[:thumb_delete] == "1"
         @course.thumb = nil
       end
 
-      if params.require(:course)[:powered_by_logo_delete]
+      if params.require(:course)[:powered_by_logo_delete] == "1"
          @course.powered_by_logo = nil
       end
       @course.save!
@@ -169,7 +169,6 @@ class CoursesController < ApplicationController
   def save_and_update_teachers
     @course.teachers = []
     return if teachers_params["teachers"].blank?
-
     teachers_order = {}
     teachers_params["teachers"].each do |teacherParams|
       teacher = CourseTeacher.find_by_id(teacherParams["id"]) || CourseTeacher.where(:name => teacherParams[:name]).first || CourseTeacher.new

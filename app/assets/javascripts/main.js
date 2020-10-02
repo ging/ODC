@@ -391,19 +391,20 @@ $(function() {
       var h = $input.data("h");
       var name = $input.data("name");
       var $image = $('#'+imgId);
-      console.log(imgId)
       if (imgId && $image.length) {
         var cropper = $image.data('cropper');
+        var deleted = false
         if (cropper) {
           var canvas = $image.cropper('getCroppedCanvas', {fillColor: '#fff'});// cropper.getCroppedCanvas({width: Number(w || 120), height: Number( h || 120)});
           var canvasr = canvas.toDataURL();
           var photo = dataURItoBlob(canvasr);
           $image.parent().append($(`<input type="hidden" name="${name}" value="${canvasr}"/>`));
-        } else if ($image.data("placeholder") === $image.attr("src")) {
-          $image.parent().append($(`<input type="hidden" name="${name.replace(/\]$/,"_delete]")}" value="1"/>`));
         } else  { // TODO _delete bien
+          if ($image.data("placeholder") === $image.attr("src")) {deleted = true;}
           $image.parent().append($(`<input type="hidden" name="${name}" value=""/>`));
         }
+        $image.parent().append($(`<input type="hidden" name="${name.replace(/\]$/,"_delete]")}" value="${deleted ? '1':''}"/>`));
+
       }
     });
     $('input[name="course[teachers][][order]"]').each(function(i,e){

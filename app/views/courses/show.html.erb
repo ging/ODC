@@ -217,6 +217,7 @@
 	</div>
 </div>
 <div class="container course-desc">
+	<br>	
 	<% if !@course.powered_by.blank? or !@course.powered_by_logo_file_name.nil? %>
 		<%if !@course[:powered_by_link].blank?%>
 			<a href="<%=@course[:powered_by_link]%>" class="o-link text-primary">
