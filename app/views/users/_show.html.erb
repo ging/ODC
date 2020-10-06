@@ -55,9 +55,8 @@
 <br/>
 <% end %>
 <script>
-console.log("<%=@profile_user[:provider]%>");
 window.selectedDates = [
-  <% events.each_with_index do |event, index| %>
+  <% (events || []).each_with_index do |event, index| %>
   	new Date("<%=event[:start_date]%>")<%if (events.length() != index + 1) %>,<%end%>
   <% end %>
   ].map(d=>{
