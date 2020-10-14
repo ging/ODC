@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_02_074919) do
+ActiveRecord::Schema.define(version: 2020_10_14_074919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,11 @@ ActiveRecord::Schema.define(version: 2020_10_02_074919) do
     t.string "powered_by_link"
     t.integer "spots"
     t.boolean "selfpaced"
+    t.text "target_audience"
+    t.string "thumb_min_file_name"
+    t.string "thumb_min_content_type"
+    t.bigint "thumb_min_file_size"
+    t.datetime "thumb_min_updated_at"
   end
 
   create_table "enrollments", force: :cascade do |t|

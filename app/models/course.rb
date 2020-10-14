@@ -12,6 +12,9 @@ class Course < ApplicationRecord
 	has_attached_file :thumb, 
 		styles: { medium: "1105x700>", thumb: "316x200>" }, 
 		default_url: "/img/course_placeholder.png"
+	has_attached_file :thumb_min, 
+		styles: { medium: "553x350>"}, 
+		default_url: "/img/course_placeholder.png"
 	has_attached_file :powered_by_logo, 
 		styles: { medium: "300x300>", thumb: "100x100>" }
 	
@@ -25,6 +28,7 @@ class Course < ApplicationRecord
 	validates_presence_of :name
 	validates_attachment :teaching_guide, content_type: { content_type: ["application/pdf"] }
 	validates_attachment :thumb, content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
+	validates_attachment :thumb_min, content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
 	validates_attachment :powered_by_logo, content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
 
 	def self.webinars

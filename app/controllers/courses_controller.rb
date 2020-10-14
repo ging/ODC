@@ -76,7 +76,9 @@ class CoursesController < ApplicationController
       if params.require(:course)[:thumb_delete] == "1"
         @course.thumb = nil
       end
-
+      if params.require(:course)[:thumb_min_delete] == "1"
+        @course.thumb_min = nil
+      end
       if params.require(:course)[:powered_by_logo_delete] == "1"
          @course.powered_by_logo = nil
       end
@@ -228,7 +230,7 @@ class CoursesController < ApplicationController
   def course_params
     params.require(:course)[:categories] ||= []
 
-    params.require(:course).permit(:name,:description,:start_date,:end_date,:start_enrollment_date,:end_enrollment_date,:format,:alt_link,:retransmission,:video,:type,:dedication,:powered_by,:powered_by_logo,:powered_by_link,:teaching_guide,:lang,:url,:lessons,:thumb,:webinar, :selfpaced, :spots, categories: [], contents: [:title, topics: []], teachers_order: [])
+    params.require(:course).permit(:name,:description,:start_date,:end_date,:start_enrollment_date,:end_enrollment_date,:format,:alt_link,:retransmission,:video,:type,:dedication,:powered_by,:powered_by_logo,:powered_by_link,:teaching_guide,:lang,:url,:lessons,:thumb,:thumb_min,:webinar, :target_audience, :selfpaced, :spots, categories: [], contents: [:title, topics: []], teachers_order: [])
   end
 
   def teachers_params

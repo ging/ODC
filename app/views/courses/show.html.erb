@@ -135,6 +135,12 @@
 						<span><%=@course[:dedication]%></span>
 					</div>
 				<% end %>
+				<% if !@course[:target_audience].blank? %>
+					<div class="course-characteristic">
+						<span class="course-field orange"><%= t("course.target_audience")%>:</span> 
+						<span><%=@course[:target_audience]%></span>
+					</div>
+				<% end %>
 				<% if !@course[:format].blank? %>
 					<div class="course-characteristic">
 						<span class="course-field orange"><%= t("course.format")%>:</span> 

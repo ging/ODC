@@ -122,6 +122,8 @@ es:
     successfully_destroyed: "Curso borrado con éxito."
     successfully_deleted: 'Curso eliminado con éxito.'
     tags: "Etiquetas"
+    target_audience: Dirigido a
+    target_audience_placeholder: Público objetivo al que se dirige el curso
     teachers: "Profesores"
     teacher:
       bio: "Breve biografía"
@@ -138,6 +140,8 @@ es:
       search: "Busca a un profesor ya existente"
       twitter: "Nombre de usuario de Twitter (sin @)"
       upload: "Subir..."
+    thumb: "Portada"
+    thumb_min: "Miniatura"
     title: "Título"
     title_placeholder: "Título del curso"
     topic: "Nombre del apartado"

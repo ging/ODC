@@ -149,6 +149,8 @@ en:
     successfully_deleted: 'Course was successfully destroyed.'
     successfully_destroyed: 'Course was successfully destroyed.'
     tags: "Tags"
+    target_audience: Directed to
+    target_audience_placeholder: Target audience of the course
     teachers: "Teachers"
     teacher:
       bio: "Short biography"
@@ -165,6 +167,8 @@ en:
       search: "Search for an existing teacher"
       twitter: "Twitter username (without the @)"
       upload: "Upload..."
+    thumb: "Cover picture"
+    thumb_min: "Thumbnail"
     title: "Title"
     title_placeholder: "Course title"
     topic: "Topic name"
