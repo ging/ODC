@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<div class="container">
+<div class="container" style="min-height: calc(100vh - 181px);">
 	<div class="row">
 		<div class="col-12">
 			<div class="user-block">
@@ -15,7 +15,7 @@
 							<% end %>
 						</div>
 					</div>
-					<% if @isProfileOwner %>
+					<% if (@isProfileOwner or current_user.isAdmin?) %>
 						<a href="/users/edit" style="float:right;">
 							<button class="btn btn-primary"><%=t("profile.edit")%></button>
 						</a>&nbsp;
@@ -25,7 +25,7 @@
 				<br>
 			</div>
 		</div>
-		<% if @isProfileOwner %>
+		<% if(@isProfileOwner or current_user.isAdmin?) %>
 		<div class="col-xs-12 col-md-6 calendar-container ">
 			<div id="calendar"></div>
 			<br/>
@@ -41,18 +41,16 @@
 		<% end %>
 	</div>
 </div>
+
+<% if (@isProfileOwner or current_user.isAdmin?) and (@profile_user.courses ||[]).length() > 0 %> 
 <br/>
 <br/>
-<% if @isProfileOwner and (@profile_user.courses ||[]).length() > 0 %>
 <div class="soft-background">
 	<%= render partial: "courses/course_list_4", 
 	:locals => {title: t("profile.your_courses_and_webinars"), courses: @profile_user.courses ||[] , link: "/", mine: true }  %>
 </div>
 <% else %>
-<br/>
-<br/>
-<br/>
-<br/>
+
 <% end %>
 <script>
 window.selectedDates = [

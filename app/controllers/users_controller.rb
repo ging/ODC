@@ -7,9 +7,13 @@ class UsersController < ApplicationController
   private
 
   def find_user
-    @profile_user = User.find_by_id(params[:id])
+    @profile_user = User.find_by_id(params[:id]) 
     authorize! :read, @profile_user
-    @isProfileOwner = (user_signed_in? and current_user.id==@profile_user.id)
+    if !@profile_user.nil?
+    	@isProfileOwner = (user_signed_in? and current_user.id==@profile_user.id)
+    else
+      redirect_to "/"
+    end
   end
 
 end

@@ -161,52 +161,61 @@ class CoursesController < ApplicationController
   # POST /menrollment
   def menrollment_create
     unless user_signed_in? and current_user.isAdmin?
-      redirect_to "/", notice: I18n.t("authorization.errors.generic")
+      redirect_to "/menrollment", notice: I18n.t("authorization.errors.generic")
+      return
     end
 
     csv_text = params[:csv].read rescue nil
-    redirect_to "/", notice: "CSV inválido" if csv_text.nil?
+    courses = params[:courses].split(",") rescue nil
+    if csv_text.nil?
+      redirect_to "/menrollment", notice: t("course.csv_invalid") 
+      return
+    elsif courses.nil?
+      redirect_to "/menrollment", notice: t("course.csv_courses_invalid")
+    else
+      require 'csv'
+      csv = CSV.parse(csv_text, {:headers => true, encoding: 'utf-8'})
+      headers = csv.headers.map{|h| I18n.transliterate(h).downcase}
 
-    require 'csv'
-    csv = CSV.parse(csv_text, {:headers => true, encoding: 'utf-8'})
-    headers = csv.headers.map{|h| I18n.transliterate(h).downcase}
-
-    emailIndex = headers.index("email") || headers.index("direccion de correo")
-    nameIndex = headers.index("name") || headers.index("nombre")
-    redirect_to "/", notice: "CSV inválido" if emailIndex.nil? or nameIndex.nil?
-    surnameIndex = headers.index("surname") || headers.index("apellido(s)")
-    passwordIndex = headers.index("password") || headers.index("contrasena")
-
-    csv.each do |row|
-      email = row[emailIndex]
-      user = User.find_by_email(email)
-      if user.blank?
-        #Create user
-        user = User.new
-        user.roles.push(Role.user)
-        user.email = email
-        user.name = row[nameIndex]
-        unless surnameIndex.nil?
-          user.name = user.name + " " + row[surnameIndex]
-          user.surname = row[surnameIndex]
-        end
-        user.username = user.name
-        user.password = (!passwordIndex.nil? and !row[passwordIndex].blank?) ? row[passwordIndex] : "odc-cambiame" 
-        user.ui_language = I18n.default_locale
-        user.confirmed_at = DateTime.now
-        user.skip_confirmation!
-        user.save
+      emailIndex = headers.index("email") || headers.index("direccion de correo")
+      nameIndex = headers.index("name") || headers.index("nombre")
+      if emailIndex.nil? or nameIndex.nil?
+        redirect_to "/menrollment", notice: t("course.csv_invalid") 
+        return
       end
-      #Enroll user in courses
-      if user.persisted?
-        courses = Course.where(id: [params["courses"]])
-        courses.each do |course|
-          course.enroll_user(user)
+      surnameIndex = headers.index("surname") || headers.index("apellido(s)")
+      passwordIndex = headers.index("password") || headers.index("contrasena")
+      csv.each do |row|
+        email = row[emailIndex]
+        user = User.find_by_email(email)
+        if user.blank?
+          #Create user
+          user = User.new
+          user.roles.push(Role.user)
+          user.email = email
+          user.name = row[nameIndex]
+          unless surnameIndex.nil?
+            user.name = user.name + " " + row[surnameIndex]
+            user.surname = row[surnameIndex]
+          end
+          user.username = user.name
+          user.password = (!passwordIndex.nil? and !row[passwordIndex].blank?) ? row[passwordIndex] : "odc-cambiame" 
+          user.ui_language = I18n.default_locale
+          user.confirmed_at = DateTime.now
+          user.skip_confirmation!
+          user.save
+        end
+        #Enroll user in courses
+        if user.persisted?
+          courses = Course.where(id: courses)
+          courses.each do |course|
+            course.enroll_user(user)
+          end
         end
       end
+
+      redirect_to "/", notice: t("course.massive_enrollment_success")
     end
-
-    redirect_to "/", notice: "Massive enrollment successfully completed"
   end
 
 

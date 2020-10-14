@@ -73,6 +73,12 @@ en:
       spoc: "SPOC (Small Private Online Course)"
       spooc: "SPOOC (Self-Paced Private Online Course)"
     create: Create
+    csv_courses_invalid: "Courses must be comma separated numbers" 
+    csv_def: "The CSV should be separated by commas and have the following structure"
+    csv_enroll: Choose a CSV file
+    csv_ids: "Course identifiers (you can see them on the URL of the courses)"
+    csv_invalid: Invalid CSV
+    csv_list: "List of users"
     date: Date
     enrollment_date: "Enrollment period"
     enrollment_period_over: "The enrollment period of this course is not active"
@@ -111,6 +117,8 @@ en:
     lessons_placeholder: "Number of lessons in the course and duration"
     live: "Live now "
     live_in: "in"
+    massive_enrollment: "Massive enrollment"
+    massive_enrollment_success: "Massive enrollment successfully completed"
     max_capacity: "This course is full"
     minute: "minute"
     minutes: "minutes"
@@ -230,6 +238,10 @@ en:
     no_results: "No results"
     prev: Previous
     write: "Type here your search"
+  terms:
+    accept: You must accept the terms and conditions
+    agree: I agree to the site
+    terms: terms and conditions
   user:
     confirm_password: "Confirm password"
     current_password: "Current password"

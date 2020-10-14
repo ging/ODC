@@ -121,6 +121,24 @@
 			<%= recaptcha_tags %>
 		</div>
 		<% end %>
+		<% if !user.id %>
+		<br>
+		<br>
+			<div class="custom-control form-check custom-checkbox">  
+				<input  required 
+						oninvalid="this.setCustomValidity('<%=t("terms.accept")%>')" 
+						oninput="setCustomValidity('')" 
+						type="checkbox" 
+						class="custom-control-input" 
+						id="terms" 
+						name="terms" 
+						value="accept">
+				<label class="custom-control-label" for="terms"><%=t("terms.agree")%>
+					<a class="orange o-link" href="http://www.fundacionorange.es/aviso-legal/" target="_blank"> <%=t("terms.terms")%></a>*</label>
+			</div>  
+
+		<%end%>
+
 
 		<div class="form-group row">
 			<div class="col-sm-10">
