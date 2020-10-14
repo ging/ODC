@@ -149,6 +149,21 @@ class CoursesController < ApplicationController
     end
   end
 
+  # GET /menrollment
+  def menrollment
+    unless user_signed_in? and current_user.isAdmin?
+      redirect_to "/", notice: I18n.t("authorization.errors.generic")
+    end
+  end
+
+  # POST /menrollment
+  def menrollment_create
+    unless user_signed_in? and current_user.isAdmin?
+      redirect_to "/", notice: I18n.t("authorization.errors.generic")
+    end
+    
+  end
+
 
   private
 
