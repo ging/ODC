@@ -177,10 +177,10 @@
 							<%end%>
 
 						</div>
-						</div>
-						<canvas class="canvas" style="width: 200px;height: 200px;"></canvas>
-
 					</div>
+					<canvas class="canvas" style="width: 200px;height: 200px;"></canvas>
+
+				</div>
 					<%unless course[:webinar]%>
 					<div class="form-group">
 						<div class="row">
@@ -266,8 +266,11 @@
 							<label class="col-sm-2 col-form-label"><%=t('course.teachers')%></label>
 							<div class="col-sm-10">
 								<style>:root{--no-teacher: "<%=t("course.no_teacher")%>";}</style>
-								<div id="teacher-list"><% teachers = course.sorted_teachers||[]%><% 
-									teachers.each_with_index do |teacher, index|%><%=render partial: "courses/teacher_card_edit", :locals => { index: index, teacher: teacher} %><% end %></div>
+								<div id="teacher-list">
+									<% teachers = course.sorted_teachers||[]%><% 
+									teachers.each_with_index do |teacher, index|%><%=render partial: "courses/teacher_card_edit", :locals => { index: index, teacher: teacher} %>
+									<% end %>
+								</div>
 								<div class="text-left ui-widget ui-front">
 									<%= render partial: "layouts/form_field_icon", :locals => {
 										label: "", 

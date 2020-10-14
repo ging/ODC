@@ -1,0 +1,32 @@
+<div class="container">
+	<div class="row">
+		<div class="col-12">
+			<br>
+			<h2>Massive Enrollment</h2>
+			<br/>
+			<br/>
+
+			<%= form_with(url: "/menrollment", method: "post", multipart: true) do %>
+				<%= render partial: "layouts/form_field", :locals => {
+					label: "Courses", 
+					type: "text", 
+					name:"courses", 
+					id: "name", 
+					required: true,
+					placeholder: "Course ids", 
+					value: ""
+				}  %>
+				<label for="avatar">Choose a CSV file:</label>
+				<input type="file" id="csv_file" name="csv" accept=".csv">
+				<br/><br/>
+				<input type="submit">
+				<br/><br/>
+			<% end %>
+
+			<script>
+				window.lang = "<%=I18n.locale%>";
+			</script>
+			<script src="/ckeditor4/ckeditor.js"></script>
+		</div>
+	</div>
+</div>
