@@ -257,6 +257,7 @@ en:
     password: "Password"
     picture: "Picture"
     surname: "Surname"
+    register: Register
     tags: "Tags"
     update: "Update"
     username: "User name"
