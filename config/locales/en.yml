@@ -191,6 +191,7 @@ en:
     send: "Send"
     sign_in: "Sign in"
     sign_in_with: "Sign in with %{provider}"
+    sign_in_already: "Already have an account? Sign in"
     sign_out: "Sign out"
     sign_up: "Sign up"
     unlock_instructions: "Didn't receive unlock instructions?"

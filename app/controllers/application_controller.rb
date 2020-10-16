@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 	before_action :configure_permitted_parameters, if: :devise_controller?
 	before_action :set_locale
 	check_authorization :unless => :devise_controller?
-	skip_authorization_check :only => [:page_not_found]
+	skip_authorization_check :only => [:page_not_found,:terms_of_use]
 
 	def set_locale
 		I18n.locale = extract_locale_from_params || extract_locale_from_user_profile || extract_locale_from_session || extract_locale_from_webclient || I18n.default_locale
@@ -66,6 +66,10 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
+	def terms_of_use
+		render "layouts/_terms"
+	end
+
 	protected
 
 	def configure_permitted_parameters
@@ -98,6 +102,7 @@ class ApplicationController < ActionController::Base
 			return (Utils.valid_locale?(client_locale) ? client_locale : nil)
 		end
 	end
+
 
 
 end

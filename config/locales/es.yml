@@ -222,6 +222,7 @@ es:
     send: "Enviar"
     sign_in: "Iniciar sesión"
     sign_in_with: "Iniciar sesión con %{provider}"
+    sign_in_already: "¿Ya tienes una cuenta? Inicia sesión"
     sign_out: "Cerrar sesión"
     sign_up: "Regístrate"
     unlock_instructions: "¿No has recibido las instrucciones para desbloquear la cuenta?"
