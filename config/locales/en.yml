@@ -11,7 +11,7 @@ en:
         course_teachers: Teachers
     attributes:
         user:
-            password: La password
+            password: The password
             current_password: "The current password"
             password_confirmation: "The confirmation password"
             name: "The user name"
@@ -61,6 +61,7 @@ en:
               blank: "can't be blank"
             password:
               blank: "can't be blank"
+              confirmation: "doesn't match the password"
   authorization:
     errors:
         generic: "You are not authorized to access this resource or perform this action"

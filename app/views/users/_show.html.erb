@@ -15,7 +15,7 @@
 							<% end %>
 						</div>
 					</div>
-					<% if (@isProfileOwner or current_user.isAdmin?) %>
+					<% if (@isProfileOwner) %>
 						<a href="/users/edit" style="float:right;">
 							<button class="btn btn-primary"><%=t("profile.edit")%></button>
 						</a>&nbsp;

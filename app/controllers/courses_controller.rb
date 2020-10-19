@@ -180,13 +180,14 @@ class CoursesController < ApplicationController
       headers = csv.headers.map{|h| I18n.transliterate(h).downcase}
 
       emailIndex = headers.index("email") || headers.index("direccion de correo")
-      nameIndex = headers.index("name") || headers.index("nombre")
+      nameIndex = headers.index("firstname") || headers.index("name") || headers.index("nombre")
       if emailIndex.nil? or nameIndex.nil?
         redirect_to "/menrollment", notice: t("course.csv_invalid") 
         return
       end
-      surnameIndex = headers.index("surname") || headers.index("apellido(s)")
+      surnameIndex  = headers.index("lastname") ||  headers.index("surname") || headers.index("apellido(s)")
       passwordIndex = headers.index("password") || headers.index("contrasena")
+      usernameIndex = headers.index("username") || headers.index("nombre de usuario")
       csv.each do |row|
         email = row[emailIndex]
         user = User.find_by_email(email)
@@ -197,10 +198,13 @@ class CoursesController < ApplicationController
           user.email = email
           user.name = row[nameIndex]
           unless surnameIndex.nil?
-            user.name = user.name + " " + row[surnameIndex]
             user.surname = row[surnameIndex]
           end
-          user.username = user.name
+          if usernameIndex.nil?
+            user.username = user.name
+          else
+            user.username = row[usernameIndex]
+          end
           user.password = (!passwordIndex.nil? and !row[passwordIndex].blank?) ? row[passwordIndex] : "odc-cambiame" 
           user.ui_language = I18n.default_locale
           user.confirmed_at = DateTime.now

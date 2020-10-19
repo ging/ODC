@@ -54,7 +54,7 @@ es:
         confirmation: "no coincide con %{attribute}"
         accepted: "debe estar aceptado"
         blank: "no puede estar en blanco"
-        confirmation: "no coincide con la confirmación"
+        confirmation: "no coincide con la contraseña"
         empty: "no puede estar vacío"
         equal_to: "debe ser igual a %{count}"
         even: "debe ser par"
@@ -71,6 +71,7 @@ es:
         too_long: "es demasiado largo (máximo %{count} caracteres)"
         too_short: "es demasiado corto (mínimo %{count} caracteres)"
         wrong_length: "no tiene la longitud correcta (debería tener %{count} caracteres)"
+
       models:
         user:
           attributes:
@@ -94,6 +95,7 @@ es:
             current_password:
               record_invalid: "no es válida"
               invalid: "no es válida"
+              too_short: "es demasiado corta (mínimo %{count} caracteres)"
   authorization:
     errors:
         generic: "No estás autorizado a acceder a este recurso o realizar esta acción"

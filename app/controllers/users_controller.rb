@@ -3,13 +3,38 @@ class UsersController < ApplicationController
 
   def show
   end
+
+  def edit
+  	if @isProfileOwner or current_user.isAdmin?
+  		super
+  	else
+  		redirect_to "/"
+  	end
+  end
+
+  def update
+  	if @isProfileOwner or current_user.isAdmin?
+  		super
+  	else
+  		redirect_to "/"
+  	end
+  end
  
+  def delete
+  	if @isProfileOwner or current_user.isAdmin?
+  		super
+  	else
+  		redirect_to "/"
+  	end
+  end
+
+
   private
 
   def find_user
     @profile_user = User.find_by_id(params[:id]) 
     authorize! :read, @profile_user
-    if !@profile_user.nil?
+    if !@profile_user.nil? and user_signed_in?
     	@isProfileOwner = (user_signed_in? and current_user.id==@profile_user.id)
     else
       redirect_to "/"
