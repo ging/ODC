@@ -208,7 +208,7 @@ class CoursesController < ApplicationController
           user.password = (!passwordIndex.nil? and !row[passwordIndex].blank?) ? row[passwordIndex] : "odc-cambiame" 
           user.ui_language = I18n.default_locale
           user.confirmed_at = DateTime.now
-          user.skip_confirmation!
+#          user.skip_confirmation!
           user.save
         end
         #Enroll user in courses
