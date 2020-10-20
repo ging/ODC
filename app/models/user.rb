@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
     devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, omniauth_providers: [:idm]
+    :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:idm]
 
     include Taggable
     acts_as_ordered_taggable
@@ -115,6 +115,11 @@ class User < ActiveRecord::Base
 
         u.save!
         return u
+    end
+
+    protected
+    def confirmation_required?
+      false
     end
 
 end
