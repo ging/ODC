@@ -31,7 +31,7 @@
 			<%end%>
 		<%end%>
 		</h5>
-	  <h4 class="card-title"><%=course[:name]%></h4>
+	  <h4 class="card-title"><a href="/courses/<%=course[:id]%>"><%=course[:name]%></a></h4>
 	  <div class="course-description">
 	  	<span class="text-wrapper"><%=sanitize(course[:description].html_safe,{:tags => []})%></span>
 	  </div>
