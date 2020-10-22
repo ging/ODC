@@ -1,23 +1,23 @@
-<%visible = !cookies.permanent[:cookies_set].blank? != true%>
+<%visible = cookies.permanent[:cookies_set].blank? == true%>
+<div class="cookie-placholder <%=visible ? '' : 'd-none' %>" style="visibility: hidden; margin-top:120px;"><%=t('cookies.msg') %></div>
+<div class="cookies <%=visible ? '' : 'd-none' %>" id="layer-cookies">
+	<p>
+		<%=t('cookies.msg') %>
+		"<a class="configCookies" href="#"  onclick="openPrompt()" onkeypress="openPrompt()" title="<%=t("cookies.more")%>"><%=t("cookies.more")%></a>"
 
-<div class="cookie-panel-section py-4 show-cookie-msg <%=visible ? '' : 'd-none' %>" style="">
-	<div class="container-fluid">
-		<a class="close hide-cookie-section-header-close" onclick="declineCookies()"></a>
-		<h1><%=t("cookies.title")%></h1>
-		<p class="small-text font-weight-bold col-xs-12 col-sm-9 col-md-6">
-			<%=t('cookies.msg') %>
-			<a class="o-link o-caps" target="_blank" href="https://www.orange.es/cookies.html">
-				<%=t('cookies.cookie_policy') %>
-			</a>
-		</p>
-		<p>
-			<a href="#" class="hide-cookie-section-header-button accept">
-				<button class="btn btn-orange-light" onclick="acceptCookies()"><%=t("cookies.agree")%></button>
-			</a>
-			<button class="btn btn-secondary" onclick="privacy(event)"><%=t("cookies.more")%></button>
-		</p>
+		<%=t('cookies.msg2') %> <a target="blank" href="https://www.fundacionorange.es/politica-de-cookies/"><%=t('cookies.cookie_policy') %></a>.
+	</p>
+	<div class="btn-group-owcs">
+		<button type="button" name="buttonCookie" class="btn btn-primary btn-owcs" title="<%=t("cookies.agree")%>" onclick="acceptCookies()" onkeypress="acceptCookies()"><%=t("cookies.agree")%>
+		</button>
 	</div>
-</div>	
+	<button type="button" class="btn-close-cookies" title="Cerrar aviso de Cookies" aria-label="Botón cerrar política de cookies" onclick="declineCookies()" onkeypress="declineCookies()">
+		<svg aria-labelledby="titleCerrar4444001445113 iconCerrar4444001445113" height="18px" role="img" viewBox="0 0 64 64" width="18px" xmlns="http://www.w3.org/2000/svg">
+			<title id="titleCerrar4444001445113">Icono cerrar</title>
+			<desc id="iconCerrar4444001445113">Un icono en forma de aspa de cierre</desc><path d="M57.34,57.07a6.75,6.75,0,0,1-9.53,0L32,41.25,16.19,57.07a6.74,6.74,0,0,1-9.53-9.54L22.47,31.72,7.23,16.47a6.74,6.74,0,0,1,9.53-9.54L32,22.19,47.25,6.93a6.74,6.74,0,1,1,9.52,9.54L41.53,31.72,57.34,47.53A6.75,6.75,0,0,1,57.34,57.07Z" transform="translate(-4.69 -4.96)"></path></svg>
+			<span class="hide-text-owcs">Cerrar ventana política de cookies</span>
+		</button>
+	</div>
 <script type="text/javascript">
 var utag_data = {
 }
@@ -33,15 +33,20 @@ function privacy(event){
 }
 
 function acceptCookies(event){
-	Cookies.set('cookies_set', 1, { expires: Infinity });
-	utag.gdpr.setConsentValue("true");
-	$('.cookie-panel-section').addClass("d-none");
+	setCookies("true");
 }
 
 function declineCookies(event){
-	$('.cookie-panel-section').addClass("d-none");
-
+	setCookies(0);
 }
+
+function setCookies(value) {
+	Cookies.set('cookies_set', 1, { expires: Infinity });
+	utag.gdpr.setConsentValue(value);
+	$('#layer-cookies').addClass("d-none");
+	$('.cookie-placholder').addClass("d-none");
+}
+
 </script>
 <!-- Loading script asynchronously -->
 <script type="text/javascript">

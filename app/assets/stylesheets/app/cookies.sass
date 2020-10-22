@@ -66,3 +66,124 @@
 					-o-transition: all .25s ease-in
 					transition: all .25s ease-in
 					border-radius: 14px
+
+
+.orange-footer .cookies
+  padding: 15px
+  width: 100%
+  position: fixed
+  top: auto
+  bottom: 0
+  z-index: 1500
+  background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#000))
+  background: -webkit-linear-gradient(top, #000, #000)
+  background: -o-linear-gradient(top, #000 0, #000 100%)
+  background: linear-gradient(180deg, #000 0, #000)
+  -webkit-box-sizing: border-box
+  box-sizing: border-box
+  border-style: solid
+  border-color: #ff7900
+  border-width: 2px 0 0
+  font-weight: 100
+  .hide-text-owcs
+  	display: none
+  p
+    margin-top: 0
+    margin-bottom: 0
+    padding-top: 40px
+    padding-right: 0
+    display: block
+    text-align: left
+    font-family: Helvetica--Neue--55, Arial, sans-serif
+    font-size: 14px
+    line-height: 16px
+    color: #fff
+
+    span
+      font-family: Helvetica--Neue--55, Arial, sans-serif
+      font-size: 14px
+      line-height: 16px
+      color: #fff
+
+    strong
+      font-size: 14px
+      line-height: 16px
+      color: #fff
+
+    a
+      color: #ff7900
+
+  .btn-group-owcs
+    margin-top: 20px
+    text-align: center
+    .btn-owcs
+      margin-bottom: 10px
+      display: inline-block
+      vertical-align: middle
+      font-weight: 100
+      color: white
+      &:active, &:hover
+        background-color: #fff
+        color: black
+    .btn-primary-owcs, .btn-primary-owcs.btn-primary
+      &:active, &:hover
+        color: #000
+        background-color: #fff !important
+        border:  .125rem solid #fff !important
+        border-color:  #fff !important
+
+    .btn-default-owcs
+      color: #fff
+      border-color: #fff
+      &:active, &:hover
+        color: #000
+        background-color: #fff
+        border-color: #fff
+
+  .btn-close-cookies
+    margin: 0
+    padding: 10px
+    position: absolute
+    top: 5px
+    right: 10px
+    z-index: 1
+    background-color: transparent
+    border-width: 0
+
+    svg
+      width: 20px
+      height: 20px
+      fill: #fff
+      -webkit-transition: fill .25s ease-in
+      -o-transition: fill .25s ease-in
+      transition: fill 0.25s ease-in
+
+    &:focus svg, &:hover svg
+      fill: #ff7900
+
+@media only screen and (min-width: 1280px)
+  .orange-footer .cookies p a:focus
+    outline-width: 2px
+    outline-style: dotted
+    outline-offset: 4px
+    outline-color: #ff6300
+
+@media only screen and (min-width: 768px)
+  .orange-footer .cookies p
+    padding-top: 0
+    padding-right: 60px
+
+@media only screen and (min-width: 768px)
+  .orange-footer .cookies .btn-group-owcs .btn-owcs
+    margin-bottom: 0
+    margin-right: 10px
+
+    &:last-child
+      margin-right: 0
+
+@media only screen and (min-width: 1280px)
+  .orange-footer .cookies .btn-close-cookies:focus svg
+    outline-width: 2px
+    outline-style: dotted
+    outline-offset: 4px
+    outline-color: #ff6300
