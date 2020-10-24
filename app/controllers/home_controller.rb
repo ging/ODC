@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
-	before_action :authenticate_user!, :except => [:frontpage]
-	skip_authorization_check :only => [:frontpage]
+	before_action :authenticate_user!, :except => [:frontpage, :help]
+	skip_authorization_check :only => [:frontpage, :help]
 
 	def frontpage
 		@user_courses = (user_signed_in? ? current_user.courses.sort_by{|c| current_user.enrollments.find_by_course_id(c.id).date}.reverse[0..3] : [])
@@ -9,5 +9,9 @@ class HomeController < ApplicationController
 		respond_to do |format|
 			format.html { render layout: "application" }
 		end
+	end
+
+	def help
+		render :help
 	end
 end

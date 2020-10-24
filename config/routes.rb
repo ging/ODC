@@ -31,6 +31,7 @@ ODC::Application.routes.draw do
   match "/search_teachers" => 'search#teacher_search', :via => :get
   #Terms of use
   match '/terms_of_use', to: "application#terms_of_use", via: [:get]
+  match '/help', to: "home#help", via: [:get]
 
   #Wildcard route (This rule should be placed the last)
   match "*not_found", :to => 'application#page_not_found', via: [:get]
