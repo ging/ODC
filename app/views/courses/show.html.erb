@@ -265,7 +265,7 @@
 				<p><%= @course[:description].html_safe%></p>
 				<% end %>
 			</div>
-			<%if @course[:contents] and @course[:contents].length() > 0 %>
+			<%if ((@course[:contents] and @course[:contents].length() > 0) or !@course.teaching_guide.blank?)%>
 			<div>
 				<h3 class="orange-light"><%= t("course.contents")%>
 					<%if !@course.teaching_guide.blank? %>
@@ -276,20 +276,22 @@
 					</a>
 					<% end %>
 				</h3>
-				<ul class="content-list">
-					<% @course[:contents].each do |section|%>
-					<li class="content-section">
-						<span class="content-title"><%=section[:title]%></span>
-						<% unless section[:topics].blank? %>
-						<ul class="topic-list">
-							<% section[:topics].each do |topic|%>
-							<li class="topic"><span><%=topic%></span></li>
+				<%if (@course[:contents] and @course[:contents].length() > 0)%>
+					<ul class="content-list">
+						<% @course[:contents].each do |section|%>
+						<li class="content-section">
+							<span class="content-title"><%=section[:title]%></span>
+							<% unless section[:topics].blank? %>
+							<ul class="topic-list">
+								<% section[:topics].each do |topic|%>
+								<li class="topic"><span><%=topic%></span></li>
+								<%end%>
+							</ul>
 							<%end%>
-						</ul>
-						<%end%>
-					</li>
-					<% end %>
-				</ul>
+						</li>
+						<% end %>
+					</ul>
+				<% end %>
 			</div>
 			<% end %>
 		</ul>
