@@ -30,6 +30,7 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 en:
   lang: en
+  about: About ODC
   banner:  ODC is a world-wide initiative by Orange Group that aims to develop a physical space to facilitate the digital transformation of the society
   calendar: 
     apply: Apply
