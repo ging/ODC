@@ -153,6 +153,7 @@ en:
     see: "See"
     selfpaced: "Self-paced"
     selfpaced_explanation: "Students can complete the course any time"
+    signup_enroll: "You are going to sign up in ODC and enroll in the following webinar/course:"
     successfully_created: 'Course was successfully created.'
     spots: "Capacity"
     spots_placeholder: "Number of spots available. Leave this field blank if you do not want to set a limit."

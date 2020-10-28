@@ -32,3 +32,5 @@ dumps/*
 *.key
 node_modules/
 *.pem
+config/database.yml
+config/application_config.yml

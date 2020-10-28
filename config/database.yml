@@ -1,8 +1,0 @@
-development:
-  adapter: postgresql
-  encoding: unicode
-  host: localhost
-  database: odc_development2
-  pool: 5
-  username: odc2
-  password: isabel2005

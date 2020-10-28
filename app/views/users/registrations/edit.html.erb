@@ -4,18 +4,17 @@
       <br>
       <h2><%=t("user.edit")%></h2>
       <br/>
+
+      <%= render partial: "users/form", :locals => { user:  @user} %>
+
       <br/>
+      <hr>
+      <h4><%=t("account.cancel")%></h4>
+      <p><%= button_to t("account.cancel"), registration_path(resource_name), data: { confirm: t("dictionary.are_you_sure"), "ok-button": t('accept'), "cancel-button": t('cancel')  }, method: :delete, class: "btn btn-outline-dark" %></p>
 
-  <%= render partial: "users/form", :locals => { user:  @user} %>
-
-  <br/>
-  <hr>
-  <h4><%=t("account.cancel")%></h4>
-  <p><%= button_to t("account.cancel"), registration_path(resource_name), data: { confirm: t("dictionary.are_you_sure"), "ok-button": t('accept'), "cancel-button": t('cancel')  }, method: :delete, class: "btn btn-outline-dark" %></p>
-
-  <%= link_to t("dictionary.back"), :back %>
-  <br/>
-  <br/>
-</div>
-</div>
+      <%= link_to t("dictionary.back"), :back %>
+      <br/>
+      <br/>
+    </div>
+  </div>
 </div>
