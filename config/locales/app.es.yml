@@ -54,7 +54,7 @@ es:
     csv_list: "Lista de usuarios"
     date: "Fecha"
     enrollment_date: "Fecha"
-    enrollment_period_over: "El periodo de matriculación de este curso no está activo"
+    enrollment_period_over: "El periodo de matriculación no está activo"
     date_placeholder: "Fechas de celebración del curso"
     enrollment_date_placeholder: "Periodo de matriculación del curso"
     enrollment_success: "Te has matriculado con éxito en este curso"
@@ -117,6 +117,7 @@ es:
     selfpaced: "Siempre abierto"
     selfpaced_explanation: "Los alumnos pueden completar el curso cuando quieran"
     see: "Ver"
+    signup_enroll: "Te vas a registrar en la plataforma y en el siguiente webinar/curso:"
     spots: "Plazas"
     spots_placeholder: "Número de plazas disponibles. Déja este campo vacío si no quieres limitar las plazas."
     successfully_created: 'Curso creado con éxito.'
