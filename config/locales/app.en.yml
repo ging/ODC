@@ -30,6 +30,7 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 en:
   lang: en
+  banner:  ODC is a world-wide initiative by Orange Group that aims to develop a physical space to facilitate the digital transformation of the society
   calendar: 
     apply: Apply
     cancel: Cancel
@@ -106,6 +107,14 @@ en:
     free_spots: "Remaining spots"
     guide: "Teaching guide"
     help: Help
+    help_section:
+      shortcut: Help
+      title: Ayuda para utilizar la plataforma
+      enroll_webinar: Cómo apuntarme a un webinar
+      enroll_course: Cómo matricularme en un curso
+      browse: Cómo navegar
+      signup: Cómo registrarme
+      browse: Cómo navegar por un curso
     hour: "hour"
     hours: "hours"
     interested_users: "Interested users"

@@ -107,7 +107,7 @@ es:
     entrepreneurship: Emprendimiento
     other: "Otros"
   cookies:
-    msg: Fundación Orange utiliza cookies propias y de terceros para analizar y personalizar tu navegación, así como para mostrarte publicidad basada en tus intereses teniendo en cuenta el perfil realizado mediante el seguimiento de su navegación. Pulsa “Aceptar” si autorizas todas estas cookies. También puedes configurar o rechazar las cookies clicando en
+    msg: Fundación Orange utiliza cookies propias y de terceros para analizar y personalizar tu navegación, así como para mostrarte publicidad basada en tus intereses teniendo en cuenta el perfil realizado mediante el seguimiento de su navegación (ej. páginas visitadas, clicks en contenidos, etc.). Pulsa “Aceptar” si autorizas todas estas cookies. También puedes configurar o rechazar las cookies clicando en
     msg2: u obtener más información en nuestra
     cookies_panel_title: Panel de configuración de cookies
     cookies_panel_explanation: Este es el configurador avanzado de cookies propias y de terceros. Aquí puedes modificar parámetros que afectarán directamente a tu experiencia de navegación en esta web.
