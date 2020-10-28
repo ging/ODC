@@ -32,11 +32,11 @@ en:
   lang: en
   about: About ODC
   banner:  ODC is a world-wide initiative by Orange Group that aims to develop a physical space to facilitate the digital transformation of the society
-  calendar: 
+  calendar:
     apply: Apply
     cancel: Cancel
     custom: Custom
-    days: 
+    days:
       fri: Friday
       mon: Monday
       sat: Saturday
@@ -45,7 +45,7 @@ en:
       tue: Tuesday
       wed: Wednesday
     from: From
-    months: 
+    months:
       apr: April
       aug: August
       dec: December
@@ -59,7 +59,7 @@ en:
       oct: October
       sep: September
     to: To
-  course: 
+  course:
     access: "Access course"
     add_new_lesson: "Add a new lesson"
     add_new_teacher: "Add a new teacher"
@@ -68,14 +68,14 @@ en:
     confirm_delete: "Are you sure you want to delete this course/webinar?"
     contents: Contents
     continue: Continue
-    course_formats: 
+    course_formats:
       moc: "MOC (Massive Online Course)"
       mooc: "MOOC (Massive Open Online Course)"
       nooc: "NOOC (Nano Open Online Course)"
       spoc: "SPOC (Small Private Online Course)"
       spooc: "SPOOC (Self-Paced Private Online Course)"
     create: Create
-    csv_courses_invalid: "Courses must be comma separated numbers" 
+    csv_courses_invalid: "Courses must be comma separated numbers"
     csv_def: "The CSV should be separated by commas and have the following structure"
     csv_enroll: Choose a CSV file
     csv_ids: "Course identifiers (you can see them on the URL of the courses)"
@@ -193,7 +193,7 @@ en:
     video_placeholder: "Link to the intro video (Youtube)"
     visits: "Visits"
     votes: "votes"
-  landing: 
+  landing:
     intro_new: "In the free educational platform of the Orange Foundation you will find courses and webinars adapted to your needs. Have fun learning with training prepared by specialists to face the challenges of this new digital era: 3D manufacturing, environment or responsible use of technology are just some examples of what you will discover."
     intro_old: "In the free educational platform of the Orange Foundation you will find courses and webinars adapted to your needs. Have fun learning with training prepared by specialists to face the challenges of this new digital era: 3D manufacturing, environment or responsible use of technology are just some examples of what you will discover."
     popular_courses: "Popular courses"
@@ -225,7 +225,7 @@ en:
     locked: "Your account has been locked due to an excessive number of unsuccessful sign in attempts."
     unlocked: "Click the link below to unlock your account:"
     unlock: "Unlock my account"
-  navbar: 
+  navbar:
     courses: Courses
     forgot: "I forgot my password"
     forgot_email: "Insert your e-mail to reset your password"
@@ -244,11 +244,11 @@ en:
     signup: "You don't have an account yet? Sign up!"
     webinars: Webinars
     home: "Home"
-  profile: 
+  profile:
     edit: "Edit profile"
     no_events: "There are not any events scheduled for this day"
     your_courses_and_webinars: "Your courses and webinars"
-  search: 
+  search:
     next: Next
     no_results: "No results"
     prev: Previous
@@ -290,6 +290,6 @@ en:
     enroll: "Register"
     unenroll: "Unregister"
     over: "The webinar has already finished"
+    enrollment_success: "You have been successfully enrolled in this webinar"
+    unenrollment_success: "You have been successfully unenrolled of this webinar"
   with: with
-
-

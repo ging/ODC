@@ -1,10 +1,18 @@
+<div>
+Si ya tienes cuenta: Inicia sesión
+</div>
+
 <div class="container">
   <div class="row">
     <div class="col-12">
       <br>
       <h2><%=t("user.new")%></h2>
       <br/>
-      <br/>
+
+<%if @course_to_enroll%>
+  Te vas a registrar en la plataforma y en el siguiente webinar/curso:
+  <%=@course_to_enroll.id%>
+<%end%>
 
   <%= render partial: "users/form", :locals => { user:  @user} %>
 

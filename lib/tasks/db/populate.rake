@@ -16,7 +16,7 @@ namespace :db do
 		user.username = "Demo"
 		user.ui_language = I18n.default_locale
 		user.confirmed_at = DateTime.now
-		user.skip_confirmation!
+		#user.skip_confirmation!
 		user.save!
 		puts "User '" + user.username + "' created with email '" + user.email + "' and password 'demonstration'"
 
@@ -28,7 +28,7 @@ namespace :db do
 		admin.username = "Admin"
 		admin.ui_language = I18n.default_locale
 		admin.confirmed_at = DateTime.now
-		admin.skip_confirmation!
+		#admin.skip_confirmation!
 		admin.save!
 		puts "User '" + admin.username + "' created with email '" + admin.email + "' and password 'demonstration'"
 

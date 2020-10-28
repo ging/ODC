@@ -8,7 +8,7 @@ class CoursesController < ApplicationController
   skip_authorization_check :only => [:webinars, :all_courses]
   after_action :save_and_update_teachers, only: [:create, :update]
   after_action :increase_visit_count, only: [:show]
-  
+
   # GET /courses
   def index
     @searching = true
@@ -105,10 +105,10 @@ class CoursesController < ApplicationController
           redirect_to @course, notice: I18n.t("course.errors.overcrowded")
       elsif !@course.is_enrollment_period?
           redirect_to @course, notice: I18n.t("course.errors.not_active")
-      else  
+      else
         #Enroll
         if @course.enroll_user(current_user)
-          redirect_to @course, notice: I18n.t("course.enrollment_success")
+          redirect_to @course, notice: @course[:webinar] ? I18n.t("webinar.enrollment_success"): I18n.t("course.enrollment_success")
         else
           redirect_to @course, notice: I18n.t("course.errors.enrollment_generic")
         end
@@ -124,7 +124,7 @@ class CoursesController < ApplicationController
       if current_user.courses.include?(@course)
         #Unenroll
         if @course.unenroll_user(current_user)
-          redirect_to @course, notice: I18n.t("course.unenrollment_success")
+          redirect_to @course, notice: @course[:webinar] ? I18n.t("webinar.unenrollment_success"): I18n.t("course.unenrollment_success")
         else
           redirect_to @course, notice: I18n.t("course.errors.unenrollment_generic")
         end
@@ -170,7 +170,7 @@ class CoursesController < ApplicationController
     csv_text = params[:csv].read rescue nil
     courses = params[:courses].split(",") rescue nil
     if csv_text.nil?
-      redirect_to "/menrollment", notice: t("course.csv_invalid") 
+      redirect_to "/menrollment", notice: t("course.csv_invalid")
       return
     elsif courses.nil?
       redirect_to "/menrollment", notice: t("course.csv_courses_invalid")
@@ -184,7 +184,7 @@ class CoursesController < ApplicationController
       emailIndex = headers.index("email") || headers.index("direccion de correo")
       nameIndex = headers.index("firstname") || headers.index("name") || headers.index("nombre")
       if emailIndex.nil? or nameIndex.nil?
-        redirect_to "/menrollment", notice: t("course.csv_invalid") 
+        redirect_to "/menrollment", notice: t("course.csv_invalid")
         return
       end
       surnameIndex  = headers.index("lastname") ||  headers.index("surname") || headers.index("apellido(s)")
@@ -207,7 +207,7 @@ class CoursesController < ApplicationController
           else
             user.username = row[usernameIndex]
           end
-          user.password = (!passwordIndex.nil? and !row[passwordIndex].blank?) ? row[passwordIndex] : "odc-cambiame" 
+          user.password = (!passwordIndex.nil? and !row[passwordIndex].blank?) ? row[passwordIndex] : "odc-cambiame"
           user.ui_language = I18n.default_locale
           user.confirmed_at = DateTime.now
           #user.skip_confirmation!
@@ -246,13 +246,13 @@ class CoursesController < ApplicationController
   def parse_course_params
     return if params[:course].blank?
     params[:course][:webinar] = (params[:course][:webinar] == "1")
-    offset = (cookies()[:utc_offset] || "0").to_i 
-    if params[:course][:date] 
+    offset = (cookies()[:utc_offset] || "0").to_i
+    if params[:course][:date]
       split_date = params[:course][:date].split(" - ")
       params[:course][:start_date] = helpers.parse_date(split_date[0], @course.webinar, offset)
       params[:course][:end_date] = helpers.parse_date(split_date[1], @course.webinar, offset)
     end
-    if params[:course][:enrollment_date] 
+    if params[:course][:enrollment_date]
       split_date = params[:course][:enrollment_date].split(" - ")
       params[:course][:start_enrollment_date] = helpers.parse_date(split_date[0], @course.webinar, offset)
       params[:course][:end_enrollment_date] = helpers.parse_date(split_date[1], @course.webinar, offset)
@@ -264,7 +264,7 @@ class CoursesController < ApplicationController
     teachers_order = {}
     teachers_params["teachers"].each do |teacherParams|
       teacher = CourseTeacher.find_by_id(teacherParams["id"]) || CourseTeacher.where(:name => teacherParams[:name]).first || CourseTeacher.new
-      id = teacher.id || teacherParams["id"] 
+      id = teacher.id || teacherParams["id"]
       teacher.assign_attributes(teacherParams.reject{|k,v| k=="order" or k == "avatar_delete"})
       teacher.id = id
       if teacherParams["avatar_delete"] == "1"

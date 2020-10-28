@@ -46,7 +46,7 @@ es:
       spoc: "SPOC (Small Private Online Course)"
       spooc: "SPOOC (Self-Paced Private Online Course)"
     create: "Crear"
-    csv_courses_invalid: "El campo de cursos debe ser una lista de números separados por comas" 
+    csv_courses_invalid: "El campo de cursos debe ser una lista de números separados por comas"
     csv_def: "El fichero CSV debe estar separado por comas (,) y seguir la siguiente estructura"
     csv_enroll: Sube un fichero CSV
     csv_ids: "Identificadores de los cursos separados por comas (puedes verlos en la URL de cada curso)"
@@ -190,7 +190,7 @@ es:
     locked: "Tu cuenta se ha bloqueado debido a un excesivo número de intentos fallidos de inicio de sesión."
     unlocked: "Haz click en el siguiente enlace para desbloquear tu cuenta:"
     unlock: "Desbloquear mi cuenta"
-    
+
   navbar:
     courses: "Cursos"
     forgot: "He olvidado mi contraseña"
@@ -256,5 +256,6 @@ es:
     enroll: "Apuntarme"
     unenroll: "Desapuntarme"
     over: "El webinar ha finalizado"
+    enrollment_success: "Te has matriculado con éxito en este webinar"
+    unenrollment_success: "Te has desmatriculado con éxito de este webinar"
   with: con
-      

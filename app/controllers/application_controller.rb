@@ -70,6 +70,10 @@ class ApplicationController < ActionController::Base
 		render "layouts/_terms"
 	end
 
+	def after_sign_in_path_for(resource)
+  	request.env['omniauth.origin'] || root_url
+	end
+
 	protected
 
 	def configure_permitted_parameters

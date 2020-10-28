@@ -5,12 +5,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    if params[:enroll]
+      @course_to_enroll = Course.find_by_id(params[:enroll])
+    end
+    super
+  end
 
   # POST /resource
   def create
+    if params[:enroll]
+      @course_to_enroll = Course.find_by_id(params[:enroll])
+      if !@course_to_enroll.spots.blank? and (@course_to_enroll.enrollments.length >= @course_to_enroll.spots)
+          redirect_to @course_to_enroll, notice: I18n.t("course.errors.overcrowded")
+          return
+      elsif !@course_to_enroll.is_enrollment_period?
+          redirect_to @course_to_enroll, notice: I18n.t("course.errors.not_active")
+          return
+      end
+    end
     build_resource(sign_up_params)
 
     if resource.has_attribute?(:language) and resource.has_attribute?(:ui_language)
@@ -31,6 +44,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
         if resource.active_for_authentication?
           set_flash_message! :notice, :signed_up
           sign_up(resource_name, resource)
+          if @course_to_enroll.enroll_user(resource)
+            redirect_to @course_to_enroll, notice: @course_to_enroll[:webinar] ? I18n.t("webinar.enrollment_success"): I18n.t("course.enrollment_success")
+            return
+          else
+            redirect_to @course_to_enroll, notice: I18n.t("course.errors.enrollment_generic")
+            return
+          end
           respond_with resource, location: after_sign_up_path_for(resource)
         else
           set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
@@ -113,7 +133,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       self.resource = resource_class.new sign_up_params
       resource.validate # Look for any other validation errors besides Recaptcha
       respond_with_navigational(resource) { render :new }
-    end 
+    end
   end
 
 end
