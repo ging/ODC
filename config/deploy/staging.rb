@@ -19,7 +19,7 @@ server server_url, user: username, roles: %w{app db web}
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 
-set :default_env, { 'PASSENGER_INSTANCE_REGISTRY_DIR' => '/home/ubuntu/passenger_tmp' }
+set :default_env, { 'PASSENGER_INSTANCE_REGISTRY_DIR' => '/home/' + config["username"] + '/passenger_tmp' }
 
 set :branch, branch
 
