@@ -257,6 +257,6 @@ es:
     enroll: "Apuntarme"
     unenroll: "Desapuntarme"
     over: "El webinar ha finalizado"
-    enrollment_success: "Te has matriculado con éxito en este webinar"
-    unenrollment_success: "Te has desmatriculado con éxito de este webinar"
+    enrollment_success: "Te has apuntado con éxito a este webinar"
+    unenrollment_success: "Te has desapuntado con éxito de este webinar"
   with: con
