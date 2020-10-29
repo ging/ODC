@@ -1,6 +1,8 @@
 <%offset = cookies()[:utc_offset].blank? ? nil : (cookies()[:utc_offset]).to_i %>
-<div class="card course" style="width: 100%;" id="course-<%=index%>">
+	  
+<div class="card course <%if (defined? horizontal and horizontal == true)%>course_horizontal_summary<%end%>" style="width: 100%;" id="course-<%=index%>">
 	<div class="card-img-container">
+		
 		<a href="/courses/<%=course[:id]%>">
 	<img class="card-img-top" src="<%=  course.thumb_min.blank?  ?  course.thumb.url(:thumb) : course.thumb_min %>"  alt="">
 		<%if (course[:webinar])%>
@@ -17,7 +19,7 @@
 		<h5 class="course-date">
 		<%if course[:webinar]%>
 			<%if course[:start_date]%>
-				<%=to_dmyhm(course[:start_date],offset)%> <%unless (!cookies()[:utc_offset].blank?)%>UTC<%end%>
+				<%=to_dmyhm(course[:start_date],offset)%> <%unless (!cookies()[:utc_offset].blank?)%>UTC<%end%> 
 			<%else%>
 				<span class="coming-up"><%=t("course.coming_up").upcase%></span> 
 			<%end%>
@@ -37,6 +39,7 @@
 	  </div>
 	  <br/>
 	  <br/>
+	  <%if (!defined? horizontal or horizontal == false)%>
 	  <%if (defined? mine and mine == true)%>
 	  <% button_to (course[:webinar] ? t("webinar.unenroll") : t("course.unenroll")), "/courses/#{course.id}/unenroll", {:class=> "btn btn-outline-dark btn-smaller", :method=>:post}  %>
 		<a href="/courses/<%=course[:id]%>">
@@ -50,6 +53,7 @@
 			  	<%= t("course.read_more")%>
 			</button>
 		</a>
+	  <%end%>
 	  <%end%>
 
 	</div>

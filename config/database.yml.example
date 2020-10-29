@@ -4,5 +4,5 @@ development:
   host: localhost
   database: odc_development
   pool: 5
-  username: puo_dev
-  password: password
+  username: movle_dev
+  password: movlep1l0

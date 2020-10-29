@@ -1,0 +1,35 @@
+.course.card.course_horizontal_summary
+	flex-direction: row
+	height: auto !important
+	margin: 20px 0px 
+	position: relative
+	.card-img-container
+		padding-bottom: 0.5rem
+		width: 30%
+		max-width: 30%
+		flex: 100 0 auto
+		overflow: hidden
+	.course-description
+	    -webkit-line-clamp: 5
+	    min-height: 4rem
+@media (min-width: 992px) and (max-width: 1223px)
+	.course.card.course_horizontal_summary 	
+		.card-img-container
+			width: 40%
+			max-width: 40%
+@media  (min-width: 768px) and (max-width: 992px)
+	.course.card.course_horizontal_summary 
+		.card-img-container
+			width: 50%
+			max-width: 50%
+@media (max-width: 768px)
+	.course.card.course_horizontal_summary 
+		flex-direction: column	
+		position: static
+		.card-img-container
+			width: 100%
+			max-width: 100%
+			flex: 100 1 auto
+			overflow: visible
+			padding-bottom: 63.29%
+

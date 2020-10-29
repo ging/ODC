@@ -4,6 +4,25 @@ class ApplicationController < ActionController::Base
 	before_action :set_locale
 	check_authorization :unless => :devise_controller?
 	skip_authorization_check :only => [:page_not_found,:terms_of_use]
+	before_action :store_location
+
+
+	#############
+  # Last location handling
+  #############
+  # Store last url. This filter is used for post-login redirect to whatever the user last visited.
+  def store_location
+    if (
+      request.get? && #only store get requests
+      request.format == "text/html" &&   #if the user asks for a specific resource .jpeg, .png etc do not redirect to it
+      !request.xhr? && # don't store ajax calls
+      !request.path_info.include?("/users/")  #for any authentication avoid ERR_TOO_MANY_REDIRECTS
+    )
+      session[:user_return_to] = request.fullpath
+    end
+  end
+
+
 
 	def set_locale
 		I18n.locale = extract_locale_from_params || extract_locale_from_user_profile || extract_locale_from_session || extract_locale_from_webclient || I18n.default_locale

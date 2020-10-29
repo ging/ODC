@@ -310,5 +310,5 @@
 </div>
 <div class="soft-background">
 	<%= render partial: "courses/course_list_4",
-	:locals => {title: t("course.related_courses"), courses: @related_courses || [], link: "/", mine: false }  %>
+	:locals => {title: @course[:webinar] ? t("course.related_webinars") : t("course.related_courses"), courses: @related_courses || [], link: "/", mine: false }  %>
 </div>

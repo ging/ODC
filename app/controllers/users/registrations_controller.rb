@@ -44,12 +44,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
         if resource.active_for_authentication?
           set_flash_message! :notice, :signed_up
           sign_up(resource_name, resource)
-          if @course_to_enroll.enroll_user(resource)
-            redirect_to @course_to_enroll, notice: @course_to_enroll[:webinar] ? I18n.t("webinar.enrollment_success"): I18n.t("course.enrollment_success")
-            return
-          else
-            redirect_to @course_to_enroll, notice: I18n.t("course.errors.enrollment_generic")
-            return
+          if !@course_to_enroll.blank?
+            if @course_to_enroll.enroll_user(resource)
+              redirect_to @course_to_enroll, notice: @course_to_enroll[:webinar] ? I18n.t("webinar.enrollment_success"): I18n.t("course.enrollment_success")
+              return
+            else
+              redirect_to @course_to_enroll, notice: I18n.t("course.errors.enrollment_generic")
+              return
+            end
           end
           respond_with resource, location: after_sign_up_path_for(resource)
         else
@@ -117,9 +119,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+   def after_sign_up_path_for(resource)
+     stored_location_for(resource) || root_path
+   end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)

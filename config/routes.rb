@@ -29,6 +29,7 @@ ODC::Application.routes.draw do
   #Search
   match "/search" => 'search#index', :via => :get
   match "/search_teachers" => 'search#teacher_search', :via => :get
+  
   #Terms of use
   match '/terms_of_use', to: "application#terms_of_use", via: [:get]
   match '/help', to: "home#help", via: [:get]
