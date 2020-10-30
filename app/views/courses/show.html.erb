@@ -236,6 +236,10 @@
 					<div class="course-characteristic">
 						<span class="course-field orange"><%=(@course[:webinar] ? t("webinar.over") : t("course.over"))%></span>
 					</div>
+				<% elsif @course.enrollment_period_future? %>
+					<div class="course-characteristic">
+                                                <span class="course-field orange"><%=t('course.enrollment_period_future') + to_dmy(@course[:start_enrollment_date],offset_orig) %></span>
+                                        </div>
 				<% else %>
 					<div class="course-characteristic">
 						<span class="course-field orange"><%=t('course.enrollment_period_over')%></span>

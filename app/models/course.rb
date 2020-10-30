@@ -60,6 +60,10 @@ class Course < ApplicationRecord
 		return ((tNow > self.start_enrollment_date) and (tNow < self.end_enrollment_date))
 	end
 
+	def enrollment_period_future?
+		return !self.start_enrollment_date.nil? && Time.now < self.start_enrollment_date
+	end
+
 	def add_rating(user,rating)
 		return if user.nil? or rating.blank?
 		r = self.ratings.find_by_user_id(user.id) || CourseRating.new
