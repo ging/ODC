@@ -1,14 +1,141 @@
 <%= render "/home/banner" %>
+<div class="about-bckg">
+	<div class="container-fluid about">
+		<br>
+		<div class="row">
+			<div class="col-12 col-lg-6">
+				<div id="accordion-1" class="accordion">
+					<div class="card">
+						<div class="card-header" id="headingOne">
+							<h5 class="mb-0">
+								<a data-toggle="collapseno" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" role="button2">
+									<%=t("about.contact_us")%>
+								</a>
+							</h5>
+						</div>
+						<div id="collapseOne" data-parent="#accordion-1" class="collapse show" aria-labelledby="headingOne">
+							<div class="card-body">
+								<%=t("about.email_us")%> <a class="orange" href="mailto:contacto@orangedigitalcenter.com"><b>contacto@orangedigitalcenter.com</b></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 col-lg-6">
+				<div id="accordion-2" class="accordion">
+					<div class="card">
+						<div class="card-header" id="headingTwo">
+							<h5 class="mb-0">
+								<a data-toggle="collapseno" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" role="button2">
+									<%=t("about.who_are_we")%>
+								</a>
+							</h5>
+						</div>
+						<div id="collapseTwo" data-parent="#accordion-2" class="collapse show" aria-labelledby="headingTwo">
+							<div class="card-body">
+								<%=t("about.who_we_are_1")%> <a class="orange" href="http://www.fundacionorange.es/"><b>Fundación Orange</b></a>
+								<%=t("about.who_we_are_2")%>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<div class="row">
+			<div class="col-12 text-center">
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/0ChuJl_9Je8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				
+			</div>
+		</div>
+		<br>
+		<br>
+		<div class="row">
+			<div class="col-12 col-lg-6">
+				<div id="accordion-3" class="accordion">
+					<div class="card">
+						<div class="card-header" id="headingThree">
+							<h5 class="mb-0">
+								<a data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree" role="button">
+									<%=t("about.odc_world")%>
+								</a>
+							</h5>
+						</div>
+						<div id="collapseThree" data-parent="#accordion-3" class="collapse" aria-labelledby="headingThree">
+							<div class="card-body">
+								<p><%=t("about.odc_world_1")%></p>
+								<p><%=t("about.odc_world_2")%></p>
+								<p><%=t("about.odc_world_3")%></p>
+								<p><%=t("about.odc_world_4")%></p>
+								<p><%=t("about.odc_world_5")%></p>
+								<p><%=t("about.odc_world_6")%></p>
+								<p><%=t("about.odc_world_7")%></p>
+								<ul>
+								<li><%=t("about.odc_world_8")%></li>
+								<li><%=t("about.odc_world_9")%></li>
+								<li><%=t("about.odc_world_10")%></li>
+								</ul>
+								<p><%=t("about.odc_world_11")%> <a class="orange" href="https://www.orange.com/en/newsroom/news/2020/orange-digital-center-committed-digital-equality">
+									<b><%=t("about.odc_world_11_here")%></b></a></p>
 
-<div class="container" style="min-height: calc(100vh - 227px);">
-	
-	<br><br>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 col-lg-6">
+				<div id="accordion-4" class="accordion">
+					<div class="card">
+						<div class="card-header" id="headingFour">
+							<h5 class="mb-0">
+								<a data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour" role="button">
+									<%=t("about.odc_spain")%>
+								</a>
+							</h5>
+						</div>
+						<div id="collapseFour" data-parent="#accordion-4" class="collapse" aria-labelledby="headingFour">
+							<div class="card-body">
+								<p><%=t("about.odc_spain_1")%></p>
+								<p><%=t("about.odc_spain_2")%></p>
+								<p><%=t("about.odc_spain_3")%></p>
+								<p><%=t("about.odc_spain_4")%></p>
+								<p><b><%=t("about.odc_spain_5")%></b></p>
+								<p><%=t("about.odc_spain_6")%></p>
+								<ul>
+									<li><b><%=t("about.odc_spain_cat_1")%></b></li>
+									<li><b><%=t("about.odc_spain_cat_2")%></b></li>
+									<li><b><%=t("about.odc_spain_cat_3")%></b></li>
+									<li><b><%=t("about.odc_spain_cat_4")%></b></li>
+								</ul>
+								<p><%=t("about.odc_spain_7_a")%> <b><%=t("about.odc_spain_cat_1")%></b> <%=t("about.odc_spain_7_b")%></p>
+								<p><%=t("about.odc_spain_8")%></p>
+								<div>
+									<div class="row">
+										<div class="col-12 col-lg-6">
+											<img class="w-100" src="/img/Garage.jpg">
+										</div>
+										<div class="col-12 col-lg-6">
+											<img class="w-100" src="/img/Garage1.jpg">
+										</div>
+									</div>
+								</div>
+								<br>
+								<p><%=t("about.odc_spain_9_a")%> <b><%=t("about.odc_spain_cat_2")%></b> <%=t("about.odc_spain_9_b")%></p>
+								<p><%=t("about.odc_spain_10_a")%> <b><%=t("about.odc_spain_cat_3")%></b> <%=t("about.odc_spain_10_b")%></p>
+								<p><%=t("about.odc_spain_11_a")%> <b><%=t("about.odc_spain_cat_4")%></b> <%=t("about.odc_spain_11_b")%></p>
+								<p><%=t("about.odc_spain_12")%></p>
+								<p><%=t("about.odc_spain_13")%></p>
+								<p><%=t("about.odc_spain_14")%></p>
+								<p><%=t("about.odc_spain_15")%><a class="orange" href="https://www.orange.com/en/newsroom/news/2020/orange-digital-center-committed-digital-equality">
+									<b><%=t("about.odc_spain_15_here")%></b></a></p>
 
-	<h1><%=t("about")%></h1>
-	
-	<br>
-	<p></p>
-
-
+							</div>
+						</div>
+					</div>
+				</div>			
+			</div>
+		</div>
+	</div>
 </div>
-
+<br>

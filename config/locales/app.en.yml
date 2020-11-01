@@ -30,8 +30,52 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 en:
   lang: en
-  about: About ODC
-  banner:  ODC is a world-wide initiative by Orange Group that aims to develop a physical space to facilitate the digital transformation of the society
+  about: 
+    title: "About"
+    contact_us: "Contact us"
+    email_us: "If you have any question or suggestion please write to:"
+    who_are_we: Who are we?
+    who_we_are_1: This is a proyect of
+    who_we_are_2: that we have developed at Universidad Politécnica de Madrid. It is a free online training proyect that is taking off. In the next video you can see the description of the project.
+    odc_world: Orange Digital Center in the world
+    odc_world_1: "The Orange Digital Center programme is a world-wide initiative by the Orange Group that reflects our commitment to making digital innovation and support more accessible to everyone."
+    odc_world_2: "This translates into physical spaces oriented to digital training and innovation supporting digital entrepreneurs."
+    odc_world_3: "These free digital resources provide training, acceleration and funding for the digital ecosystem." 
+    odc_world_4: "Orange Digital Centers serve as support and development centres for everyone to gain digital and entrepreneurial skills. From coding training to small business coaching, they cover a wide range of activities."
+    odc_world_5: "Free and open to all, the facilities promote learning based on concrete projects. Training courses in digital technology are available for students, job seekers and young people with or without qualifications."
+    odc_world_6: "As a true network of opportunities, Orange Digital Centers bring together several strategic programmes into one place:"
+    odc_world_7: "A Code School, which acts as a centre for vocational training and events."
+    odc_world_8: "A Solidarity FabLab, a digital manufacturing workshop that enables people to prototype and learn by “Doing”."
+    odc_world_9: "An Orange Fab, a start-up accelerator that forges national and international business partnerships with one or more Group entities."
+    odc_world_10: "The strategical goal of the Orange group in its plan Engage 2025 is to have at least one Orange Digital Center available in one of the 27 countries that integrate their operations world-wide."
+    odc_world_11: "If you would like to find out more about the project, you can do so "
+    odc_world_11_here: "here"
+    odc_spain: Orange Digital center in Spain
+    odc_spain_1:  "The Orange Digital Center programme is a world-wide initiative by the Orange Group that reflects our commitment to making digital innovation and support more accessible to everyone."
+    odc_spain_2: "In Spain, we will develop an ambitious project that will start with the implementation of a new online educational platform and will culminate in the creation of a physical space oriented to digital training and innovation supporting digital entrepreneurs."
+    odc_spain_3: "The online educational platform of Fundación Orange is aimed at education and digital inclusion, promoting innovation and entrepreneurship, is a place to train in digital skills to the most vulnerable social groups, as well as a meeting point for entrepreneurs, families and members of the educational community."
+    odc_spain_4: "In addition, Orange Digital Center will be a meeting point for entrepreneurs and start-ups, making available the best practices and resources to create their own business."
+    odc_spain_5: "Four learning paths"
+    odc_spain_6: "The courses with which Orange Digital Center starts its journey, are distributed in four learning paths:"
+    odc_spain_cat_1: "E-safety"
+    odc_spain_cat_2: "Digital inclusion"
+    odc_spain_cat_3: "Climate change"
+    odc_spain_cat_4: "Entrepreneurship"
+    odc_spain_7_a: "Regarding to the first learning path, "
+    odc_spain_7_b: " is aimed at the educational community, especially teachers, but also families. The aim is to train them in digital skills, especially in issues related to online security and privacy, very necessary areas in a hyperconnected society which have become of particular interest following the health crisis derived from COVID-19."
+    odc_spain_8: "In addition, a series of online presentations are proposed, to promote the positive use of technologies in the family and offer good educational ideas to mothers and fathers."
+    odc_spain_9_a: "The learning path devoted to "
+    odc_spain_9_b: "focuses on some of the vulnerable groups with which Fundación Orange has been working, namely young people, women and people with autism."
+    odc_spain_10_a: "The "
+    odc_spain_10_b: "learning path is aimed at raising awareness of the impact we have on the environment and how, from technology, we can reduce that impact. It is foreseen that the courses in this chapter will provide knowledge of circular economy and energy efficiency."
+    odc_spain_11_a: "Lastly, the learning path on"
+    odc_spain_11_b: "will allow the development of digital skills to improve professional activities, undertake or do business from the location of each student."
+    odc_spain_12: "The objective of this chapter is to make a contact with the digital world, giving the opportunity to understand the basic concepts of digital entrepreneurship and creating a meeting point between citizens, entrepreneurs and professionals with extensive experience in the digital world."
+    odc_spain_13: "This educational platform will grow with more content over time and is part of the Orange Digital Center program of the Orange group that serve as physical support and development centers for young people to acquire vital digital and business skills. From training in coding to coaching for small businesses."
+    odc_spain_14: "The strategic objective of the Orange group in its Engage 2025 plan is to have at least one Orange Digital Center in each of the 27 countries that make up its worldwide operations"
+    odc_spain_15: "If you want to know more about the Orange Digital Center program in the world click "
+    odc_spain_15_here: "here"
+  banner:  ODC is a world-wide initiative by the Orange Group that aims to develop a physical space to facilitate the digital transformation of the society
   calendar:
     apply: Apply
     cancel: Cancel

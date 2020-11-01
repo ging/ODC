@@ -109,6 +109,22 @@ class CoursesController < ApplicationController
         #Enroll
         if @course.enroll_user(current_user)
           redirect_to @course, notice: @course[:webinar] ? I18n.t("webinar.enrollment_success"): I18n.t("course.enrollment_success")
+          begin  
+            EnrollmentConfirmationMailer.enrollment_confirmation(current_user.email, current_user.name, @course).deliver_now
+          rescue EOFError,
+              IOError,
+              TimeoutError,
+              Errno::ECONNRESET,
+              Errno::ECONNABORTED,
+              Errno::EPIPE,
+              Errno::ETIMEDOUT,
+              Net::SMTPAuthenticationError,
+              Net::SMTPServerBusy,
+              Net::SMTPSyntaxError,
+              Net::SMTPUnknownError,
+              OpenSSL::SSL::SSLError => e
+            flash[:error] = "E-mail to #{nominee.email} could not be sent"
+          end  
         else
           redirect_to @course, notice: I18n.t("course.errors.enrollment_generic")
         end

@@ -1,0 +1,37 @@
+@import "colors"
+@media (min-width: 991.98px)
+	.about-bckg
+		background: url(/img/sobre3.png) -10% 100px no-repeat, url(/img/lapiz2.png) 110% 50px no-repeat
+		background-size: 30%, 30%
+		min-height: calc(100vh - 199px)
+.about
+	.accordion
+		.card
+			border: none
+			background: transparent
+			margin-bottom: 10px
+			.card-body
+				padding-top: 1rem
+			.card-header 
+				h5 
+					background-color: black
+					display: inline-block
+					color: $orange !important
+					a
+						color: $orange !important
+						padding-left: 2rem
+						padding-right: 2rem
+						position: relative
+						&:after
+							color: $orange !important
+							position: absolute
+							right: -40px
+							background: none
+							border: 18px solid transparent
+							border-left-color: $orange
+							transform: scale(1,0.7)
+				[aria-expanded=true]::after
+					transform: rotate(270deg) scale(1,0.7) translateX(10px)
+				&#headingOne, &#headingTwo
+					a::after
+						display: none
