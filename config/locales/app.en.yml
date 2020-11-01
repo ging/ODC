@@ -127,6 +127,7 @@ en:
     csv_list: "List of users"
     date: Date
     enrollment_date: "Enrollment period"
+    enrollment_period_future: "The enrollment period has not started. It starts on " 
     enrollment_period_over: "The enrollment period of this course is not active"
     date_placeholder: "Period in which the course will take place"
     enrollment_date_placeholder: "Course enrollment period"
