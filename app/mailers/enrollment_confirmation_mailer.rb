@@ -5,9 +5,9 @@ class EnrollmentConfirmationMailer < ApplicationMailer
   #
   #   en.enrollment_confirmation_mailer.enrollment_confirmation.subject
   #
-  def enrollment_confirmation(email, name,  course)
+  def enrollment_confirmation(email, username, course)
 	@course = course
-
-	mail(to: email, subject: 'Te has apuntado al curso' + course.name, encrypt: true)
+	@username = username
+	mail(to: email, subject: 'Te has apuntado al curso "' + course.name + '"', encrypt: true)
   end
 end
