@@ -176,7 +176,7 @@ a[x-apple-data-detectors='true'] {
   <tr>
     <td style="padding-right: 0px;padding-left: 0px;" align="center">
       
-      <img align="center" border="0" src="<%=@course.thumb.url%>" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 800px;" width="800" class="v-src-width v-src-max-width"/>
+      <img align="center" border="0" src="<%=@url%>/<%=@course.thumb.url%>" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 800px;" width="800" class="v-src-width v-src-max-width"/>
       
     </td>
   </tr>
@@ -399,6 +399,23 @@ a[x-apple-data-detectors='true'] {
   </tbody>
   </table>
   <!--[if (mso)|(IE)]></div><![endif]-->
+  <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "EventReservation",
+  "reservationStatus": "http://schema.org/Confirmed",
+  "underName": {
+    "@type": "Person",
+    "name": "<%=@username%>"
+  },
+  "reservationFor": {
+    "@type": "Event",
+    "name": "<%=course[:name]%>",
+    "startDate": "2027-03-06T19:30:00-08:00",
+    "url": "<%=@url%>/courses/<%=@course.id%>"
+  }
+}
+</script>
 </body>
 
 </html>
