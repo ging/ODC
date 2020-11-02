@@ -1,0 +1,5 @@
+<% if @course[:webinar] %>
+<%=t("webinar.enrollment_email")%> <%=@course[:name]%>!
+<% else %>
+<%=t("course.enrollment_email")%> <%=@course[:name]%>! 
+<% end %>

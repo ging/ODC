@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'no-reply@orangedigitalcenter.com'
+  default from: 'Orange Digital Center <no-reply@orangedigitalcenter.com>'
   layout 'mailer'
 end

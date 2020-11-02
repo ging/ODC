@@ -1,3 +1,11 @@
+<% offset_orig = @offset_orig %>
+<% offset = @offset %>
+
+<% now = (DateTime.now.to_time + offset / 60 ).to_datetime %>
+<% currentlyGoingOn = (!@course[:start_date].blank?  && (now > @course[:start_date]) && (now < @course[:end_date])) %>
+<% comingUp = @course[:start_date].blank? %>
+<% notYet = (comingUp or (now < @course[:start_date])) %>
+<% ended = !(comingUp or notYet or currentlyGoingOn) %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
@@ -159,10 +167,10 @@ a[x-apple-data-detectors='true'] {
   <div style="width: 100% !important;">
   <!--[if (!mso)&(!IE)]><!--><div style="padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;"><!--<![endif]-->
   
-<table id="u_content_image_1" class="u_content_image" style="font-family:'Open Sans',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+<table id="u_content_image_1" class="u_content_image" style="font-family:helvetica,arial,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
   <tbody>
     <tr>
-      <td style="overflow-wrap:break-word;word-break:break-word;font-family:'Open Sans',sans-serif;" align="left">
+      <td style="overflow-wrap:break-word;word-break:break-word;font-family:helvetica,arial,sans-serif;" align="left">
         
 <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr>
@@ -200,77 +208,71 @@ a[x-apple-data-detectors='true'] {
   <div style="width: 100% !important;">
   <!--[if (!mso)&(!IE)]><!--><div style="padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;"><!--<![endif]-->
   
-<table id="u_content_text_4" class="u_content_text" style="font-family:'Open Sans',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+<table id="u_content_text_4" class="u_content_text" style="font-family:helvetica,arial,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
   <tbody>
     <tr>
-      <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Open Sans',sans-serif;" align="left">
+      <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:helvetica,arial,sans-serif;" align="left">
   <div class="v-text-align" style="color: #000000; line-height: 140%; text-align: left; word-wrap: break-word;">
     <p style="font-size: 14px; line-height: 140%;"><span style="color: #ff7900; font-size: 14px; line-height: 19.6px;"><strong><span style="font-size: 28px; line-height: 39.2px;"><%=@course[:name]%></span></strong></span></p>
  
 
-<% if @course[:webinar] %>
-  <%if @course[:start_date]%>
-    <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px;"><span style="line-height: 19.6px; font-size: 14px;">
-        <%= t("course.date")%>:</span>
-      <span><%=to_dmyhm(@course[:start_date],offset_orig)%> <%unless (!offset_orig.blank?)%>UTC<%end%></span>
-    </p>
-  <%else%>
-    <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px;"><span style="line-height: 19.6px; font-size: 14px;">
-        <%= t("course.date")%>:</span>
-      <span class="coming-up"><%=t("course.coming_up").upcase%></span>
-    </p>
-  <%end%>
-  <%if @course[:start_date] and @course[:end_date]%>
-    <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px;"><span style="line-height: 19.6px; font-size: 14px;">
-        <%= t("webinar.duration")%>:</span>
-      <%duration = ((@course[:end_date] - @course[:start_date]))%>
-      <span><%=formatted_duration(duration)%></span>
-    </p>
-  <%end%>
-<% else %>
-  <%if @course[:selfpaced]%>
-    <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px;"><span style="line-height: 19.6px; font-size: 14px;">
-        <%= t("course.date")%>:</span>
-      <span class="self-paced"><%=t("course.selfpaced").upcase%></span>
-    </p>
-  <%elsif @course[:start_date] and @course[:end_date]%>
-    <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px;"><span style="line-height: 19.6px; font-size: 14px;">
-        <%= t("course.date")%>:</span>
-      <span><%=to_dmy(@course[:start_date],offset_orig)%>-<%=to_dmy(@course[:end_date],offset_orig)%></span>
-    </p>
-  <%else%>
-	<p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px;"><span style="line-height: 19.6px; font-size: 14px;">
-		<%= t("course.date")%>:</span>
-		<span><%=t("course.coming_up").upcase%></span>
-	</div>
-<%end%>
-<%end%>
-
-
-
-
-
-
-
-
-
-
+    <% if @course[:webinar] %>
+      <%if @course[:start_date]%>
+        <p style="font-size: 18px; line-height: 140%;"> 
+          <strong><%=to_dmyhm(@course[:start_date],offset_orig)%> <%unless (!offset_orig.blank?)%>UTC<%end%></strong>
+        </p>
+      <%else%>
+        <p style="font-size: 18px; line-height: 140%; color:#A885D8;"> 
+          <strong><%=t("course.coming_up").upcase%></strong>
+        </p>
+      <%end%>
+      <%if @course[:start_date] and @course[:end_date]%>
+        <p style="font-size: 14px; line-height: 140%;"> 
+          <%duration = ((@course[:end_date] - @course[:start_date]))%>
+          <%=formatted_duration(duration)%>
+        </p>
+      <%end%>
+    <% else %>
+      <%if @course[:selfpaced]%>
+        <!-- <p style="font-size: 18px; line-height: 140%;"> 
+          <strong class="self-paced"><%=t("course.selfpaced").upcase%></strong>
+        </p> -->
+      <%elsif @course[:start_date] and @course[:end_date]%>
+        <p style="font-size: 18px; line-height: 140%;"> 
+          <strong><%=to_dmy(@course[:start_date],offset_orig)%>-<%=to_dmy(@course[:end_date],offset_orig)%></strong>
+        </p>
+      <%else%>
+      	<p style="font-size: 22px; line-height: 140%; color:#A885D8;">
+      		<strong><%=t("course.coming_up").upcase%></strong>
+      	</p>
+      <%end%>
+    <%end%>
   </div>
-
+      </td>
+    </tr>
+    <tr>
+      <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:helvetica,arial,sans-serif;" align="left">
+        <p style="font-size: 14px; line-height: 140%;">
+          <% if @course[:webinar] %>
+          <%=t("webinar.enrollment_email")%> <strong><%=@course[:name]%></strong>!
+          <% else %>
+           <%=t("course.enrollment_email")%> <strong><%=@course[:name]%></strong>!
+          <% end %>
+        </p>
       </td>
     </tr>
   </tbody>
 </table>
 
-<table id="u_content_button_1" class="u_content_button" style="font-family:'Open Sans',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+<table id="u_content_button_1" class="u_content_button" style="font-family:helvetica,arial,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
   <tbody>
     <tr>
-      <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Open Sans',sans-serif;" align="left">
+      <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:helvetica,arial,sans-serif;" align="left">
         
 <div class="v-text-align" align="center">
-  <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;font-family:'Open Sans',sans-serif;"><tr><td class="v-text-align" style="font-family:'Open Sans',sans-serif;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://orangedigitalcenter.com/" style="height:38px; v-text-anchor:middle; width:110px;" arcsize="0%" stroke="f" fillcolor="#FF7900"><w:anchorlock/><center style="color:#FFFFFF;font-family:'Open Sans',sans-serif;"><![endif]-->
-    <a href="https://orangedigitalcenter.com/" target="_blank" class="v-size-width" style="box-sizing: border-box;display: inline-block;font-family:'Open Sans',sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #FF7900; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;">
-      <span class="v-padding" style="display:block;padding:10px 20px;line-height:130%;"><span style="font-size: 14px; line-height: 18.2px;">Acceder</span></span>
+  <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;font-family:helvetica,arial,sans-serif;"><tr><td class="v-text-align" style="font-family:helvetica,arial,sans-serif;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://orangedigitalcenter.com/" style="height:38px; v-text-anchor:middle; width:110px;" arcsize="0%" stroke="f" fillcolor="#FF7900"><w:anchorlock/><center style="color:#FFFFFF;font-family:helvetica,arial,sans-serif;"><![endif]-->
+    <a href="<%=@url%>/courses/<%=@course.id%>" target="_blank" class="v-size-width" style="box-sizing: border-box;display: inline-block;font-family:helvetica,arial,sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #FF7900; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;">
+      <span class="v-padding" style="display:block;padding:10px 20px;line-height:130%;"><span style="font-size: 14px; line-height: 18.2px;"><%=t("course.enrollment_email_button")%></span></span>
     </a>
   <!--[if mso]></center></v:roundrect></td></tr></table><![endif]-->
 </div>
@@ -280,16 +282,16 @@ a[x-apple-data-detectors='true'] {
   </tbody>
 </table>
 
-<table id="u_content_image_3" class="u_content_image" style="font-family:'Open Sans',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+<table id="u_content_image_3" class="u_content_image" style="font-family:helvetica,arial,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
   <tbody>
     <tr>
-      <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Open Sans',sans-serif;" align="left">
+      <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:helvetica,arial,sans-serif;" align="left">
         
 <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr>
     <td style="padding-right: 0px;padding-left: 0px;" align="center">
       
-      <img align="center" border="0" src="http://localhost:3000/img/LogoFundacionBlack.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 300px;" width="300" class="v-src-width v-src-max-width"/>
+      <img align="center" border="0" src="<%=@url%>/img/LogoFundacionBlack.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;width: 100%;max-width: 200px;" width="300" class="v-src-width v-src-max-width"/>
       
     </td>
   </tr>
@@ -321,10 +323,10 @@ a[x-apple-data-detectors='true'] {
   <div style="width: 100% !important;">
   <!--[if (!mso)&(!IE)]><!--><div style="padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;"><!--<![endif]-->
   
-<table id="u_content_social_1" class="u_content_social" style="font-family:'Open Sans',sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
+<table id="u_content_social_1" class="u_content_social" style="font-family:helvetica,arial,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
   <tbody>
     <tr>
-      <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:'Open Sans',sans-serif;" align="left">
+      <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:helvetica,arial,sans-serif;" align="left">
         
 <div align="center">
   <div style="display: table; max-width:147px;">
@@ -335,7 +337,7 @@ a[x-apple-data-detectors='true'] {
     <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 5px">
       <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
         <a href="https://www.facebook.com/fundacionorange/" title="Facebook" target="_blank">
-          <img src="http://localhost:3000/img/fb.png" alt="Facebook" title="Facebook" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+          <img src="<%=@url%>/img/fb.png" alt="Facebook" title="Facebook" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
         </a>
       </td></tr>
     </tbody></table>
@@ -345,7 +347,7 @@ a[x-apple-data-detectors='true'] {
     <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 5px">
       <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
         <a href="https://twitter.com/fundacionorange/" title="Twitter" target="_blank">
-          <img src="http://localhost:3000/img/twitter.png" alt="Twitter" title="Twitter" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+          <img src="<%=@url%>/img/twitter.png" alt="Twitter" title="Twitter" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
         </a>
       </td></tr>
     </tbody></table>
@@ -355,7 +357,7 @@ a[x-apple-data-detectors='true'] {
     <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 5px">
       <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
         <a href="https://www.linkedin.com/company/fundacionorange/" title="LinkedIn" target="_blank">
-          <img src="http://localhost:3000/img/linkedin.png" alt="LinkedIn" title="LinkedIn" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+          <img src="<%=@url%>/img/linkedin.png" alt="LinkedIn" title="LinkedIn" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
         </a>
       </td></tr>
     </tbody></table>
@@ -365,7 +367,7 @@ a[x-apple-data-detectors='true'] {
     <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 0px">
       <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
         <a href="https://www.instagram.com/FundacionOrange/" title="Instagram" target="_blank">
-          <img src="http://localhost:3000/img/insta.png" alt="Instagram" title="Instagram" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+          <img src="<%=@url%>/img/insta.png" alt="Instagram" title="Instagram" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
         </a>
       </td></tr>
     </tbody></table>

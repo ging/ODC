@@ -103,8 +103,11 @@ es:
     enrollment_period_future: "El periodo de matriculación no ha comenzado. Comienza el "
     enrollment_period_over: "El periodo de matriculación ha terminado"
     date_placeholder: "Fechas de celebración del curso"
+    email_subject: "Gracias por apuntarte a "
     enrollment_date_placeholder: "Periodo de matriculación del curso"
     enrollment_success: "Te has matriculado con éxito en este curso"
+    enrollment_email: "¡Gracias por apuntarte al curso "
+    enrollment_email_button: "Acceder"
     unenrollment_success: "Te has desmatriculado con éxito de este curso"
     errors:
       already_enrolled: "Ya estás matriculado en este curso"
@@ -305,5 +308,6 @@ es:
     unenroll: "Desapuntarme"
     over: "El webinar ha finalizado"
     enrollment_success: "Te has apuntado con éxito a este webinar"
+    enrollment_email: "¡Gracias por apuntarte al webinar"
     unenrollment_success: "Te has desapuntado con éxito de este webinar"
   with: con
