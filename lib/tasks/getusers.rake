@@ -11,10 +11,10 @@ namespace :odc do
 		file = "#{Rails.root}/course_"+args[:courseid]+"_user_data.csv"
 
 		users = Course.find(args[:courseid]).users
-
-		headers = ["Nombre", "Apellidos", "Email"]
-
-		CSV.open(file, 'w', write_headers: true, headers: headers) do |writer|
+		
+		CSV.open(file, 'w') do |writer|
+		  writer.to_io.write "\uFEFF"
+		  writer << ["Nombre", "Apellidos", "Email"]
 		  users.each do |u|
 			  writer << [u.name, u.surname, u.email]
 		  end
