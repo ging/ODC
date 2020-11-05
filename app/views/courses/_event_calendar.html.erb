@@ -1,6 +1,8 @@
+<% if !(event[:end_date].blank? or event[:start_date].blank?) %>
+
 <%offset = cookies()[:utc_offset].blank? ? nil : (cookies()[:utc_offset]).to_i %>
 <div class="event-calendar hidden" data-date="<%= to_dmy_alt(event[:start_date])%>">
-	<%duration = (event[:end_date] - event[:start_date])%>
+	<%duration =  (event[:end_date] - event[:start_date])%>
 	<a href="/courses/<%=event[:id]%>"><h2 class="event-title"><%=event[:name]%></h2></a>
 	<p class="event-date"><%=to_dmyhm(event[:start_date],offset)%></p>
 	<p class="event-duration"><b><%=t("webinar.duration")%>:</b> <%=formatted_duration(duration)%></p>
@@ -8,3 +10,4 @@
 	<p class="event-language"><b><%=t("course.language")%>:</b> <%=event[:lang]%></p>
 	<%end%>
 </div>
+<%end%>
