@@ -64,7 +64,7 @@
 			</li>
 			<%end%>
 		</ul>
-		<% unless (@searching) %>
+		<% unless (@searching) || (user_signed_in? && current_user.isAdmin?) %>
 		<form class="form-inline my-2 my-lg-0 search-bar d-none d-lg-inline" action="/search">
 			<input class="form-control mr-sm-2 search-bar input input-search" name="q" placeholder="" aria-label="<%= t('navbar.search') %>" type="dsearch" autocomplete="off">
 			<button class="btn my-2 my-sm-0 btn-link btn-search" type="submit"><img src="/img/search_ES.svg" class="search-icon"/></button>
