@@ -30,24 +30,25 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 en:
   lang: en
-  about: 
+  about:
     title: "About"
     contact_us: "Contact us"
     email_us: "If you have any question or suggestion please write to:"
     who_are_we: Who are we?
     who_we_are_1: This is a proyect of
+    who_we_are_1a: Orange Group
     who_we_are_2: that we have developed at Universidad Politécnica de Madrid. It is a free online training proyect that is taking off. In the next video you can see the description of the project.
     odc_world: Orange Digital Center in the world
     odc_world_1: "The Orange Digital Center programme is a world-wide initiative by the Orange Group that reflects our commitment to making digital innovation and support more accessible to everyone."
     odc_world_2: "This translates into physical spaces oriented to digital training and innovation supporting digital entrepreneurs."
-    odc_world_3: "These free digital resources provide training, acceleration and funding for the digital ecosystem." 
+    odc_world_3: "These free digital resources provide training, acceleration and funding for the digital ecosystem."
     odc_world_4: "Orange Digital Centers serve as support and development centres for everyone to gain digital and entrepreneurial skills. From coding training to small business coaching, they cover a wide range of activities."
     odc_world_5: "Free and open to all, the facilities promote learning based on concrete projects. Training courses in digital technology are available for students, job seekers and young people with or without qualifications."
     odc_world_6: "As a true network of opportunities, Orange Digital Centers bring together several strategic programmes into one place:"
     odc_world_7: "A Code School, which acts as a centre for vocational training and events."
     odc_world_8: "A Solidarity FabLab, a digital manufacturing workshop that enables people to prototype and learn by “Doing”."
     odc_world_9: "An Orange Fab, a start-up accelerator that forges national and international business partnerships with one or more Group entities."
-    odc_world_10: "The strategical goal of the Orange group in its plan Engage 2025 is to have at least one Orange Digital Center available in one of the 27 countries that integrate their operations world-wide."
+    odc_world_10: "The strategical goal of the Orange group in its plan Engage 2025 is to have at least one Orange Digital Center available in each of the 26 countries that integrate their operations world-wide."
     odc_world_11: "If you would like to find out more about the project, you can do so "
     odc_world_11_here: "here"
     odc_spain: Orange Digital center in Spain
@@ -72,10 +73,10 @@ en:
     odc_spain_11_b: "will allow the development of digital skills to improve professional activities, undertake or do business from the location of each student."
     odc_spain_12: "The objective of this chapter is to make a contact with the digital world, giving the opportunity to understand the basic concepts of digital entrepreneurship and creating a meeting point between citizens, entrepreneurs and professionals with extensive experience in the digital world."
     odc_spain_13: "This educational platform will grow with more content over time and is part of the Orange Digital Center program of the Orange group that serve as physical support and development centers for young people to acquire vital digital and business skills. From training in coding to coaching for small businesses."
-    odc_spain_14: "The strategic objective of the Orange group in its Engage 2025 plan is to have at least one Orange Digital Center in each of the 27 countries that make up its worldwide operations"
+    odc_spain_14: "The strategic objective of the Orange group in its Engage 2025 plan is to have at least one Orange Digital Center in each of the 26 countries that make up its worldwide operations"
     odc_spain_15: "If you want to know more about the Orange Digital Center program in the world click "
     odc_spain_15_here: "here"
-  banner:  ODC is a world-wide initiative by the Orange Group that aims to develop a physical space to facilitate the digital transformation of the society
+  banner:  Orange Digital Center is an Orange Group initiative that aims to establish an innovation place dedicated to digital skills in every country where Orange operates
   calendar:
     apply: Apply
     cancel: Cancel
@@ -127,7 +128,7 @@ en:
     csv_list: "List of users"
     date: Date
     enrollment_date: "Enrollment period"
-    enrollment_period_future: "The enrollment period has not started. It starts on " 
+    enrollment_period_future: "The enrollment period has not started. It starts on "
     enrollment_period_over: "The enrollment period of this course is not active"
     date_placeholder: "Period in which the course will take place"
     email_subject: "Thanks for enrolling in "

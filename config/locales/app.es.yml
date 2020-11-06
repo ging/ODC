@@ -1,13 +1,14 @@
 ---
 es:
   lang: es
-  about: 
+  about:
     title: "Acerca de"
     contact_us: "Contáctanos"
     email_us: "Si tienes alguna duda o sugerencia mándanos un correo a:"
     who_are_we: ¿Quiénes somos?
-    who_we_are_1: Este es un proyecto de la
-    who_we_are_2: que hemos desarrollado en la Universidad Politécnica de Madrid. Es un proyecto de formación online gratuita que irá creciendo. En el siguiente vídeo puedes ver la explicación más detallada del proyecto. 
+    who_we_are_1: Este es un proyecto del
+    who_we_are_1a: Grupo Orange
+    who_we_are_2: que hemos desarrollado en la Universidad Politécnica de Madrid. Es un proyecto de formación online gratuita que irá creciendo. En el siguiente vídeo puedes ver la explicación más detallada del proyecto.
     odc_world: Orange Digital Center en el mundo
     odc_world_1: "El programa Orange Digital Center es una iniciativa mundial del Grupo Orange que refleja nuestro compromiso de hacer la innovación digital más accesible a todo el mundo."
     odc_world_2: "Esto se traduce en espacios físicos orientados a la formación digital y a la innovación apoyando a emprendedores digitales."
@@ -18,7 +19,7 @@ es:
     odc_world_7: "Una escuela de código, que actúa como centro de formación profesional y eventos como la Academia Sonatel de Senegal,"
     odc_world_8: "Un Garage Lab (Solidarity Fab), un taller de fabricación digital que permite a las personas crear prototipos y aprender haciendo,"
     odc_world_9: "Un Orange Fab como una aceleradora de start-ups que forja alianzas empresariales nacionales e internacionales con una o más entidades del Grupo como la Orange Ventures Africa, un fondo de inversión de 50 millones de euros centrado en financiar las empresas emergentes más innovadoras del continente."
-    odc_world_10: "El objetivo estratégico del grupo Orange en su plan Engage 2025 es disponer de al menos un Orange Digital Center en cada una de los 27 países que integran sus operaciones a nivel mundial."
+    odc_world_10: "El objetivo estratégico del grupo Orange en su plan Engage 2025 es disponer de al menos un Orange Digital Center en cada una de los 26 países que integran sus operaciones a nivel mundial."
     odc_world_11: "Si quieres conocer más del proyecto puedes verlo"
     odc_world_11_here: "aquí"
     odc_spain: Orange Digital center en España
@@ -43,12 +44,12 @@ es:
     odc_spain_11_b: "permitirá desarrollar habilidades digitales para mejorar las actividades profesionales, emprender o hacer negocios desde la localidad de cada alumno."
     odc_spain_12: "El objetivo de este capítulo es hacer una toma de contacto con el mundo digital, dando la oportunidad de entender los conceptos básicos del emprendimiento digital y creando un punto de encuentro entre ciudadanos, emprendedores y profesionales con una larga experiencia en el mundo digital."
     odc_spain_13: "Esta plataforma educativa irá creciendo con más contenidos a lo largo del tiempo y se engloba dentro del programa Orange Digital Center del grupo Orange que sirven como centros físicos de apoyo y desarrollo para que los jóvenes adquieran habilidades digitales y empresariales vitales. Desde formación en codificación hasta coaching para pequeñas empresas."
-    odc_spain_14: "El objetivo estratégico del grupo Orange en su plan Engage 2025 es disponer de al menos un Orange Digital Center en cada una de los 27 países que integran sus operaciones a nivel mundial."
+    odc_spain_14: "El objetivo estratégico del grupo Orange en su plan Engage 2025 es disponer de al menos un Orange Digital Center en cada una de los 26 países que integran sus operaciones a nivel mundial."
     odc_spain_15: "Si quieres conocer más sobre el programa Orange Digital Center en el mundo pincha "
     odc_spain_15_here: "aquí"
 
 
-  banner: El ODC es una iniciativa de Orange Group a nivel mundial que tiene como objetivo final desarrollar un espacio físico para facilitar la transformación digital de la sociedad
+  banner: Orange Digital Center es una iniciativa del Grupo Orange que tiene como objetivo establecer un lugar de innovación dedicado a las competencias digitales en todos los países donde Orange opera
   calendar:
     apply: Aplicar
     cancel: Cancelar
