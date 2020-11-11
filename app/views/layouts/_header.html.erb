@@ -39,6 +39,16 @@
 					</span>
 				</a>
 			</li>
+			<li class="nav-item">
+				<a class="nav-link text-center  <%=current_page?("/about") ? "active" : ""%>" href="/about">
+					<span class="d-none d-sm-none d-md-inline d-lg-inline d-xl-none">
+						<i class="navbar-icon fas fa-info"></i>
+					</span>
+					<span class="d-inline d-sm-inline d-md-none d-lg-none d-xl-inline">
+						<%= t('about.title') %>
+					</span>
+				</a>
+			</li>
 			<%if user_signed_in? && current_user.isAdmin? %>
 			<li class="nav-item dropdown">
 				<a class="nav-link text-center dropdown-toggle" data-target="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -54,7 +64,7 @@
 			</li>
 			<%end%>
 		</ul>
-		<% unless (@searching) %>
+		<% unless (@searching) || (user_signed_in? && current_user.isAdmin?) %>
 		<form class="form-inline my-2 my-lg-0 search-bar d-none d-lg-inline" action="/search">
 			<input class="form-control mr-sm-2 search-bar input input-search" name="q" placeholder="" aria-label="<%= t('navbar.search') %>" type="dsearch" autocomplete="off">
 			<button class="btn my-2 my-sm-0 btn-link btn-search" type="submit"><img src="/img/search_ES.svg" class="search-icon"/></button>
@@ -67,7 +77,7 @@
 				<a class="user-profile" href="<%=user_path(current_user)%>">
 					<img src="<%=current_user.avatar.url || "/img/user_placeholder.png" %>" class="user-img"/>
 					<span class="nav-link user-name "><%=current_user[:username]%></span>
-				</a></div> 	
+				</a></div>
 				<%else%>
 				<%= link_to "", new_user_session_url, class: "nav-link icon-my-account d-md-block"%>
 				<%end%>
