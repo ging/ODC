@@ -10,9 +10,11 @@
 
         <%=render partial: "courses/course_card", :locals => { course: @course_to_enroll, horizontal: true, index: 0} %>
       <%end%>
-      <%= render "devise/shared/links" %><br/>
+      <div class="draw-attention">
+      <%= render "devise/shared/links" %>
+      </div>
+      <br/>
       <%= render partial: "users/form", :locals => { user:  @user} %>
-
     <br>
     </div>
   </div>

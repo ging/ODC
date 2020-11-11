@@ -107,7 +107,9 @@ es:
     enrollment_date_placeholder: "Periodo de matriculación del curso"
     enrollment_success: "Te has matriculado con éxito en este curso"
     enrollment_email: "¡Gracias por apuntarte al curso "
-    enrollment_email_button: "Acceder"
+    enrollment_email_button_join: "Únete al webinar"
+    enrollment_email_button_info: "Más información"
+    enrollment_email_button_visit: "Visitar"
     unenrollment_success: "Te has desmatriculado con éxito de este curso"
     errors:
       already_enrolled: "Ya estás matriculado en este curso"

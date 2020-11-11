@@ -219,31 +219,31 @@ a[x-apple-data-detectors='true'] {
     <% if @course[:webinar] %>
       <%if @course[:start_date]%>
         <p style="font-size: 18px; line-height: 140%;"> 
-          <strong><%=to_dmyhm(@course[:start_date],offset_orig)%> <%unless (!offset_orig.blank?)%>UTC<%end%></strong>
+          <strong><%=t("course.date")%>:</strong> <%=to_dmyhm(@course[:start_date],offset_orig)%> <%unless (!offset_orig.blank?)%>UTC<%end%>
         </p>
       <%else%>
         <p style="font-size: 18px; line-height: 140%; color:#A885D8;"> 
-          <strong><%=t("course.coming_up").upcase%></strong>
+          <strong><%=t("course.date")%>:</strong> <%=t("course.coming_up").upcase%>
         </p>
       <%end%>
       <%if @course[:start_date] and @course[:end_date]%>
         <p style="font-size: 14px; line-height: 140%;"> 
           <%duration = ((@course[:end_date] - @course[:start_date]))%>
-          <%=formatted_duration(duration)%>
+          <strong><%=t("webinar.duration")%>:</strong> <%=formatted_duration(duration)%>
         </p>
       <%end%>
     <% else %>
       <%if @course[:selfpaced]%>
         <!-- <p style="font-size: 18px; line-height: 140%;"> 
-          <strong class="self-paced"><%=t("course.selfpaced").upcase%></strong>
+          <strong class="self-paced"><%=t("webinar.duration")%>: </strong> <%=t("course.selfpaced").upcase%>
         </p> -->
       <%elsif @course[:start_date] and @course[:end_date]%>
         <p style="font-size: 18px; line-height: 140%;"> 
-          <strong><%=to_dmy(@course[:start_date],offset_orig)%>-<%=to_dmy(@course[:end_date],offset_orig)%></strong>
+          <strong><%=t("course.date")%>:</strong> <%=to_dmy(@course[:start_date],offset_orig)%>-<%=to_dmy(@course[:end_date],offset_orig)%> 
         </p>
       <%else%>
       	<p style="font-size: 22px; line-height: 140%; color:#A885D8;">
-      		<strong><%=t("course.coming_up").upcase%></strong>
+      		<strong><%=t("course.date")%>:</strong> <%=t("course.coming_up").upcase%> 
       	</p>
       <%end%>
     <%end%>
@@ -254,9 +254,9 @@ a[x-apple-data-detectors='true'] {
       <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:helvetica,arial,sans-serif;" align="left">
         <p style="font-size: 14px; line-height: 140%;">
           <% if @course[:webinar] %>
-          <%=t("webinar.enrollment_email")%> <strong><%=@course[:name]%></strong>!
+            <%=t("webinar.enrollment_email")%> <strong> <%=@course[:name]%></strong>!
           <% else %>
-           <%=t("course.enrollment_email")%> <strong><%=@course[:name]%></strong>!
+            <%=t("course.enrollment_email")%> <strong> <%=@course[:name]%></strong>!
           <% end %>
         </p>
       </td>
@@ -270,11 +270,31 @@ a[x-apple-data-detectors='true'] {
       <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:helvetica,arial,sans-serif;" align="left">
         
 <div class="v-text-align" align="center">
-  <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;font-family:helvetica,arial,sans-serif;"><tr><td class="v-text-align" style="font-family:helvetica,arial,sans-serif;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://orangedigitalcenter.com/" style="height:38px; v-text-anchor:middle; width:110px;" arcsize="0%" stroke="f" fillcolor="#FF7900"><w:anchorlock/><center style="color:#FFFFFF;font-family:helvetica,arial,sans-serif;"><![endif]-->
-    <a href="<%=@url%>/courses/<%=@course.id%>" target="_blank" class="v-size-width" style="box-sizing: border-box;display: inline-block;font-family:helvetica,arial,sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #FF7900; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;">
-      <span class="v-padding" style="display:block;padding:10px 20px;line-height:130%;"><span style="font-size: 14px; line-height: 18.2px;"><%=t("course.enrollment_email_button")%></span></span>
+  <%if !@course[:url].blank? %>
+
+  <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;font-family:helvetica,arial,sans-serif;"><tr><td class="v-text-align" style="font-family:helvetica,arial,sans-serif;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="<%=@course[:url]%>" style="height:38px; v-text-anchor:middle; width:110px;" arcsize="0%" stroke="f" fillcolor="#FF7900"><w:anchorlock/><center style="color:#FFFFFF;font-family:helvetica,arial,sans-serif;"><![endif]-->
+    <a href="<%=@course[:url]%>" target="_blank" class="v-size-width" style="box-sizing: border-box;display: inline-block;font-family:helvetica,arial,sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #FF7900; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;">
+      <span class="v-padding" style="display:block;padding:10px 20px;line-height:130%;"><span style="font-size: 14px; line-height: 18.2px;">
+        <%if(url_to_platform(@course[:url]) == "Youtube")%>
+           Youtube
+        <%else%>
+          <% if @course[:webinar] %>
+            <%=t("course.enrollment_email_button_join")%>
+          <% else %>
+            <%=t("course.enrollment_email_button_visit")%>
+          <% end %>
+        <%end%></span></span>
     </a>
   <!--[if mso]></center></v:roundrect></td></tr></table><![endif]-->
+  &nbsp;
+  <%end%>
+  <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;font-family:helvetica,arial,sans-serif;"><tr><td class="v-text-align" style="font-family:helvetica,arial,sans-serif;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="<%=@url%>/courses/<%=@course.id%>" style="height:38px; v-text-anchor:middle; width:110px;" arcsize="0%" stroke="f" fillcolor="#777777"><w:anchorlock/><center style="color:#FFFFFF;font-family:helvetica,arial,sans-serif;"><![endif]-->
+    <a href="<%=@url%>/courses/<%=@course.id%>" target="_blank" class="v-size-width" style="box-sizing: border-box;display: inline-block;font-family:helvetica,arial,sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #777777; border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;">
+      <span class="v-padding" style="display:block;padding:10px 20px;line-height:130%;"><span style="font-size: 14px; line-height: 18.2px;"><%=t("course.enrollment_email_button_info")%></span></span>
+    </a>
+  <!--[if mso]></center></v:roundrect></td></tr></table><![endif]-->
+  
+
 </div>
 
       </td>
