@@ -47,6 +47,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
           if !@course_to_enroll.blank?
             if @course_to_enroll.enroll_user(resource)
               redirect_to @course_to_enroll, notice: @course_to_enroll[:webinar] ? I18n.t("webinar.enrollment_success"): I18n.t("course.enrollment_success")
+              begin
+                @url = request.base_url
+                @offset_orig = cookies()[:utc_offset].blank? ? nil : (cookies()[:utc_offset]).to_i
+                @offset = (cookies()[:utc_offset] || "0").to_i
+                EnrollmentConfirmationMailer.enrollment_confirmation(resource.email, resource.name, @course_to_enroll, @url, @offset_orig, @offset).deliver_now
+              rescue EOFError,
+                  IOError,
+                  TimeoutError,
+                  Errno::ECONNRESET,
+                  Errno::ECONNABORTED,
+                  Errno::EPIPE,
+                  Errno::ETIMEDOUT,
+                  Net::SMTPAuthenticationError,
+                  Net::SMTPServerBusy,
+                  Net::SMTPSyntaxError,
+                  Net::SMTPUnknownError,
+                  OpenSSL::SSL::SSLError => e
+                flash[:error] = "E-mail to #{nominee.email} could not be sent"
+              end
               return
             else
               redirect_to @course_to_enroll, notice: I18n.t("course.errors.enrollment_generic")
