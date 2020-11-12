@@ -197,7 +197,7 @@ class CoursesController < ApplicationController
       require 'csv'
       #csv_text = csv_text.force_encoding("UTF-8")
       #csv_text.gsub!("\xEF\xBB\xBF".force_encoding("UTF-8"), '')
-      csv = CSV.parse(csv_text, {:headers => true, encoding: 'utf-8'})
+      csv = CSV.parse(csv_text, {:headers => true, encoding: "iso-8859-1"})
       headers = csv.headers.map{|h| I18n.transliterate(h).downcase}
 
       emailIndex = headers.index("email") || headers.index("direccion de correo")
