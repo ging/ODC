@@ -154,7 +154,7 @@
 					</div>
 				<% end %>
 			<% end %>
-			<% if !@course[:spots].blank? %>
+			<% if !@course[:spots].blank? and can? :edit, @course%>
 				<% free_spots = [(@course[:spots] - @course.enrollments.length),0].max  %>
 
 				<div class="course-characteristic">
