@@ -238,3 +238,30 @@ es:
   recaptcha:
     errors:
       verification_failed: 'La verificación reCAPTCHA falló, por favor pruebe otra vez'
+  support:
+    array:
+      two_words_connector: " y "
+      last_word_connector: " y "
+  date:
+    day_names:
+      - domingo
+      - lunes
+      - martes
+      - miércoles
+      - jueves
+      - viernes
+      - sábado
+    month_names:
+      -
+      - enero
+      - febrero
+      - marzo
+      - abril
+      - mayo
+      - junio
+      - julio
+      - agosto
+      - septiembre
+      - octubre
+      - noviembre
+      - diciembre

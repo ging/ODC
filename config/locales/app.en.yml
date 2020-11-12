@@ -73,9 +73,10 @@ en:
     odc_spain_11_b: "will allow the development of digital skills to improve professional activities, undertake or do business from the location of each student."
     odc_spain_12: "The objective of this chapter is to make a contact with the digital world, giving the opportunity to understand the basic concepts of digital entrepreneurship and creating a meeting point between citizens, entrepreneurs and professionals with extensive experience in the digital world."
     odc_spain_13: "This educational platform will grow with more content over time and is part of the Orange Digital Center program of the Orange group that serve as physical support and development centers for young people to acquire vital digital and business skills. From training in coding to coaching for small businesses."
-    odc_spain_14: "The strategic objective of the Orange group in its Engage 2025 plan is to have at least one Orange Digital Center in each of the 26 countries that make up its worldwide operations"
-    odc_spain_15: "If you want to know more about the Orange Digital Center program in the world click "
-    odc_spain_15_here: "here"
+    odc_spain_14: "One of the main programs that will be part of these spaces will be the coding schools that will act as training centers for new coders and will have specific courses to improve their employability."
+    odc_spain_15: "The strategic objective of the Orange group in its Engage 2025 plan is to have at least one Orange Digital Center in each of the 26 countries that make up its worldwide operations"
+    odc_spain_16: "If you want to know more about the Orange Digital Center program in the world click "
+    odc_spain_16_here: "here"
   banner:  Orange Digital Center is an Orange Group initiative that aims to establish an innovation place dedicated to digital skills in every country where Orange operates
   calendar:
     apply: Apply
@@ -134,9 +135,11 @@ en:
     email_subject: "Thanks for enrolling in "
     enrollment_date_placeholder: "Course enrollment period"
     enrollment_email: "Thank you for enrolling in the course"
-    enrollment_email_button_join: "Join the webinar"
-    enrollment_email_button_info: "More information"
-    enrollment_email_button_visit: "Visit"
+    enrollment_email2: ""
+    enrollment_email3: "next"
+    enrollment_email4: "This is the link to access the course"
+    enrollment_email5: "See you!"
+    enrollment_email6: "More information"
     enrollment_success: "You have been successfully enrolled in this course"
     unenrollment_success: "You have been successfully unenrolled from this course"
     errors:
@@ -344,5 +347,10 @@ en:
     over: "The webinar has already finished"
     enrollment_success: "You have been successfully enrolled in this webinar"
     enrollment_email: "Thank you for enrolling in the webinar"
+    enrollment_email: "Muchas gracias por tu inscripción al webinar"
+    enrollment_email2: "taught by"
+    enrollment_email3: "next"
+    enrollment_email4: "This is the link to watch it live:"
+    enrollment_email5: "See you then!"
     unenrollment_success: "You have been successfully unenrolled of this webinar"
   with: with
