@@ -51,7 +51,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
                 @url = request.base_url
                 @offset_orig = cookies()[:utc_offset].blank? ? nil : (cookies()[:utc_offset]).to_i
                 @offset = (cookies()[:utc_offset] || "0").to_i
-                EnrollmentConfirmationMailer.enrollment_confirmation(resource.email, resource.name, @course, @url, @offset_orig, @offset).deliver_now
+                EnrollmentConfirmationMailer.enrollment_confirmation(resource.email, resource.name, @course_to_enroll, @url, @offset_orig, @offset).deliver_now
               rescue EOFError,
                   IOError,
                   TimeoutError,
