@@ -76,7 +76,7 @@
 			<div class="user-name-container">
 				<a class="user-profile" href="<%=user_path(current_user)%>">
 					<img src="<%=current_user.avatar.url || "/img/user_placeholder.png" %>" class="user-img"/>
-					<span class="nav-link user-name "><%=current_user[:username]%></span>
+					<span class="nav-link user-name "><%=current_user[:name]%></span>
 				</a></div>
 				<%else%>
 				<%= link_to "", new_user_session_url, class: "nav-link icon-my-account d-md-block"%>

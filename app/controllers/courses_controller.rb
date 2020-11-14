@@ -206,7 +206,7 @@ class CoursesController < ApplicationController
         redirect_to "/menrollment", notice: t("course.csv_invalid")
         return
       end
-      surnameIndex  = headers.index("lastname") ||  headers.index("surname") || headers.index("apellido(s)")
+      surnameIndex  = headers.index("lastname") || headers.index("surname") || headers.index("apellido(s)")
       passwordIndex = headers.index("password") || headers.index("contrasena")
       usernameIndex = headers.index("username") || headers.index("nombre de usuario")
       csv.each do |row|

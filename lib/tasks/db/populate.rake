@@ -12,6 +12,7 @@ namespace :db do
 		user = User.new
 		user.roles.push(Role.user)
 		user.email = "demo@upm.es"
+		user.name = "Pepe"
 		user.password = "demonstration"
 		user.username = "Demo"
 		user.ui_language = I18n.default_locale
@@ -24,6 +25,7 @@ namespace :db do
 		admin = User.new
 		admin.roles.push(Role.admin)
 		admin.email = "admin@upm.es"
+		admin.name = "Admin"
 		admin.password = "demonstration"
 		admin.username = "Admin"
 		admin.ui_language = I18n.default_locale

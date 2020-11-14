@@ -8,7 +8,7 @@
 						<img src="<%=@profile_user.avatar.url|| "/img/user_placeholder.png"%>" onerror="function(){this.src=''}">
 					</div>
 					<div class="user-info">
-						<h1 class="user-name"><%=@profile_user[:username]%></h1>
+						<h1 class="user-name"><%=@profile_user[:name]%></h1>
 						<div class="d-flex justify-content-center justify-content-md-start user-tags">
 							<% (@profile_user.tag_list.join(",")||"").split(',').each do |tag| %>
 							<span class="user-tag"><%=tag%></span>
