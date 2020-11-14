@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
     include Taggable
     acts_as_ordered_taggable
 
-    has_attached_file :avatar, 
-        styles: { medium: "300x300>", thumb: "100x100>" }, 
+    has_attached_file :avatar,
+        styles: { medium: "300x300>", thumb: "100x100>" },
         default_url: "/img/user_placeholder.png"
 
     has_and_belongs_to_many :roles
@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
     before_save :save_tag_array_text
 
     validates_presence_of :username
+    validates :username, presence: true, uniqueness: { case_sensitive: false }
     validates_presence_of :email
     validates_presence_of :encrypted_password
     validates :roles, :presence => { :message => I18n.t("dictionary.errors.blank") }
