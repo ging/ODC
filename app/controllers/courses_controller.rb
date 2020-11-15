@@ -226,6 +226,10 @@ class CoursesController < ApplicationController
           else
             user.username = row[usernameIndex]
           end
+          already_exists = User.find_by username: user.username
+          if !already_exists.nil?
+            user.username = nil # Lo genera automáticamente el modelo
+          end
           user.password = (!passwordIndex.nil? and !row[passwordIndex].blank?) ? row[passwordIndex] : "odc-cambiame"
           user.ui_language = I18n.default_locale
           user.confirmed_at = DateTime.now

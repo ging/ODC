@@ -15,9 +15,11 @@ class User < ActiveRecord::Base
 
     before_save :fillTags
     before_save :save_tag_array_text
+    before_save :set_default_username 
 
-    validates_presence_of :username
-    validates :username, presence: true, uniqueness: { case_sensitive: false }
+
+    #validates_presence_of :username
+    #validates :username, presence: true, uniqueness: { case_sensitive: false }
     validates_presence_of :email
     validates_presence_of :encrypted_password
     validates :roles, :presence => { :message => I18n.t("dictionary.errors.blank") }
@@ -122,5 +124,18 @@ class User < ActiveRecord::Base
     def confirmation_required?
       false
     end
+
+    private
+
+  def set_default_username
+    str = self.name.gsub(/::/, '/').
+        gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
+        gsub(/([a-z\d])([A-Z])/,'\1_\2').
+        gsub(/\s/,'_').
+        tr("-", "_").
+        downcase
+    ascii = I18n.transliterate(str)
+    self.username ||= "#{ascii}-#{User.last.id+1}"
+  end
 
 end
