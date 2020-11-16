@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
     #validates_presence_of :username
     #validates :username, presence: true, uniqueness: { case_sensitive: false }
     validates_presence_of :email
+    validates_presence_of :name
     validates_presence_of :encrypted_password
     validates :roles, :presence => { :message => I18n.t("dictionary.errors.blank") }
     validates_attachment :avatar, content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
