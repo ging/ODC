@@ -208,7 +208,6 @@ class CoursesController < ApplicationController
       end
       surnameIndex  = headers.index("lastname") || headers.index("surname") || headers.index("apellido(s)")
       passwordIndex = headers.index("password") || headers.index("contrasena")
-      usernameIndex = headers.index("username") || headers.index("nombre de usuario")
       csv.each do |row|
         email = row[emailIndex].downcase
         user = User.find_by_email(email)
@@ -220,16 +219,7 @@ class CoursesController < ApplicationController
           user.name = row[nameIndex]
           unless surnameIndex.nil?
             user.surname = row[surnameIndex]
-          end
-          if usernameIndex.nil?
-            user.username = user.name
-          else
-            user.username = row[usernameIndex]
-          end
-          already_exists = User.find_by username: user.username
-          if !already_exists.nil?
-            user.username = nil # Lo genera automáticamente el modelo
-          end
+          end          
           user.password = (!passwordIndex.nil? and !row[passwordIndex].blank?) ? row[passwordIndex] : "odc-cambiame"
           user.ui_language = I18n.default_locale
           user.confirmed_at = DateTime.now
