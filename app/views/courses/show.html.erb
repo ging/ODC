@@ -154,13 +154,14 @@
 					</div>
 				<% end %>
 			<% end %>
-			<% if !@course[:spots].blank? and can? :edit, @course%>
+			<% if !@course[:spots].blank? %>
 				<% free_spots = [(@course[:spots] - @course.enrollments.length),0].max  %>
-
-				<div class="course-characteristic">
-					<span class="course-field orange"><%= t("course.free_spots")%>:</span>
-					<span><%=free_spots%>/<%=@course[:spots]%></span>
-				</div>
+				<%if can? :edit, @course%>
+					<div class="course-characteristic">
+						<span class="course-field orange"><%= t("course.free_spots")%>:</span>
+						<span><%=free_spots%>/<%=@course[:spots]%></span>
+					</div>
+				<%end%>
 			<% end %>
 			<% if !@course[:lang].blank? %>
 				<div class="course-characteristic">
