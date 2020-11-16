@@ -8,29 +8,29 @@
 
 			<%= form_with(url: "/menrollment", method: "post", multipart: true, class: "custom-form") do %>
 				<%= render partial: "layouts/form_field", :locals => {
-					label: t("navbar.courses"), 
-					type: "text", 
-					name:"courses", 
-					id: "name", 
+					label: t("navbar.courses"),
+					type: "text",
+					name:"courses",
+					id: "name",
 					required: true,
-					placeholder: t("course.csv_ids"), 
+					placeholder: t("course.csv_ids"),
 					value: ""
 				}  %>
 				<br/><br/>
-				
+
 				<div class="form-group row"  >
 					<label for="photo" class="col-sm-2 col-form-label">
 						<%=t('course.csv_list')%>
 					</label>
 					<div class="col-sm-10">
 						<div class="image-edit-actions">
-							<%=render partial: "layouts/input_file_custom", 
+							<%=render partial: "layouts/input_file_custom",
 								:locals => {
-									name: "csv", 
-									file_name: nil, 
-									file_path: nil, 
-									id:"csv_file", 
-									label: t('course.csv_enroll'), 
+									name: "csv",
+									file_name: nil,
+									file_path: nil,
+									id:"csv_file",
+									label: t('course.csv_enroll'),
 									accept: ".csv"
 								} %>
 							<br>
@@ -38,11 +38,11 @@
 							<p><%=t("course.csv_def")%></p>
 						</div>
 				<pre>
-+-------+----------+-----------+----------+----------+
-| email | username | firstname | lastname | password | 
-|-------|----------|-----------|----------|----------|
-|       |          |           |          |          | 
-+-------+----------+-----------+----------+----------+
++-------+-----------+----------+----------+
+| email | firstname | lastname | password |
+|-------|-----------|----------|----------|
+|       |           |          |          |
++-------+-----------+----------+----------+
 				</pre>
 					</div>
 				</div>

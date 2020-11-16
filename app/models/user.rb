@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
     before_save :fillTags
     before_save :save_tag_array_text
-    before_save :set_default_username 
+    before_create :set_default_username 
 
 
     #validates_presence_of :username
