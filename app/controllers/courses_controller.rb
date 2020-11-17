@@ -126,7 +126,7 @@ class CoursesController < ApplicationController
               Net::SMTPSyntaxError,
               Net::SMTPUnknownError,
               OpenSSL::SSL::SSLError => e
-            flash[:error] = "E-mail to #{nominee.email} could not be sent"
+            flash[:error] = "E-mail to #{current_user.email} could not be sent"
           end
         else
           redirect_to @course, notice: I18n.t("course.errors.enrollment_generic")
@@ -219,7 +219,7 @@ class CoursesController < ApplicationController
           user.name = row[nameIndex]
           unless surnameIndex.nil?
             user.surname = row[surnameIndex]
-          end          
+          end
           user.password = (!passwordIndex.nil? and !row[passwordIndex].blank?) ? row[passwordIndex] : "odc-cambiame"
           user.ui_language = I18n.default_locale
           user.confirmed_at = DateTime.now
