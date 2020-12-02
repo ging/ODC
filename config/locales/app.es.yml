@@ -132,6 +132,7 @@ es:
     dedication_placeholder: "Dedicación estimada por parte de los estudiantes (en semanas u horas)"
     edit: "Editar curso"
     enroll: "Matricularse"
+    enrollments: "Matriculados"
     enroll_webinar: "Apuntarme"
     enrollment_date: "Periodo de matriculación"
     enrollment_date_placeholder: "Periodo de matriculación del curso"

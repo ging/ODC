@@ -163,6 +163,12 @@
 					</div>
 				<%end%>
 			<% end %>
+			<%if can? :edit, @course%>
+				<div class="course-characteristic">
+					<span class="course-field orange"><%= t("course.enrollments")%>:</span>
+					<span><%=free_spots%>/<%=@course.users.count%></span>
+				</div>
+			<%end%>
 			<% if !@course[:lang].blank? %>
 				<div class="course-characteristic">
 					<span class="course-field orange"><%= t("course.languages")%>:</span>
