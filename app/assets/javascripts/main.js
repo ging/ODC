@@ -217,6 +217,8 @@ $(function () {
     for (var _i = 0, _fields = fields; _i < _fields.length; _i++) {
       var f = _fields[_i];
       newTeacher.find('input[name="course[teachers][][' + f + ']"]').val(teacher[f] || "");
+      newTeacher.find('textarea[name="course[teachers][][' + f + ']"]').val(teacher[f] || "");
+
     }
 
     $('#teacher-list').append(newTeacher);
@@ -238,6 +240,7 @@ $(function () {
           alreadyAdded = $(e).attr("id");
         }
       });
+
 
       if (alreadyAdded === false) {
         addNewTeacher(event, ui.item);
@@ -351,7 +354,6 @@ $(function () {
   var destroyFile = function destroyFile(e) {
     var $parentNode = $(this.parentNode);
     var $img = $parentNode.find("img");
-    console.log($parentNode, $img);
     $img.attr('style', '');
     $img.attr('src', $img.data("placeholder"));
     $parentNode.attr('style', '');
