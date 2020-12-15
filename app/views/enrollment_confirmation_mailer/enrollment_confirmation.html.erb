@@ -254,14 +254,16 @@ a[x-apple-data-detectors='true'] {
       </td>
     </tr>
     <tr>
+
+      <%offseted_date = @course[:start_date] - (offset || 0).minutes%>
       <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:helvetica,arial,sans-serif;" align="left">
           <% if @course[:webinar] %>
             <p style="font-size: 14px; line-height: 140%;">
               <%=t("webinar.enrollment_email")%> <strong>'<%=@course[:name]%>'</strong> 
               <% if !teachers.blank? %> <%=t("webinar.enrollment_email2")%> <%=teachers%><%end%><%if @course[:start_date]%> <%=t("webinar.enrollment_email3")%><% if I18n.locale == :es
-                  date = I18n.localize(@course[:start_date],format: "%A %d de %B de %Y a las %H:%M", locale: "es")
+                  date = I18n.localize(offseted_date,format: "%A %d de %B de %Y a las %H:%M", locale: "es")
                 else 
-                  date = I18n.localize(@course[:start_date],format: "%A #{@course[:start_date].day.ordinalize}, of %B, %Y at %l:%M %p", locale: "en")
+                  date = I18n.localize(offseted_date,format: "%A #{offseted_date.day.ordinalize}, of %B, %Y at %l:%M %p", locale: "en")
                 end%> <%=date%><%unless (!offset_orig.blank?)%>UTC<%end%><%end%>.
             </p>
             <p style="font-size: 14px; line-height: 140%;">
