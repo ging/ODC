@@ -255,8 +255,7 @@ a[x-apple-data-detectors='true'] {
     </tr>
     <tr>
 
-      <%offseted_date = @course[:start_date] - (offset || 0).minutes%>
-      <%offseted_date_end = @course[:start_date] - (offset || 0).minutes%>
+      <%offseted_date = @course[:start_date] ? (@course[:start_date] - (offset || 0).minutes) : ""%>
       <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:helvetica,arial,sans-serif;" align="left">
           <% if @course[:webinar] %>
             <p style="font-size: 14px; line-height: 140%;">
