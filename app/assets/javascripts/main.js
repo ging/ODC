@@ -132,8 +132,10 @@ $(function () {
   $('#course-date, #course-enrollment-date').daterangepicker({
     "opens": "left",
     "autoUpdateInput": false,
+    "timePicker": true,
+    "timePicker24Hour": true,
     "locale": {
-      "format": "DD/MM/YYYY",
+      "format": "DD/MM/YYYY HH:mm",
       "separator": " - ",
       "applyLabel": calendarI18n.apply,
       "cancelLabel": calendarI18n.cancel,
@@ -170,7 +172,7 @@ $(function () {
     }
   }, function (start, end, label) {});
   $('#course-date, #course-enrollment-date').on('apply.daterangepicker', function (ev, picker) {
-    $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+    $(this).val(picker.startDate.format('DD/MM/YYYY HH:mm') + ' - ' + picker.endDate.format('DD/MM/YYYY HH:mm'));
   });
   $('#webinar-date, #webinar-enrollment-date').on('apply.daterangepicker', function (ev, picker) {
     $(this).val(picker.startDate.format('DD/MM/YYYY HH:mm') + ' - ' + picker.endDate.format('DD/MM/YYYY HH:mm'));

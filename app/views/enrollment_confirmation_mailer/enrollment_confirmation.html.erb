@@ -242,7 +242,7 @@ a[x-apple-data-detectors='true'] {
         </p> -->
       <%elsif @course[:start_date] and @course[:end_date]%>
         <p style="font-size: 18px; line-height: 140%;"> 
-          <strong><%=t("course.date")%>:</strong> <%=to_dmy(@course[:start_date],offset_orig)%>-<%=to_dmy(@course[:end_date],offset_orig)%> 
+          <strong><%=t("course.date")%>:</strong> <%=calculate_duration(@course[:start_date],@course[:end_date], false, offset_orig)%> <%unless (!offset_orig.blank?)%>UTC<%end%>
         </p>
       <%else%>
       	<p style="font-size: 22px; line-height: 140%; color:#A885D8;">
@@ -256,6 +256,7 @@ a[x-apple-data-detectors='true'] {
     <tr>
 
       <%offseted_date = @course[:start_date] - (offset || 0).minutes%>
+      <%offseted_date_end = @course[:start_date] - (offset || 0).minutes%>
       <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:helvetica,arial,sans-serif;" align="left">
           <% if @course[:webinar] %>
             <p style="font-size: 14px; line-height: 140%;">

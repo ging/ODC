@@ -78,15 +78,18 @@ module ApplicationHelper
   #   date.strftime("%d/%m/%Y %H:%M")
   # end
 
-  def to_dmyhm(date, offset=0)
+  def to_dmyhm(date, offset=0, at=nil, only_hour = nil)
     if date.methods.include? :strftime
       date = date - (offset||0).minutes
-      date.strftime("%d/%m/%Y %H:%M")
+      if only_hour
+        date.strftime("%H:%M")
+      else
+        date.strftime("%d/%m/%Y #{at ? (at + " "): ""}%H:%M")
+      end
     else
       nil
     end
   end
-
 
   def to_seo_datetime(date)
     if date.methods.include? :strftime
@@ -97,18 +100,19 @@ module ApplicationHelper
   end
   
   def platform_to_logo(platform)
+    img_dir = "/img/vendors/"
     if platform == "Youtube"
-      return "/img/vendors/youtube.svg"
+      return "#{img_dir}youtube.svg"
     elsif platform == "Webex"
-      return "/img/vendors/webex2.png"
+      return "#{img_dir}webex2.png"
     elsif platform == "Zoom"
-      return "/img/vendors/zoom.png"
+      return "#{img_dir}zoom.png"
     elsif platform == "Teams"
-      return "/img/vendors/teams.svg"
+      return "#{img_dir}teams.svg"
     elsif platform == "Meet"
-      return "/img/vendors/meet.png"
+      return "#{img_dir}meet.png"
     elsif platform == "Skype"
-      return "/img/vendors/skype.svg"
+      return "#{img_dir}skype.svg"
     else
       return "/img/play.svg"
     end
@@ -130,6 +134,18 @@ module ApplicationHelper
     else
       return nil
     end
+  end
+
+  def calculate_duration(start_date, end_date, force, offset)
+    course_date = ""
+    if (start_date and end_date) 
+      if (start_date.to_date == end_date.to_date)
+        course_date = ("#{to_dmyhm(start_date,offset)} - #{to_dmyhm(end_date,offset,nil,!force)}") 
+      else
+        course_date = ("#{to_dmy(start_date,offset)} - #{to_dmy(end_date,offset)}") 
+      end
+    end
+    course_date
   end
 
 end

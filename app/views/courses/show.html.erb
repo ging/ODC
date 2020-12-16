@@ -121,7 +121,7 @@
 				<%elsif @course[:start_date] and @course[:end_date]%>
 					<div class="course-characteristic">
 						<span class="course-field orange"><%= t("course.date")%>:</span>
-						<span><%=to_dmy(@course[:start_date],offset_orig)%>-<%=to_dmy(@course[:end_date],offset_orig)%></span>
+						<span><%=calculate_duration(@course[:start_date], @course[:end_date], @course[:webinar], offset_orig)%></span>
 					</div>
 				<%else%>
 					<div class="course-characteristic">
@@ -245,7 +245,7 @@
 					</div>
 				<% elsif @course.enrollment_period_future? %>
 					<div class="course-characteristic">
-                                                <span class="course-field orange"><%=t('course.enrollment_period_future') + to_dmy(@course[:start_enrollment_date],offset_orig) %></span>
+                                                <span class="course-field orange"><%=t('course.enrollment_period_future') + to_dmyhm(@course[:start_enrollment_date],offset_orig,t("course.at")) %></span>
                                         </div>
 				<% else %>
 					<div class="course-characteristic">
