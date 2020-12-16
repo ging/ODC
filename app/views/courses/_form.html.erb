@@ -1,6 +1,5 @@
 <%offset = cookies()[:utc_offset].blank? ? nil : (cookies()[:utc_offset]).to_i %>
 <%tag = course[:webinar] ? "webinar" : "course"%>
-
 <div class="container">
 	<div class="row">
 		<div class="col-12">
@@ -43,7 +42,7 @@
 				required: false,
 				disabled: course[:selfpaced],
 				placeholder: course[:webinar] ?  t('webinar.date_placeholder') :  t('course.date_placeholder'), 
-				value: calculate_duration(course[:start_date], course[:end_date], true, offset)
+				value: calculate_duration_complete(course[:start_date], course[:end_date], offset)
 			}  %>
 			<% unless course[:webinar] %>
 				<div class="form-group row">
@@ -63,7 +62,7 @@
 				id: "#{tag}-enrollment-date", 
 				required: false,
 				placeholder: course[:webinar] ?  t('webinar.enrollment_date_placeholder') :  t('course.enrollment_date_placeholder'), 
-				value: calculate_duration(course[:start_enrollment_date], course[:end_enrollment_date], true, offset)  
+				value: calculate_duration_complete(course[:start_enrollment_date], course[:end_enrollment_date], offset)  
 			}  %>
 			<% unless course[:webinar] %>		
 				<%= render partial: "layouts/form_field", :locals => {

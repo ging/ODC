@@ -139,7 +139,7 @@ module ApplicationHelper
   def calculate_duration(start_date, end_date, force, offset)
     course_date = ""
     if (start_date and end_date) 
-      if (start_date.to_date == end_date.to_date)
+      if (start_date.to_date == end_date.to_date) or force
         course_date = ("#{to_dmyhm(start_date,offset)} - #{to_dmyhm(end_date,offset,nil,!force)}") 
       else
         course_date = ("#{to_dmy(start_date,offset)} - #{to_dmy(end_date,offset)}") 
@@ -148,4 +148,11 @@ module ApplicationHelper
     course_date
   end
 
+  def calculate_duration_complete(start_date, end_date, offset)
+    course_date = ""
+    if (start_date and end_date) 
+        course_date = ("#{to_dmyhm(start_date,offset)} - #{to_dmyhm(end_date,offset)}") 
+    end
+    course_date
+  end
 end
