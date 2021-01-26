@@ -111,9 +111,11 @@ class CoursesController < ApplicationController
           redirect_to @course, notice: @course[:webinar] ? I18n.t("webinar.enrollment_success"): I18n.t("course.enrollment_success")
           begin
             @url = request.base_url
-            @offset_orig = cookies()[:utc_offset].blank? ? nil : (cookies()[:utc_offset]).to_i
-            @offset = (cookies()[:utc_offset] || "0").to_i
-            EnrollmentConfirmationMailer.enrollment_confirmation(current_user.email, current_user.name, @course, @url, @offset_orig, @offset).deliver_now
+            @offset_orig = cookies()[:utc_offset].blank? ? (Time.now.in_time_zone('Europe/Madrid').utc_offset/-60) : (cookies()[:utc_offset]).to_i
+            @offset = @offset_orig
+            @spain_time = cookies()[:utc_offset].blank? ? Time.now.in_time_zone('Europe/Madrid').formatted_offset : nil 
+
+            EnrollmentConfirmationMailer.enrollment_confirmation(current_user.email, current_user.name, @course, @url, @offset_orig, @offset, @spain_time).deliver_now
           rescue EOFError,
               IOError,
               TimeoutError,

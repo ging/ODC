@@ -1,6 +1,6 @@
 <% offset_orig = @offset_orig %>
 <% offset = @offset %>
-
+<% spain_time = @spain_time %>
 <% now = (DateTime.now.to_time + offset / 60 ).to_datetime %>
 <% currentlyGoingOn = (!@course[:start_date].blank?  && (now > @course[:start_date]) && (now < @course[:end_date])) %>
 <% comingUp = @course[:start_date].blank? %>
@@ -220,7 +220,7 @@ a[x-apple-data-detectors='true'] {
       <%if false %>
         <%if @course[:start_date]%>
           <p style="font-size: 18px; line-height: 140%;"> 
-            <strong><%=t("course.date")%>:</strong> <%=to_dmyhm(@course[:start_date],offset_orig)%> <%unless (!offset_orig.blank?)%>UTC<%end%>
+            <strong><%=t("course.date")%>:</strong> <%=to_dmyhm(@course[:start_date],offset_orig)%><%if (spain_time)%> (GMT<%=spain_time%>)<%end%>
           </p>
         <%else%>
           <p style="font-size: 18px; line-height: 140%; color:#A885D8;"> 
@@ -242,7 +242,7 @@ a[x-apple-data-detectors='true'] {
         </p> -->
       <%elsif @course[:start_date] and @course[:end_date]%>
         <p style="font-size: 18px; line-height: 140%;"> 
-          <strong><%=t("course.date")%>:</strong> <%=calculate_duration(@course[:start_date],@course[:end_date], false, offset_orig)%> <%unless (!offset_orig.blank?)%>UTC<%end%>
+          <strong><%=t("course.date")%>:</strong> <%=calculate_duration(@course[:start_date],@course[:end_date], false, offset_orig)%><%if (spain_time)%> (GMT<%=spain_time%>)<%end%>
         </p>
       <%else%>
       	<p style="font-size: 22px; line-height: 140%; color:#A885D8;">
@@ -254,7 +254,6 @@ a[x-apple-data-detectors='true'] {
       </td>
     </tr>
     <tr>
-
       <%offseted_date = @course[:start_date] ? (@course[:start_date] - (offset || 0).minutes) : ""%>
       <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:helvetica,arial,sans-serif;" align="left">
           <% if @course[:webinar] %>
@@ -264,11 +263,11 @@ a[x-apple-data-detectors='true'] {
                   date = I18n.localize(offseted_date,format: "%A %d de %B de %Y a las %H:%M", locale: "es")
                 else 
                   date = I18n.localize(offseted_date,format: "%A #{offseted_date.day.ordinalize}, of %B, %Y at %l:%M %p", locale: "en")
-                end%> <%=date%><%unless (!offset_orig.blank?)%>UTC<%end%><%end%>.
+                end%> <%=date%><%if (spain_time)%> (GMT<%=spain_time%>)<%end%><%end%>.
             </p>
             <p style="font-size: 14px; line-height: 140%;">
               <%if !@course[:url].blank? %>
-              <%=t("webinar.enrollment_email4")%>:  <a href="<%=@course[:url]%>" target="_blank"><%=@course[:url]%></a>
+              <%=t("webinar.enrollment_email4")%>: <a href="<%=@course[:url]%>" target="_blank"><%=@course[:url]%></a>
               <%end%>
             </p>
               <p style="font-size: 14px; line-height: 140%;">

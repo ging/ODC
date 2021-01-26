@@ -1,5 +1,6 @@
-<% offset_orig = cookies()[:utc_offset].blank? ? nil : (cookies()[:utc_offset]).to_i %>
-<% offset = (cookies()[:utc_offset] || "0").to_i %>
+<% offset_orig = cookies()[:utc_offset].blank? ? Time.now.in_time_zone('Europe/Madrid').utc_offset/-60 : (cookies()[:utc_offset]).to_i %>
+<% spain_time = cookies()[:utc_offset].blank? ? Time.now.in_time_zone('Europe/Madrid').formatted_offset : nil %>
+<% offset = offset_orig %>
 <% now = (DateTime.now.to_time + offset / 60 ).to_datetime %>
 <% currentlyGoingOn = (!@course[:start_date].blank?  && (now > @course[:start_date]) && (now < @course[:end_date])) %>
 <% comingUp = @course[:start_date].blank? %>
@@ -71,7 +72,7 @@
 			<% elsif !@course.video.blank? %>
 				<iframe class="course-video" src="<%=youtube_parse(@course[:video])%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 			<%else%>
-				<img  class="course-video" src="<%=@course.thumb.url%>" alt="">
+				<img class="course-video" src="<%=@course.thumb.url%>" alt="">
 			<%end%>
 		</div>
 		<div class="col-xs-12 col-md-3 course-info">
@@ -80,7 +81,7 @@
 			<div class="course-btn-toolbar btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 			  <div class="btn-group mr-2" role="group" aria-label="First group">
 				<a href="/courses/<%=@course[:id]%>/edit" class="  link-edit-course">
-					<button  class="btn btn-secondary btn-inverse"><i class="far fa-edit"></i></button>
+					<button class="btn btn-secondary btn-inverse"><i class="far fa-edit"></i></button>
 				</a>
 				<% if can? :destroy, @course %>
 					<%= link_to url_for(controller: "courses", action: :destroy, id: @course.id), method: :delete, data: { confirm: t('course.confirm_delete'), "ok-button": t('accept'), "cancel-button": t('cancel')}, class: 'text-right link-remove-course' do %>
@@ -97,7 +98,7 @@
 				<%if @course[:start_date]%>
 					<div class="course-characteristic">
 						<span class="course-field orange"><%= t("course.date")%>:</span>
-						<span><%=to_dmyhm(@course[:start_date],offset_orig)%> <%unless (!offset_orig.blank?)%>UTC<%end%></span>
+						<span><%=to_dmyhm(@course[:start_date],offset_orig)%> <%if (spain_time)%>(GMT<%=spain_time%>)<%end%></span>
 					</div>
 				<%else%>
 					<div class="course-characteristic">
@@ -227,10 +228,11 @@
 				<br/><br/>
 			<% else %>
 				<% if (@course.is_enrollment_period? and  (@course[:end_date].blank? or  @course[:end_date] >= now)) %>
-
 					<%if free_spots < 1%>
 						<div class="course-characteristic">
-							<span class="course-field orange"><%= t("course.max_capacity") %></span>
+							<span class="course-field orange">
+								<%= t("course.max_capacity") %>
+							</span>
 						</div>
 					<%else%>
 						<%if !user_signed_in? %>
@@ -241,19 +243,22 @@
 					<%end%>
 				<% elsif (!@course[:end_date].blank? and @course[:end_date] < now) %>
 					<div class="course-characteristic">
-						<span class="course-field orange"><%=(@course[:webinar] ? t("webinar.over") : t("course.over"))%></span>
+						<span class="course-field orange"><%=(@course[:webinar] ? t("webinar.over") : t("course.over"))%>
+						</span>
 					</div>
 				<% elsif @course.enrollment_period_future? %>
 					<div class="course-characteristic">
-                                                <span class="course-field orange"><%=t('course.enrollment_period_future') + to_dmyhm(@course[:start_enrollment_date],offset_orig,t("course.at")) %></span>
-                                        </div>
+                        <span class="course-field orange"><%=t('course.enrollment_period_future') + to_dmyhm(@course[:start_enrollment_date],offset_orig,t("course.at")) %>
+                        </span>
+                	</div>
 				<% else %>
 					<div class="course-characteristic">
-						<span class="course-field orange"><%=t('course.enrollment_period_over')%></span>
+						<span class="course-field orange">
+							<%=t('course.enrollment_period_over')%>
+						</span>
 					</div>
 				<% end %>
 			<% end %>
-
 			<br/>
 		</div>
 	</div>
