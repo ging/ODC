@@ -1,0 +1,213 @@
+<% offset_orig = cookies()[:utc_offset].blank? ? Time.now.in_time_zone('Europe/Madrid').utc_offset/-60 : (cookies()[:utc_offset]).to_i %>
+<% spain_time = cookies()[:utc_offset].blank? ? Time.now.in_time_zone('Europe/Madrid').formatted_offset : nil %>
+<div class="container" style="min-height: calc(100vh - 181px);">
+	<div class="row">
+		<div class="col-12">
+			<br>
+			<h2><%=t("course.metrics.title")%></h2>
+			<div class="row">
+				<%= render partial: "courses/metrics_card", :locals => {
+					title: t("course.metrics.users_created"), 
+					icon: "fas fa-user-friends",
+					value: User.count
+				} %>
+				<%= render partial: "courses/metrics_card", :locals => {
+					title: t("course.metrics.courses_created"), 
+					icon: "fas fa-graduation-cap",
+					value: Course.where(webinar: false).count
+				} %>
+				<%= render partial: "courses/metrics_card", :locals => {
+					title: t("course.metrics.webinars_created"), 
+					icon: "fas fa-video",
+					value: Course.where(webinar: true).count
+				} %>
+				<%= render partial: "courses/metrics_card", :locals => {
+					title: t("course.metrics.teachers_created"), 
+					icon: "fas fa-chalkboard-teacher",
+					value: CourseTeacher.count
+				} %>
+			</div>
+			<%page = [params[:page].to_i,1].max%>
+			<%only_webinars = params["filter_courses"] == "only_webinars"%>
+			<%only_courses = params["filter_courses"] == "only_courses"%>
+			<%courses = Course%>
+			<%if only_courses%>
+			<%courses = courses.where(webinar: false)%>
+			<%elsif only_webinars%>
+			<%courses = courses.where(webinar: true)%>
+			<%end%>
+			<%courses = courses.order("start_date DESC").paginate(:page => page, :per_page => 50)%>
+			<form action="<%=request.url%>" >
+				<div class="text-right">
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="only_courses" value="only_courses" name="filter_courses" class="custom-control-input"<%if only_courses%>checked<%end%>>
+						<label class="custom-control-label" for="only_courses"><%=t("course.courses")%></label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="only_webinars" value="only_webinars" name="filter_courses" class="custom-control-input" <%if only_webinars%>checked<%end%>>
+						<label class="custom-control-label" for="only_webinars"><%=t("course.webinars")%></label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="all" value="" name="filter_courses" class="custom-control-input" <%if !only_webinars and !only_courses%>checked<%end%>>
+						<label class="custom-control-label" for="all"><%=t("course.all")%></label>
+					</div>
+					<button type="submit" class="btn btn-primary"><%=t("course.metrics.filter")%></button>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<table class="table table-responsive-md">
+							<thead>
+								<tr>
+									<th scope="col"><%=t("course.metrics.name")%></th>
+									<th scope="col"><%=t("course.metrics.date")%></th>
+									<th scope="col" class="text-right"><%=t("course.metrics.enrolled")%></th>
+									<th scope="col"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<% courses.each_with_index do |c,i| %>
+								<tr>
+									<td>
+										<a class="text-primary" href="/courses/<%=c.id%>"><%=c.name%></a>
+									</td>
+									<td>
+										<%if c[:start_date] and c[:end_date]%>
+										<%=calculate_duration(c[:start_date], c[:end_date], false, offset_orig)%>
+										<%elsif c[:selfpaced]%>
+										<span class="self-paced"><%=t("course.selfpaced").upcase%></span>
+										<%elsif c[:start_date] and c[:end_date]%>
+										<%=calculate_duration(c[:start_date], c[:end_date], c[:webinar], offset_orig)%>
+										<%else%>
+										<span class="coming-up"><%=t("course.coming_up").upcase%></span>
+										<%end%>
+									</td>
+									<td class="text-right">
+										<%=c.enrollments.length%><%if c[:spots]%>/<%=c[:spots]%><%end%>
+									</td>
+									<td class="text-right">
+										<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#courseGraphModal" data-course="<%=c.id%>" data-title="<%=c.name%>">
+											<i class="fas fa-chart-line"></i>
+										</button> -->
+
+									</td>
+
+								</tr>
+								<%end%>
+							</tbody>
+						</table>
+						<div class="text-right pagination justify-content-end">
+							<%= will_paginate(courses, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, :previous_label => t("search.prev"), :next_label => t("search.next")) %>
+						</div>
+					</div>
+				</div>
+			</form>
+			<br/>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="courseGraphModal" tabindex="-1" aria-labelledby="courseGraphModal" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="courseTitleModal"></h5>
+						<!-- Boosted mod: using visually hidden text instead of aria-label -->
+						<button type="button" class="close" data-dismiss="modal">
+							<span class="sr-only">x</span>
+						</button>
+					</div>
+					<div class="modal-body" id="courseBodyModal">
+						<div id="chart"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+	<%j_courses = courses.map { |c|  {:id=> c.id, :name => c.name, :enrollments =>
+c.enrollments.map{ |e| e.created_at } }}%>
+		
+
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<script>
+	var enrollments = Object.fromEntries(JSON.parse('<%=j_courses.to_json.html_safe%>').map(item => [item.id, {...item}]));
+
+	$(()=>{
+		
+
+		$('#courseGraphModal').on('show.bs.modal', function (event) {
+		  var button = $(event.relatedTarget) ;
+		  var id = button.data('course');
+		  var title = button.data('title');
+		  var dates = enrollments[id].enrollments.map(d=>[new Date(d),1])
+		  console.log(dates)
+		  var modal = $(this)
+		  modal.find('.modal-title').text(title)
+		  var options = {
+		  	series: [{
+		  		// name: 'XYZ MOTORS',
+		  		data: dates
+		  	}],
+		  	chart: {
+		  		type: 'area',
+		  		stacked: false,
+		  		height: 350,
+		  		zoom: {
+		  			type: 'x',
+		  			enabled: true,
+		  			autoScaleYaxis: true
+		  		},
+		  		toolbar: {
+		  			autoSelected: 'zoom'
+		  		}
+		  	},
+		  	dataLabels: {
+		  		enabled: false
+		  	},
+		  	markers: {
+		  		size: 0,
+		  	},
+		  	title: {
+		  		// text: 'Stock Price Movement',
+		  		align: 'left'
+		  	},
+		  	fill: {
+		  		type: 'gradient',
+		  		gradient: {
+		  			shadeIntensity: 1,
+		  			inverseColors: false,
+		  			opacityFrom: 0.5,
+		  			opacityTo: 0,
+		  			stops: [0, 90, 100]
+		  		},
+		  	},
+		  	yaxis: {
+		  		labels: {
+		  			formatter: function (val) {
+		  				return (val / 1000000).toFixed(0);
+		  			},
+		  		},
+		  		title: {
+		  			// text: 'Price'
+		  		},
+		  	},
+		  	xaxis: {
+		  		type: 'datetime',
+		  	},
+		  	tooltip: {
+		  		shared: false,
+		  		y: {
+		  			formatter: function (val) {
+		  				return (val / 1000000).toFixed(0)
+		  			}
+		  		}
+		  	}
+		  };
+
+		  var chart = new ApexCharts(document.querySelector("#chart"), options);
+		  chart.render();
+		})
+	});
+
+</script>

@@ -83,6 +83,7 @@ es:
     add_new_lesson: "Añadir nueva lección"
     add_new_teacher: "Añadir nuevo profesor"
     add_new_topic: "Añadir nuevo apartado"
+    all: Todo
     at: "a las"
     coming_up: "Próximamente"
     confirm_delete: "¿Seguro que quieres borrar este curso/webinar?"
@@ -94,6 +95,7 @@ es:
       nooc: "NOOC (Nano Open Online Course)"
       spoc: "SPOC (Small Private Online Course)"
       spooc: "SPOOC (Self-Paced Private Online Course)"
+    courses: "Cursos"
     create: "Crear"
     csv_courses_invalid: "El campo de cursos debe ser una lista de números separados por comas"
     csv_def: "El fichero CSV debe estar separado por comas (,) y seguir la siguiente estructura"
@@ -151,6 +153,17 @@ es:
     lessons_placeholder: "Número de lecciones del curso y duración de las mismas"
     live: "Live ahora"
     live_in: "en"
+    metrics: 
+    metrics:
+      courses_created: "Nº de cursos creados"
+      date: Fecha
+      enrolled: Matriculados
+      filter: Filtrar
+      name: Nombre
+      webinars_created: "Nº de webinars creados"
+      teachers_created: "Nº de profesores"
+      title: "Métricas"
+      users_created: "Nº de usuarios registrados"
     massive_enrollment: "Matriculación masiva"
     massive_enrollment_success: "La matriculación masiva se ha completado con éxito"
     max_capacity: "Este curso está lleno"

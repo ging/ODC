@@ -106,6 +106,7 @@ en:
       sep: September
     to: To
   course:
+    all: All
     access: "Access course"
     add_new_lesson: "Add a new lesson"
     add_new_teacher: "Add a new teacher"
@@ -121,6 +122,7 @@ en:
       nooc: "NOOC (Nano Open Online Course)"
       spoc: "SPOC (Small Private Online Course)"
       spooc: "SPOOC (Self-Paced Private Online Course)"
+    courses: Courses
     create: Create
     csv_courses_invalid: "Courses must be comma separated numbers"
     csv_def: "The CSV should be separated by commas and have the following structure"
@@ -187,6 +189,16 @@ en:
     massive_enrollment: "Massive enrollment"
     massive_enrollment_success: "Massive enrollment successfully completed"
     max_capacity: "This course is full"
+    metrics:
+      courses_created: "No. of courses created"
+      date: Date
+      enrolled: Enrolled users
+      filter: Filter
+      name: Name
+      webinars_created: "No. of webinars created"
+      teachers_created: "No. of teachers"
+      title: "Metrics"
+      users_created: "No. of users registered"
     minute: "minute"
     minutes: "minutes"
     no_courses_yet: "You have not enrolled in any courses yet"

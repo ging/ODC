@@ -17,6 +17,7 @@ ODC::Application.routes.draw do
   match 'courses/:id/rate' => 'courses#rate', via: [:post]
   match '/menrollment' => 'courses#menrollment', via: [:get]
   match '/menrollment' => 'courses#menrollment_create', via: [:post]
+  match '/metrics' => 'courses#metrics', via: [:get]
 
   #Locale
   match '/change_locale', to: 'locales#change_locale', via: [:get]

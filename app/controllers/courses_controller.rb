@@ -242,6 +242,13 @@ class CoursesController < ApplicationController
   end
 
 
+  # GET /metrics
+  def metrics
+    unless user_signed_in? and current_user.isAdmin?
+      redirect_to "/", notice: I18n.t("authorization.errors.generic")
+    end
+  end
+
   private
 
   def set_course
