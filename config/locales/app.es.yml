@@ -155,10 +155,12 @@ es:
     live_in: "en"
     metrics: 
     metrics:
+      courses: "Cursos"
       courses_created: "Nº de cursos creados"
       date: Fecha
       enrolled: Matriculados
       filter: Filtrar
+      general: "Generales"
       name: Nombre
       webinars_created: "Nº de webinars creados"
       teachers_created: "Nº de profesores"

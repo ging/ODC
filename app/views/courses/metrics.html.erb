@@ -5,6 +5,7 @@
 		<div class="col-12">
 			<br>
 			<h2><%=t("course.metrics.title")%></h2>
+			<h3 style="font-size: 1.4em;"><%=t("course.metrics.general")%></h3>
 			<div class="row">
 				<%= render partial: "courses/metrics_card", :locals => {
 					title: t("course.metrics.users_created"), 
@@ -27,6 +28,7 @@
 					value: CourseTeacher.count
 				} %>
 			</div>
+			<hr>
 			<%page = [params[:page].to_i,1].max%>
 			<%only_webinars = params["filter_courses"] == "only_webinars"%>
 			<%only_courses = params["filter_courses"] == "only_courses"%>
@@ -37,8 +39,10 @@
 			<%courses = courses.where(webinar: true)%>
 			<%end%>
 			<%courses = courses.order("start_date DESC").paginate(:page => page, :per_page => 50)%>
+
+			<h3 style="font-size: 1.4em;"><%=t("course.metrics.courses")%></h3>
 			<form action="<%=request.url%>" >
-				<div class="text-right">
+				<div class=" filters text-right" style="background-color: #f9f9f9; padding: 15px;">
 					<div class="custom-control custom-radio custom-control-inline">
 						<input type="radio" id="only_courses" value="only_courses" name="filter_courses" class="custom-control-input"<%if only_courses%>checked<%end%>>
 						<label class="custom-control-label" for="only_courses"><%=t("course.courses")%></label>
@@ -59,8 +63,9 @@
 							<thead>
 								<tr>
 									<th scope="col"><%=t("course.metrics.name")%></th>
-									<th scope="col"><%=t("course.metrics.date")%></th>
+									<th scope="col" class="text-right"><%=t("course.metrics.date")%></th>
 									<th scope="col" class="text-right"><%=t("course.metrics.enrolled")%></th>
+									<th scope="col" class="text-right"><%=t("course.metrics.visits")%></th>
 									<th scope="col"></th>
 								</tr>
 							</thead>
@@ -68,11 +73,17 @@
 								<% courses.each_with_index do |c,i| %>
 								<tr>
 									<td>
-										<a class="text-primary" href="/courses/<%=c.id%>"><%=c.name%></a>
+										<%if c[:webinar]%>
+											<i class="fas fa-video text-primary"></i>
+										<%else %>
+											<i class="fas fa-graduation-cap text-primary"></i>
+										<%end%>
+										&nbsp;<a class="" href="/courses/<%=c.id%>">&nbsp;<%=c.name%></a>
 									</td>
-									<td>
+									<td class="text-right">
 										<%if c[:start_date] and c[:end_date]%>
-										<%=calculate_duration(c[:start_date], c[:end_date], false, offset_orig)%>
+
+										<span class="<%if c[:end_date] < Date.new%>text-muted<%end%>"><%=calculate_duration(c[:start_date], c[:end_date], false, offset_orig)%></span>
 										<%elsif c[:selfpaced]%>
 										<span class="self-paced"><%=t("course.selfpaced").upcase%></span>
 										<%elsif c[:start_date] and c[:end_date]%>
@@ -85,9 +96,12 @@
 										<%=c.enrollments.length%><%if c[:spots]%>/<%=c[:spots]%><%end%>
 									</td>
 									<td class="text-right">
-										<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#courseGraphModal" data-course="<%=c.id%>" data-title="<%=c.name%>">
+										<%=c.visit_count%>
+									</td>
+									<td class="text-right">
+										<button type="button" class="btn btn-icon btn-sm text-primary" style="padding:0;" data-toggle="modal" data-target="#courseGraphModal" data-course="<%=c.id%>" data-title="<%=c.name%>">
 											<i class="fas fa-chart-line"></i>
-										</button> -->
+										</button>
 
 									</td>
 
@@ -132,26 +146,29 @@ c.enrollments.map{ |e| e.created_at } }}%>
 
 <script>
 	var enrollments = Object.fromEntries(JSON.parse('<%=j_courses.to_json.html_safe%>').map(item => [item.id, {...item}]));
-
 	$(()=>{
-		
-
 		$('#courseGraphModal').on('show.bs.modal', function (event) {
 		  var button = $(event.relatedTarget) ;
 		  var id = button.data('course');
 		  var title = button.data('title');
-		  var dates = enrollments[id].enrollments.map(d=>[new Date(d),1])
-		  console.log(dates)
-		  var modal = $(this)
-		  modal.find('.modal-title').text(title)
+		  var dates = enrollments[id].enrollments.reduce((acc,d) => {
+		  	return [...acc,[new Date(d), acc.length > 1 ? (acc[acc.length-1][1]+1):0]]},[])
+
+		   if (dates.length) {
+		   	dates.push([new Date(),dates[dates.length-1][1]])
+		   }
+		  $(this).find('.modal-title').text(title)
 		  var options = {
+		  	colors: ["#ff7900"],
+		  	theme: {
+		  		  mode: 'light'
+		  	},
 		  	series: [{
-		  		// name: 'XYZ MOTORS',
+		  		name: enrollments[id].name,
 		  		data: dates
 		  	}],
 		  	chart: {
 		  		type: 'area',
-		  		stacked: false,
 		  		height: 350,
 		  		zoom: {
 		  			type: 'x',
@@ -159,8 +176,17 @@ c.enrollments.map{ |e| e.created_at } }}%>
 		  			autoScaleYaxis: true
 		  		},
 		  		toolbar: {
-		  			autoSelected: 'zoom'
-		  		}
+		  			autoSelected: 'zoom',
+	  		  		export:{
+	  		  			csv:{
+	  		  				headerCategory: 'fecha',
+	  		  				headerValue: 'matriculados',
+	  				  		dateFormatter(timestamp) {
+	  			              return new Date(timestamp).toLocaleString()
+	  			            }
+	  		  			}
+	  		  		}
+	  		  	}
 		  	},
 		  	dataLabels: {
 		  		enabled: false
@@ -175,34 +201,34 @@ c.enrollments.map{ |e| e.created_at } }}%>
 		  	fill: {
 		  		type: 'gradient',
 		  		gradient: {
-		  			shadeIntensity: 1,
+		  			shadeIntensity: 0,
 		  			inverseColors: false,
-		  			opacityFrom: 0.5,
+		  			opacityFrom: 0.8,
 		  			opacityTo: 0,
-		  			stops: [0, 90, 100]
+		  			stops: [0, 100]
 		  		},
 		  	},
 		  	yaxis: {
-		  		labels: {
-		  			formatter: function (val) {
-		  				return (val / 1000000).toFixed(0);
-		  			},
-		  		},
 		  		title: {
-		  			// text: 'Price'
+		  			text: '<%=t("course.metrics.enrolled")%>'
 		  		},
 		  	},
 		  	xaxis: {
 		  		type: 'datetime',
+		  		max: new Date(),
+		  		labels: {
+		  			datetimeFormatter: {
+  			        year: 'yyyy',
+  			        month: 'MMM \'yy',
+  			        day: 'dd MMM',
+  			        hour: 'HH:mm'
+  			      }
+		  		}
+
 		  	},
 		  	tooltip: {
 		  		shared: false,
-		  		y: {
-		  			formatter: function (val) {
-		  				return (val / 1000000).toFixed(0)
-		  			}
-		  		}
-		  	}
+		  	},
 		  };
 
 		  var chart = new ApexCharts(document.querySelector("#chart"), options);

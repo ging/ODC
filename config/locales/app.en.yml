@@ -190,10 +190,12 @@ en:
     massive_enrollment_success: "Massive enrollment successfully completed"
     max_capacity: "This course is full"
     metrics:
+      courses: "Courses"
       courses_created: "No. of courses created"
       date: Date
       enrolled: Enrolled users
       filter: Filter
+      general: Overall
       name: Name
       webinars_created: "No. of webinars created"
       teachers_created: "No. of teachers"
