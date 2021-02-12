@@ -1,20 +1,27 @@
 @import "colors"
-.filters-users
+.filters
 	display: flex
 	flex-direction: row
 	justify-content: flex-end
-	align-items: flex-start
-	.form-group
+	align-items: center //flex-start
+
+	.form-group, .input-group
 		display: flex
 		flex-direction: row
 		padding-right: 10px
+		margin-bottom: 0 !important
+		flex: 1
 		label
 			padding-right: 10px
 			flex: 1
 		.btn
 			height: 100%
+		.custom-radio
+			margin-bottom: 0 !important
+		&.mb-3
+			width: 100%
 .table
-	.btn-xs
+	.btn-sm, .btn-xs
 		padding: 0 !important
 		&.text-muted
 			color: #ddd !important
@@ -22,3 +29,8 @@
 			color: $orange !important
 	th,td
 		width: 30% 
+	.nowrap 
+		overflow: hidden
+		word-break: keep-all
+		white-space: nowrap
+		text-overflow: ellipsis

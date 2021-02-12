@@ -29,6 +29,7 @@
 				} %>
 			</div>
 			<hr>
+
 			<%page = [params[:page].to_i,1].max%>
 			<%only_webinars = params["filter_courses"] == "only_webinars"%>
 			<%only_courses = params["filter_courses"] == "only_courses"%>
@@ -39,23 +40,36 @@
 			<%courses = courses.where(webinar: true)%>
 			<%end%>
 			<%courses = courses.order("start_date DESC").paginate(:page => page, :per_page => 50)%>
-
+			<%if !params[:search].blank?%>
+				<%query = "%#{(params[:search]||"").downcase}%"%>
+				<%courses = courses.where(["lower(name) LIKE ? OR lower(description) LIKE ? OR lower(categories) LIKE ?", query,query, sanitize(query)]) %>
+			<%end%>
 			<h3 style="font-size: 1.4em;"><%=t("course.metrics.courses")%></h3>
 			<form action="<%=request.url%>" >
-				<div class=" filters text-right" style="background-color: #f9f9f9; padding: 15px;">
-					<div class="custom-control custom-radio custom-control-inline">
-						<input type="radio" id="only_courses" value="only_courses" name="filter_courses" class="custom-control-input"<%if only_courses%>checked<%end%>>
-						<label class="custom-control-label" for="only_courses"><%=t("course.courses")%></label>
+				<div class=" filters filters-metrics text-right" style="background-color: #f9f9f9; padding: 15px;">
+					<div class="input-group">
+					  <input type="text" class="form-control" placeholder="<%=t("search.write")%>" value="<%=params[:search]%>" aria-label="User" aria-describedby="button-addon2" name="search" style="flex:1;">
+					  <div class="input-group-append">
+					    <button class="btn btn-primary" type="submit" id="button-addon2">
+					    	<i class="fas fa-search"></i>
+					    </button>
+					  </div>
 					</div>
-					<div class="custom-control custom-radio custom-control-inline">
-						<input type="radio" id="only_webinars" value="only_webinars" name="filter_courses" class="custom-control-input" <%if only_webinars%>checked<%end%>>
-						<label class="custom-control-label" for="only_webinars"><%=t("course.webinars")%></label>
+					<div class="input-group">
+						<div class="custom-control custom-radio custom-control-inline">
+							<input type="radio" id="only_courses" value="only_courses" name="filter_courses" class="custom-control-input"<%if only_courses%>checked<%end%>>
+							<label class="custom-control-label" for="only_courses"><%=t("course.courses")%></label>
+						</div>
+						<div class="custom-control custom-radio custom-control-inline">
+							<input type="radio" id="only_webinars" value="only_webinars" name="filter_courses" class="custom-control-input" <%if only_webinars%>checked<%end%>>
+							<label class="custom-control-label" for="only_webinars"><%=t("course.webinars")%></label>
+						</div>
+						<div class="custom-control custom-radio custom-control-inline">
+							<input type="radio" id="all" value="" name="filter_courses" class="custom-control-input" <%if !only_webinars and !only_courses%>checked<%end%>>
+							<label class="custom-control-label" for="all"><%=t("course.all")%></label>
+						</div>
 					</div>
-					<div class="custom-control custom-radio custom-control-inline">
-						<input type="radio" id="all" value="" name="filter_courses" class="custom-control-input" <%if !only_webinars and !only_courses%>checked<%end%>>
-						<label class="custom-control-label" for="all"><%=t("course.all")%></label>
-					</div>
-					<button type="submit" class="btn btn-primary"><%=t("course.metrics.filter")%></button>
+					<!--<button type="submit" class="btn btn-primary"><%=t("course.metrics.filter")%></button>-->
 				</div>
 				<div class="row">
 					<div class="col-12">
@@ -72,7 +86,7 @@
 							<tbody>
 								<% courses.each_with_index do |c,i| %>
 								<tr>
-									<td>
+									<td class="nowrap">
 										<%if c[:webinar]%>
 											<i class="fas fa-video text-primary"></i>
 										<%else %>
@@ -80,7 +94,7 @@
 										<%end%>
 										&nbsp;<a class="" href="/courses/<%=c.id%>">&nbsp;<%=c.name%></a>
 									</td>
-									<td class="text-right">
+									<td class="text-right nowrap">
 										<%if c[:start_date] and c[:end_date]%>
 
 										<span class="<%if c[:end_date] < Date.new%>text-muted<%end%>"><%=calculate_duration(c[:start_date], c[:end_date], false, offset_orig)%></span>
@@ -98,11 +112,20 @@
 									<td class="text-right">
 										<%=c.visit_count%>
 									</td>
-									<td class="text-right">
+									<td class="text-right" style="white-space: nowrap;">
 										<button type="button" class="btn btn-icon btn-sm text-primary" style="padding:0;" data-toggle="modal" data-target="#courseGraphModal" data-course="<%=c.id%>" data-title="<%=c.name%>">
 											<i class="fas fa-chart-line"></i>
 										</button>
-
+										<a href="/courses/<%=c.id%>">
+											<button type="button" class="btn btn-icon btn-sm text-primary" style="padding:0;" data-toggle="modal" data-target="#courseGraphModal">
+												<i class="fas fa-eye"></i>
+											</button>
+										</a>
+										<a href="/courses/<%=c.id%>/edit">
+											<button type="button" class="btn btn-icon btn-sm text-primary" style="padding:0;" data-toggle="modal" data-target="#courseGraphModal">
+												<i class="fas fa-edit"></i>
+											</button>
+										</a>
 									</td>
 
 								</tr>

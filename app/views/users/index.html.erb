@@ -27,16 +27,18 @@
 			<h2><%=t("user.users")%></h2>
 			<form action="<%=request.url%>" >
 				<div class=" filters filters-users text-right btn-group" >
-				<input type="hidden" name="sort" value="<%=params[:sort]%>">
-				<div class="input-group mb-3">
-				  <input type="text" class="form-control" placeholder="Search..." aria-label="User" aria-describedby="button-addon2" name="search">
-				  <div class="input-group-append">
-				    <button class="btn btn-primary" type="button" id="button-addon2">
-				    	<i class="fas fa-search"></i>
-				    </button>
-				  </div>
+					<input type="hidden" name="sort" value="<%=params[:sort]%>">
+					<div class="input-group mb-3">
+					  <input type="text" class="form-control" placeholder="<%=t("search.write")%>" aria-label="User" aria-describedby="button-addon2" name="search">
+					  <div class="input-group-append">
+					    <button class="btn btn-primary" type="button" id="button-addon2">
+					    	<i class="fas fa-search"></i>
+					    </button>
+					  </div>
+					</div>
 				</div>
-			</div>
+				<br/>
+				
 				<div class="row">
 					<div class="col-12">
 						<table class="table table-responsive-md">
