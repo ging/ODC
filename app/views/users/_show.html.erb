@@ -16,11 +16,18 @@
 						</div>
 					</div>
 					<% if (@isProfileOwner) %>
+
 						<a href="/users/edit" style="float:right;">
 							<button class="btn btn-primary"><%=t("profile.edit")%></button>
+
 						</a>&nbsp;
+						<%= button_to(t("devise.sessions.logout"), destroy_user_session_path, :method => :delete, :class=> "btn btn-secondary") %>
+					<% elsif(current_user.isAdmin?) %>
+					<a href="/users/<%=@profile_user[:id]%>/edit" style="float:right;">
+						<button class="btn btn-primary"><%=t("profile.edit")%></button>
+					</a>
 					<% end %>
-					<%= button_to(t("devise.sessions.logout"), destroy_user_session_path, :method => :delete, :class=> "btn btn-secondary") %>
+
 				</div>
 				<br>
 			</div>

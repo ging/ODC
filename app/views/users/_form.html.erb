@@ -1,5 +1,5 @@
-<% isProfileOwner = (current_user.isAdmin? and current_user.id != user.id)%>
-<%= form_for(  isProfileOwner ? user:resource, as: resource_name, url: isProfileOwner ? nil:registration_path(resource_name), html: {class: 'forbid-enter custom-form'}) do |f| %>
+<% isNotProfileOwner = (current_user and current_user.isAdmin? and current_user.id != user.id)%>
+<%= form_for(  isNotProfileOwner ? user:resource, as: resource_name, url: isNotProfileOwner ? nil:registration_path(resource_name), html: {class: 'forbid-enter custom-form'}) do |f| %>
     <!--<%= devise_error_messages! %>-->
 
 <%if @course_to_enroll%>
@@ -35,7 +35,7 @@
 <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
 <div><%=t("login.confirmation_waiting")%>: <%= resource.unconfirmed_email %></div>
 <% end %>
-<% if user.id %>
+<% if user.id and !isNotProfileOwner %>
 <%= render partial: "layouts/form_field", :locals => {
 	label: t('user.current_password'),
 	type: "password",
@@ -60,7 +60,7 @@
 	type: "password",
 	name: "user[password]",
 	id: "password",
-	required: true,
+	required: !isNotProfileOwner,
 	placeholder: "",
 	value: ""
 }  %>

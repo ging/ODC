@@ -22,16 +22,15 @@ class UsersController < ApplicationController
 
   def update
   	if @isProfileOwner or current_user.isAdmin?
-      update_resource = Users::RegistrationsController.new
-      update_resource.request = request
-      update_resource.response = response
-      params = users_params
-      resp = update_resource.update_resource(@profile_user,params)
-      puts resp
-      if (resp)
-        render "show", notice: I18n.t("devise.registrations.updated_other")
+      if @profile_user.update(users_params.except("avatar_delete"))
+        if users_params["avatar_delete"] == "1"
+          @profile_user.avatar = nil
+        end
+        @profile_user.save!
+        redirect_to @profile_user, notice: I18n.t("devise.registrations.updated_other")
       else
-        render "edit", notice: I18n.t("devise.registrations.failed_to_update_other")
+        flash.now[:alert] = @profile_user.errors.full_messages.join(". ")
+        render :edit
       end
   	else
   		redirect_to "/"
@@ -44,7 +43,8 @@ class UsersController < ApplicationController
       if (@profile_user.destroy)
         redirect_to "/", notice: I18n.t("devise.registrations.updated_other")
       else
-        render "edit", notice: I18n.t("devise.registrations.failed_to_update_other")
+        flash.now[:alert] = @profile_user.errors.full_messages.join(". ")
+        render :edit
       end
   	else
   		redirect_to "/"
@@ -65,7 +65,12 @@ class UsersController < ApplicationController
   end
 
   def users_params
-    params.require(:user).permit("name", "surname","email","current_password","password","password_confirmation","tag_list","ui_language","avatar","avatar_delete")
+    par = params.require(:user).permit("name", "surname","email","password","password_confirmation","tag_list","ui_language","avatar","avatar_delete")
+    if par["password"].blank?
+      par.except("password").except("password_confirmation")
+    else
+      par
+    end
   end
 
 end
