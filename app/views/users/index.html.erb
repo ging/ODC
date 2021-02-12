@@ -1,0 +1,107 @@
+<%page = [params[:page].to_i,1].max%>
+<%users = User%>
+<%order_by = "surname" %>
+<%order_direction = "ASC"%>
+
+<%if !params[:search].blank?%>
+	<%query = "%#{(params[:search]||"").downcase}%"%>
+	<%users = users.where(["lower(name) LIKE ? OR lower(surname) LIKE ? OR lower(email) LIKE ?", query,query, sanitize(query)]) %>
+<%end%>
+<%if params[:sort]%>
+	<%sort_by = params[:sort].split("_")%>
+	<%if ["name","surname","email"].include? sort_by[0].downcase%>
+	<%order_by = sort_by[0]%>
+	<%end%>
+	<%if ["ASC","DESC"].include? sort_by[1].upcase %>
+	<%order_direction = sort_by[1]%>
+	<%end%>
+	<%users = users.order("#{order_by} #{order_direction}")%>
+<%end%>
+
+<%users = users.paginate(:page => page, :per_page => 10)%>
+
+<div class="container" style="min-height: calc(100vh - 181px);">
+	<div class="row">
+		<div class="col-12">
+			<br>
+			<h2><%=t("user.users")%></h2>
+			<form action="<%=request.url%>" >
+				<div class=" filters filters-users text-right btn-group" >
+				<input type="hidden" name="sort" value="<%=params[:sort]%>">
+				<div class="input-group mb-3">
+				  <input type="text" class="form-control" placeholder="Search..." aria-label="User" aria-describedby="button-addon2" name="search">
+				  <div class="input-group-append">
+				    <button class="btn btn-primary" type="button" id="button-addon2">
+				    	<i class="fas fa-search"></i>
+				    </button>
+				  </div>
+				</div>
+			</div>
+				<div class="row">
+					<div class="col-12">
+						<table class="table table-responsive-md">
+							<thead>
+								<tr>
+									<th scope="col">
+										<%=t("user.name")%>
+										<button class="btn btn-xs btn-text text-muted <%if order_by.downcase == "name" and order_direction.upcase == "ASC" %>text-primary<%end%>" type="submit" name="sort" value="name_asc">
+											<i class="fas fa-caret-up"></i>
+										</button>
+										<button class="btn btn-xs btn-text text-muted <%if order_by.downcase == "name" and order_direction.upcase == "DESC" %>text-primary<%end%>" type="submit" name="sort" value="name_desc">
+											<i class="fas fa-caret-down"></i>
+										</button>
+									</th>
+									<th scope="col"><%=t("user.surname")%>
+										<button class="btn btn-xs btn-text text-muted <%if order_by.downcase == "surname" and order_direction.upcase == "ASC" %>text-primary<%end%>" type="submit" name="sort" value="surname_asc">
+											<i class="fas fa-caret-up"></i>
+										</button>
+										<button class="btn btn-xs btn-text text-muted <%if order_by.downcase == "surname" and order_direction.upcase == "DESC" %>text-primary<%end%>" type="submit" name="sort" value="surname_desc">
+											<i class="fas fa-caret-down"></i>
+										</button>
+										
+									</th>
+									<th scope="col"><%=t("user.email")%>
+										<button class="btn btn-xs btn-text text-muted <%if order_by.downcase == "email" and order_direction.upcase == "ASC" %>text-primary<%end%>" type="submit" name="sort" value="email_asc">
+											<i class="fas fa-caret-up"></i>
+										</button>
+										<button class="btn btn-xs btn-text text-muted <%if order_by.downcase == "email" and order_direction.upcase == "DESC" %>text-primary<%end%>" type="submit" name="sort" value="email_desc">
+											<i class="fas fa-caret-down"></i>
+										</button>
+										
+									</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<% users.each_with_index do |user,i| %>
+								<tr>
+									<td><%=user.name%></td>
+									<td><%=user.surname%></td>
+									<td><%=user.email%></td>
+									<td class="text-right">
+										<a href="/users/<%=user.id%>">
+											<button type="button" class="btn btn-icon btn-sm text-primary" style="padding:0;" data-toggle="modal" data-target="#courseGraphModal">
+												<i class="fas fa-eye"></i>
+											</button>
+										</a>
+										<a href="/users/<%=user.id%>/edit">
+											<button type="button" class="btn btn-icon btn-sm text-primary" style="padding:0;" data-toggle="modal" data-target="#courseGraphModal">
+												<i class="fas fa-edit"></i>
+											</button>
+										</a>
+									</td>
+								</tr>
+								<%end%>
+							</tbody>
+						</table>
+						<div class="text-right pagination justify-content-end">
+							<%= will_paginate(users, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, :previous_label => t("search.prev"), :next_label => t("search.next")) %>
+						</div>
+					</div>
+				</div>
+			</form>
+			<br/>
+			<br/>
+		</div>
+	</div>
+</div>

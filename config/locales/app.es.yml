@@ -312,6 +312,7 @@ es:
     tags: "Etiquetas"
     update: "Actualizar"
     username: "Nombre de usuario"
+    users: "Usuarios"
   webinar:
     alt_link: "Enlace al webinar (herramienta externa)"
     alt_link_placeholder: "Enlace oficial para compartir la sala donde tendrá lugar el webinar ya sea en Zoom, Webex, etc. (si está disponible)"

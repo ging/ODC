@@ -1,9 +1,10 @@
-<%= form_for( resource, as: resource_name, url: registration_path(resource_name),html: {class: 'forbid-enter custom-form'}) do |f| %>
+<% isProfileOwner = (current_user.isAdmin? and current_user.id != user.id)%>
+<%= form_for(  isProfileOwner ? user:resource, as: resource_name, url: isProfileOwner ? nil:registration_path(resource_name), html: {class: 'forbid-enter custom-form'}) do |f| %>
     <!--<%= devise_error_messages! %>-->
+
 <%if @course_to_enroll%>
   <input type="hidden" name="enroll" value="<%=@course_to_enroll.id%>">
 <%end%>
-
 <%= render partial: "layouts/form_field", :locals => {
 	label: t('user.name'),
 	type: "text",

@@ -86,8 +86,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-
-  protected
+  #protected
 
   def update_resource(resource, params)
     # Require current password if user is trying to change password.

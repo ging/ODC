@@ -342,6 +342,7 @@ en:
     register: Register
     tags: "Tags"
     update: "Update"
+    users: "Users"
     username: "User name"
   webinar:
     alt_link: "Link to webinar (external tool)"

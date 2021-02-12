@@ -6,6 +6,7 @@ ODC::Application.routes.draw do
   match '/users/:id/presentations' => 'users#show_presentations', via: [:get]
   match '/users/:id/files' => 'users#show_files', via: [:get]
   resources :users
+  match '/users' => 'users#index', via: [:get]
 
   #Courses
   resources :courses
