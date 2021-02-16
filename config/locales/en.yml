@@ -73,7 +73,7 @@ en:
     entrepreneurship: Entrepreneurship
     other: "Other"
   cookies:
-    msg: Fundación Orange uses its own and third party cookies to analyze and personalize your browsing, as well as to show you advertising based on your interests by tracking your browsing (eg. visited pages, content clicks, etc.). Click "Accept" if you accept all cookies. You can also set or reject cookies by clicking on 
+    msg: Fundación Orange uses its own and third party cookies to analyze and personalize your browsing, as well as to show you advertising based on your interests by tracking your browsing (eg. visited pages, content clicks, etc.). Click "Accept" if you accept all cookies. You can also set or reject cookies by clicking on
     msg2: or obtain more information in our
     terms: Terms and conditions
     privacy_policy: Privacy policy
@@ -154,6 +154,7 @@ en:
     register: "Sign up"
   languages:
     bg: "Bulgarian"
+    ca: "Catalán"
     cy: "Welsh"
     de: "German"
     en: "English"
@@ -215,4 +216,4 @@ en:
         ?: "?"
         ¿: "¿"
         ¡: "¡"
-        ́ : ""  
+        ́ : ""

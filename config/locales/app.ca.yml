@@ -1,0 +1,321 @@
+ca:
+  lang: ca
+  about:
+    title: "Quant a"
+    contact_us: "Contacta'ns"
+    email_us: "Si tens cap dubte o suggeriment, envia'ns un correu a:"
+    who_are_we: Qui som?
+    who_we_are_1: Aquest és un projecte del
+    who_we_are_1a: Grup Orange
+    who_we_are_2: que hem desenvolupat a la Universitat Politècnica de Madrid. És un projecte de formació en línia gratuïta que anirà creixent. En el vídeo següent pots veure una explicació més detallada del projecte.
+    odc_world: Orange Digital Center al món
+    odc_world_1: "El programa Orange Digital Center és una iniciativa mundial del Grup Orange que reflecteix el nostre compromís de fer que la innovació digital sigui més accessible a tothom."
+    odc_world_2: "Això es tradueix en espais físics orientats a la formació digital i a la innovació per donar suport a emprenedors digitals."
+    odc_world_3: "Aquests recursos digitals gratuïts es van posar en marxa al continent africà per proporcionar formació, acceleració i finançament per a l'ecosistema digital."
+    odc_world_4: "Els Orange Digital Center fan les funcions de centres de suport i desenvolupament per tal que els joves adquireixin habilitats digitals i empresarials viables. Des de la formació en codificació fins al coaching per a petites empreses, cobreixen una àmplia gamma d'activitats."
+    odc_world_5: "Lliure i obert per a tothom, les instal·lacions promouen l'aprenentatge basat en projectes concrets. Els cursos de formació en tecnologia digital estan disponibles per a estudiants, sol·licitants d'ocupació i joves amb qualificació o sense. L'objectiu és ajudar-los a trobar una carrera que valgui la pena i fomentar l'emprenedoria."
+    odc_world_6: "Com a veritable xarxa d'oportunitats, Orange Digital Center reuneix diversos programes estratègics en un sol lloc:"
+    odc_world_7: "Una escola de codi, que actua com a centre de formació professional i esdeveniments com l'Acadèmia Sonatel del Senegal,"
+    odc_world_8: "Un Garage Lab (Solidarity Fab), un taller de fabricació digital que permet a les persones crear prototips i aprendre fent,"
+    odc_world_9: "Un Orange Fab com una acceleradora de start-ups que forja aliances empresarials nacionals i internacionals amb una o més entitats del Grup com ara l'Orange Ventures Africa, un fons d'inversió de 50 milions d'euros centrat a finançar les empreses emergents més innovadores del continent."
+    odc_world_10: "L'objectiu estratègic del Grup Orange en el seu pla Engage 2025 és disposar d'almenys un Orange Digital Center a cadascun dels 26 països que integren les seves operacions en l'àmbit mundial."
+    odc_world_11: "Si vols saber més del projecte, el pots veure"
+    odc_world_11_here: "aquí"
+    odc_spain: Orange Digital Center a Espanya
+    odc_spain_1: "El programa Orange Digital Center és una iniciativa mundial del Grup Orange i la seva Fundació que reflecteix el nostre compromís de fer que la innovació digital sigui més accessible a tothom."
+    odc_spain_2: "A Espanya desenvoluparem un projecte ambiciós que començarà amb la implementació d'una nova plataforma educativa en línia i culminarà amb la creació d'un espai físic orientat a la formació digital i a la innovació per donar suport a emprenedors digitals."
+    odc_spain_3: "La plataforma educativa en línia de la Fundació Orange està orientada a l'educació i la inclusió digital, el foment de la innovació i l'emprenedoria, i és un lloc per formar en habilitats digitals els grups socials més vulnerables, així com un punt de trobada d'emprenedors, famílies i membres de la comunitat educativa."
+    odc_spain_4: "A més, Orange Digital Center serà un punt de trobada per a emprenedors i start-ups, ja que posarà a la seva disposició les millors pràctiques i recursos per crear el seu propi negoci."
+    odc_spain_5: "Quatre itineraris formatius"
+    odc_spain_6: "Els cursos amb els quals es posa en marxa Orange Digital Center es distribueixen en quatre itineraris:"
+    odc_spain_cat_1: "Ús responsable de les TIC"
+    odc_spain_cat_2: "Inclusió digital"
+    odc_spain_cat_3: "Canvi climàtic"
+    odc_spain_cat_4: "Emprenedoria"
+    odc_spain_7_a: "Pel que fa al primer itinerari,"
+    odc_spain_7_b: ", està adreçat a la comunitat educativa, especialment professorat, però també a famílies. L'objectiu és formar-los en competències digitals, sobretot en temes relacionats amb la seguretat i la privacitat a la xarxa, àrees molt necessàries en una societat hiperconnectada que han atret un interès especial arran de la crisi sanitària de la COVID-19."
+    odc_spain_8: "A més, es proposa una sèrie de ponències en línia per impulsar l'ús positiu de les tecnologies en família i oferir bones idees educatives a mares i pares."
+    odc_spain_9_a: "L'itinerari dedicat a la"
+    odc_spain_9_b: "posa el focus en alguns dels col·lectius vulnerables amb els quals desenvolupa la seva tasca la Fundació Orange: joves, dones i persones amb autisme."
+    odc_spain_10_a: "L'itinerari de"
+    odc_spain_10_b: "està orientat a sensibilitzar sobre l'impacte que exercim en el medi ambient i com, des de la tecnologia, podem reduir-lo. Està previst que els cursos d'aquest capítol aportin coneixements d'economia circular i eficiència energètica."
+    odc_spain_11_a: "Finalment, l'itinerari dedicat al"
+    odc_spain_11_b: "permetrà desenvolupar habilitats digitals per millorar les activitats professionals, emprendre o fer negocis des de la localitat de cada alumne."
+    odc_spain_12: "L'objectiu d'aquest capítol és tenir una primera presa de contacte amb el món digital, donar l'oportunitat d'entendre els conceptes bàsics de l'emprenedoria digital i crear un punt de trobada entre ciutadans, emprenedors i professionals amb una llarga experiència en el món digital."
+    odc_spain_13: "Aquesta plataforma educativa, que anirà creixent en continguts al llarg del temps, s'engloba dins del programa Orange Digital Center del grup Orange, que fa les funcions de centres físics de suport i desenvolupament per tal que els joves adquireixin habilitats digitals i empresarials vitals. "
+    odc_spain_14: "Un dels programes principals que formaran part d'aquests espais són les escoles de programació, que actuaran com a centres de formació per als nous programadors i oferiran cursos específics per millorar-ne l'ocupabilitat."
+    odc_spain_15: "L'objectiu estratègic del Grup Orange en el seu pla Engage 2025 és disposar, com a mínim, d'un Orange Digital Center a cadascun dels 26 països que integren les seves operacions en l'àmbit mundial."
+    odc_spain_16: "Si vols conèixer més detalls sobre el programa Orange Digital Center al món, fes clic "
+    odc_spain_16_here: "aquí"
+  banner: Orange Digital Center és una iniciativa del Grup Orange que té com a objectiu establir un lloc d'innovació dedicat a les competències digitals a tots els països on Orange opera
+  calendar:
+    apply: Aplica
+    cancel: Cancel·la
+    custom: Personalitzat
+    days:
+      fri: Divendres
+      mon: Dilluns
+      sat: Dissabte
+      sun: Diumenge
+      thu: Dijous
+      tue: Dimarts
+      wed: Dimecres
+    from: Des de
+    months:
+      apr: Abril
+      aug: Agost
+      dec: Desembre
+      feb: Febrer
+      jan: Gener
+      jul: Juliol
+      jun: Juny
+      mar: Març
+      may: Maig
+      nov: Novembre
+      oct: Octubre
+      sep: Setembre
+    to: Fins a
+  course:
+    access: "Accés al curs"
+    add_new_lesson: "Afegeix nova lliçó"
+    add_new_teacher: "Afegeix nou professor"
+    add_new_topic: "Afegeix nou apartat"
+    at: "a les"
+    coming_up: "Pròximament"
+    confirm_delete: "N'estàs segur que vols eliminar aquest curs/webinari?"
+    contents: Continguts
+    continue: Continua
+    course_formats:
+      moc: "MOC (Massive Online Course)"
+      mooc: "MOOC (Massive Open Online Course)"
+      nooc: "NOOC (Nano Open Online Course)"
+      spoc: "SPOC (Small Private Online Course)"
+      spooc: "SPOOC (Self-Paced Private Online Course)"
+    create: "Crea"
+    csv_courses_invalid: "El camp de cursos ha de ser una llista de números separats per comes"
+    csv_def: "El fitxer CSV ha d'estar separat per comes (,) i seguir l'estructura següent"
+    csv_enroll: Puja un fitxer CSV
+    csv_ids: "Identificadors dels cursos separats per comes (els pots veure a l'URL de cada curs)"
+    csv_invalid: CSV invàlid
+    csv_list: "Llista d'usuaris"
+    date: "Data"
+    enrollment_date: "Data"
+    enrollment_period_future: "El període de matriculació no ha començat. Comença el "
+    enrollment_period_over: "El període de matriculació ha acabat"
+    date_placeholder: "Dates de celebració del curs"
+    email_subject: "Gràcies per apuntar-te a "
+    enrollment_date_placeholder: "Període de matriculació del curs"
+    enrollment_success: "T'has matriculat amb èxit en aquest curs"
+    enrollment_email: "Moltes gràcies per la teva inscripció al curs"
+    enrollment_email2: ""
+    enrollment_email3: "el pròxim"
+    enrollment_email4: "Aquest és l'enllaç a través del qual podràs accedir al curs"
+    enrollment_email5: "T'hi esperem!"
+    enrollment_email6: "Més informació"
+    unenrollment_success: "T'has desmatriculat amb èxit d'aquest curs"
+    errors:
+      already_enrolled: "Ja estàs matriculat en aquest curs"
+      enrollment_generic: "S'ha produït un error i no se t'ha pogut matricular en el curs"
+      no_enrolled: "No estàs matriculat en aquest curs"
+      unenrollment_generic: "S'ha produït un error i no se t'ha pogut desmatricular del curs"
+      overcrowded: "Aquest curs ja està ple"
+      not_active: "El període de matriculació no està actiu"
+    day: "dia"
+    days: "dies"
+    desc: "Descripció"
+    description_placeholder: "Descripció del curs"
+    download_guide: "Descarrega la guia didàctica"
+    duration: "Durada"
+    dedication: "Dedicació"
+    dedication_placeholder: "Dedicació estimada dels estudiants (en setmanes o hores)"
+    edit: "Edita el curs"
+    enroll: "Matricula-m'hi"
+    enrollments: "Matriculats"
+    enroll_webinar: "Apunta-m'hi"
+    enrollment_date: "Període de matriculació"
+    enrollment_date_placeholder: "Període de matriculació del curs"
+    free_spots: "Places lliures"
+    guide: "Guia didàctica"
+    hour: "hora"
+    hours: "hores"
+    interested_users: "Usuaris interessats"
+    join: "Uneix-t'hi"
+    language: "Idioma"
+    languages: "Idiomes"
+    languages_placeholder: "Idiomes en què s'imparteix el curs separats per comes"
+    lesson: "Nom de la lliçó"
+    lessons: "Lliçons"
+    lessons_placeholder: "Nombre i durada de les lliçons del curs"
+    live: "Live ara"
+    live_in: "en"
+    massive_enrollment: "Matriculació massiva"
+    massive_enrollment_success: "La matriculació massiva s'ha completat amb èxit"
+    max_capacity: "Aquest curs està ple"
+    minute: "minut"
+    minutes: "minuts"
+    no_courses_yet: "No t'has apuntat a cap curs encara"
+    no_lessons: "No has afegit cap lliçó"
+    no_teacher: "No has afegit cap professor"
+    new: "Nou curs"
+    over: "El curs ha finalitzat"
+    pictures: "Imatges"
+    powered_by: "Powered by"
+    powered_by_placeholder: "Organisme que ofereix el curs"
+    powered_by_link: "Powered by enllaç"
+    powered_by_link_placeholder: "Link al web del proveïdor del curs"
+    rate: "Valora"
+    rating: "Valoració"
+    read_more: "Més informació"
+    related_courses: "Cursos relacionats"
+    related_webinars: "Webinaris relacionats"
+    second: "segon"
+    selfpaced: "Sempre obert"
+    selfpaced_explanation: "Els alumnes poden completar el curs quan vulguin"
+    see: "Mostra-ho"
+    signup_enroll: "Et registraràs a la plataforma i al webinari/curs següent:"
+    spots: "Places"
+    spots_placeholder: "Nombre de places disponibles. Deixa aquest camp buit si no vols limitar les places."
+    successfully_created: "El curs s'ha creat amb èxit."
+    successfully_updated: "El curs s'ha actualitzat amb èxit."
+    successfully_destroyed: "El curs s'ha esborrat amb èxit."
+    successfully_deleted: "El curs s'ha suprimit amb èxit."
+    tags: "Etiquetes"
+    target_audience: Adreçat a
+    target_audience_placeholder: Públic objectiu al qual s'adreça el curs
+    teachers: "Professors"
+    teacher:
+      bio: "Breu biografia"
+      delete: "Suprimeix aquest professor d'aquest curs"
+      facebook: "Nom públic a Facebook"
+      instagram: "Nom d'usuari d'Instagram"
+      linkedin: "Nom públic a Linkedin"
+      name: "Nom del professor"
+      note: "Si fas alguna modificació en un professor ja existent, els canvis tindran efecte en tots els cursos en què participi aquest professor"
+      no_results: "No hi ha resultats"
+      position: "Lloc (ex. professor de la Universitat X)"
+      or: "o"
+      reorder: "Arrossega per canviar d'ordre aquest professor"
+      search: "Cerca un professor ja existent"
+      twitter: "Nom d'usuari de Twitter (sense @)"
+      upload: "Puja..."
+    thumb: "Portada"
+    thumb_min: "Miniatura"
+    title: "Títol"
+    title_placeholder: "Títol del curs"
+    topic: "Nom de l'apartat"
+    format: "Tipus de curs"
+    unenroll: "Desmatricula'm"
+    update: "Actualitza"
+    upload: "Tria un fitxer"
+    url: "Enllaç al curs"
+    url_placeholder: "Enllaç oficial on els alumnes s'han d'apuntar al curs"
+    video: "Vídeo"
+    video_placeholder: "Enllaç al vídeo d'introducció (Youtube)"
+    visits: "Visites"
+    votes: "vots"
+  help: Ajuda
+  landing:
+    intro_new: "A la plataforma educativa gratuïta de la Fundació Orange trobaràs cursos i webinaris adaptats a les teves necessitats. Diverteix-te aprenent amb formació preparada per especialistes per afrontar els reptes d'aquesta nova era digital: fabricació 3D, medi ambient o ús responsable de la tecnologia són tan sols alguns exemples del que hi descobriràs."
+    intro_old: "A la plataforma educativa gratuïta de la Fundació Orange trobaràs cursos i webinaris adaptats a les teves necessitats. Diverteix-te aprenent amb formació preparada per especialistes per afrontar els reptes d'aquesta nova era digital: fabricació 3D, medi ambient o ús responsable de la tecnologia són tan sols alguns exemples del que hi descobriràs."
+    popular_courses: "Cursos populars"
+    popular_courses_intro: "Aquests són els cursos amb més alumnes del nostre catàleg ara mateix. Si t'interessa saber quins són els més demanats, no dubtis a revisar els detalls i apunta-t'hi."
+    popular_courses_week: "Cursos populars aquesta setmana"
+    popular_courses_week_intro: "Aquests són els cursos amb més alumnes del nostre catàleg aquesta setmana. Si t'interessa saber quins són els més demanats, no dubtis a revisar els detalls i apunta-t'hi."
+    popular_webinars: "Webinaris populars"
+    popular_webinars_intro: "En aquest apartat descobriràs aquells webinaris de més interès entre els membres de l'Orange Digital Center. Potser siguin els més interessants o no, això depèn dels teus gustos. Dona-hi un cop d'ull i apunta't als que t'agradin més."
+    popular_webinars_week: "Webinaris populars aquesta setmana"
+    popular_webinars_week_intro: "En aquest apartat descobriràs aquells webinaris de més interès entre els membres de l'Orange Digital Center. Potser siguin els més interessants o no, això depèn dels teus gustos. Dona-hi un cop d'ull i apunta't als que t'agradin més."
+    see_all: "Mostra-ho tot"
+    start: "Tria la teva aventura!"
+    welcome_new: Benvingut/da
+    welcome_old: "Benvingut/da de nou"
+    your_courses: "Els teus cursos i webinaris"
+  mailer:
+    welcome: "Benvingut/da, "
+    welcome_msg: "A la plataforma educativa gratuïta de la Fundació Orange trobaràs cursos i webinaris adaptats a les teves necessitats. Diverteix-te aprenent amb formació preparada per especialistes per afrontar els reptes d'aquesta nova era digital: fabricació 3D, medi ambient o ús responsable de la tecnologia són tan sols alguns exemples del que hi descobriràs."
+    link_msg: "Pots confirmar el teu correu fent clic a l'enllaç següent:"
+    confirm: "Confirma el meu compte"
+    hello: "Hola"
+    confirmed: "Ens posem en contacte amb tu per notificar-te que la teva adreça electrònica s'ha canviat a"
+    unconfirmed: "Ens posem en contacte amb tu per notificar-te que la teva adreça electrònica es canviarà a"
+    password: Ens posem en contacte amb tu per notificar-te que s'ha canviat la teva contrasenya
+    reset: "Algú ha sol·licitat canviar la teva contrasenya. Pots fer-ho amb l'enllaç següent:"
+    password_change: "Canvia la contrasenya"
+    ignore: "Si no has estat tu, ignora aquest correu."
+    above: "La contrasenya no es canviarà fins que accedeixis a l'enllaç i en creïs una de nova."
+    locked: "El teu compte s'ha bloquejat a causa d'un nombre excessiu d'intents fallits d'inici de sessió."
+    unlocked: "Fes clic a l'enllaç següent per desbloquejar el teu compte:"
+    unlock: "Desbloqueja el meu compte"
+  navbar:
+    courses: "Cursos"
+    forgot: "He oblidat la contrasenya"
+    forgot_email: "Introdueix la teva adreça electrònica per recuperar la contrasenya"
+    login: "Inicia la sessió"
+    new_course: "Nou curs"
+    new_webinar: "Nou webinari"
+    reset_codes:
+      OK: "T'hem enviat un correu electrònic amb instruccions per restablir la contrasenya."
+      EMAIL_NOT_FOUND: "No existeix cap usuari amb aquesta adreça electrònica."
+      ERROR_SENDING_EMAIL: "S'ha produït un error en enviar el correu. Torna-ho a provar més tard."
+      ERROR: "S'ha produït un error. Torna-ho a provar més tard."
+    remember: "Recorda-la"
+    reset_password: "Restableix la contrasenya"
+    reset_go_back: "Enrere"
+    search: "Cerca"
+    signup: "Encara no tens un compte? Registra-t'hi!"
+    webinars: "Webinaris"
+    home: "Inici"
+  profile:
+    edit: "Edita el perfil"
+    no_events: "No hi ha esdeveniments programats per a aquest dia"
+    your_courses_and_webinars: "Els teus cursos i webinaris"
+  search:
+    next: "Següent"
+    no_results: "No hi ha resultats"
+    prev: "Anterior"
+    write: "Escriu aquí la teva cerca"
+  terms:
+    accept: Has d'acceptar els termes i condicions
+    agree: He llegit i accepto els
+    terms: termes i condicions
+  user:
+    current_password: "Contrasenya actual"
+    confirm_password: "Confirma la contrasenya"
+    edit: "Edita l'usuari"
+    email: "Adreça electrònica"
+    name: "Nom"
+    new_password: "Nova contrasenya"
+    new: "Registre"
+    password: "Contrasenya"
+    picture: "Foto"
+    register: "Registra-t'hi!"
+    surname: "Cognoms"
+    tags: "Etiquetes"
+    update: "Actualitza"
+    username: "Nom d'usuari"
+  webinar:
+    alt_link: "Enllaç al webinari (eina externa)"
+    alt_link_placeholder: "Enllaç oficial per compartir la sala on tindrà lloc el webinari, ja sigui a Zoom, Webex, etc. (si està disponible)"
+    edit: "Edita el webinari"
+    date: "Data"
+    enrollment_date: "Període de matriculació"
+    date_placeholder: "Data de celebració del webinari"
+    enrollment_date_placeholder: "Període de matriculació del webinari"
+    duration: "Durada"
+    duration_placeholder: "Durada del webinari en minuts"
+    retransmission: "Enllaç a la gravació"
+    retransmission_placeholder: "Enllaç a la gravació del webinari a Youtube (si està disponible)"
+    url: "Enllaç al webinari (Youtube)"
+    url_placeholder: "Enllaç oficial de Youtube on tindrà lloc el webinari (si està disponible)"
+    new: "Nou webinari"
+    enroll: "Apunta-m'hi"
+    unenroll: "Desapuntar-me'n"
+    over: "El webinari ha finalitzat"
+    enrollment_success: "T'has apuntat amb èxit a aquest webinari"
+    enrollment_email: "Moltes gràcies per la teva inscripció al webinari"
+    enrollment_email2: "impartit per"
+    enrollment_email3: "el pròxim"
+    enrollment_email4: "Aquest és l'enllaç a través del qual podràs veure la transmissió en directe"
+    enrollment_email5: "T'hi esperem!"
+    unenrollment_success: "T'has desapuntat amb èxit d'aquest webinari"
+  with: amb

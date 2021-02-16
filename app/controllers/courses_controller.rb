@@ -113,7 +113,7 @@ class CoursesController < ApplicationController
             @url = request.base_url
             @offset_orig = cookies()[:utc_offset].blank? ? (Time.now.in_time_zone('Europe/Madrid').utc_offset/-60) : (cookies()[:utc_offset]).to_i
             @offset = @offset_orig
-            @spain_time = cookies()[:utc_offset].blank? ? Time.now.in_time_zone('Europe/Madrid').formatted_offset : nil 
+            @spain_time = cookies()[:utc_offset].blank? ? Time.now.in_time_zone('Europe/Madrid').formatted_offset : nil
 
             EnrollmentConfirmationMailer.enrollment_confirmation(current_user.email, current_user.name, @course, @url, @offset_orig, @offset, @spain_time).deliver_now
           rescue EOFError,
@@ -258,7 +258,7 @@ class CoursesController < ApplicationController
   def course_params
     params.require(:course)[:categories] ||= []
 
-    params.require(:course).permit(:name,:description,:start_date,:end_date,:start_enrollment_date,:end_enrollment_date,:format,:alt_link,:retransmission,:video,:type,:dedication,:powered_by,:powered_by_logo,:powered_by_link,:teaching_guide,:lang,:url,:lessons,:thumb,:thumb_min,:webinar, :target_audience, :selfpaced, :spots, categories: [], contents: [:title, topics: []], teachers_order: [])
+    params.require(:course).permit(:name,:description,:start_date,:end_date,:start_enrollment_date,:end_enrollment_date,:format,:alt_link,:retransmission,:video,:type,:dedication,:powered_by,:powered_by_logo,:powered_by_link,:teaching_guide,:lang,:card_lang,:url,:lessons,:thumb,:thumb_min,:webinar, :target_audience, :selfpaced, :spots, categories: [], contents: [:title, topics: []], teachers_order: [])
   end
 
   def teachers_params

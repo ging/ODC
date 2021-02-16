@@ -19,7 +19,7 @@ module ODC
     console do
       ActiveRecord::Base.connection
     end
-    
+
     #Load ODC Platform configuration
     #Accesible here: ODC::Application.config.APP_CONFIG
     config.APP_CONFIG = YAML.load_file("config/application_config.yml")[Rails.env]
@@ -34,7 +34,7 @@ module ODC
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :en
-    config.i18n.available_locales = [config.i18n.default_locale, :es].uniq
+    config.i18n.available_locales = [config.i18n.default_locale, :es, :ca].uniq
     # I18n fallbacks: rails will fallback to config.i18n.default_locale translation
     config.i18n.fallbacks = true
 
@@ -97,8 +97,8 @@ module ODC
           end
 
           #Demo user
-          config.demo_user = User.find_by_email("demo@odc.dit.upm.es") if (ActiveRecord::Base.connection.table_exists? "users" and !User.find_by_email("demo@odc.dit.upm.es").nil?) 
-        end 
+          config.demo_user = User.find_by_email("demo@odc.dit.upm.es") if (ActiveRecord::Base.connection.table_exists? "users" and !User.find_by_email("demo@odc.dit.upm.es").nil?)
+        end
     end
 
     # Version of your assets, change this if you want to expire all your assets

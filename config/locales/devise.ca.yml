@@ -1,0 +1,80 @@
+ca:
+  devise:
+    confirmations:
+      confirmed: "S'ha confirmat el teu compte. Has iniciat la sessió."
+      send_instructions: "D'aquí uns minuts rebràs a la teva adreça electrònica instruccions per confirmar el teu compte."
+      send_paranoid_instructions: "Si la teva adreça electrònica existeix en el sistema, d'aquí uns minuts hi rebràs instruccions per confirmar el teu compte."
+    failure:
+      already_authenticated: "Ja has iniciat la sessió."
+      inactive: "'El teu compte encara no s'ha activat."
+      invalid: "Adreça electrònica o contrasenya invàlides."
+      invalid_token: "Token d'autenticació invàlid."
+      locked: "El teu compte està bloquejat."
+      last_attempt: "Només et queda un intent fins que es bloquegi el teu compte."
+      not_found_in_database: "%{authentication_keys} o la contrasenya són erronis."
+      timeout: "La teva sessió ha expirat. Torna a iniciar la sessió."
+      unauthenticated: "T'has de registrar o iniciar la sessió abans de continuar."
+      unconfirmed: "Has de confirmar el teu compte abans de continuar."
+    links:
+      confirmation_instructions: "No has rebut les instruccions de confirmació?"
+      forgot_password: "Has oblidat la contrasenya?"
+      sign_in_with_provider: "Inicia sessió amb %{provider}"
+      unlock_instructions: "No has rebut les instruccions de desbloqueig?"
+    mailer:
+      confirmation_instructions:
+        subject: "Instruccions de confirmació"
+      reset_password_instructions:
+        subject: "Instruccions per canviar la contrasenya"
+      unlock_instructions:
+        subject: "Instruccions de desbloqueig"
+    omniauth_callbacks:
+      failure: "No hem pogut autentificar el teu compte de %{kind} per la raó següent: %{reason}."
+      success: "T'has autentificat correctament amb el teu compte de %{kind}."
+    passwords:
+      change_password: "Canvia la contrasenya"
+      new_password: "Nova contrasenya"
+      new_password_confirmation: "Confirma la nova contrasenya"
+      no_token: "No pots accedir a aquesta pàgina sense venir d'un correu electrònic de restabliment de contrasenya. Si vens d'un correu electrònic de restabliment de contrasenya, assegura't que has utilitzat l'URL complet proporcionat."
+      send_instructions: "D'aquí uns minuts rebràs un correu electrònic amb instruccions per reiniciar la contrasenya."
+      send_instructions_button: "Envia'm les instruccions per restablir la contrasenya"
+      send_paranoid_instructions: "Si la teva adreça electrònica existeix en el sistema, hi rebràs instruccions per recuperar la contrasenya."
+      updated: "La contrasenya s'ha canviat correctament. Has iniciat la sessió."
+      updated_not_active: "La contrasenya s'ha canviat correctament."
+    registrations:
+      destroyed: "Adeu, el teu compte s'ha eliminat. Esperem tornar-te a veure aviat!"
+      new: "Registra't"
+      new_long: "No tens un compte? Registra't"
+      password_confirmation: "Confirmació de la contrasenya"
+      signed_up: "Benvingut/da! T'has registrat correctament."
+      signed_up_but_unconfirmed: "T'hem enviat un correu electrònic amb instruccions perquè confirmis el teu compte."
+      signed_up_but_inactive: "T'has registrat correctament, però el teu compte encara no s'ha activat."
+      signed_up_but_locked: "T'has registrat correctament, però el teu compte està bloquejat."
+      updated: "Has actualitzat el teu compte correctament."
+      update_needs_confirmation: "Has actualitzat el teu compte correctament, però hem de tornar a validar la teva adreça electrònica. Revisa el teu correu per confirmar l'adreça."
+      need_to_accept_terms: "Has d'acceptar els termes i condicions"
+    reset_password:
+      change_my_password: "Canvia la contrasenya"
+    sessions:
+      close: "Tanca la sessió"
+      logged: "Has iniciat la sessió com a"
+      new: "Inicia la sessió"
+      new: "Inicia la sessió amb les teves credencials"
+      remember_me: "Recorda'm"
+      signed_in: "Has iniciat la sessió correctament."
+      signed_out: "Has tancat la sessió correctament."
+      already_signed_out: "Has tancat la sessió correctament."
+      logout: "Surt"
+    unlocks:
+      send_instructions: "D'aquí uns minuts rebràs un correu electrònic amb instruccions per desbloquejar el teu compte"
+      send_paranoid_instructions: "Si el teu compte existeix, d'aquí uns minuts rebràs instruccions per desbloquejar el teu compte"
+      unlocked: "El teu compte s'ha desbloquejat. Inicia la sessió per continuar."
+  errors:
+    messages:
+      already_confirmed: "ja s'ha confirmat. Prova de tornar a entrar."
+      confirmation_period_expired: "s'ha de confirmar en %{period}, demana'n un altre"
+      expired: "ha expirat, demana'n una de nova"
+      not_found: "no s'ha trobat"
+      not_locked: "no s'ha bloquejat"
+      not_saved:
+        one: "S'ha produït 1 error:"
+        other: "S'han produït %{count} errors:"

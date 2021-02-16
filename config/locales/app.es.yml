@@ -85,6 +85,7 @@ es:
     add_new_topic: "Añadir nuevo apartado"
     all: Todo
     at: "a las"
+    card_lang: "Idioma de la ficha"
     coming_up: "Próximamente"
     confirm_delete: "¿Seguro que quieres borrar este curso/webinar?"
     contents: Contenidos
@@ -153,7 +154,7 @@ es:
     lessons_placeholder: "Número de lecciones del curso y duración de las mismas"
     live: "Live ahora"
     live_in: "en"
-    metrics: 
+    metrics:
     metrics:
       courses: "Cursos"
       courses_created: "Nº de cursos creados"
@@ -289,6 +290,7 @@ es:
     no_events: "No hay eventos programados para este día"
     your_courses_and_webinars: "Tus cursos y webinars"
   search:
+    filter: "Filtrar resultados"
     next: "Siguiente"
     no_results: "No hay resultados"
     prev: "Anterior"

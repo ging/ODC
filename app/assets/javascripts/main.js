@@ -43,6 +43,12 @@ $(function () {
       ev.target.parentNode.classList.remove('input--filled');
     }
   }
+
+  $(".filter_locale li").click(function (e) {
+    $(".filter_locale input[name=card_lang]").attr("value", $(this).attr("value"));
+    $(".filter_locale").submit();
+  });
+
   /******************************************* SEARCH *******************************************/
 
   /******************************************** DATE ********************************************/

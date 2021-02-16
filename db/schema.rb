@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_14_074919) do
+ActiveRecord::Schema.define(version: 2021_02_16_150919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 2020_10_14_074919) do
     t.string "thumb_min_content_type"
     t.bigint "thumb_min_file_size"
     t.datetime "thumb_min_updated_at"
+    t.string "card_lang"
   end
 
   create_table "enrollments", force: :cascade do |t|

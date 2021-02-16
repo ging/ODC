@@ -1,0 +1,266 @@
+ca:
+  accept: "Accepta"
+  account:
+    cancel: "Cancel·la el meu compte"
+    edit: "Edita el compte"
+    update: "Actualitza el compte"
+  activerecord:
+    models:
+        user: Usuari
+        course: Curs
+        course_teachers: Professors
+    attributes:
+        user:
+            password: La contrasenya
+            current_password: "La contrasenya actual"
+            password_confirmation: "La confirmació de la contrasenya"
+            name: "El nom"
+            email: "L'adreça electrònica"
+            tags: "Les etiquetes"
+        course:
+            name: "El nom del curs"
+            start_date: "La data d'inici"
+            end_date: "La data de finalització"
+            description: "La descripció del curs"
+            rating: "La puntuació"
+            start_enrollment_date: "La data de començament de matriculació"
+            end_enrollment_date: "La data de fi de matriculació"
+            video: "El vídeo introductori"
+            lang: "Els idiomes del curs"
+            url: "L'enllaç al curs"
+            alt_link: "L'enllaç alternatiu al webinari"
+            retransmission: "L'enregistrament del webinari"
+            powered_by: "El proveïdor del curs (powered by)"
+            powered_by_link: "L'enllaç al proveïdor del curs (powered by)"
+            dedication: "La dedicació estimada"
+            lessons: "El nre. de lliçons"
+            format: "El format del curs"
+            spots: "El nre. de places"
+            categories: "Les categories del curs"
+            contents: "El contingut del curs"
+            successfully_destroyed: "S'ha esborrat amb èxit"
+        course_teachers:
+            name: "El nom del professor"
+            position: "El lloc del professor"
+            facebook: "L'id de Facebook del professor"
+            linkedin: "El perfil de Linkedin del professor"
+            twitter: "L'usuari de Twitter del professor"
+            instagram: "L'usuari d'Instagram del professor"
+            bio: "La biografia del professor"
+    errors:
+      messages:
+        confirmation: "no coincideix amb %{attribute}"
+        accepted: "ha d'estar acceptat"
+        blank: "no pot estar en blanc"
+        confirmation: "no coincideix amb la contrasenya"
+        empty: "no pot estar buit"
+        equal_to: "ha de ser igual a %{count}"
+        even: "ha de ser parell"
+        exclusion: "està reservat"
+        greater_than: "ha de ser més gran que %{count}"
+        greater_than_or_equal_to: "ha de ser més gran o igual que %{count}"
+        inclusion: "no és a la llista"
+        invalid: "no és vàlid"
+        less_than: "ha de ser més petit que %{count}"
+        less_than_or_equal_to: "ha de ser més petit o igual que %{count}"
+        not_a_number: "no és un nombre"
+        odd: "ha de ser imparell"
+        taken: "ja existeix"
+        too_long: "és massa llarg (màxim %{count} caràcters)"
+        too_short: "és massa curt (mínim %{count} caràcters)"
+        wrong_length: "no té la longitud correcta (hauria de tenir %{count} caràcters)"
+
+      models:
+        user:
+          attributes:
+            email:
+              blank: "no pot estar en blanc"
+              empty: "no pot estar en blanc"
+              taken: "ja existeix"
+            language:
+              blank: "no pot estar en blanc"
+              empty: "no pot estar en blanc"
+            username:
+              blank: "no pot estar en blanc"
+              empty: "no pot estar en blanc"
+            password:
+              blank: "no pot estar en blanc"
+              empty: "no pot estar en blanc"
+              length: "massa curta"
+              invalid: "no és vàlida"
+              record_invalid: "no és vàlida"
+              too_short: "és massa curta (mínim %{count} caràcters)"
+            current_password:
+              record_invalid: "no és vàlida"
+              invalid: "no és vàlida"
+              too_short: "és massa curta (mínim %{count} caràcters)"
+  authorization:
+    errors:
+        generic: "No estàs autoritzat per accedir a aquest recurs o fer aquesta acció"
+  cancel: "Cancel·la"
+  categories:
+    climate: "Canvi climàtic"
+    inclusion: "Inclusió digital"
+    esafety: "Ús responsable de la tecnologia"
+    entrepreneurship: Emprenedoria
+    other: "Altres"
+  cookies:
+    msg: La Fundació Orange utilitza cookies pròpies i de tercers per analitzar i personalitzar la teva navegació, així com per mostrar-te publicitat basada en els teus interessos tenint en compte el perfil realitzat mitjançant el seguiment de la teva navegació (ex. pàgines visitades, clics en continguts, etc.). Fes clic a “Accepta” si autoritzes totes aquestes cookies. També pots configurar o rebutjar les cookies fent clic a
+    msg2: o obtenir més informació a la nostra
+    cookies_panel_title: Tauler de configuració de les cookies
+    cookies_panel_explanation: Aquest és el configurador avançat de les cookies pròpies i de tercers. Aquí pots modificar paràmetres que afectaran directament la teva experiència de navegació en aquest web.
+    close_without_saving: "Descarta els canvis"
+    save_changes: "Desa la configuració"
+    terms: Termes i condicions
+    privacy_policy: Política de privacitat
+    cookie_policy: Política de cookies
+    title: La teva privacitat importa
+    agree: Accepta
+    more: Configura les cookies
+    technical:
+        label: Cookies tècniques (necessàries)
+        description: Aquestes cookies són importants perquè puguis accedir amb seguretat a zones amb informació personal o per identificar-te quan inicies la sessió.
+    analytics:
+        label:  No vull cookies d'Analítica
+        checked: Disposes d'una millora contínua en l'experiència de navegació.
+        unchecked: Amb la teva selecció no et podem oferir una millora contínua en l'experiència de navegació.
+        description: Permeten mesurar, de manera anònima, el nombre de visites o l'activitat. Gràcies a les cookies podem millorar constantment la teva experiència de navegació.
+    ad:
+        label: No vull cookies de Publicitat
+        checked: Disposes d'una publicitat adaptada a tu i a les teves preferències.
+        unchecked: Amb la teva selecció perds la personalització de la publicitat i només veuràs anuncis genèrics.
+        description: Permeten que la publicitat que et mostrem sigui personalitzada i rellevant per a tu. Gràcies a aquestes cookies no veuràs anuncis que no t'interessin.
+    custom:
+        label: No vull cookies de Personalització
+        checked: Disposes d'una experiència i continguts personalitzats.
+        unchecked: Amb la teva selecció no et podem oferir una navegació i continguts personalitzats.
+        description: Aquestes cookies estan relacionades amb característiques generals, com ara el navegador que utilitzes.
+  dictionary:
+    about: "Quant a"
+    add: "Afegeix"
+    all: "Tots"
+    and: "i"
+    are_you_sure: "N'estàs segur?"
+    and: "i"
+    back: "Enrere"
+    cancel: "Cancel·la"
+    clone: "Clona"
+    delete: "Suprimeix"
+    description: "Descripció"
+    download: "Baixa"
+    edit: "Edita"
+    email: "Adreça electrònica"
+    errors:
+      blank: "no pot estar en blanc"
+      name_blank: "El nom no pot estar en blanc"
+      page_not_found: "Aquesta pàgina no existeix"
+      reserved_word: "és una paraula reservada"
+      resource_not_found: "No s'ha trobat el recurs"
+      too_short: "és massa curt"
+      unspecified: "s'ha d'especificar"
+    file: "Fitxer"
+    finish: "Finalitza"
+    full_screen: "Pantalla completa"
+    language: "Idioma"
+    login: "Inicia la sessió"
+    next: "Següent"
+    none: "Cap"
+    ok: "D'acord"
+    password: "Contrasenya"
+    preview: "Previsualitza"
+    relevance: "Rellevància"
+    remove: "Suprimeix"
+    save: "Desa"
+    search: "Cerca"
+    submit: "Envia"
+    tags: "Etiquetes"
+    title: "Títol"
+    thumbnail: "Avatar"
+    untitled: "Sense títol"
+    unknown: "Desconegut"
+    unspecified: "No especificat"
+    update: "Actualitza"
+    username: "Nom d'usuari"
+    register: "Registra-t'hi"
+  languages:
+    bg: "Búlgar"
+    ca: "Català"
+    cy: "Gal·lès"
+    de: "Alemany"
+    en: "Anglès"
+    es: "Espanyol"
+    et: "Estonià"
+    fr: "Francès"
+    it: "Italià"
+    lb: "Luxemburguès"
+    lv: "Letó"
+    nl: "Holandès"
+    pl: "Polonès"
+    pt: "Portuguès"
+    ro: "Romanès"
+    ru: "Rus"
+    sr: "Serbi"
+    independent: "Independent de l'idioma"
+    language: "Idioma"
+  login:
+    confirmation_instructions: "No has rebut les instruccions de confirmació?"
+    confirmation_instructions_resend: "Torna a enviar les instruccions per confirmar el compte"
+    confirmation_instructions_resend_btn: "Torna a enviar"
+    confirmation_waiting: "Actualment s'està esperant la confirmació per"
+    email_description: "Assegura't que introdueixes una adreça electrònica vàlida perquè se t'enviarà un correu amb un enllaç per activar el teu compte"
+    message:
+      error:
+        captcha: "S'ha produït un error amb el codi captcha. Torna a introduir el codi."
+    password: "Contrasenya"
+    password_change: "Canvia la contrasenya"
+    password_confirmation: "Confirmació de la contrasenya"
+    password_current_in_settings: "Contrasenya actual (la contrasenya és necessària per confirmar els canvis)"
+    password_in_settings: "Contrasenya (deixa-la en blanc si no la vols canviar)"
+    password_new: "Nova contrasenya"
+    password_new_confirmation: "Confirma la nova contrasenya"
+    password_forgot: "Has oblidat la contrasenya?"
+    password_reset_instructions: "T'enviarem instruccions perquè restableixis la contrasenya"
+    remember_me: "Recorda'm"
+    send: "Envia"
+    sign_in: "Inicia la sessió"
+    sign_in_with: "Inicia la sessió amb %{provider}"
+    sign_in_already: "Ja tens un compte? Fes clic aquí per iniciar la sessió"
+    sign_out: "Tanca la sessió"
+    sign_up: "Registra-t'hi"
+    unlock_instructions: "No has rebut les instruccions per desbloquejar el compte?"
+    unlock_instructions_resend: "Torna a enviar les instruccions per desbloquejar el compte"
+    unlock_instructions_resend_btn: "Torna a enviar"
+    username_or_email: "Nom d'usuari o adreça electrònica"
+  profile:
+    title: "Perfil de %{name}"
+    title_own: "El teu perfil"
+  recaptcha:
+    errors:
+      verification_failed: 'Ha fallat la verificació reCAPTCHA, torna-ho a provar'
+  support:
+    array:
+      two_words_connector: " i "
+      last_word_connector: " i "
+  date:
+    day_names:
+      - diumenge
+      - dilluns
+      - dimarts
+      - dimecres
+      - dijous
+      - divendres
+      - dissabte
+    month_names:
+      -
+      - gener
+      - febrer
+      - març
+      - abril
+      - maig
+      - juny
+      - juliol
+      - agost
+      - setembre
+      - octubre
+      - novembre
+      - desembre

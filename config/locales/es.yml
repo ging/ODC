@@ -186,6 +186,7 @@ es:
     register: "Regístrate"
   languages:
     bg: "Búlgaro"
+    ca: "Catalán"
     cy: "Galés"
     de: "Alemán"
     en: "Inglés"
