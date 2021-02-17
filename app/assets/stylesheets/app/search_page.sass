@@ -48,13 +48,27 @@
 				box-shadow: 0 0 0 0.2rem rgba($orange_light,.25)
 			&::before,&::after
 				width: 1.5625rem
-		&.disabled 
+		&.disabled
 			.page-link
 				color: #bbb
 				background-color: transparent
 				border-color: transparent
-		&.active 
-			.page-link 
+		&.active
+			.page-link
 				color: white
 				background-color: $orange_light
 				border-color: $orange_light
+.filter-row
+	justify-content: center
+	padding-bottom: 20px
+	font-weight: 700
+	.filter-locale
+		.nav-item
+			list-style-type: none
+			&.active
+				a.nav-link
+					color: $orange
+			a.nav-link
+				padding: 0 0.5rem
+				text-transform: uppercase
+				cursor: pointer

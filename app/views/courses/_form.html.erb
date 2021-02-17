@@ -155,7 +155,7 @@
 			<div class="form-group row"  >
 				<label for="card_lang" class="col-12 col-sm-2 col-form-label "><%=t('course.card_lang')%></label>
 				<div class="col-12 col-sm-10">
-					<%= form.select :card_lang, options_for_select(options_for_select_all_languages, I18n.locale.to_s), {}, { :class => 'account_language form-control' } %>
+					<%= form.select :card_lang, options_for_select(options_for_select_all_languages, course[:card_lang]), {}, { :class => 'account_language form-control' } %>
 				</div>
 			</div>
 			<%= render partial: "layouts/form_field", :locals => {

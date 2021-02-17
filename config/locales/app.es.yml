@@ -290,6 +290,7 @@ es:
     no_events: "No hay eventos programados para este día"
     your_courses_and_webinars: "Tus cursos y webinars"
   search:
+    all: "Todos"
     filter: "Filtrar resultados"
     next: "Siguiente"
     no_results: "No hay resultados"

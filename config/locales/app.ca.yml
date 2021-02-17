@@ -270,6 +270,8 @@ ca:
     no_events: "No hi ha esdeveniments programats per a aquest dia"
     your_courses_and_webinars: "Els teus cursos i webinaris"
   search:
+    all: "Tots"
+    filter: "Filtrar resultats"
     next: "Següent"
     no_results: "No hi ha resultats"
     prev: "Anterior"

@@ -21,22 +21,36 @@
 					</form>
 				</div>
 			</div>
-			<div class="row">
-				<%=t("search.filter")%>:
-				<% I18n.available_locales.map(&:to_s).each do |lanCode| %>
-				<form class="filter_locale" class="lang nav-item">
-					<%if !params[:webinar].blank?%>
-						<input type="hidden" name="webinar" value="<%=params[:webinar]%>">
-					<%end%>
-					<input type="hidden" name="q" value="<%=params[:q]%>"/>
-					<input type="hidden" name="sort_by" value="<%=params[:sort_by]%>"/>
-					<input name="card_lang" value="" type="hidden"/>
-					<li class="nav-item <%= params[:card_lang] == lanCode ? "active":""%>" value="<%=lanCode%>">
-						<a class="nav-link"><%=lanCode%>
-						</a>
-					</li>
-				</form>
-				<% end %>
+			<div class="row filter-row">
+				<div class="row">
+						<%=t("search.filter")%>:
+						<form class="filter-locale" class="lang nav-item">
+							<%if !params[:webinar].blank?%>
+								<input type="hidden" name="webinar" value="<%=params[:webinar]%>">
+							<%end%>
+							<input type="hidden" name="q" value="<%=params[:q]%>"/>
+							<input type="hidden" name="sort_by" value="<%=params[:sort_by]%>"/>
+							<input name="card_lang" value="All" type="hidden"/>
+							<li class="nav-item <%= (!params[:card_lang].present? || params[:card_lang] == "All") ? "active":""%>">
+								<a class="nav-link"><%= t("search.all")%>
+								</a>
+							</li>
+						</form>
+						<% I18n.available_locales.map(&:to_s).each do |lanCode| %>
+						<form class="filter-locale" class="lang nav-item">
+							<%if !params[:webinar].blank?%>
+								<input type="hidden" name="webinar" value="<%=params[:webinar]%>">
+							<%end%>
+							<input type="hidden" name="q" value="<%=params[:q]%>"/>
+							<input type="hidden" name="sort_by" value="<%=params[:sort_by]%>"/>
+							<input name="card_lang" value="<%=lanCode%>" type="hidden"/>
+							<li class="nav-item <%= params[:card_lang] == lanCode ? "active":""%>">
+								<a class="nav-link"><%=lanCode%>
+								</a>
+							</li>
+						</form>
+						<% end %>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -321,6 +321,7 @@ en:
     no_events: "There are not any events scheduled for this day"
     your_courses_and_webinars: "Your courses and webinars"
   search:
+    all: "All"
     filter: "Filter results"
     next: Next
     no_results: "No results"
