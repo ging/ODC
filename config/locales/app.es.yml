@@ -291,6 +291,10 @@ es:
     your_courses_and_webinars: "Tus cursos y webinars"
   search:
     all: "Todos"
+    all_languages: "Todos los idiomas"
+    ca: "Catalán"
+    en: "Inglés"
+    es: "Español"
     filter: "Filtrar resultados"
     next: "Siguiente"
     no_results: "No hay resultados"
