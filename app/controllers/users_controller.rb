@@ -9,11 +9,12 @@ class UsersController < ApplicationController
       redirect_to "/"
     end
   end
+
   def show
   end
 
   def edit
-  	if @isProfileOwner or current_user.isAdmin?
+    if @profile_user and can? :update, @profile_user
   		render "edit"
   	else
   		redirect_to "/"
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def update
-  	if @isProfileOwner or current_user.isAdmin?
+  	if @profile_user and can? :update, @profile_user
       if @profile_user.update(users_params.except("avatar_delete"))
         if users_params["avatar_delete"] == "1"
           @profile_user.avatar = nil
@@ -38,9 +39,8 @@ class UsersController < ApplicationController
   end
  
   def destroy
-  	if @isProfileOwner or current_user.isAdmin?
-  		@profile_user.destroy
-      if (@profile_user.destroy)
+  	if @profile_user and can? :destroy, @profile_user
+      if @profile_user.destroy
         redirect_to "/", notice: I18n.t("devise.registrations.updated_other")
       else
         flash.now[:alert] = @profile_user.errors.full_messages.join(". ")
@@ -55,13 +55,9 @@ class UsersController < ApplicationController
   private
 
   def find_user
-    @profile_user = User.find_by_id(params[:id]) 
+    @profile_user = User.find_by_id(params[:id])
     authorize! :read, @profile_user
-    if !@profile_user.nil? and user_signed_in?
-    	@isProfileOwner = (user_signed_in? and current_user.id==@profile_user.id)
-    else
-      redirect_to "/"
-    end
+    @isProfileOwner = (!@profile_user.nil? and user_signed_in? and current_user.id==@profile_user.id)
   end
 
   def users_params

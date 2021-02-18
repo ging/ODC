@@ -12,12 +12,12 @@ class Ability
 
     #Users
     can :read, User
-    can :enroll, Course
-    can :rate, Course
 
     #Courses
     can :read, Course
-
+    can :enroll, Course
+    can :rate, Course
+    
     unless user.id.nil?
       #Registered users
       can :manage, User do |u|
