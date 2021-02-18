@@ -3,7 +3,7 @@
 class CoursesController < ApplicationController
   load_and_authorize_resource :except => [:webinars, :all_courses]
   before_action :authenticate_user!, :except => [:index, :webinars, :all_courses, :show]
-  before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :set_course, only: [:show, :edit, :update, :destroy, :enrollments]
   before_action :parse_course_params, only: [:create, :update]
   skip_authorization_check :only => [:webinars, :all_courses]
   after_action :save_and_update_teachers, only: [:create, :update]
@@ -108,6 +108,16 @@ class CoursesController < ApplicationController
   def destroy
     @course.destroy
     redirect_to courses_url, notice:  I18n.t("course.successfully_destroyed")
+  end
+
+  # GET /courses/1/enrollments
+  def enrollments
+    @enrollments = @course.users
+    respond_to do |format|
+      format.xlsx {
+        response.headers['Content-Disposition'] = "attachment; filename=" + t('course.enrollments') + "_" + @course.id.to_s + ".xlsx"
+      }
+    end
   end
 
   # POST /courses/1/enroll

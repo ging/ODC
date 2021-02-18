@@ -12,7 +12,6 @@
 <div class="container-fluid course-detail">
 	<div class="row">
 		<div class="col-xs-12 col-md-9">
-
 			<% if @course[:webinar] and notYet and !comingUp%>
 				<%= render partial: "courses/countdown", :locals => { date: @course[:start_date], now: now} %>
 			<% elsif (@course[:webinar] and currentlyGoingOn)%>
@@ -169,6 +168,13 @@
 					<span class="course-field orange"><%= t("course.enrollments")%>:</span>
 					<span><%=@course.users.count%></span>
 				</div>
+				<div class="course-characteristic">
+					<a href="<%=enrollments_path(@course)%>">
+						<button class="btn btn-inverse btn-primary" >
+							<%=t("course.download_enrollment_list")%>
+						</button>
+					</a>
+				</div>	
 			<%end%>
 			<% if !@course[:lang].blank? %>
 				<div class="course-characteristic">

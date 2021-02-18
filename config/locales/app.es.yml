@@ -105,6 +105,7 @@ es:
     csv_invalid: CSV inválido
     csv_list: "Lista de usuarios"
     date: "Fecha"
+    download_enrollment_list: "Descarga lista de matriculados"
     enrollment_date: "Fecha"
     enrollment_period_future: "El periodo de matriculación no ha comenzado. Comienza el "
     enrollment_period_over: "El periodo de matriculación ha terminado"

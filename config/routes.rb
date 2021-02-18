@@ -13,6 +13,7 @@ ODC::Application.routes.draw do
   match '/vamping' => 'courses#show', :defaults => { :id => '45' },  via: [:get]
   match '/webinars', to: 'courses#webinars', via: [:get]
   match '/all_courses', to: 'courses#all_courses', via: [:get]
+  match 'courses/:id/enrollments' => 'courses#enrollments', via: [:get]
   match 'courses/:id/enroll' => 'courses#enroll', via: [:post]
   match 'courses/:id/unenroll' => 'courses#unenroll', via: [:post]
   match 'courses/:id/rate' => 'courses#rate', via: [:post]

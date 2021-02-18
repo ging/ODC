@@ -19,6 +19,9 @@ gem 'bootstrap-will_paginate', '1.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails', '4.4.0'
 gem 'jquery-ui-rails', '6.0.1'
+#xlsx generation
+gem 'caxlsx', '3.0.4'
+gem 'caxlsx_rails', '0.6.2'
 
 gem 'devise', '4.7.2'
 gem "devise-encryptable", '0.2.0'

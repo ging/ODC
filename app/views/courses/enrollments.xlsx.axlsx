@@ -1,0 +1,7 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: t('course.enrollments')) do |sheet|
+	sheet.add_row ["Id", t('user.username'), t('user.name'), t('user.surname'), t('user.email')]
+	@enrollments. each do |user|
+		sheet.add_row [user.id.to_s, user.username, user.name, user.surname || "", user.email]
+	end
+end

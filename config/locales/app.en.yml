@@ -132,6 +132,7 @@ en:
     csv_invalid: Invalid CSV
     csv_list: "List of users"
     date: Date
+    download_enrollment_list: "Download enrollment list"
     enrollment_date: "Enrollment period"
     enrollment_period_future: "The enrollment period has not started. It starts on "
     enrollment_period_over: "The enrollment period of this course is not active"
