@@ -83,4 +83,11 @@ class Course < ApplicationRecord
 		self.update_column(:rating, rating) if rating != self.rating
 	end
 
+	def public_json
+		{
+			id: self.id,
+			enrollments: self.users.length
+		}
+	end
+
 end

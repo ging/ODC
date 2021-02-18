@@ -32,9 +32,17 @@ class CoursesController < ApplicationController
 
   # GET /all_courses
   def all_courses
-    @searching = true
-    @courses = Course.all.paginate(:per_page => 24, :page => 1)
-    render "index"
+    @courses = Course.all
+    respond_to do |format|
+      format.html {
+        @searching = true
+        @courses = Course.all.paginate(:per_page => 24, :page => 1)
+        render "index"
+      }
+      format.json { 
+        render json: @courses.map{|c| c.public_json}
+      }
+    end
   end
 
   # GET /courses/1
@@ -122,18 +130,7 @@ class CoursesController < ApplicationController
             @spain_time = cookies()[:utc_offset].blank? ? Time.now.in_time_zone('Europe/Madrid').formatted_offset : nil
 
             EnrollmentConfirmationMailer.enrollment_confirmation(current_user.email, current_user.name, @course, @url, @offset_orig, @offset, @spain_time).deliver_now
-          rescue EOFError,
-              IOError,
-              TimeoutError,
-              Errno::ECONNRESET,
-              Errno::ECONNABORTED,
-              Errno::EPIPE,
-              Errno::ETIMEDOUT,
-              Net::SMTPAuthenticationError,
-              Net::SMTPServerBusy,
-              Net::SMTPSyntaxError,
-              Net::SMTPUnknownError,
-              OpenSSL::SSL::SSLError => e
+          rescue e
             flash[:error] = "E-mail to #{current_user.email} could not be sent"
           end
         else
