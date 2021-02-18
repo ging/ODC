@@ -167,11 +167,9 @@
 				<div class="course-characteristic">
 					<span class="course-field orange"><%= t("course.enrollments")%>:</span>
 					<span><%=@course.users.count%></span>
-				</div>
-				<div class="course-characteristic">
 					<a href="<%=enrollments_path(@course)%>">
-						<button class="btn btn-inverse btn-primary" >
-							<%=t("course.download_enrollment_list")%>
+						<button class="btn btn-sm btn-secondary" title="<%=t("course.download_enrollment_list")%>">
+							<i class="fas fa-download"></i>
 						</button>
 					</a>
 				</div>	
