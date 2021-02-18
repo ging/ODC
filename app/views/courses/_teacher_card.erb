@@ -1,12 +1,16 @@
 <% teacher_avatar_url = (teacher.respond_to? "avatar") ? teacher.avatar.url : '/img/user_placeholder.png' %>
-<div class="d-flex flex-lg-row flex-xs-column teacher-card">
+<div class="d-flex  flex-column flex-sm-row teacher-card">
 	<div class="teacher-picture-container">
 		<img src="<%=teacher_avatar_url%>" alt="">
 	</div>
 	<div class="teacher-info">
 		<p class="teacher-name"><%=teacher[:name]%></p>
-		<p><%=teacher[:position]%>
-			<span class="social-list">
+		<p> 
+			<%if !teacher[:position].blank?%>
+				<span class="teacher-position"><%=teacher[:position]%></span>
+			<%end%>
+
+			<span class="teacher-social-list">
 				<%if !teacher[:linkedin].blank?%>
 					<a class="btn btn-social btn-linkedin" href="https://www.linkedin.com/in/<%=teacher[:linkedin]%>" aria-label="Linkedin" target="_blank"></a>
 				<%end%>

@@ -20,10 +20,10 @@
 			margin-bottom: 0px
 			line-height: 0.8
 			margin-bottom: 0.6rem
-		.social-list
-			vertical-align: middle
-			padding-left: 1rem
+		.teacher-position
 			padding-right: 1rem
+		.teacher-social-list
+			vertical-align: middle
 			.btn-social
 				width: 28px
 				height: 28px
@@ -61,3 +61,30 @@
 .teacher-note
 	opacity: 0.5
 	font-size: smaller
+
+
+@media (max-width: 479px)
+
+	.teacher-card
+		padding: .3125rem
+		.teacher-picture-container
+			width: 100%
+			height: auto
+			position: relative
+			img
+				width: 100%
+				height: auto
+				background-color: $gris
+			.custom-file
+				margin-top: 10px
+		.teacher-info
+			padding-top: 1rem
+			padding-left: 0
+			.teacher-name
+				font-size: 1.5rem
+				line-height: 1.1
+			.teacher-position
+				display: block
+				padding-bottom: 1rem
+			.teacher-social-list
+				display: block

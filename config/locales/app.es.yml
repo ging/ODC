@@ -155,7 +155,6 @@ es:
     live: "Live ahora"
     live_in: "en"
     metrics:
-    metrics:
       courses: "Cursos"
       courses_created: "Nº de cursos creados"
       date: Fecha

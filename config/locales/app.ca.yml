@@ -80,6 +80,7 @@ ca:
     add_new_lesson: "Afegeix nova lliçó"
     add_new_teacher: "Afegeix nou professor"
     add_new_topic: "Afegeix nou apartat"
+    all: Tot
     at: "a les"
     coming_up: "Pròximament"
     confirm_delete: "N'estàs segur que vols eliminar aquest curs/webinari?"
@@ -148,6 +149,18 @@ ca:
     lessons_placeholder: "Nombre i durada de les lliçons del curs"
     live: "Live ara"
     live_in: "en"
+    metrics:
+      courses: "Cursos"
+      courses_created: "Nombre de cursos creats"
+      date: Data
+      enrolled: Matriculats
+      filter: Filtrar
+      general: "Generals"
+      name: Nom
+      webinars_created: "Nombre de webinars creats"
+      teachers_created: "Nombre de professors"
+      title: "Mètriques"
+      users_created: "Nombre d'usuaris registrats"
     massive_enrollment: "Matriculació massiva"
     massive_enrollment_success: "La matriculació massiva s'ha completat amb èxit"
     max_capacity: "Aquest curs està ple"
@@ -299,6 +312,7 @@ ca:
     tags: "Etiquetes"
     update: "Actualitza"
     username: "Nom d'usuari"
+    users: "Usuaris"
   webinar:
     alt_link: "Enllaç al webinari (eina externa)"
     alt_link_placeholder: "Enllaç oficial per compartir la sala on tindrà lloc el webinari, ja sigui a Zoom, Webex, etc. (si està disponible)"
