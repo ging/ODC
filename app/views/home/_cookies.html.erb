@@ -3,12 +3,12 @@
 <div class="cookies <%=visible ? '' : 'd-none' %>" id="layer-cookies">
 	<p>
 		<%=t('cookies.msg') %>
-		"<a class="configCookies" href="#"  onclick="openPrompt()" onkeypress="openPrompt()" title="<%=t("cookies.more")%>"><%=t("cookies.more")%></a>"
+		"<a class="configCookies" href="#"  onclick="openPrompt()" onkeypress="openPrompt()" title="<%=t("cookies.more")%>"><%=t("cookies.more").upcase%></a>"
 
-		<%=t('cookies.msg2') %> <a target="blank" href="http://www.fundacionorange.es/politica-de-cookies/"><%=t('cookies.cookie_policy') %></a>.
+		<%=t('cookies.msg2') %> <a target="blank" href="http://www.fundacionorange.es/politica-de-cookies/"><%=t('cookies.cookie_policy').upcase %></a>.
 	</p>
 	<div class="btn-group-owcs">
-		<button type="button" name="buttonCookie" class="btn btn-primary btn-owcs" title="<%=t("cookies.agree")%>" onclick="acceptCookies()" onkeypress="acceptCookies()"><%=t("cookies.agree")%>
+		<button type="button" name="buttonCookie" class="btn btn-primary btn-owcs" title="<%=t("cookies.agree")%>" onclick="acceptCookies()" onkeypress="acceptCookies()"><%=t("cookies.agree").upcase%>
 		</button>
 	</div>
 <!-- 	<button type="button" class="btn-close-cookies" title="Cerrar aviso de Cookies" aria-label="Botón cerrar política de cookies" onclick="declineCookies()" onkeypress="declineCookies()">
