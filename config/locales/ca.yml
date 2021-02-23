@@ -105,8 +105,9 @@ ca:
     entrepreneurship: Emprenedoria
     other: "Altres"
   cookies:
-    msg: La Fundació Orange utilitza cookies pròpies i de tercers per analitzar i personalitzar la teva navegació, així com per mostrar-te publicitat basada en els teus interessos tenint en compte el perfil realitzat mitjançant el seguiment de la teva navegació (ex. pàgines visitades, clics en continguts, etc.). Fes clic a “Accepta” si autoritzes totes aquestes cookies. També pots configurar o rebutjar les cookies fent clic a
-    msg2: o obtenir més informació a la nostra
+    msg: La Fundació Orange utilitza cookies pròpies i de tercers per analitzar i personalitzar la teva navegació, així com per mostrar-te publicitat basada en els teus interessos tenint en compte el perfil realitzat mitjançant el seguiment de la teva navegació (ex. pàgines visitades, clics en continguts, etc.). 
+    msg2: Fes clic a “Accepta” si autoritzes totes aquestes cookies. També pots configurar o rebutjar les cookies fent clic a
+    msg3: o obtenir més informació a la nostra
     cookies_panel_title: Tauler de configuració de les cookies
     cookies_panel_explanation: Aquest és el configurador avançat de les cookies pròpies i de tercers. Aquí pots modificar paràmetres que afectaran directament la teva experiència de navegació en aquest web.
     close_without_saving: "Descarta els canvis"
@@ -115,6 +116,7 @@ ca:
     privacy_policy: Política de privacitat
     cookie_policy: Política de cookies
     title: La teva privacitat importa
+    title2: Avís de cookies
     agree: Accepta
     more: Configura les cookies
     technical:

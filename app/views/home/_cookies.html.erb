@@ -1,5 +1,5 @@
 <%visible = cookies.permanent[:cookies_set].blank? == true%>
-<div class="cookie-placholder <%=visible ? '' : 'd-none' %>" style="visibility: hidden; margin-top:120px;"><%=t('cookies.msg') %></div>
+<!-- <div class="cookie-placholder <%=visible ? '' : 'd-none' %>" style="visibility: hidden; margin-top:120px;"><%=t('cookies.msg') %></div>
 <div class="cookies <%=visible ? '' : 'd-none' %>" id="layer-cookies">
 	<p>
 		<%=t('cookies.msg') %>
@@ -11,41 +11,68 @@
 		<button type="button" name="buttonCookie" class="btn btn-primary btn-owcs" title="<%=t("cookies.agree")%>" onclick="acceptCookies()" onkeypress="acceptCookies()"><%=t("cookies.agree").upcase%>
 		</button>
 	</div>
-<!-- 	<button type="button" class="btn-close-cookies" title="Cerrar aviso de Cookies" aria-label="Botón cerrar política de cookies" onclick="declineCookies()" onkeypress="declineCookies()">
-		<svg aria-labelledby="titleCerrar4444001445113 iconCerrar4444001445113" height="18px" role="img" viewBox="0 0 64 64" width="18px" xmlns="http://www.w3.org/2000/svg">
-			<title id="titleCerrar4444001445113">Icono cerrar</title>
-			<desc id="iconCerrar4444001445113">Un icono en forma de aspa de cierre</desc><path d="M57.34,57.07a6.75,6.75,0,0,1-9.53,0L32,41.25,16.19,57.07a6.74,6.74,0,0,1-9.53-9.54L22.47,31.72,7.23,16.47a6.74,6.74,0,0,1,9.53-9.54L32,22.19,47.25,6.93a6.74,6.74,0,1,1,9.52,9.54L41.53,31.72,57.34,47.53A6.75,6.75,0,0,1,57.34,57.07Z" transform="translate(-4.69 -4.96)"></path></svg>
-			<span class="hide-text-owcs">Cerrar ventana política de cookies</span>
-		</button> -->
-	</div>
+</div>  -->
+<div id="__tealiumGDPRecModal"  class="modal fade" data-backdrop="static">
+	<div class="privacy_prompt explicit_consent modal-dialog" role="document">
+		<div class="privacy_prompt_content modal-content" style=" border-width: 0 !important;">
+			<div class="modal-header">
+				<h3 class="modal-title" id="modalTitleCookies">                
+					<%=t('cookies.title2') %>            
+				</h3>
+			</div>
+			<div class="modal-body">
+				<p class="modal-body-text"><%=t('cookies.msg') %></p>
+				<p class="modal-body-text">
+					<strong style="font-family: Helvetica--Neue--55,Arial,sans-serif !important; ">            <%=t('cookies.msg2') %>               
+						<a id="configC" class="link-cookies" title="CONFIGURAR COOKIES" onclick="openPrompt()" onkeypress="openPrompt()" href="#"><%=t("cookies.more").upcase%></a> <%=t('cookies.msg3') %>         
+						<a class="link-cookies" title="POLÍTICA DE COOKIES" href="http://www.fundacionorange.es/politica-de-cookies/"><%=t('cookies.cookie_policy').upcase %></a>
+					</strong>
+				</p>
+			</div>
+			<div class="privacy_prompt_footer first-modal">
+				<div class="modal-footer">
+					<button type="button" name="buttonCookie" class="btn btn-primary btn-owcs" title="<%=t("cookies.agree")%>" onclick="acceptCookies()" onkeypress="acceptCookies()"><%=t("cookies.agree")%>
+					</button>
+				</div>
+			</div>
+		</div>
 <script type="text/javascript">
-var utag_data = {
-}
-function openCategory(e,t){var o,n,c;for(n=document.getElementsByClassName("tabcontent"),o=0;o<n.length;o++)n[o].style.display="none";for(c=document.getElementsByClassName("tablinks"),o=0;o<c.length;o++)c[o].className=c[o].className.replace(" active","");document.getElementById(t).style.display="block",e.currentTarget.className+=" active"}
+	var utag_data = {
+	}
+	function openCategory(e,t){var o,n,c;for(n=document.getElementsByClassName("tabcontent"),o=0;o<n.length;o++)n[o].style.display="none";for(c=document.getElementsByClassName("tablinks"),o=0;o<c.length;o++)c[o].className=c[o].className.replace(" active","");document.getElementById(t).style.display="block",e.currentTarget.className+=" active"}
 
 
-function openPrompt() {
-    utag.gdpr.showConsentPreferences(), document.getElementById("defaultOpen").click(), (document.getElementsByTagName("body")[0].className += " prompt_open");
-}
+	function openPrompt() {
+	    utag.gdpr.showConsentPreferences(), document.getElementById("defaultOpen").click(), (document.getElementsByTagName("body")[0].className += " prompt_open");
+	}
 
-function privacy(event){
-	openPrompt();
-}
+	function privacy(event){
+		openPrompt();
+	}
 
-function acceptCookies(event){
-	setCookies("true");
-}
+	function acceptCookies(event){
+		setCookies("true");
+	}
 
-function declineCookies(event){
-	setCookies(0);
-}
+	function declineCookies(event){
+		setCookies(0);
+	}
 
-function setCookies(value) {
-	Cookies.set('cookies_set', 1, { expires: Infinity });
-	utag.gdpr.setConsentValue(value);
-	$('#layer-cookies').addClass("d-none");
-	$('.cookie-placholder').addClass("d-none");
-}
+	function setCookies(value) {
+		Cookies.set('cookies_set', 1, { expires: Infinity });
+		utag.gdpr.setConsentValue(value);
+		$('#layer-cookies').addClass("d-none");
+		$('.cookie-placholder').addClass("d-none");
+		$('#__tealiumGDPRecModal').modal("hide");
+		jQuery('body').css('overflow','auto');
+	}
+
+	<%if visible %>
+	$(()=>{
+		$('#__tealiumGDPRecModal').modal("show");
+		jQuery('body').css('overflow','hidden');
+	})
+	<%end%>
 
 </script>
 <!-- Loading script asynchronously -->
