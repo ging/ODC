@@ -35,7 +35,9 @@ class SearchController < ApplicationController
     results = Course.all
     results = results.where(["lower(name) LIKE ? OR lower(description) LIKE ? OR lower(categories) LIKE ?", query, query, sanitize(query)]) unless query.blank?
     results = results.where(:webinar => params[:webinar]) if params[:webinar].present?
-    results = results.where(:card_lang => params[:card_lang]) if (params[:card_lang].present? && params[:card_lang]!="All")
+    #filter courses and webinars only in the language of the page
+    pagelang = (I18n.locale === :en) ? "es":I18n.locale.to_s
+    results = results.where(:card_lang => pagelang)
     results = results.paginate(:per_page => RESULTS_SEARCH_PER_PAGE, :page => params[:page])
     results
   end

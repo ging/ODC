@@ -14,7 +14,9 @@ class CoursesController < ApplicationController
     @searching = true
     @courses = Course.all
     @courses = @courses.where(:webinar => false)
-    @courses = @courses.where(:card_lang => params[:card_lang]) if (params[:card_lang].present? && params[:card_lang]!="All")
+    #filter courses and webinars only in the language of the page, or in spanish if page is in english
+    pagelang = (I18n.locale === :en) ? "es":I18n.locale.to_s
+    @courses = @courses.where(:card_lang => pagelang)
     @courses = @courses.paginate(:per_page => 24, :page => params[:page].blank? ? 1 : params[:page])
     params[:webinar] = 0
   end
@@ -24,7 +26,9 @@ class CoursesController < ApplicationController
     @searching = true
     @courses = Course.all
     @courses = @courses.where(:webinar => true)
-    @courses = @courses.where(:card_lang => params[:card_lang]) if (params[:card_lang].present? && params[:card_lang]!="All")
+    #filter courses and webinars only in the language of the page
+    pagelang = (I18n.locale === :en) ? "es":I18n.locale.to_s
+    @courses = @courses.where(:card_lang => pagelang)
     @courses = @courses.paginate(:per_page => 24, :page => params[:page].blank? ? 1 : params[:page])
     params[:webinar] = 1
     render "index"
@@ -39,7 +43,7 @@ class CoursesController < ApplicationController
         @courses = Course.all.paginate(:per_page => 24, :page => 1)
         render "index"
       }
-      format.json { 
+      format.json {
         render json: @courses.map{|c| c.public_json}
       }
     end
