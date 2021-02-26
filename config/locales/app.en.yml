@@ -237,7 +237,9 @@ en:
     target_audience_placeholder: Target audience of the course
     teachers: "Teachers"
     teacher:
-      bio: "Short biography"
+      bio_ca: "Short biography in catalan"
+      bio_en: "Short biography in english"
+      bio_es: "Short biography in spanish"
       delete: "Remove this teacher from this course"
       facebook: "Facebook username"
       instagram: "Instagram username"
@@ -245,7 +247,9 @@ en:
       name: "Teacher name"
       note: "If you make any changes to an existing teacher, these changes will apply to all courses in which said teacher takes part"
       no_results: "No results"
-      position: "Position (e.g. Professor at University of X)"
+      position_ca: "Position in catalan (e.g. Professor at University of X)"
+      position_en: "Position in english (e.g. Professor at University of X)"
+      position_es: "Position in spanish (e.g. Professor at University of X)"
       or: "or"
       reorder: "Drag to change the order of this teacher"
       search: "Search for an existing teacher"

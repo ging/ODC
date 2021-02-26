@@ -279,7 +279,7 @@ class CoursesController < ApplicationController
   end
 
   def teachers_params
-    params.require(:course).permit(teachers: [:id, :name, :position, :facebook, :linkedin, :twitter, :instagram, :bio, :order, :avatar, :avatar_delete])
+    params.require(:course).permit(teachers: [:id, :name, :position_es, :position_en, :position_ca, :facebook, :linkedin, :twitter, :instagram, :bio_es, :bio_en, :bio_ca, :order, :avatar, :avatar_delete])
   end
 
   def parse_course_params

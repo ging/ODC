@@ -203,7 +203,9 @@ es:
     target_audience_placeholder: Público objetivo al que se dirige el curso
     teachers: "Profesores"
     teacher:
-      bio: "Breve biografía"
+      bio_ca: "Breve biografía en catalán"
+      bio_en: "Breve biografía en inglés"
+      bio_es: "Breve biografía en castellano"
       delete: "Elimina a este profesor de este curso"
       facebook: "Nombre público en Facebook"
       instagram: "Nombre de usuario de Instagram"
@@ -211,7 +213,9 @@ es:
       name: "Nombre del profesor"
       note: "Si realizas alguna modificación en un profesor ya existente, los cambios surtirán efecto en todos los cursos en los que participe dicho profesor"
       no_results: "No hay resultados"
-      position: "Puesto (ej. Profesor de la Universidad X)"
+      position_ca: "Puesto en catalán (ej. Profesor de la Universidad X)"
+      position_en: "Puesto en inglés (ej. Profesor de la Universidad X)"
+      position_es: "Puesto en castellano (ej. Profesor de la Universidad X)"
       or: "o"
       reorder: "Arrastra para cambiar de orden a este profesor"
       search: "Busca a un profesor ya existente"

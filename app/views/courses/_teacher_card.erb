@@ -1,13 +1,14 @@
 <% teacher_avatar_url = (teacher.respond_to? "avatar") ? teacher.avatar.url : '/img/user_placeholder.png' %>
+<%pagelang = (I18n.locale === :en) ? "es":I18n.locale.to_s%>
 <div class="d-flex  flex-column flex-sm-row teacher-card">
 	<div class="teacher-picture-container">
 		<img src="<%=teacher_avatar_url%>" alt="">
 	</div>
 	<div class="teacher-info">
 		<p class="teacher-name"><%=teacher[:name]%></p>
-		<p> 
-			<%if !teacher[:position].blank?%>
-				<span class="teacher-position"><%=teacher[:position]%></span>
+		<p>
+			<%if !teacher[("position_"+pagelang).to_sym].blank?%>
+				<span class="teacher-position"><%=teacher[("position_"+pagelang).to_sym]%></span>
 			<%end%>
 
 			<span class="teacher-social-list">
@@ -25,7 +26,7 @@
 				<%end%>
 			</span>
 		</p>
-		<p><%=teacher[:bio]%></p>
+		<p><%=teacher[("bio_"+pagelang).to_sym]%></p>
 	</div>
 </div>
 <br>

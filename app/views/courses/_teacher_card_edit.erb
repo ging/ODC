@@ -16,76 +16,112 @@
 	<div class="teacher-edit-block">
 		<input type="hidden" name="course[teachers][][id]" id="teacher-<%=index%>" value="<%=teacher[:id]%>">
 		<%= render partial: "layouts/form_field_icon", :locals => {
-			label: "", 
+			label: "",
 			icon: "fas fa-user",
-			type: "text", 
-			name:"course[teachers][][name]", 
-			id: "inputTeacher-#{index}-name", 
-			placeholder: t("course.teacher.name"), 
-			value: teacher[:name] 
+			type: "text",
+			name:"course[teachers][][name]",
+			id: "inputTeacher-#{index}-name",
+			placeholder: t("course.teacher.name"),
+			value: teacher[:name]
 		}  %>
 		<%= render partial: "layouts/form_field_icon", :locals => {
-			label: "", 
+			label: "",
 			icon: "",
-			type: "hidden", 
-			name:"course[teachers][][order]", 
-			id: "inputTeacher-#{index}-order", 
-			placeholder: "", 
-			value: (index.to_i+1) 
+			type: "hidden",
+			name:"course[teachers][][order]",
+			id: "inputTeacher-#{index}-order",
+			placeholder: "",
+			value: (index.to_i+1)
 		}  %>
 		<%= render partial: "layouts/form_field_icon", :locals => {
-			label: "", 
+			label: "",
 			icon: "fas fa-building",
-			type: "text", 
-			name:"course[teachers][][position]", 
-			id: "inputTeacher-#{index}-position", 
-			placeholder: t("course.teacher.position"), 
-			value: teacher[:position]
+			type: "text",
+			name:"course[teachers][][position_es]",
+			id: "inputTeacher-#{index}-position_es",
+			placeholder: t("course.teacher.position_es"),
+			value: teacher[:position_es]
 		}  %>
 		<%= render partial: "layouts/form_field_icon", :locals => {
-			label: "", 
+			label: "",
+			icon: "fas fa-building",
+			type: "text",
+			name:"course[teachers][][position_en]",
+			id: "inputTeacher-#{index}-position_en",
+			placeholder: t("course.teacher.position_en"),
+			value: teacher[:position_en]
+		}  %>
+		<%= render partial: "layouts/form_field_icon", :locals => {
+			label: "",
+			icon: "fas fa-building",
+			type: "text",
+			name:"course[teachers][][position_ca]",
+			id: "inputTeacher-#{index}-position_ca",
+			placeholder: t("course.teacher.position_ca"),
+			value: teacher[:position_ca]
+		}  %>
+		<%= render partial: "layouts/form_field_icon", :locals => {
+			label: "",
 			icon: "fab fa-facebook-f",
-			type: "text", 
-			name:"course[teachers][][facebook]", 
-			id: "inputTeacher-#{index}-facebook", 
-			placeholder: t("course.teacher.facebook"), 
+			type: "text",
+			name:"course[teachers][][facebook]",
+			id: "inputTeacher-#{index}-facebook",
+			placeholder: t("course.teacher.facebook"),
 			value: teacher[:facebook]
 		}  %>
 		<%= render partial: "layouts/form_field_icon", :locals => {
-			label: "", 
+			label: "",
 			icon: "fab fa-linkedin",
-			type: "text", 
-			name:"course[teachers][][linkedin]", 
-			id: "inputTeacher-#{index}-linkedin-in", 
-			placeholder: t("course.teacher.linkedin"), 
+			type: "text",
+			name:"course[teachers][][linkedin]",
+			id: "inputTeacher-#{index}-linkedin-in",
+			placeholder: t("course.teacher.linkedin"),
 			value: teacher[:linkedin]
 		}  %>
 		<%= render partial: "layouts/form_field_icon", :locals => {
-			label: "", 
+			label: "",
 			icon: "fab fa-twitter",
-			type: "text", 
-			name:"course[teachers][][twitter]", 
-			id: "inputTeacher-#{index}-twitter", 
-			placeholder: t("course.teacher.twitter"), 
+			type: "text",
+			name:"course[teachers][][twitter]",
+			id: "inputTeacher-#{index}-twitter",
+			placeholder: t("course.teacher.twitter"),
 			value: teacher[:twitter]
 		}  %>
 		<%= render partial: "layouts/form_field_icon", :locals => {
-			label: "", 
+			label: "",
 			icon: "fab fa-instagram",
-			type: "text", 
-			name:"course[teachers][][instagram]", 
-			id: "inputTeacher-#{index}-instagram", 
-			placeholder: t("course.teacher.instagram"), 
+			type: "text",
+			name:"course[teachers][][instagram]",
+			id: "inputTeacher-#{index}-instagram",
+			placeholder: t("course.teacher.instagram"),
 			value: teacher[:instagram]
 		}  %>
 		<%= render partial: "layouts/form_field_icon", :locals => {
-			label: "", 
+			label: "",
 			icon: "",
-			type: "textarea", 
-			name:"course[teachers][][bio]", 
-			id: "inputTeacher-#{index}-bio", 
-			placeholder: t("course.teacher.bio"), 
-			value: teacher[:bio]
+			type: "textarea",
+			name:"course[teachers][][bio_es]",
+			id: "inputTeacher-#{index}-bio_es",
+			placeholder: t("course.teacher.bio_es"),
+			value: teacher[:bio_es]
+		}  %>
+		<%= render partial: "layouts/form_field_icon", :locals => {
+			label: "",
+			icon: "",
+			type: "textarea",
+			name:"course[teachers][][bio_en]",
+			id: "inputTeacher-#{index}-bio_en",
+			placeholder: t("course.teacher.bio_en"),
+			value: teacher[:bio_en]
+		}  %>
+		<%= render partial: "layouts/form_field_icon", :locals => {
+			label: "",
+			icon: "",
+			type: "textarea",
+			name:"course[teachers][][bio_ca]",
+			id: "inputTeacher-#{index}-bio_ca",
+			placeholder: t("course.teacher.bio_ca"),
+			value: teacher[:bio_ca]
 		}  %>
 	</div>
 	<button type="button" class="btn btn-teacher delete-teacher" title="<%=t("course.teacher.delete")%>">
@@ -96,4 +132,3 @@
 	</button>
 	<hr class="orange"/>
 </div>
-

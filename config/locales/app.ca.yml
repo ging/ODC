@@ -198,7 +198,9 @@ ca:
     target_audience_placeholder: Públic objectiu al qual s'adreça el curs
     teachers: "Professors"
     teacher:
-      bio: "Breu biografia"
+      bio_ca: "Breu biografia en català"
+      bio_en: "Breu biografia en anglès"
+      bio_es: "Breu biografia en espanyol"
       delete: "Suprimeix aquest professor d'aquest curs"
       facebook: "Nom públic a Facebook"
       instagram: "Nom d'usuari d'Instagram"
@@ -206,7 +208,9 @@ ca:
       name: "Nom del professor"
       note: "Si fas alguna modificació en un professor ja existent, els canvis tindran efecte en tots els cursos en què participi aquest professor"
       no_results: "No hi ha resultats"
-      position: "Lloc (ex. professor de la Universitat X)"
+      position_ca: "Lloc en català (ex. professor de la Universitat X)"
+      position_en: "Lloc en anglès (ex. professor de la Universitat X)"
+      position_es: "Lloc en espanyol (ex. professor de la Universitat X)"
       or: "o"
       reorder: "Arrossega per canviar d'ordre aquest professor"
       search: "Cerca un professor ja existent"
