@@ -40,7 +40,10 @@ class CoursesController < ApplicationController
     respond_to do |format|
       format.html {
         @searching = true
-        @courses = Course.all.paginate(:per_page => 24, :page => 1)
+	#filter courses and webinars only in the language of the page
+        pagelang = (I18n.locale === :en) ? "es":I18n.locale.to_s
+	@courses = Course.all.where(:card_lang => pagelang)
+        @courses = @courses.paginate(:per_page => 24, :page => 1)
         render "index"
       }
       format.json {
