@@ -219,7 +219,7 @@ $(function () {
       newTeacher.find('.teacher-picture-container .custom-file-label').html("<a href=\"".concat(teacher.avatar, "\" download=\"data\" onclick=\"event.stopPropagation()\">").concat(teacher.avatar_file_name, "</a>"));
     }
 
-    var fields = ["id", "name", "position", "facebook", "linkedin", "twitter", "instagram", "bio"];
+    var fields = ["id", "name", "position_es", "position_ca", "position_en", "facebook", "linkedin", "twitter", "instagram", "bio_ca", "bio_es", "bio_en"];
 
     for (var _i = 0, _fields = fields; _i < _fields.length; _i++) {
       var f = _fields[_i];

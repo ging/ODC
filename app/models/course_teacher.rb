@@ -2,8 +2,8 @@ class CourseTeacher < ActiveRecord::Base
 	include Taggable
 	acts_as_ordered_taggable
 
-	has_attached_file :avatar, 
-		styles: { medium: "300x300>", thumb: "100x100>" }, 
+	has_attached_file :avatar,
+		styles: { medium: "300x300>", thumb: "100x100>" },
 		default_url: "/img/user_placeholder.png"
 
 	has_and_belongs_to_many :courses
@@ -18,7 +18,7 @@ class CourseTeacher < ActiveRecord::Base
 	acts_as_taggable
 	def as_json(*)
 	  super.merge(:avatar => avatar.as_json).except("created_at", "updated_at").tap do |hash|
-	    hash["label"] = position.blank? ? name : "#{name} (#{position})"
+	    hash["label"] = position_es.blank? ? name : "#{name} (#{position_es})"
 	  end
 	end
 
