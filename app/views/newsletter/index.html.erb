@@ -6,10 +6,10 @@
 			<h2><%=t("email.massive_email")%></h2>
 			<form action="/newsletter" id="emailForm" method="POST">
 				<label for="to" class="h3"><%=t("email.to")%></label>
-				<input type="text" id="to" class="form-control" name="email[to]" value="sonsoleslp@gmail.com">
+				<input type="text" id="to" class="form-control" name="email[to]" value="" required>
 				<br>				
 				<label for="subject" class="h3"><%=t("email.subject")%></label>
-				<input type="text" id="subject" class="form-control" name="email[subject]" value="Asunto">
+				<input type="text" id="subject" class="form-control" name="email[subject]" required value="">
 				<br>
 				<label for="email-content" class="h3"><%=t("email.content")%></label>
 				<iframe allowfullscreen src="/newsletter_authoring_tool?designId=1" frameborder="0" style="margin:auto; width:100%; height:700px; max-width: 100% !important;" id="emailBuilder"></iframe>
@@ -18,7 +18,7 @@
 				<input type="hidden" id="email-content" name="email[content]" value="">
 				<input type="hidden" id="email-design" name="email[design]" value="">
 				<div class="text-center">
-					<button class="btn btn-lg btn-primary"><%=t("email.send")%></button>
+					<button class="btn btn-lg btn-primary" id="send" disabled><%=t("email.send")%></button>
 				</div>
 				<br>
 				<br>
@@ -60,6 +60,7 @@
 
 			// $('#saveDesign').click(saveDesign);
 			$('#emailForm').submit(sendEmail);
+			$('#send').attr("disabled",false);
 		}
 		document.getElementById("emailBuilder").addEventListener("load", onIframeLoad)
 	})
