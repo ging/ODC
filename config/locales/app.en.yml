@@ -270,6 +270,12 @@ en:
     video_placeholder: "Link to the intro video (Youtube)"
     visits: "Visits"
     votes: "votes"
+  email: 
+    massive_email: "Massive email"
+    to: "To"
+    content: "Content"
+    send: "Send"
+    subject: "Subject"
   landing:
     intro_new: "In the free educational platform of the Orange Foundation you will find courses and webinars adapted to your needs. Have fun learning with training prepared by specialists to face the challenges of this new digital era: 3D manufacturing, environment or responsible use of technology are just some examples of what you will discover."
     intro_old: "In the free educational platform of the Orange Foundation you will find courses and webinars adapted to your needs. Have fun learning with training prepared by specialists to face the challenges of this new digital era: 3D manufacturing, environment or responsible use of technology are just some examples of what you will discover."

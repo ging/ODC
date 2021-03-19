@@ -8,6 +8,11 @@ ODC::Application.routes.draw do
   resources :users
   match '/users' => 'users#index', via: [:get]
 
+  #Emails
+  match '/newsletter' => 'newsletter#index', via: [:get]
+  match '/newsletter' => 'newsletter#send_newsletter', via: [:post]
+  match '/newsletter_authoring_tool' => 'newsletter#builder', via: [:get]
+
   #Courses
   resources :courses
   match '/vamping' => 'courses#show', :defaults => { :id => '45' },  via: [:get]

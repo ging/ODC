@@ -15,4 +15,5 @@ class EnrollmentConfirmationMailer < ApplicationMailer
     @spain_time = spain_time
     mail(to: email, subject: t("course.email_subject") + '"' + course.name + '"', encrypt: true)
   end
+
 end

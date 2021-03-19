@@ -231,6 +231,12 @@ ca:
     video_placeholder: "Enllaç al vídeo d'introducció (Youtube)"
     visits: "Visites"
     votes: "vots"
+  email: 
+    massive_email: "E-mail massiu"
+    to: "Destinatari"
+    content: "Contingut"
+    send: "Enviar"
+    subject: "Asunto"
   help: Ajuda
   landing:
     intro_new: "A la plataforma educativa gratuïta de la Fundació Orange trobaràs cursos i webinaris adaptats a les teves necessitats. Diverteix-te aprenent amb formació preparada per especialistes per afrontar els reptes d'aquesta nova era digital: fabricació 3D, medi ambient o ús responsable de la tecnologia són tan sols alguns exemples del que hi descobriràs."

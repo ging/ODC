@@ -1,17 +1,4 @@
 <%visible = cookies.permanent[:cookies_set].blank? == true%>
-<!-- <div class="cookie-placholder <%=visible ? '' : 'd-none' %>" style="visibility: hidden; margin-top:120px;"><%=t('cookies.msg') %></div>
-<div class="cookies <%=visible ? '' : 'd-none' %>" id="layer-cookies">
-	<p>
-		<%=t('cookies.msg') %>
-		"<a class="configCookies" href="#"  onclick="openPrompt()" onkeypress="openPrompt()" title="<%=t("cookies.more")%>"><%=t("cookies.more").upcase%></a>"
-
-		<%=t('cookies.msg2') %> <a target="blank" href="http://www.fundacionorange.es/politica-de-cookies/"><%=t('cookies.cookie_policy').upcase %></a>.
-	</p>
-	<div class="btn-group-owcs">
-		<button type="button" name="buttonCookie" class="btn btn-primary btn-owcs" title="<%=t("cookies.agree")%>" onclick="acceptCookies()" onkeypress="acceptCookies()"><%=t("cookies.agree").upcase%>
-		</button>
-	</div>
-</div>  -->
 <div id="__tealiumGDPRecModal"  class="modal fade" data-backdrop="static">
 	<div class="privacy_prompt explicit_consent modal-dialog" role="document">
 		<div class="privacy_prompt_content modal-content" style=" border-width: 0 !important;">

@@ -1,0 +1,68 @@
+
+<div class="container" style="min-height: calc(100vh - 181px);">
+	<div class="row">
+		<div class="col-12">
+			<br>
+			<h2><%=t("email.massive_email")%></h2>
+			<form action="/newsletter" id="emailForm" method="POST">
+				<label for="to" class="h3"><%=t("email.to")%></label>
+				<input type="text" id="to" class="form-control" name="email[to]" value="sonsoleslp@gmail.com">
+				<br>				
+				<label for="subject" class="h3"><%=t("email.subject")%></label>
+				<input type="text" id="subject" class="form-control" name="email[subject]" value="Asunto">
+				<br>
+				<label for="email-content" class="h3"><%=t("email.content")%></label>
+				<iframe allowfullscreen src="/newsletter_authoring_tool?designId=1" frameborder="0" style="margin:auto; width:100%; height:700px; max-width: 100% !important;" id="emailBuilder"></iframe>
+				 <br>
+				 <br>
+				<input type="hidden" id="email-content" name="email[content]" value="">
+				<input type="hidden" id="email-design" name="email[design]" value="">
+				<div class="text-center">
+					<button class="btn btn-lg btn-primary"><%=t("email.send")%></button>
+				</div>
+				<br>
+				<br>
+			</form>
+		</div>
+	</div>
+</div>
+<script>
+	$(function(){
+		var onIframeLoad = function(){
+			var readyToSubmit = false;
+			var emailBuilder = document.getElementById('emailBuilder').contentWindow.window.ref.current
+
+			var saveDesign = function(){ 
+				emailBuilder.saveDesign(function(design){ 
+				    $('#email-design').val(JSON.stringify(design))
+				    readyToSubmit = true;
+				    $('#emailForm').submit();
+				});
+			} 
+			var saveHTML = function(){
+				emailBuilder.exportHtml((data) => {
+				  const { design, html } = data;
+				  $('#email-content').val(html)
+				  saveDesign()
+				});
+			}
+			
+
+			var sendEmail = function() {
+				if (readyToSubmit) {
+					return true;
+				} else {
+					saveHTML();
+					readyToSubmit = false;
+					return false;
+				}
+			}
+
+			// $('#saveDesign').click(saveDesign);
+			$('#emailForm').submit(sendEmail);
+		}
+		document.getElementById("emailBuilder").addEventListener("load", onIframeLoad)
+	})
+
+
+</script>
