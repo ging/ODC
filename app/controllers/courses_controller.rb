@@ -15,7 +15,7 @@ class CoursesController < ApplicationController
     @courses = Course.all
     @courses = @courses.where(:webinar => false)
     #filter courses and webinars only in the language of the page, or in spanish if page is in english
-    pagelang = (I18n.locale === :en) ? "es":I18n.locale.to_s
+    pagelang = I18n.locale.to_s
     @courses = @courses.where(:card_lang => pagelang)
     @courses = @courses.paginate(:per_page => 24, :page => params[:page].blank? ? 1 : params[:page])
     params[:webinar] = 0
@@ -27,7 +27,7 @@ class CoursesController < ApplicationController
     @courses = Course.all
     @courses = @courses.where(:webinar => true)
     #filter courses and webinars only in the language of the page
-    pagelang = (I18n.locale === :en) ? "es":I18n.locale.to_s
+    pagelang = I18n.locale.to_s
     @courses = @courses.where(:card_lang => pagelang)
     @courses = @courses.paginate(:per_page => 24, :page => params[:page].blank? ? 1 : params[:page])
     params[:webinar] = 1
@@ -41,7 +41,7 @@ class CoursesController < ApplicationController
       format.html {
         @searching = true
 	#filter courses and webinars only in the language of the page
-        pagelang = (I18n.locale === :en) ? "es":I18n.locale.to_s
+        pagelang = I18n.locale.to_s
 	@courses = Course.all.where(:card_lang => pagelang)
 	@courses = @courses.paginate(:per_page => 24, :page => params[:page].blank? ? 1 : params[:page])
         render "index"
