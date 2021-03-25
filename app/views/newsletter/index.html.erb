@@ -7,12 +7,14 @@
 			<form action="/newsletter" id="emailForm" method="POST">
 				<label for="to" class="h3"><%=t("email.to")%></label>
 				<input type="text" id="to" class="form-control" name="email[to]" value="" required>
+				<div class="query-builder" id="builder-basic"></div>
+
 				<br>				
 				<label for="subject" class="h3"><%=t("email.subject")%></label>
 				<input type="text" id="subject" class="form-control" name="email[subject]" required value="">
 				<br>
 				<label for="email-content" class="h3"><%=t("email.content")%></label>
-				<iframe allowfullscreen src="/newsletter_authoring_tool?designId=1" frameborder="0" style="margin:auto; width:100%; height:700px; max-width: 100% !important;" id="emailBuilder"></iframe>
+				<iframe allowfullscreen src="/newsletter_authoring_tool?designId=1" frameborder="0" style="margin:auto; width:100%; height:700px; max-width: 100% !important; border: .125rem solid #ccc" id="emailBuilder"></iframe>
 				 <br>
 				 <br>
 				<input type="hidden" id="email-content" name="email[content]" value="">
@@ -26,6 +28,7 @@
 		</div>
 	</div>
 </div>
+
 <script>
 	$(function(){
 		var onIframeLoad = function(){
@@ -46,8 +49,6 @@
 				  saveDesign()
 				});
 			}
-			
-
 			var sendEmail = function() {
 				if (readyToSubmit) {
 					return true;
@@ -57,13 +58,100 @@
 					return false;
 				}
 			}
-
-			// $('#saveDesign').click(saveDesign);
 			$('#emailForm').submit(sendEmail);
 			$('#send').attr("disabled",false);
+
+
+			var rules_basic = {
+			  condition: 'AND',
+			  rules: [
+			  	  {
+				    id: 'all'
+				  }//, 
+				 //  {
+				 //    condition: 'OR',
+				 //    rules: [{
+				 //      id: 'category',
+				 //      operator: 'equal',
+				 //      value: 2
+				 //    }, {
+				 //      id: 'category',
+				 //      operator: 'equal',
+				 //      value: 1
+				 //    }
+				 // ]
+			  // }
+			  ]
+			};
+			// - Usuarios que hayan hecho un curso o webinar X
+			// - Usuarios que hayan hecho cualquier curso de la categoría X
+			// - Todos los usuarios de la plataforma.
+			// - Todos los usuarios que hayan hecho algún webinar
+			// - Todos los usuarios que hayan hecho algún curso
+			// - Usuarios específicos poniendo su email
+
+			<%courses= Course.all.map { |c| {"id" => c.id, "name" => c.name} } %>
+			var courses = JSON.parse(`<%=courses.to_json.html_safe%>`).reduce(
+  (obj, item) => Object.assign(obj, { [item.id]: item.name }), {});;
+
+			$('#builder-basic').queryBuilder({
+			  filters: [
+			  {
+			    id: 'course',
+			    label: 'Course',
+			    type: 'integer',
+			    input: 'select',
+			    values: {
+			      "0_any": "Any",
+			      "0_any_course": 'Any course',
+			      "0_any_webinar": 'Any webinar',
+			      ...courses
+			    },
+			    operators: ['equal', 'not_equal']
+			  }, {
+			    id: 'category',
+			    label: 'Category',
+			    type: 'integer',
+			    input: 'select',
+			    values: {
+			      "any": 'Any',
+			      1: 'Cat1',
+			      2: 'Cat2',
+			      3: 'Cat3',
+			      4: 'Cat4',
+			      5: 'Cat5',
+			      6: 'Cat6'
+			    },
+			    operators: ['equal', 'not_equal']
+			  }, {
+			    id: 'email',
+			    label: 'E-mail',
+			    type: 'string',
+			    placeholder: '',
+			    operators: ['equal', 'not_equal']
+			  }],
+
+			  rules: rules_basic
+			});
+
+			$('#btn-reset').on('click', function() {
+			  $('#builder-basic').queryBuilder('reset');
+			});
+
+			$('#btn-set').on('click', function() {
+			  $('#builder-basic').queryBuilder('setRules', rules_basic);
+			});
+
+			$('#btn-get').on('click', function() {
+			  var result = $('#builder-basic').queryBuilder('getRules');
+			  
+			  if (!$.isEmptyObject(result)) {
+			    alert(JSON.stringify(result, null, 2));
+			  }
+			});
+
+
 		}
 		document.getElementById("emailBuilder").addEventListener("load", onIframeLoad)
-	})
-
-
+	});
 </script>
