@@ -4,7 +4,7 @@ class RecommenderSystem
 
   def self.getRecommendCourses(course,n=4)
     #filter courses and webinars only in the language of the page, or in spanish if page is in english
-    pagelang = (I18n.locale === :en) ? "es":I18n.locale.to_s
+    pagelang = I18n.locale.to_s
     if course.categories.blank?
       suggestions = default_suggested_courses(course, pagelang)
     else
