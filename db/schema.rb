@@ -161,7 +161,9 @@ ActiveRecord::Schema.define(version: 2021_02_26_100919) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
     t.string "name"
+    t.string "surname"
     t.string "language"
     t.string "ui_language"
     t.text "tag_array_text", default: ""
@@ -171,8 +173,6 @@ ActiveRecord::Schema.define(version: 2021_02_26_100919) do
     t.datetime "avatar_updated_at"
     t.string "provider"
     t.string "uid"
-    t.string "username"
-    t.string "surname"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

@@ -55,7 +55,7 @@ class UsersController < ApplicationController
   private
 
   def find_user
-    @profile_user = User.find_by_id(params[:id])
+    @profile_user = User.find_by_id(params[:id]) # TO-DO Order by course start date desc 
     authorize! :read, @profile_user
     @isProfileOwner = (!@profile_user.nil? and user_signed_in? and current_user.id==@profile_user.id)
   end
