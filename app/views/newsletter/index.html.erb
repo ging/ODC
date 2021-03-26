@@ -67,20 +67,7 @@
 			  rules: [
 			  	  {
 				    id: 'all'
-				  }//, 
-				 //  {
-				 //    condition: 'OR',
-				 //    rules: [{
-				 //      id: 'category',
-				 //      operator: 'equal',
-				 //      value: 2
-				 //    }, {
-				 //      id: 'category',
-				 //      operator: 'equal',
-				 //      value: 1
-				 //    }
-				 // ]
-			  // }
+				  } 
 			  ]
 			};
 			// - Usuarios que hayan hecho un curso o webinar X
@@ -92,6 +79,9 @@
 
 			<%courses= Course.all.map { |c| {"id" => c.id, "name" => c.name} } %>
 			var courses = JSON.parse(`<%=courses.to_json.html_safe%>`).reduce(
+  (obj, item) => Object.assign(obj, { [item.id]: item.name }), {});
+			<%categories = I18n.t('categories').map { |name,cat| {"id" => name, "name" => cat} } %>
+			var categories = JSON.parse(`<%=categories.to_json.html_safe%>`).reduce(
   (obj, item) => Object.assign(obj, { [item.id]: item.name }), {});;
 
 			$('#builder-basic').queryBuilder({
@@ -115,12 +105,7 @@
 			    input: 'select',
 			    values: {
 			      "any": 'Any',
-			      1: 'Cat1',
-			      2: 'Cat2',
-			      3: 'Cat3',
-			      4: 'Cat4',
-			      5: 'Cat5',
-			      6: 'Cat6'
+			      ...categories
 			    },
 			    operators: ['equal', 'not_equal']
 			  }, {
