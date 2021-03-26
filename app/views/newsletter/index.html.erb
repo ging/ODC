@@ -6,8 +6,14 @@
 			<h2><%=t("email.massive_email")%></h2>
 			<form action="/newsletter" id="emailForm" method="POST">
 				<label for="to" class="h3"><%=t("email.to")%></label>
-				<input type="text" id="to" class="form-control" name="email[to]" value="" required>
+				<!-- <input type="text" id="to" class="form-control" name="email[to]" value="" required> -->
 				<div class="query-builder" id="builder-basic"></div>
+				<input type="hidden" id="email-to" name="email[to]" value="">
+				<div class="text-right">
+					<strong>Number of recipients:</strong>&nbsp;<span id="newsletter_count" style="min-width: 50px;display: inline-block;text-align: left;">-</span>
+					<button class="btn btn-secondary" id="newsletter_count_btn" type="button">Calculate</button>
+				</div>
+
 
 				<br>				
 				<label for="subject" class="h3"><%=t("email.subject")%></label>
@@ -37,9 +43,9 @@
 
 			var saveDesign = function(){ 
 				emailBuilder.saveDesign(function(design){ 
-				    $('#email-design').val(JSON.stringify(design))
-				    readyToSubmit = true;
-				    $('#emailForm').submit();
+					$('#email-design').val(JSON.stringify(design))
+					readyToSubmit = true;
+					$('#emailForm').submit();
 				});
 			} 
 			var saveHTML = function(){
@@ -50,6 +56,12 @@
 				});
 			}
 			var sendEmail = function() {
+				var result = $('.query-builder').queryBuilder('getRules');
+							  
+				if (!$.isEmptyObject(result)) {
+					$('#email-to').val(JSON.stringify(result));
+				}
+
 				if (readyToSubmit) {
 					return true;
 				} else {
@@ -60,80 +72,96 @@
 			}
 			$('#emailForm').submit(sendEmail);
 			$('#send').attr("disabled",false);
-
+			$('#newsletter_count_btn').click(function() {
+				var result = $('.query-builder').queryBuilder('getRules');
+				fetch("/newsletter_count", 
+					{
+						"method": "POST",
+						"body":  JSON.stringify({to:result}),
+						"headers": {"Content-type":"application/json"}
+					}
+					)
+					.then(res=>res.json())
+					.then(({count})=>{
+						console.log(count)
+						$('#newsletter_count').html(count)
+					})
+			});
 
 			var rules_basic = {
 			  condition: 'AND',
 			  rules: [
-			  	  {
-				    id: 'all'
-				  } 
+			  	  {id:""}
 			  ]
 			};
-			// - Usuarios que hayan hecho un curso o webinar X
-			// - Usuarios que hayan hecho cualquier curso de la categoría X
-			// - Todos los usuarios de la plataforma.
-			// - Todos los usuarios que hayan hecho algún webinar
-			// - Todos los usuarios que hayan hecho algún curso
-			// - Usuarios específicos poniendo su email
 
-			<%courses= Course.all.map { |c| {"id" => c.id, "name" => c.name} } %>
+			<%courses= Course.where(:webinar => false).map { |c| {"id" => c.id, "name" => c.name} } %>
 			var courses = JSON.parse(`<%=courses.to_json.html_safe%>`).reduce(
   (obj, item) => Object.assign(obj, { [item.id]: item.name }), {});
+			<%webinars= Course.where(:webinar => true).map { |c| {"id" => c.id, "name" => c.name} } %>
+			var webinars = JSON.parse(`<%=webinars.to_json.html_safe%>`).reduce(
+  (obj, item) => Object.assign(obj, { [item.id]: item.name }), {});
+
 			<%categories = I18n.t('categories').map { |name,cat| {"id" => name, "name" => cat} } %>
 			var categories = JSON.parse(`<%=categories.to_json.html_safe%>`).reduce(
-  (obj, item) => Object.assign(obj, { [item.id]: item.name }), {});;
+  (obj, item) => Object.assign(obj, { [item.id]: item.name }), {});
 
-			$('#builder-basic').queryBuilder({
-			  filters: [
-			  {
-			    id: 'course',
-			    label: 'Course',
-			    type: 'integer',
-			    input: 'select',
-			    values: {
-			      "0_any": "Any",
-			      "0_any_course": 'Any course',
-			      "0_any_webinar": 'Any webinar',
-			      ...courses
-			    },
-			    operators: ['equal', 'not_equal']
-			  }, {
-			    id: 'category',
-			    label: 'Category',
-			    type: 'integer',
-			    input: 'select',
-			    values: {
-			      "any": 'Any',
-			      ...categories
-			    },
-			    operators: ['equal', 'not_equal']
-			  }, {
-			    id: 'email',
-			    label: 'E-mail',
-			    type: 'string',
-			    placeholder: '',
-			    operators: ['equal', 'not_equal']
-			  }],
-
-			  rules: rules_basic
+			$('.query-builder').queryBuilder({
+				select_placeholder: '<%=t("email.everyone")%>',
+				allow_empty: true,
+				lang: {
+					"add_rule": '<%=t("email.add_rule")%>',
+					"delete_rule": '<%=t("email.delete_rule")%>',
+					"operators": {
+						"in": "igual a",
+						"equal": "igual a",
+						"not_in": "distinto de",
+						"not_equal": "distinto de",
+						"is_null": "ninguno",
+						"is_not_null": "cualquiera",
+					}
+				},
+				filters: [
+				{
+					id: 'course',
+					label: '<%=t("email.whoever_attended_course")%>',
+					input: 'select',
+					multiple: true,
+					value_separator: ";",
+					values: {
+					  ...courses
+					},
+					operators: ['in', 'not_in', 'is_null', 'is_not_null']
+				}, {
+					id: 'webinar',
+					label: '<%=t("email.whoever_attended_webinar")%>',
+					input: 'select',
+					multiple: true,
+					values: {
+					  ...webinars
+					},
+					operators: ['in', 'not_in', 'is_null', 'is_not_null']
+				}, {
+					id: 'category',
+					label: '<%=t("email.whoever_attended_category")%>',
+					input: 'select',
+					multiple: true,
+					values: {
+					  ...categories
+					},
+					operators: ['in', 'not_in']
+					//operators: ['in', 'not_in','is_null', 'is_not_null']
+				}, {
+					id: 'email',
+					label: 'E-mail',
+					type: 'string',
+					placeholder: '',
+					operators: ['equal', 'not_equal']
+				}],
+				rules: rules_basic
 			});
 
-			$('#btn-reset').on('click', function() {
-			  $('#builder-basic').queryBuilder('reset');
-			});
 
-			$('#btn-set').on('click', function() {
-			  $('#builder-basic').queryBuilder('setRules', rules_basic);
-			});
-
-			$('#btn-get').on('click', function() {
-			  var result = $('#builder-basic').queryBuilder('getRules');
-			  
-			  if (!$.isEmptyObject(result)) {
-			    alert(JSON.stringify(result, null, 2));
-			  }
-			});
 
 
 		}

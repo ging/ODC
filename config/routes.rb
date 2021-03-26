@@ -9,6 +9,7 @@ ODC::Application.routes.draw do
   match '/users' => 'users#index', via: [:get]
 
   #Emails
+  match '/newsletter_count' => 'newsletter#calculate_newsletter_recipients', via: [:post]
   match '/newsletter' => 'newsletter#index', via: [:get]
   match '/newsletter' => 'newsletter#send_newsletter', via: [:post]
   match '/newsletter_authoring_tool' => 'newsletter#builder', via: [:get]

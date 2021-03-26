@@ -155,4 +155,6 @@ module ApplicationHelper
     end
     course_date
   end
+  
+  
 end

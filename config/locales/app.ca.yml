@@ -237,6 +237,13 @@ ca:
     content: "Contingut"
     send: "Enviar"
     subject: "Asunto"
+    add_rule: "Nova condició"
+    delete_rule: "Treure"
+    whoever_attended_course: "Qui hagi cursat el curs"
+    whoever_attended_webinar: "Qui hagi cursat el webinar"
+    whoever_attended_category: "Qui hagi cursat el curs/webinar de la categoria"
+    everyone: "Tothom"
+    any: "Qualsevol"
   help: Ajuda
   landing:
     intro_new: "A la plataforma educativa gratuïta de la Fundació Orange trobaràs cursos i webinaris adaptats a les teves necessitats. Diverteix-te aprenent amb formació preparada per especialistes per afrontar els reptes d'aquesta nova era digital: fabricació 3D, medi ambient o ús responsable de la tecnologia són tan sols alguns exemples del que hi descobriràs."
