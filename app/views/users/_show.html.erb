@@ -38,7 +38,7 @@
 			<br/>
 			<br/>
 		</div>
-		<%events = (@profile_user.courses||[]).reject{|x| x.webinar == false} %>
+		<%events = ((@profile_user.courses||[]).reject{|x| x.webinar == false}) %>
 		<div class="col-xs-12 col-md-6 event-calendar-list">
 			<% events.each do |event| %>
 				<%= render partial: "courses/event_calendar", :locals => {event: event}%>
@@ -54,7 +54,7 @@
 <br/>
 <div class="soft-background">
 	<%= render partial: "courses/course_list_4", 
-	:locals => {title: t("profile.your_courses_and_webinars"), courses: @profile_user.courses ||[] , link: "/", mine: true }  %>
+	:locals => {title: t("profile.your_courses_and_webinars"), courses: @profile_user.courses.sort_by{|x| x.start_date || Time.now }.reverse ||[] , link: "/", mine: true }  %>
 </div>
 <% else %>
 
