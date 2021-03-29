@@ -1,5 +1,5 @@
 <%offset = cookies()[:utc_offset].blank? ? nil : (cookies()[:utc_offset]).to_i %>
-<%timezone = cookies()[:utc_timezone] %>
+<%timezone = cookies()[:utc_timezone] || "Europe/Madrid" %>
 <%past = course[:end_date] && course[:end_date] < Time.now %>
 <%puts offset%>
 <%puts timezone%>
@@ -22,7 +22,7 @@
 		<h5 class="course-date">
 		<%if course[:webinar]%>
 			<%if course[:start_date] and course[:end_date] %>
-				<%=calculate_duration(course[:start_date],course[:end_date], false, offset, timezone)%> <%unless (!cookies()[:utc_offset].blank?)%>UTC<%end%> 
+				<%=calculate_duration(course[:start_date],course[:end_date], false, offset, timezone)%> <%unless (!cookies()[:utc_offset].blank?)%>(Madrid)<%end%> 
 			<%else%>
 				<span class="coming-up"><%=t("course.coming_up").upcase%></span> 
 			<%end%>
@@ -30,7 +30,7 @@
 			<%if course[:selfpaced]%>
 				<span class="self-paced"><%=t("course.selfpaced").upcase%></span>
 			<%elsif course[:start_date] and course[:end_date]%>
-				<%=calculate_duration(course[:start_date],course[:end_date], false, offset, timezone)%> <%unless (!cookies()[:utc_offset].blank?)%>UTC<%end%> 
+				<%=calculate_duration(course[:start_date],course[:end_date], false, offset, timezone)%> <%unless (!cookies()[:utc_offset].blank?)%>(Madrid)<%end%> 
 			<%else%>
 				<span class="coming-up"><%=t("course.coming_up").upcase%></span> 
 			<%end%>

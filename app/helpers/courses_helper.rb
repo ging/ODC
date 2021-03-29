@@ -19,7 +19,7 @@ module CoursesHelper
 		return course_path(course) + "/enrollments.xlsx"
 	end
 
-	def parse_date(date, hour=false, offset = 0, timezone = nil)
+	def parse_date(date, hour=false, offset = 0, timezone = "Europe/Madrid")
 		begin
 			
 			if (timezone)

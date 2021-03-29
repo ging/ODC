@@ -45,7 +45,7 @@ module ApplicationHelper
       url
   end
 
-  def to_dmy(date, offset=0, timezone = nil)
+  def to_dmy(date, offset=0, timezone = "Europe/Madrid")
     # DateTime.parse(date).strftime("%d-%m-%Y")
     if date.methods.include? :strftime
       date = timezone  ? date.in_time_zone(timezone) :(date - (offset||0).minutes)
@@ -55,7 +55,7 @@ module ApplicationHelper
     end
   end
 
-  def to_dmy_alt(date, offset=0, timezone = nil)
+  def to_dmy_alt(date, offset=0, timezone = "Europe/Madrid")
     if date.methods.include? :strftime
       date = timezone  ? date.in_time_zone(timezone) :(date - (offset||0).minutes)
       date.strftime("%d-%m-%Y")
@@ -64,7 +64,7 @@ module ApplicationHelper
     end
   end
 
-  def to_ymd(date, offset=0, timezone = nil)
+  def to_ymd(date, offset=0, timezone = "Europe/Madrid")
     if date.methods.include? :strftime
       date = timezone  ? date.in_time_zone(timezone) :(date - (offset||0).minutes)
       date.strftime("%Y-%m-%d")
@@ -78,7 +78,7 @@ module ApplicationHelper
   #   date.strftime("%d/%m/%Y %H:%M")
   # end
 
-  def to_dmyhm(date, offset=0, timezone= nil, at=nil, only_hour = nil)
+  def to_dmyhm(date, offset=0, timezone= "Europe/Madrid", at=nil, only_hour = nil)
     if date.methods.include? :strftime
       date = timezone  ? date.in_time_zone(timezone) : (date - (offset||0).minutes)
       if only_hour
