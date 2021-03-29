@@ -145,9 +145,9 @@ class CoursesController < ApplicationController
             @offset_orig = cookies()[:utc_offset].blank? ? (Time.now.in_time_zone('Europe/Madrid').utc_offset/-60) : (cookies()[:utc_offset]).to_i
             @offset = @offset_orig
             @spain_time = cookies()[:utc_offset].blank? ? Time.now.in_time_zone('Europe/Madrid').formatted_offset : nil
-
-            EnrollmentConfirmationMailer.enrollment_confirmation(current_user.email, current_user.name, @course, @url, @offset_orig, @offset, @spain_time).deliver_now
-          rescue e
+            @timezone = cookies()[:utc_timezone] || 'Europe/Madrid'
+            EnrollmentConfirmationMailer.enrollment_confirmation(current_user.email, current_user.name, @course, @url, @offset_orig, @offset, @spain_time, @timezone).deliver_now
+          rescue
             flash[:error] = "E-mail to #{current_user.email} could not be sent"
           end
         else
@@ -289,15 +289,16 @@ class CoursesController < ApplicationController
     return if params[:course].blank?
     params[:course][:webinar] = (params[:course][:webinar] == "1")
     offset = (cookies()[:utc_offset] || "0").to_i
+    timezone = (cookies()[:utc_timezone] || "Europe/Madrid")
     if params[:course][:date]
       split_date = params[:course][:date].split(" - ")
-      params[:course][:start_date] = helpers.parse_date(split_date[0], true, offset)
-      params[:course][:end_date] = helpers.parse_date(split_date[1], true, offset)
+      params[:course][:start_date] = helpers.parse_date(split_date[0], true, offset, timezone)
+      params[:course][:end_date] = helpers.parse_date(split_date[1], true, offset, timezone)
     end
     if params[:course][:enrollment_date]
       split_date = params[:course][:enrollment_date].split(" - ")
-      params[:course][:start_enrollment_date] = helpers.parse_date(split_date[0], true, offset)
-      params[:course][:end_enrollment_date] = helpers.parse_date(split_date[1], true, offset)
+      params[:course][:start_enrollment_date] = helpers.parse_date(split_date[0], true, offset, timezone)
+      params[:course][:end_enrollment_date] = helpers.parse_date(split_date[1], true, offset, timezone)
     end
   end
   def save_and_update_teachers

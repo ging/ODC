@@ -1,4 +1,5 @@
 <% offset_orig = cookies()[:utc_offset].blank? ? Time.now.in_time_zone('Europe/Madrid').utc_offset/-60 : (cookies()[:utc_offset]).to_i %>
+<% timezone = cookies()[:utc_timezone]  %>
 <% spain_time = cookies()[:utc_offset].blank? ? Time.now.in_time_zone('Europe/Madrid').formatted_offset : nil %>
 <div class="container" style="min-height: calc(100vh - 181px);">
 	<div class="row">
@@ -97,11 +98,11 @@
 									<td class="text-right nowrap">
 										<%if c[:start_date] and c[:end_date]%>
 
-										<span class="<%if c[:end_date] < Date.new%>text-muted<%end%>"><%=calculate_duration(c[:start_date], c[:end_date], false, offset_orig)%></span>
+										<span class="<%if c[:end_date] < Date.new%>text-muted<%end%>"><%=calculate_duration(c[:start_date], c[:end_date], false, offset_orig, timezone)%></span>
 										<%elsif c[:selfpaced]%>
 										<span class="self-paced"><%=t("course.selfpaced").upcase%></span>
 										<%elsif c[:start_date] and c[:end_date]%>
-										<%=calculate_duration(c[:start_date], c[:end_date], c[:webinar], offset_orig)%>
+										<%=calculate_duration(c[:start_date], c[:end_date], c[:webinar], offset_orig, timezone)%>
 										<%else%>
 										<span class="coming-up"><%=t("course.coming_up").upcase%></span>
 										<%end%>

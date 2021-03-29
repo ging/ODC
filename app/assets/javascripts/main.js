@@ -8,11 +8,15 @@ var calendarI18n = window.calendarI18n || {};
 $(function () {
   /****************************************** TIMEZONE*******************************************/
   var offset = new Date().getTimezoneOffset();
+  var timezone = "Europe/Madrid"
   var date = new Date();
   date.setTime(date.getTime() + 24 * 3600000);
-  document.cookie = "utc_offset=" + offset + "; expires=" + date.toGMTString() + "; path=/";
+  // document.cookie = "utc_offset=" + offset +  "; utc_timezone=" + timezone +  "; expires=" + date.toGMTString() + "; path=/";
+  try {timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;} catch(e){}
+  document.cookie = "utc_offset=" + offset +  "; expires=" + date.toGMTString() + "; path=/";
+  document.cookie = "utc_timezone=" + timezone +  "; expires=" + date.toGMTString() + "; path=/";
   /****************************************** TIMEZONE*******************************************/
-
+  console.log(document.cookie)
   /******************************************* SEARCH *******************************************/
 
   if (!String.prototype.trim) {
