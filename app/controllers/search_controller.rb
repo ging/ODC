@@ -25,7 +25,7 @@ class SearchController < ApplicationController
     query = "%#{(params[:q]||"").downcase}%"
 
     params[:sort_by] = "start_date" if !params[:sort_by]
-    case params[:sort_by]
+    # case params[:sort_by]
     # when 'start_date'
     #   order = 'start_date DESC'
     # else

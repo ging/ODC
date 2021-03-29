@@ -1,5 +1,6 @@
 <% offset_orig = @offset_orig %>
 <% offset = @offset %>
+<% timezone = @timezone %>
 <% spain_time = @spain_time %>
 <% now = (DateTime.now.to_time + offset / 60 ).to_datetime %>
 <% currentlyGoingOn = (!@course[:start_date].blank?  && (now > @course[:start_date]) && (now < @course[:end_date])) %>
@@ -220,7 +221,7 @@ a[x-apple-data-detectors='true'] {
       <%if false %>
         <%if @course[:start_date]%>
           <p style="font-size: 18px; line-height: 140%;"> 
-            <strong><%=t("course.date")%>:</strong> <%=to_dmyhm(@course[:start_date],offset_orig)%><%if (spain_time)%> (GMT<%=spain_time%>)<%end%>
+            <strong><%=t("course.date")%>:</strong> <%=to_dmyhm(@course[:start_date],offset_orig,timezone)%><%if (spain_time)%> (GMT<%=spain_time%>)<%end%>
           </p>
         <%else%>
           <p style="font-size: 18px; line-height: 140%; color:#A885D8;"> 
@@ -242,7 +243,7 @@ a[x-apple-data-detectors='true'] {
         </p> -->
       <%elsif @course[:start_date] and @course[:end_date]%>
         <p style="font-size: 18px; line-height: 140%;"> 
-          <strong><%=t("course.date")%>:</strong> <%=calculate_duration(@course[:start_date],@course[:end_date], false, offset_orig)%><%if (spain_time)%> (GMT<%=spain_time%>)<%end%>
+          <strong><%=t("course.date")%>:</strong> <%=calculate_duration(@course[:start_date],@course[:end_date], false, offset_orig, timezone)%><%if (spain_time)%> (GMT<%=spain_time%>)<%end%>
         </p>
       <%else%>
       	<p style="font-size: 22px; line-height: 140%; color:#A885D8;">
@@ -254,7 +255,7 @@ a[x-apple-data-detectors='true'] {
       </td>
     </tr>
     <tr>
-      <%offseted_date = @course[:start_date] ? (@course[:start_date] - (offset || 0).minutes) : ""%>
+      <%offseted_date = @course[:start_date] ? (timezone ? @course[:start_date].in_time_zone(timezone) : (@course[:start_date] - (offset || 0).minutes)) : ""%>
       <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:helvetica,arial,sans-serif;" align="left">
           <% if @course[:webinar] %>
             <p style="font-size: 14px; line-height: 140%;">

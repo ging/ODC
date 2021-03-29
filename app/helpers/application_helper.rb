@@ -45,28 +45,28 @@ module ApplicationHelper
       url
   end
 
-  def to_dmy(date, offset=0)
+  def to_dmy(date, offset=0, timezone = "Europe/Madrid")
     # DateTime.parse(date).strftime("%d-%m-%Y")
     if date.methods.include? :strftime
-      date = date - (offset||0).minutes
+      date = timezone  ? date.in_time_zone(timezone) :(date - (offset||0).minutes)
       date.strftime("%d/%m/%Y")
     else
       nil
     end
   end
 
-  def to_dmy_alt(date, offset=0)
+  def to_dmy_alt(date, offset=0, timezone = "Europe/Madrid")
     if date.methods.include? :strftime
-      date = date - (offset||0).minutes
+      date = timezone  ? date.in_time_zone(timezone) :(date - (offset||0).minutes)
       date.strftime("%d-%m-%Y")
     else
       nil
     end
   end
 
-  def to_ymd(date, offset=0)
+  def to_ymd(date, offset=0, timezone = "Europe/Madrid")
     if date.methods.include? :strftime
-      date = date - (offset||0).minutes
+      date = timezone  ? date.in_time_zone(timezone) :(date - (offset||0).minutes)
       date.strftime("%Y-%m-%d")
     else
       nil
@@ -78,9 +78,9 @@ module ApplicationHelper
   #   date.strftime("%d/%m/%Y %H:%M")
   # end
 
-  def to_dmyhm(date, offset=0, at=nil, only_hour = nil)
+  def to_dmyhm(date, offset=0, timezone= "Europe/Madrid", at=nil, only_hour = nil)
     if date.methods.include? :strftime
-      date = date - (offset||0).minutes
+      date = timezone  ? date.in_time_zone(timezone) : (date - (offset||0).minutes)
       if only_hour
         date.strftime("%H:%M")
       else
@@ -136,22 +136,22 @@ module ApplicationHelper
     end
   end
 
-  def calculate_duration(start_date, end_date, force, offset)
+  def calculate_duration(start_date, end_date, force, offset, timezone)
     course_date = ""
     if (start_date and end_date) 
       if (start_date.to_date == end_date.to_date) or force
-        course_date = ("#{to_dmyhm(start_date,offset)} - #{to_dmyhm(end_date,offset,nil,!force)}") 
+        course_date = ("#{to_dmyhm(start_date,offset,timezone)} - #{to_dmyhm(end_date,offset,timezone,nil,!force)}") 
       else
-        course_date = ("#{to_dmy(start_date,offset)} - #{to_dmy(end_date,offset)}") 
+        course_date = ("#{to_dmy(start_date,offset,timezone)} - #{to_dmy(end_date,offset,timezone)}") 
       end
     end
     course_date
   end
 
-  def calculate_duration_complete(start_date, end_date, offset)
+  def calculate_duration_complete(start_date, end_date, offset,timezone)
     course_date = ""
     if (start_date and end_date) 
-        course_date = ("#{to_dmyhm(start_date,offset)} - #{to_dmyhm(end_date,offset)}") 
+        course_date = ("#{to_dmyhm(start_date,offset,timezone)} - #{to_dmyhm(end_date,offset,timezone)}") 
     end
     course_date
   end

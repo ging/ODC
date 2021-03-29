@@ -6,13 +6,14 @@ class EnrollmentConfirmationMailer < ApplicationMailer
   #
   #   en.enrollment_confirmation_mailer.enrollment_confirmation.subject
   #
-  def enrollment_confirmation(email, username, course, url, offset_orig, offset, spain_time)
+  def enrollment_confirmation(email, username, course, url, offset_orig, offset, spain_time, timezone)
     @course = course
     @username = username
     @url = url
     @offset_orig = offset_orig
     @offset = offset
     @spain_time = spain_time
+    @timezone = timezone
     mail(to: email, subject: t("course.email_subject") + '"' + course.name + '"', encrypt: true)
   end
 
