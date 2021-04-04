@@ -279,7 +279,7 @@ en:
     add_rule: "New condition"
     delete_rule: "Delete"
     whoever_attended_course: "Whoever attended the course"
-    whoever_attended_course: "Whoever attended the webinar"
+    whoever_attended_webinar: "Whoever attended the webinar"
     whoever_attended_category: "Whoever attended a course/webinar tagged as"
     everyone: "Everyone"
     any: "Any"
