@@ -47,6 +47,11 @@ const DesignEdit = (props) => {
             .then(data=>ref.current.editor.loadDesign(data))
             .catch(e=>console.error(e));
         });
+    } else {
+        fetch("/email_builder/sample.json")
+          .then(res=>res.json())
+          .then(data=>ref.current.editor.loadDesign(data))
+          .catch(e=>console.error(e));
     }
   };
   return (
