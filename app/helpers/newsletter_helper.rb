@@ -4,7 +4,7 @@ module NewsletterHelper
 		results = User.left_joins(:courses)
 
 		# TO-DO Fix is_null, not_null - No funciona bien
-		rules.each do |rule|
+		rules.each do |rule| 
 			if rule["id"] == "course" || rule["id"] == "webinar"
 				if rule["operator"] == "in"
 					results = results.where("courses.id" => rule["value"])
@@ -15,7 +15,7 @@ module NewsletterHelper
 				elsif rule["operator"] == "not_null"
 				 	results = results.group('users.id').where("courses.webinar" => (rule["id"] == "webinar")).having('COUNT(courses.id) > 0');
 				end
-			elsif rule["id"] == "category"
+			elsif rule["id"] == "category" # Tampoco funciona bien
 				if rule["operator"] == "in"
 					results = results.where("courses.category" => rule["value"])
 				elsif rule["operator"] == "not_in"
