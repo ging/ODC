@@ -25,6 +25,7 @@
 				 <br>
 				<input type="hidden" id="email-content" name="email[content]" value="">
 				<input type="hidden" id="email-design" name="email[design]" value="">
+				<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 				<div class="text-center">
 					<button class="btn btn-lg btn-primary" id="send" disabled><%=t("email.send")%></button>
 				</div>

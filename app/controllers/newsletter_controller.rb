@@ -10,17 +10,17 @@ class NewsletterController < ApplicationController
 	end
 
 	def send_newsletter
-		begin
-			email = params[:email]
-			rules = JSON.parse(email[:to])["rules"] rescue []
-			to = get_users_by_course_rules(rules)
-			NewsletterMailer.newsletter_email(to, email["subject"],  email["content"]).deliver_now
-			redirect_to "/", notice: "E-mail sent successfully" 
-		rescue
+		# begin
+		# 	email = params[:email]
+		# 	rules = JSON.parse(email[:to])["rules"] rescue []
+		# 	to = get_users_by_course_rules(rules)
+		# 	NewsletterMailer.newsletter_email(to, email["subject"],  email["content"]).deliver_now
+		# 	redirect_to "/", notice: "E-mail sent successfully" 
+		# rescue
 
-		  flash[:error] = "E-mail could not be sent"
+		  flash[:alert] = "E-mail could not be sent"
 		  redirect_to "/newsletter"
-		end
+		# end
 		
 	end
 
