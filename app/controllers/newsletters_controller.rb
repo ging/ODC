@@ -50,16 +50,12 @@ class NewslettersController < ApplicationController
 				:recipients => to
 
 			if (ODC::Application.config.action_mailer.perform_deliveries == true)
-				success = NewsletterMailer.newsletter_email(to, email[:subject], email[:body])
-			else
-				success = false
-			end
-
-			if success
+				NewsletterMailer.newsletter_email(to, email[:subject], email[:body]).deliver_now
 				flash[:notice] = "E-mail sent successfully"
 			else
 				flash[:alert] = "E-mail was not sent successfully"
 			end
+			
 			redirect_to "/"
 		rescue
 		  flash[:alert] = "E-mail could not be sent"
