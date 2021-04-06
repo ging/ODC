@@ -9,7 +9,7 @@ class Newsletter < ApplicationRecord
 
 	def self.get_emails_by_rules(rules, count = false)
 		if rules.blank?
-			users = User.all
+			users = []
 		else
 			users = []
 			rules.each do |rule|
@@ -17,9 +17,9 @@ class Newsletter < ApplicationRecord
 
 				case rule["id"]
 				when "course", "webinar"
-					# if (rule["operator"] == "in") || (rule["operator"] == "not_in")
+					if (rule["operator"] == "in") || (rule["operator"] == "not_in")
 						usersInCourses = Course.find(rule["value"]).map{|c| c.users}.flatten.uniq
-					# end
+					end
 					if rule["operator"] == "in"
 						newUsers = usersInCourses
 					elsif rule["operator"] == "not_in"
@@ -45,6 +45,8 @@ class Newsletter < ApplicationRecord
 					elsif rule["operator"] == "not_equal"
 						newUsers = (User.all - usersWithEmails)
 					end
+				when "all"
+					users = User.all
 				else
 					#Ignore rule
 				end
