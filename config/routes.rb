@@ -8,10 +8,13 @@ ODC::Application.routes.draw do
   resources :users
   match '/users' => 'users#index', via: [:get]
 
-  #Emails
+  #Newsletters
+  match '/newsletters/unsubscribe' => 'newsletters#unsubscribe', via: [:get]
+  match '/newsletters/perform_unsubscribe' => 'newsletters#perform_unsubscribe', via: [:get]
   resources :newsletters
   match '/newsletter_count' => 'newsletters#calculate_newsletter_recipients', via: [:post]
   match '/newsletter_authoring_tool' => 'newsletters#builder', via: [:get]
+
 
   #Courses
   resources :courses

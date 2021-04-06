@@ -1,6 +1,6 @@
 class NewslettersController < ApplicationController
-	load_and_authorize_resource :except => [:builder, :calculate_newsletter_recipients]
-	skip_authorization_check :only => [:builder, :calculate_newsletter_recipients]
+	load_and_authorize_resource :except => [:builder, :calculate_newsletter_recipients, :unsubscribe, :perform_unsubscribe]
+	skip_authorization_check :only => [:builder, :calculate_newsletter_recipients, :unsubscribe, :perform_unsubscribe]
 	before_action :set_newsletter, only: [:show, :destroy]
 
 	def index
@@ -60,6 +60,15 @@ class NewslettersController < ApplicationController
 	def destroy
 		@newsletter.destroy
 		redirect_to "/newsletters", notice:  "Newsletter succesfully destroyed"
+	end
+
+	def unsubscribe
+	end
+
+	def perform_unsubscribe
+		current_user.update_column(:subscribed_to_newsletters, false)
+		flash[:notice] = "Te has dado de baja de la lista de correos satisfactoriamente"
+		redirect_to "/"
 	end
 
 

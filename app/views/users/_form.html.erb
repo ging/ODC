@@ -134,6 +134,21 @@
 
 		<%end%>
 
+		<% if user.id and user.subscribed_to_newsletters == false %>
+		<div class="form-group row">
+				<label for="inputDuration" class="col-12 col-sm-2 col-form-label">Newsletter</label>
+				<div class="col-12 col-sm-10">
+				<input type="checkbox" autocomplete="off" class="form-control" id="newsletter_checkbox" <%=(user.subscribed_to_newsletters == true) ? "checked" : "" %>>
+				</div>
+				<input type="hidden" name="user[subscribed_to_newsletters]" value="<%=user.subscribed_to_newsletters%>">
+				<script>
+				$('#newsletter_checkbox').change(function(){
+					$('[name="user[subscribed_to_newsletters]"').val($('#newsletter_checkbox').is(':checked'));
+				});
+				</script>
+			</div>
+		<%end%>
+
 		<div class="form-group row">
 			<div class="col-sm-10">
 				<%= f.submit(user.id ? t("user.update"): t("user.register"), {class: "btn btn-primary btn-lg"}) %>
