@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_06_081619) do
+ActiveRecord::Schema.define(version: 2021_04_06_090857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 2021_04_06_081619) do
     t.string "thumb_min_content_type"
     t.bigint "thumb_min_file_size"
     t.datetime "thumb_min_updated_at"
-    t.string "card_lang"
+    t.string "card_lang", default: "es"
   end
 
   create_table "enrollments", force: :cascade do |t|
@@ -183,6 +183,7 @@ ActiveRecord::Schema.define(version: 2021_04_06_081619) do
     t.datetime "avatar_updated_at"
     t.string "provider"
     t.string "uid"
+    t.boolean "subscribed_to_newsletters", default: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

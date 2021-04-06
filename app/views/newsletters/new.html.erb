@@ -79,7 +79,7 @@
 					{
 						"method": "POST",
 						"body":  JSON.stringify({to:result}),
-						"headers": {"Content-type":"application/json"}
+						"headers": {"Content-type":"application/json", "X-CSRF-Token": "<%=form_authenticity_token%>"}
 					}
 					)
 					.then(res=>res.json())

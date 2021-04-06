@@ -8,41 +8,54 @@ class Newsletter < ApplicationRecord
 	validates_presence_of :recipients
 
 	def self.get_emails_by_rules(rules, count = false)
-		user = User.left_joins(:courses)
+		if rules.blank?
+			users = User.all
+		else
+			users = []
+			rules.each do |rule|
+				newUsers = [] #All rules are OR
 
-		# TO-DO Fix is_null, not_null - No funciona bien
-		rules.each do |rule| 
-			if rule["id"] == "course" || rule["id"] == "webinar"
-				if rule["operator"] == "in"
-					user = user.where("courses.id" => rule["value"])
-				elsif rule["operator"] == "not_in"
-					user = user.where.not("courses.id" => rule["value"])
-				elsif rule["operator"] == "is_null"
-				 	user = user.group('users.id').where("courses.webinar" => (rule["id"] == "webinar")).having('COUNT(courses.id) = 0');
-				elsif rule["operator"] == "not_null"
-				 	user = user.group('users.id').where("courses.webinar" => (rule["id"] == "webinar")).having('COUNT(courses.id) > 0');
+				case rule["id"]
+				when "course", "webinar"
+					# if (rule["operator"] == "in") || (rule["operator"] == "not_in")
+						usersInCourses = Course.find(rule["value"]).map{|c| c.users}.flatten.uniq
+					# end
+					if rule["operator"] == "in"
+						newUsers = usersInCourses
+					elsif rule["operator"] == "not_in"
+						newUsers = (User.all - usersInCourses)
+					elsif rule["operator"] == "is_null"
+						#Users that did not enroll in any course
+						newUsers = (User.all - Course.all.map{|c| c.users}.flatten.uniq)
+					elsif rule["operator"] == "not_null"
+						newUsers = Course.all.map{|c| c.users}.flatten.uniq
+					end
+				when "category"
+					coursesWithCategories = Course.all.select{|c| !c.categories.nil? && (c.categories & rule["value"]).length > 0}
+					usersInCoursesWithCategories = coursesWithCategories.blank? ? [] : coursesWithCategories.map{|c| c.users}.flatten.uniq
+					if rule["operator"] == "in"
+						newUsers = usersInCoursesWithCategories
+					elsif rule["operator"] == "not_in"
+						newUsers = (User.all - usersInCoursesWithCategories)
+					end
+				when "email"
+					usersWithEmails = User.where(:email => rule["value"].gsub(/\s+/, "").split(";"))
+					if rule["operator"] == "equal"
+						newUsers = usersWithEmails
+					elsif rule["operator"] == "not_equal"
+						newUsers = (User.all - usersWithEmails)
+					end
+				else
+					#Ignore rule
 				end
-			elsif rule["id"] == "category" # Tampoco funciona bien
-				if rule["operator"] == "in"
-					user = user.where("courses.category" => rule["value"])
-				elsif rule["operator"] == "not_in"
-					user = user.where.not("courses.category" => rule["value"])
-				end
-			elsif rule["id"] == "email"
-				if rule["operator"] == "equal"
-					user = user.where("id" => rule["value"])
-				elsif rule["operator"] == "not_equal"
-					user = user.where.not("id" => rule["value"])
-				end
+				users = (users + newUsers).uniq
 			end
-
 		end
 
-		user = user.distinct
+		users = users.uniq.select{|u| u.subscribed_to_newsletters == true}
 
-		
-		return user.count if count
-		return user.map { |u| u.email }.join(";")
+		return users.count if count
+		return users.map { |u| u.email }.join(";")
 	end
 
 end
