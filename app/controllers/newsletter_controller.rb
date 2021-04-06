@@ -2,6 +2,9 @@ class NewsletterController < ApplicationController
 	include  NewsletterHelper
 	skip_authorization_check
 	def index
+		@courses = Course.where(:webinar => false).map{ |c| {"id" => c.id, "name" => c.name} }
+		@webinars= Course.where(:webinar => true).map { |c| {"id" => c.id, "name" => c.name} }
+		@categories = I18n.t('categories').map { |name,cat| {"id" => name, "name" => cat} }
 		render "index"
 	end
 

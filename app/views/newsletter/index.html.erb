@@ -7,7 +7,7 @@
 			<form action="/newsletter" id="emailForm" method="POST">
 				<label for="to" class="h3"><%=t("email.to")%></label>
 				<!-- <input type="text" id="to" class="form-control" name="email[to]" value="" required> -->
-				<div class="query-builder" id="builder-basic"></div>
+				<div class="query-builder" id="builder-newsletter"></div>
 				<input type="hidden" id="email-to" name="email[to]" value="">
 				<div class="text-right">
 					<strong>Number of recipients:</strong>&nbsp;<span id="newsletter_count" style="min-width: 50px;display: inline-block;text-align: left;">-</span>
@@ -40,7 +40,7 @@
 	$(function(){
 		var onIframeLoad = function(){
 			var readyToSubmit = false;
-			var emailBuilder = document.getElementById('emailBuilder').contentWindow.window.ref.current
+			var emailBuilder = document.getElementById('emailBuilder').contentWindow.window.ref.current;
 
 			var saveDesign = function(){ 
 				emailBuilder.saveDesign(function(design){ 
@@ -52,12 +52,12 @@
 			var saveHTML = function(){
 				emailBuilder.exportHtml((data) => {
 				  const { design, html } = data;
-				  $('#email-content').val(html)
+				  $('#email-content').val(html);
 				  saveDesign()
 				});
 			}
 			var sendEmail = function() {
-				var result = $('.query-builder').queryBuilder('getRules');
+				var result = $('#builder-newsletter').queryBuilder('getRules');
 							  
 				if (!$.isEmptyObject(result)) {
 					$('#email-to').val(JSON.stringify(result));
@@ -72,9 +72,11 @@
 				}
 			}
 			$('#emailForm').submit(sendEmail);
+
 			$('#send').attr("disabled",false);
+
 			$('#newsletter_count_btn').click(function() {
-				var result = $('.query-builder').queryBuilder('getRules');
+				var result = $('#builder-newsletter').queryBuilder('getRules');
 				fetch("/newsletter_count", 
 					{
 						"method": "POST",
@@ -84,30 +86,22 @@
 					)
 					.then(res=>res.json())
 					.then(({count})=>{
-						console.log(count)
-						$('#newsletter_count').html(count)
+						$('#newsletter_count').html(count);
 					})
 			});
 
 			var rules_basic = {
-			  condition: 'AND',
+			  condition: 'OR',
 			  rules: [
-			  	  {id:""}
+			  	  {empty: true}
 			  ]
 			};
 
-			<%courses= Course.where(:webinar => false).map { |c| {"id" => c.id, "name" => c.name} } %>
-			var courses = JSON.parse(`<%=courses.to_json.html_safe%>`).reduce(
-  (obj, item) => Object.assign(obj, { [item.id]: item.name }), {});
-			<%webinars= Course.where(:webinar => true).map { |c| {"id" => c.id, "name" => c.name} } %>
-			var webinars = JSON.parse(`<%=webinars.to_json.html_safe%>`).reduce(
-  (obj, item) => Object.assign(obj, { [item.id]: item.name }), {});
+			var courses = JSON.parse(`<%=@courses.to_json.html_safe%>`).reduce((obj, item) => Object.assign(obj, { [item.id]: item.name }), {});
+			var webinars = JSON.parse(`<%=@webinars.to_json.html_safe%>`).reduce((obj, item) => Object.assign(obj, { [item.id]: item.name }), {});	
+			var categories = JSON.parse(`<%=@categories.to_json.html_safe%>`).reduce((obj, item) => Object.assign(obj, { [item.id]: item.name }), {});
 
-			<%categories = I18n.t('categories').map { |name,cat| {"id" => name, "name" => cat} } %>
-			var categories = JSON.parse(`<%=categories.to_json.html_safe%>`).reduce(
-  (obj, item) => Object.assign(obj, { [item.id]: item.name }), {});
-
-			$('.query-builder').queryBuilder({
+			$('#builder-newsletter').queryBuilder({
 				select_placeholder: '<%=t("email.everyone")%>',
 				allow_empty: true,
 				lang: {
@@ -161,11 +155,8 @@
 				}],
 				rules: rules_basic
 			});
-
-
-
-
 		}
-		document.getElementById("emailBuilder").addEventListener("load", onIframeLoad)
+
+		document.getElementById("emailBuilder").addEventListener("load", onIframeLoad);
 	});
 </script>
