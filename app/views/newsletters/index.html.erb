@@ -1,0 +1,19 @@
+<div class="container" style="min-height: calc(100vh - 181px);">
+	<p><a href="/newsletters/new">Enviar nuevo email</a></p>
+
+	<% if @newsletters.length > 0 %>
+		<p>Emails enviados</p>
+		<table style="width:100%">
+			<tr>
+				<th>Subject</th>
+				<th>Date</th>
+			</tr>
+			<% @newsletters.each do |newsletter| %>
+				<tr>
+					<th><a href="/newsletters/<%=newsletter.id%>"><%=newsletter.subject%></a></th>
+					<th><%=newsletter.created_at.strftime("%d/%m/%Y %H:%M")%></th>
+				</tr>
+			<% end %>
+		</table>
+	<% end %>
+</div>
