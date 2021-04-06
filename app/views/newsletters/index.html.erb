@@ -7,11 +7,13 @@
 			<tr>
 				<th>Subject</th>
 				<th>Date</th>
+				<th>Remove</th>
 			</tr>
 			<% @newsletters.each do |newsletter| %>
 				<tr>
 					<th><a href="/newsletters/<%=newsletter.id%>"><%=newsletter.subject%></a></th>
 					<th><%=newsletter.created_at.strftime("%d/%m/%Y %H:%M")%></th>
+					<th><%= link_to "Delete", newsletter, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %></th>
 				</tr>
 			<% end %>
 		</table>
