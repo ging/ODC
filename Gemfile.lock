@@ -213,6 +213,7 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    ruby_http_client (3.5.2)
     rubyzip (2.3.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -224,6 +225,8 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    sendgrid-ruby (6.4.0)
+      ruby_http_client (~> 3.4)
     spring (2.1.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -292,6 +295,7 @@ DEPENDENCIES
   rails (= 5.2.4.3)
   recaptcha (= 4.3.1)
   sass-rails (= 6.0.0)
+  sendgrid-ruby (= 6.4.0)
   spring
   thin
   uglifier (= 4.2.0)

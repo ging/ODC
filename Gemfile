@@ -35,6 +35,8 @@ gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
 gem 'acts-as-taggable-on', '6.5.0'
 gem 'paperclip', '6.1.0'
 
+gem 'sendgrid-ruby', '6.4.0'
+
 gem 'browser'
 
 gem 'exception_notification', '4.4.3'

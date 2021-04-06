@@ -1,3 +1,5 @@
+<% isAdmin = user_signed_in? and current_user.isAdmin? %>
+
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <div class="container" style="min-height: calc(100vh - 181px);">
 	<div class="row">
@@ -16,13 +18,12 @@
 						</div>
 					</div>
 					<% if (@isProfileOwner) %>
-
 						<a href="/users/edit" style="float:right;">
 							<button class="btn btn-primary"><%=t("profile.edit")%></button>
 
 						</a>&nbsp;
 						<%= button_to(t("devise.sessions.logout"), destroy_user_session_path, :method => :delete, :class=> "btn btn-secondary") %>
-					<% elsif(current_user.isAdmin?) %>
+					<% elsif isAdmin %>
 					<a href="/users/<%=@profile_user[:id]%>/edit" style="float:right;">
 						<button class="btn btn-primary"><%=t("profile.edit")%></button>
 					</a>
@@ -32,7 +33,7 @@
 				<br>
 			</div>
 		</div>
-		<% if(@isProfileOwner or current_user.isAdmin?) %>
+		<% if (@isProfileOwner or isAdmin) %>
 		<div class="col-xs-12 col-md-6 calendar-container ">
 			<div id="calendar"></div>
 			<br/>
@@ -49,7 +50,7 @@
 	</div>
 </div>
 
-<% if (@isProfileOwner or current_user.isAdmin?) and (@profile_user.courses ||[]).length() > 0 %> 
+<% if (@isProfileOwner or isAdmin) and (@profile_user.courses ||[]).length() > 0 %> 
 <br/>
 <br/>
 <div class="soft-background">

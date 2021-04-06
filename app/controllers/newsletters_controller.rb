@@ -43,17 +43,27 @@ class NewslettersController < ApplicationController
 			to = Newsletter.get_emails_by_rules(rules)
 
 			#Save newsletter
-			Newsletter.create! :subject   => email[:subject],
+			nw = Newsletter.create! :subject   => email[:subject],
 				:body => email[:body],
 				:rules => rules,
 				:design => email[:design],
 				:recipients => to
 
-			NewsletterMailer.newsletter_email(to, email[:subject], email[:body]).deliver_now
-			redirect_to "/", notice: "E-mail sent successfully"
+			if (ODC::Application.config.action_mailer.perform_deliveries == true)
+				success = NewsletterMailer.newsletter_email(to, email[:subject], email[:body])
+			else
+				success = false
+			end
+
+			if success
+				flash[:notice] = "E-mail sent successfully"
+			else
+				flash[:alert] = "E-mail was not sent successfully"
+			end
+			redirect_to "/"
 		rescue
 		  flash[:alert] = "E-mail could not be sent"
-		  redirect_to "/newsletter"
+		  redirect_to "/newsletters"
 		end
 	end
 
