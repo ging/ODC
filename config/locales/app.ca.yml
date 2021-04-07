@@ -259,7 +259,8 @@ ca:
     sent_successfully: "El correu electrònic s’ha enviat correctament"
     sent_error: "El correu electrònic NO s'ha enviat correctament" 
     delete: "Esborrar"  
-    deleted: "Butlletí informatiu destruït amb èxit"  
+    deleted: "Butlletí informatiu destruït amb èxit"
+    note: "El butlletí es enviarà a tots els usuaris que compliran alguna de les condicions anteriors"
   help: Ajuda
   landing:
     intro_new: "A la plataforma educativa gratuïta de la Fundació Orange trobaràs cursos i webinaris adaptats a les teves necessitats. Diverteix-te aprenent amb formació preparada per especialistes per afrontar els reptes d'aquesta nova era digital: fabricació 3D, medi ambient o ús responsable de la tecnologia són tan sols alguns exemples del que hi descobriràs."

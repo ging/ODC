@@ -297,7 +297,8 @@ en:
     sent_successfully: "E-mail sent successfully"
     sent_error: "E-mail was NOT sent successfully" 
     delete: Delete 
-    deleted: "Newsletter succesfully destroyed"  
+    deleted: "Newsletter succesfully destroyed"
+    note: The newsletter will be sent to all users that fulfill either of the conditions 
   landing:
     intro_new: "In the free educational platform of the Orange Foundation you will find courses and webinars adapted to your needs. Have fun learning with training prepared by specialists to face the challenges of this new digital era: 3D manufacturing, environment or responsible use of technology are just some examples of what you will discover."
     intro_old: "In the free educational platform of the Orange Foundation you will find courses and webinars adapted to your needs. Have fun learning with training prepared by specialists to face the challenges of this new digital era: 3D manufacturing, environment or responsible use of technology are just some examples of what you will discover."
