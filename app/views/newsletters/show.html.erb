@@ -1,5 +1,12 @@
 <div class="container" style="min-height: calc(100vh - 181px);">
-	<p> Subject </p>
-	<p> <%=@newsletter.subject %> </p>
-	<p> <a href="/newsletters/new?template=<%=@newsletter.id%>">Crear nueva newsletter a partir de esta </a></p>
+	<br>
+	<h1> <%=@newsletter.subject %> </h1>
+	<p class="text-right"> 
+		<a href="/newsletters/new?template=<%=@newsletter.id%>">
+			<button class="btn btn-primary"><%=t("email.recycle")%></button>
+		</a>
+	</p>
+	<hr>
+	<%= @newsletter.body.html_safe %>
+
 </div>

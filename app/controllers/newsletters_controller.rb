@@ -51,21 +51,21 @@ class NewslettersController < ApplicationController
 
 			if (ODC::Application.config.action_mailer.perform_deliveries == true)
 				NewsletterMailer.newsletter_email(to, email[:subject], email[:body]).deliver_now
-				flash[:notice] = "E-mail sent successfully"
+				flash[:notice] = I18n.t("email.sent_successfully")
 			else
-				flash[:alert] = "E-mail was not sent successfully"
+				flash[:alert] = I18n.t("email.sent_error")
 			end
 			
 			redirect_to "/"
 		rescue
-		  flash[:alert] = "E-mail could not be sent"
+		  flash[:alert] = I18n.t("email.sent_error")
 		  redirect_to "/newsletters"
 		end
 	end
 
 	def destroy
 		@newsletter.destroy
-		redirect_to "/newsletters", notice:  "Newsletter succesfully destroyed"
+		redirect_to "/newsletters", notice: I18n.t("email.deleted")
 	end
 
 	def unsubscribe
@@ -73,10 +73,9 @@ class NewslettersController < ApplicationController
 
 	def perform_unsubscribe
 		current_user.update_column(:subscribed_to_newsletters, false)
-		flash[:notice] = "Te has dado de baja de la lista de correos satisfactoriamente"
+		flash[:notice] = I18n.t("email.unsubscribed")
 		redirect_to "/"
 	end
-
 
 	private
 

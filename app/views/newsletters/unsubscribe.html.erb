@@ -1,3 +1,18 @@
 <div class="container" style="min-height: calc(100vh - 181px);">
-	<p>Si quieres dejar de recibir botelines informativos de Orange Digital Center pulsa <a href="/newsletters/perform_unsubscribe">aquí</a>.</p>
+	<br>
+	<div class="alert alert-warning" style="flex-wrap: wrap" role="alert">
+	  	<span class="alert-icon"><span class="sr-only">Warning</span></span>
+	  	<p><%=I18n.t("email.unsubscribe_msg")%></p>
+	  	<p style="min-width: 90%">
+	  		<br>
+			<a href="/newsletters/perform_unsubscribe">
+				<button class="btn btn-warning"><%=I18n.t("email.unsubscribe_confirm")%></button>
+			</a>
+			<a href="/">
+				<button class="btn btn-secondary"><%=I18n.t("email.unsubscribe_back")%></button>
+			</a>
+		</p>
+	</div>
+
 </div>
+

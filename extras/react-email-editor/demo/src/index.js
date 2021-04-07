@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-
 import Example from './example';
 import DesignEdit from './dashboard/DesignEdit';
 
@@ -22,9 +20,7 @@ const GlobalStyle = createGlobalStyle`
 
 class Demo extends Component {
   render() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const designId = urlParams.get('designId');
-    return <DesignEdit designId={designId} />
+    return  <DesignEdit />
   }
 }
 

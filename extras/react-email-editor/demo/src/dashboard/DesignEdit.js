@@ -28,31 +28,14 @@ const DesignEdit = (props) => {
     });
   };
   const onDesignLoad = (data) => {
-    console.log('onDesignLoad', data);
+    // console.log('onDesignLoad', data);
   };
   const onLoad = () => {
     ref.current.editor.addEventListener(
       'onDesignLoad',
       onDesignLoad
     );
-    // emailEditorRef.current.editor.loadDesign(sample);
-    if (props.designId) {
-      fetch("/designs/" + props.designId)
-        .then(res=>res.json())
-        .then(data=>ref.current.editor.loadDesign(data))
-        .catch(e=> {
-          console.error(e);
-          fetch("/email_builder/sample.json")
-            .then(res=>res.json())
-            .then(data=>ref.current.editor.loadDesign(data))
-            .catch(e=>console.error(e));
-        });
-    } else {
-        fetch("/email_builder/sample.json")
-          .then(res=>res.json())
-          .then(data=>ref.current.editor.loadDesign(data))
-          .catch(e=>console.error(e));
-    }
+
   };
   return (
     <Container>

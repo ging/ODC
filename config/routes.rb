@@ -15,7 +15,6 @@ ODC::Application.routes.draw do
   match '/newsletter_count' => 'newsletters#calculate_newsletter_recipients', via: [:post]
   match '/newsletter_authoring_tool' => 'newsletters#builder', via: [:get]
 
-
   #Courses
   resources :courses
   match '/vamping' => 'courses#show', :defaults => { :id => '45' },  via: [:get]

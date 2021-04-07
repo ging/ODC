@@ -14,7 +14,6 @@ class Newsletter < ApplicationRecord
 			users = []
 			rules.each do |rule|
 				newUsers = [] #All rules are OR
-
 				case rule["id"]
 				when "course", "webinar"
 					if (rule["operator"] == "in") || (rule["operator"] == "not_in")
@@ -27,7 +26,7 @@ class Newsletter < ApplicationRecord
 					elsif rule["operator"] == "is_null"
 						#Users that did not enroll in any course
 						newUsers = (User.all - Course.all.map{|c| c.users}.flatten.uniq)
-					elsif rule["operator"] == "not_null"
+					elsif rule["operator"] == "is_not_null"
 						newUsers = Course.all.map{|c| c.users}.flatten.uniq
 					end
 				when "category"
@@ -39,12 +38,19 @@ class Newsletter < ApplicationRecord
 						newUsers = (User.all - usersInCoursesWithCategories)
 					end
 				when "email"
-					usersWithEmails = User.where(:email => rule["value"].gsub(/\s+/, "").split(";"))
-					if rule["operator"] == "equal"
-						newUsers = usersWithEmails
-					elsif rule["operator"] == "not_equal"
-						newUsers = (User.all - usersWithEmails)
+					if rule["operator"] == "is_not_null" 
+						newUsers = User.all
+					else
+						usersWithEmails = User.where(:email => rule["value"].gsub(/\s+/, "").split(";"))
+						if rule["operator"] == "equal"
+							newUsers = usersWithEmails
+						elsif rule["operator"] == "not_equal"
+							newUsers = (User.all - usersWithEmails)
+						else rule["operator"] == "is_not_null"
+							
+						end
 					end
+
 				when "all"
 					users = User.all
 				else
