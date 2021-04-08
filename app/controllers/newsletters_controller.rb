@@ -4,7 +4,7 @@ class NewslettersController < ApplicationController
 	before_action :set_newsletter, only: [:show, :destroy]
 
 	def index
-		@newsletters = Newsletter.all
+		@newsletters = Newsletter.all.reverse_order
 	end
 
 	def show

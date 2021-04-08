@@ -18,7 +18,9 @@
 			<tbody>
 			<% @newsletters.each do |newsletter| %>
 				<tr>
-					<th style="max-width: 70vw; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"><a href="/newsletters/<%=newsletter.id%>"><%=newsletter.subject%></a></th>
+					<th style="max-width: 70vw; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+						<a href="/newsletters/<%=newsletter.id%>"><%=newsletter.subject%></a>
+					</th>
 					<th><%=newsletter.created_at.strftime("%d/%m/%Y %H:%M")%></th>
 					<!-- <th class="text-right"><%= link_to "Delete", newsletter, method: :delete, class: 'badge badge-danger', data: { confirm: 'Are you sure?' } %></th> -->
 				</tr>
