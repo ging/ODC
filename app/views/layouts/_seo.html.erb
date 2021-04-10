@@ -31,7 +31,7 @@
 		<%if !img.blank?%>
 		"thumbnailUrl": "<%=img%>",
 		<%end%>
-		"keywords": "<% (@course[:categories]||[]).each_with_index{|tag, index|%><%=t("tags." + tag)%><%if index != @course[:categories].length()-1%>,<%end%><%}%>",
+		"keywords": "<% (@course[:categories]||[]).each_with_index{|tag, index|%><%=t("categories." + tag)%><%if index != @course[:categories].length()-1%>,<%end%><%}%>",
 		<% if defined?(@course) and !@course.dedication.blank? %>
 		"courseWorkload": "<%=@course.dedication%>","
 		<%end%>
@@ -51,13 +51,14 @@
 			"@type": "Organization",
 			"name": "<%=author%>"
 		},
-		"instructor": [<% (@course[:teachers]||[]).each_with_index{|teacher, index|%>
+		<%teachers = @course.sorted_teachers||[]%>
+		"instructor": [<% (teachers).each_with_index{|teacher, index|%>
           {
             "@type": "Person",
             "name": "<%=teacher.name%>",
-            "jobTitle": "<%=teacher.position%>",
-            "image": "<%=teacher.avatar.url%>"
-          }<%if index != @course[:teachers].length()-1%>,<%end%>",
+            "jobTitle": "<%=teacher.position_en%>",
+            "image": "<%=@host%><%=teacher.avatar.url%>"
+          }<%if index != teachers.length()-1%>,<%end%>",
         <%}%>],
 		"hasCourseInstance": {
 		    "@type": "CourseInstance",

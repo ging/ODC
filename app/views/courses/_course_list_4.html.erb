@@ -16,6 +16,8 @@
 				 		 <%= render partial: "courses/course_card", :locals => {index: index, course: course, mine: mine}        %>
 					</div>
 				<% end %>
+				<%if !defined?(@already_seo)%>
+				<%@already_seo = true%>
 				<script type="application/ld+json">
 				{
 					"@context":"https://schema.org",
@@ -31,6 +33,7 @@
 					]
 				}
 				</script>
+				<%end%>
 	  		</div>
 		</div>
   	</div>
