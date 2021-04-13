@@ -1,0 +1,31 @@
+<div class="container" style="min-height: calc(100vh - 181px);">
+	<div class="row">
+		<div class="col-12">
+			<br>
+			<h1 style="font-size: 50px;"><%=error_number%></h1>
+			<h2 style="font-weight: lighter;"><%=t("page_not_found.errors.#{error_name}")%></h2>
+			<a class ="btn-link" href="/"> <i class="fas fa-chevron-left"></i> Back </a>
+			<div style="margin-top: -100px;"></div>
+			<div class="row search-row">
+				<div class="col-12 search-col">
+					<form class="custom-form" action="/search" autocomplete="off">
+						<span class="input input--hoshi <%=params[:q] && !params[:q].strip.empty? ? "input--filled" : ""%>">
+							<%if !params[:webinar].blank?%>
+								<input type="hidden" name="webinar" value="<%=params[:webinar]%>">
+							<%end%>
+							<input class="input__field input__field--hoshi" type="text" id="input-search" name="q" autocomplete="off" value="<%=params[:q]%>"/>
+							<button type="submit" class="btn btn-light search-icon">
+								<img src="/img/search.svg" class="search-icon-img"/>
+							</button>
+							<label class="input__label input__label--hoshi" for="input-search">
+								<span class="input__label-content input__label-content--hoshi">
+									<%=t("search.write")%>
+								</span>
+							</label>
+						</span>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

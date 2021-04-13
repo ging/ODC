@@ -1,4 +1,7 @@
 class Course < ApplicationRecord
+	extend FriendlyId
+  	friendly_id :name, use: [:slugged, :finders]
+
 	serialize :categories
 	serialize :contents
 	serialize :teachers_order

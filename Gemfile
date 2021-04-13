@@ -40,6 +40,7 @@ gem 'sendgrid-ruby', '6.4.0'
 gem 'browser'
 
 gem 'exception_notification', '4.4.3'
+gem 'friendly_id', '~> 5.4.0'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
