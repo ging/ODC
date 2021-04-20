@@ -1,0 +1,354 @@
+{
+  "counters": {
+    "u_column": 7,
+    "u_row": 4,
+    "u_content_html": 4,
+    "u_content_image": 2,
+    "u_content_text": 3
+  },
+  "body": {
+    "rows": [
+      {
+        "cells": [
+          1
+        ],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "image",
+                "values": {
+                  "containerPadding": "0px",
+                  "src": {
+                    "url": "https://orangedigitalcenter.es/img/landing_login.jpg",
+                    "width": 2000,
+                    "height": 1333
+                  },
+                  "textAlign": "center",
+                  "altText": "Image",
+                  "action": {
+                    "name": "web",
+                    "values": {
+                      "href": "",
+                      "target": "_blank"
+                    }
+                  },
+                  "hideDesktop": false,
+                  "_meta": {
+                    "htmlID": "u_content_image_1",
+                    "htmlClassNames": "u_content_image"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "hideMobile": false
+                }
+              }
+            ],
+            "values": {
+              "backgroundColor": "#ffffff",
+              "padding": "0px",
+              "border": {},
+              "_meta": {
+                "htmlID": "u_column_1",
+                "htmlClassNames": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "displayCondition": null,
+          "columns": false,
+          "backgroundColor": "",
+          "columnsBackgroundColor": "",
+          "backgroundImage": {
+            "url": "",
+            "fullWidth": true,
+            "repeat": false,
+            "center": true,
+            "cover": false
+          },
+          "padding": "0px",
+          "hideDesktop": false,
+          "_meta": {
+            "htmlID": "u_row_1",
+            "htmlClassNames": "u_row"
+          },
+          "selectable": true,
+          "draggable": true,
+          "duplicatable": true,
+          "deletable": true,
+          "hideMobile": false,
+          "noStackMobile": false
+        }
+      },
+      {
+        "cells": [
+          1
+        ],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "text",
+                "values": {
+                  "containerPadding": "10px",
+                  "color": "#ffffff",
+                  "textAlign": "left",
+                  "lineHeight": "140%",
+                  "linkStyle": {
+                    "inherit": true,
+                    "linkColor": "#0000ee",
+                    "linkHoverColor": "#0000ee",
+                    "linkUnderline": true,
+                    "linkHoverUnderline": true
+                  },
+                  "hideDesktop": false,
+                  "_meta": {
+                    "htmlID": "u_content_text_1",
+                    "htmlClassNames": "u_content_text"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "hideMobile": false,
+                  "text": "<p style=\"font-size: 14px; line-height: 140%;\"><span style=\"font-size: 28px; line-height: 39.2px; color: #e67e23;\"><strong>Orange Digital Center</strong></span></p>"
+                }
+              },
+              {
+                "type": "text",
+                "values": {
+                  "containerPadding": "10px",
+                  "color": "#000000",
+                  "textAlign": "left",
+                  "lineHeight": "140%",
+                  "linkStyle": {
+                    "inherit": false,
+                    "linkColor": "#eccafa",
+                    "linkHoverColor": "#0000ee",
+                    "linkUnderline": false,
+                    "linkHoverUnderline": true,
+                    "body": false
+                  },
+                  "hideDesktop": false,
+                  "_meta": {
+                    "htmlID": "u_content_text_2",
+                    "htmlClassNames": "u_content_text"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "hideMobile": false,
+                  "text": "<p style=\"font-size: 14px; line-height: 140%;\">Esperamos que te haya gustado el curso.&nbsp;</p>"
+                }
+              },
+              {
+                "type": "image",
+                "values": {
+                  "containerPadding": "0px",
+                  "src": {
+                    "url": "https://ci4.googleusercontent.com/proxy/x61--2FIEz91ol-TclmHXX-8NC6EVJh8szQso-n7G626d5FHIp5NpkgqNUyY8OJQCMyjEU4M4VIBPbTkvcnAZCnYWfPPYCbvKS2xug=s0-d-e1-ft#https://orangedigitalcenter.es/img/LogoFundacionBlack.png",
+                    "width": 850,
+                    "height": 567,
+                    "autoWidth": false,
+                    "maxWidth": "30%"
+                  },
+                  "textAlign": "center",
+                  "altText": "Fundación Orange",
+                  "action": {
+                    "name": "web",
+                    "values": {
+                      "href": "https://fundacionorange.es",
+                      "target": "_blank"
+                    },
+                    "attrs": {
+                      "href": "{{href}}",
+                      "target": "{{target}}"
+                    }
+                  },
+                  "hideDesktop": false,
+                  "_meta": {
+                    "htmlID": "u_content_image_2",
+                    "htmlClassNames": "u_content_image"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "hideMobile": false,
+                  "_override": {
+                    "mobile": {
+                      "src": {
+                        "url": "https://ci4.googleusercontent.com/proxy/x61--2FIEz91ol-TclmHXX-8NC6EVJh8szQso-n7G626d5FHIp5NpkgqNUyY8OJQCMyjEU4M4VIBPbTkvcnAZCnYWfPPYCbvKS2xug=s0-d-e1-ft#https://orangedigitalcenter.es/img/LogoFundacionBlack.png",
+                        "width": 850,
+                        "height": 567,
+                        "autoWidth": false,
+                        "maxWidth": "46%"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "values": {
+              "backgroundColor": "#ffffff",
+              "padding": "0px",
+              "border": {},
+              "_meta": {
+                "htmlID": "u_column_6",
+                "htmlClassNames": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "displayCondition": null,
+          "columns": false,
+          "backgroundColor": "",
+          "columnsBackgroundColor": "",
+          "backgroundImage": {
+            "url": "",
+            "fullWidth": true,
+            "repeat": false,
+            "center": true,
+            "cover": false
+          },
+          "padding": "0px",
+          "hideDesktop": false,
+          "_meta": {
+            "htmlID": "u_row_3",
+            "htmlClassNames": "u_row"
+          },
+          "selectable": true,
+          "draggable": true,
+          "duplicatable": true,
+          "deletable": true,
+          "hideMobile": false,
+          "noStackMobile": false
+        }
+      },
+      {
+        "cells": [
+          1
+        ],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "html",
+                "values": {
+                  "html": "<div align=\"center\">\n  <div style=\"display: table; max-width:147px;\">\n  <!--[if (mso)|(IE)]><table width=\"147\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"border-collapse:collapse;\" align=\"center\"><table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"border-collapse:collapse; mso-table-lspace: 0pt;mso-table-rspace: 0pt; width:147px;\"><tr><![endif]-->\n  \n    \n    <!--[if (mso)|(IE)]><td width=\"32\" style=\"width:32px; padding-right: 5px;\" valign=\"top\"><![endif]-->\n    <table align=\"left\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"32\" height=\"32\" style=\"border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 5px\">\n      <tbody><tr style=\"vertical-align: top\"><td align=\"left\" valign=\"middle\" style=\"word-break: break-word;border-collapse: collapse !important;vertical-align: top\">\n        <a href=\"https://www.facebook.com/fundacionorange/\" title=\"Facebook\" target=\"_blank\">\n          <img src=\"https://orangedigitalcenter.es/img/fb.png\" alt=\"Facebook\" title=\"Facebook\" width=\"32\" style=\"outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important\">\n        </a>\n      </td></tr>\n    </tbody></table>\n    <!--[if (mso)|(IE)]></td><![endif]-->\n    \n    <!--[if (mso)|(IE)]><td width=\"32\" style=\"width:32px; padding-right: 5px;\" valign=\"top\"><![endif]-->\n    <table align=\"left\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"32\" height=\"32\" style=\"border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 5px\">\n      <tbody><tr style=\"vertical-align: top\"><td align=\"left\" valign=\"middle\" style=\"word-break: break-word;border-collapse: collapse !important;vertical-align: top\">\n        <a href=\"https://twitter.com/fundacionorange/\" title=\"Twitter\" target=\"_blank\">\n          <img src=\"https://orangedigitalcenter.es/img/twitter.png\" alt=\"Twitter\" title=\"Twitter\" width=\"32\" style=\"outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important\">\n        </a>\n      </td></tr>\n    </tbody></table>\n    <!--[if (mso)|(IE)]></td><![endif]-->\n    \n    <!--[if (mso)|(IE)]><td width=\"32\" style=\"width:32px; padding-right: 5px;\" valign=\"top\"><![endif]-->\n    <table align=\"left\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"32\" height=\"32\" style=\"border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 5px\">\n      <tbody><tr style=\"vertical-align: top\"><td align=\"left\" valign=\"middle\" style=\"word-break: break-word;border-collapse: collapse !important;vertical-align: top\">\n        <a href=\"https://www.linkedin.com/company/fundacionorange/\" title=\"LinkedIn\" target=\"_blank\">\n          <img src=\"https://orangedigitalcenter.es/img/linkedin.png\" alt=\"LinkedIn\" title=\"LinkedIn\" width=\"32\" style=\"outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important\">\n        </a>\n      </td></tr>\n    </tbody></table>\n    <!--[if (mso)|(IE)]></td><![endif]-->\n    \n    <!--[if (mso)|(IE)]><td width=\"32\" style=\"width:32px; padding-right: 0px;\" valign=\"top\"><![endif]-->\n    <table align=\"left\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" width=\"32\" height=\"32\" style=\"border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 0px\">\n      <tbody><tr style=\"vertical-align: top\"><td align=\"left\" valign=\"middle\" style=\"word-break: break-word;border-collapse: collapse !important;vertical-align: top\">\n        <a href=\"https://www.instagram.com/FundacionOrange/\" title=\"Instagram\" target=\"_blank\">\n          <img src=\"https://orangedigitalcenter.es/img/insta.png\" alt=\"Instagram\" title=\"Instagram\" width=\"32\" style=\"outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important\">\n        </a>\n      </td></tr>\n    </tbody></table>\n    <!--[if (mso)|(IE)]></td><![endif]-->\n    \n    \n    <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->\n  </div>\n</div>",
+                  "hideDesktop": false,
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "htmlID": "u_content_html_4",
+                    "htmlClassNames": "u_content_html"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "hideMobile": false
+                }
+              },
+              {
+                "type": "text",
+                "values": {
+                  "containerPadding": "10px",
+                  "color": "#000000",
+                  "textAlign": "left",
+                  "lineHeight": "140%",
+                  "linkStyle": {
+                    "inherit": true,
+                    "linkColor": "#0000ee",
+                    "linkHoverColor": "#0000ee",
+                    "linkUnderline": true,
+                    "linkHoverUnderline": true
+                  },
+                  "hideDesktop": false,
+                  "_meta": {
+                    "htmlID": "u_content_text_3",
+                    "htmlClassNames": "u_content_text"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "hideMobile": false,
+                  "text": "<p style=\"font-size: 14px; line-height: 140%; text-align: center;\"><span style=\"font-size: 8px; line-height: 11.2px; color: #7e8c8d;\"><a style=\"color: #7e8c8d;\" href=\"https://orangedigitalcenter.es/newsletters/unsubscribe\" target=\"_blank\" rel=\"noopener\" data-u-link-value=\"eyJuYW1lIjoid2ViIiwiYXR0cnMiOnsiaHJlZiI6Int7aHJlZn19IiwidGFyZ2V0Ijoie3t0YXJnZXR9fSJ9LCJ2YWx1ZXMiOnsiaHJlZiI6Imh0dHBzOi8vb3JhbmdlZGlnaXRhbGNlbnRlci5lcy9uZXdzbGV0dGVycy91bnN1YnNjcmliZSIsInRhcmdldCI6Il9ibGFuayJ9fQ==\">&iquest;No quieres recibir m&aacute;s correos como &eacute;ste?</a></span></p>"
+                }
+              }
+            ],
+            "values": {
+              "backgroundColor": "#ffffff",
+              "padding": "0px",
+              "border": {},
+              "_meta": {
+                "htmlID": "u_column_7",
+                "htmlClassNames": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "displayCondition": null,
+          "columns": false,
+          "backgroundColor": "",
+          "columnsBackgroundColor": "",
+          "backgroundImage": {
+            "url": "",
+            "fullWidth": true,
+            "repeat": false,
+            "center": true,
+            "cover": false
+          },
+          "padding": "0px",
+          "hideDesktop": false,
+          "_meta": {
+            "htmlID": "u_row_4",
+            "htmlClassNames": "u_row"
+          },
+          "selectable": true,
+          "draggable": true,
+          "duplicatable": true,
+          "deletable": true,
+          "hideMobile": false,
+          "noStackMobile": false
+        }
+      }
+    ],
+    "values": {
+      "backgroundColor": "#ffffff",
+      "backgroundImage": {
+        "url": "",
+        "fullWidth": true,
+        "repeat": false,
+        "center": true,
+        "cover": false
+      },
+      "contentWidth": "500px",
+      "contentAlign": "center",
+      "fontFamily": {
+        "label": "Arial",
+        "value": "arial,helvetica,sans-serif"
+      },
+      "preheaderText": "",
+      "linkStyle": {
+        "body": true,
+        "linkColor": "#e67e23",
+        "linkHoverColor": "#0000ee",
+        "linkUnderline": true,
+        "linkHoverUnderline": true,
+        "inherit": false
+      },
+      "_meta": {
+        "htmlID": "u_body",
+        "htmlClassNames": "u_body"
+      }
+    }
+  },
+  "schemaVersion": 5
+}

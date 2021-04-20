@@ -12,11 +12,7 @@ class CoursesController < ApplicationController
   # GET /courses
   def index
     @searching = true
-    @courses = Course.all
-    @courses = @courses.where(:webinar => false)
-    #filter courses and webinars only in the language of the page, or in spanish if page is in english
-    pagelang = I18n.locale.to_s
-    @courses = @courses.where(:card_lang => pagelang)
+    @courses = Course.all.where(:webinar => false, :card_lang => I18n.locale.to_s)
     @courses = @courses.order(:start_date=> :desc,:end_date=> :desc, :created_at=> :desc).paginate(:per_page => 24, :page => params[:page].blank? ? 1 : params[:page])
     params[:webinar] = 0
   end
@@ -24,11 +20,7 @@ class CoursesController < ApplicationController
   # GET /webinars
   def webinars
     @searching = true
-    @courses = Course.all
-    @courses = @courses.where(:webinar => true)
-    #filter courses and webinars only in the language of the page
-    pagelang = I18n.locale.to_s
-    @courses = @courses.where(:card_lang => pagelang)
+    @courses = Course.all.where(:webinar => true, :card_lang => I18n.locale.to_s)
     @courses = @courses.order(:start_date=> :desc,:end_date=> :desc, :created_at=> :desc).paginate(:per_page => 24, :page => params[:page].blank? ? 1 : params[:page])
     params[:webinar] = 1
     render "index"
@@ -40,9 +32,7 @@ class CoursesController < ApplicationController
     respond_to do |format|
       format.html {
         @searching = true
-	#filter courses and webinars only in the language of the page
-        pagelang = I18n.locale.to_s
-      	@courses = Course.all.where(:card_lang => pagelang)
+      	@courses = @courses.where(:card_lang => I18n.locale.to_s)
       	@courses = @courses.order(:start_date=> :desc,:end_date=> :desc, :created_at=> :desc).paginate(:per_page => 24, :page => params[:page].blank? ? 1 : params[:page])
         render "index"
       }
@@ -272,7 +262,7 @@ class CoursesController < ApplicationController
   private
 
   def set_course
-    @course = Course.find(params[:id])
+    @course = Course.friendly.find(params[:id])
   end
 
   def course_params

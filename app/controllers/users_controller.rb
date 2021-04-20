@@ -61,7 +61,7 @@ class UsersController < ApplicationController
   end
 
   def users_params
-    par = params.require(:user).permit("name", "surname","email","password","password_confirmation","tag_list","ui_language","avatar","avatar_delete")
+    par = params.require(:user).permit("name", "surname","email","password","password_confirmation","tag_list","ui_language","avatar","avatar_delete","subscribed_to_newsletters")
     if par["password"].blank?
       par.except("password").except("password_confirmation")
     else

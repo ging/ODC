@@ -16,4 +16,5 @@ class EnrollmentConfirmationMailer < ApplicationMailer
     @timezone = timezone
     mail(to: email, subject: t("course.email_subject") + '"' + course.name + '"', encrypt: true)
   end
+
 end

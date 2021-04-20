@@ -35,9 +35,12 @@ gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
 gem 'acts-as-taggable-on', '6.5.0'
 gem 'paperclip', '6.1.0'
 
+gem 'sendgrid-ruby', '6.4.0'
+
 gem 'browser'
 
 gem 'exception_notification', '4.4.3'
+gem 'friendly_id', '~> 5.4.0'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views

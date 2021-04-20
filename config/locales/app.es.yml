@@ -237,7 +237,36 @@ es:
     video_placeholder: "Enlace al vídeo de introducción (Youtube)"
     visits: "Visitas"
     votes: "votos"
-  help: Ayuda
+  email: 
+    massive_email: "E-mail masivo"
+    massive_emails: "E-mails masivos"
+    to: "Para"
+    content: "Contenido"
+    send: "Enviar"
+    subject: "Asunto"
+    help: Ayuda
+    add_rule: "Nueva condición"
+    delete_rule: "Quitar"
+    whoever_attended_course: "Quién haya cursado el curso"
+    whoever_attended_webinar: "Quién haya cursado el webinar"
+    whoever_attended_category: "Quién haya cursado el curso/webinar de la categoría"
+    everyone: "Todos"
+    noone: "Nadie"
+    any: "Cualquiera"
+    unsubscribed: "Te has dado de baja de la lista de correos satisfactoriamente"
+    unsubscribe_msg: "¿Estás seguro de que quieres dejar de recibir botelines informativos de Orange Digital Center?"
+    unsubscribe_confirm: Confirmar
+    unsubscribe_back: Volver
+    send_new_email: "Enviar nuevo e-mail"
+    date: "Fecha"
+    n_recipients: "Número de destinatarios"
+    calculate: "Calcular"
+    recycle: "Crear nueva newsletter a partir de esta"
+    sent_successfully: "E-mail enviado con éxito"
+    sent_error: "El e-mail no se pudo enviar" 
+    delete: "Eliminar"  
+    deleted: "El e-mail se ha borrado con éxito" 
+    note: La newsletter se enviará a todos los usuarios que cumplan alguna de las condiciones anteriores 
   landing:
     intro_new: "En la plataforma educativa gratuita de la Fundación Orange encontrarás cursos y webinars adaptados a tus necesidades. Diviértete aprendiendo con formación preparada por especialistas para afrontar los retos de esta nueva era digital: fabricación 3D, medio ambiente o uso responsable de la tecnología son solo algunos ejemplos de lo que descubrirás."
     intro_old: "En la plataforma educativa gratuita de la Fundación Orange encontrarás cursos y webinars adaptados a tus necesidades. Diviértete aprendiendo con formación preparada por especialistas para afrontar los retos de esta nueva era digital: fabricación 3D, medio ambiente o uso responsable de la tecnología son solo algunos ejemplos de lo que descubrirás."

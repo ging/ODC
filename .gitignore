@@ -28,9 +28,11 @@ config/deploy/*
 !config/deploy/staging.rb
 
 dumps/*
+!dumps/loaddump.sh
 **/*.DS_Store
 *.key
 node_modules/
+*/node_modules/*
 *.pem
 config/database.yml
 config/application_config.yml

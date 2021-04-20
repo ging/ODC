@@ -41,6 +41,7 @@ namespace :db do
 			:start_date => DateTime.new(2021,9,1),
 			:end_date => DateTime.new(2021,9,30),
 			:url => "http://moodle.vishub.org",
+			:card_lang => "es",
 			:dedication => "50 horas"
 
 		Course.create! :name => "Ciberseguridad",
@@ -49,6 +50,7 @@ namespace :db do
 			:start_date => DateTime.new(2022,9,1),
 			:end_date => DateTime.new(2022,9,30),
 			:url => "http://moodle.vishub.org",
+			:card_lang => "es",
 			:dedication => "50 horas"
 
 		Course.create! :name => "Violencia de género",
@@ -57,6 +59,7 @@ namespace :db do
 			:start_date => DateTime.new(2021,9,1),
 			:end_date => DateTime.new(2021,9,30),
 			:url => "http://moodle.vishub.org",
+			:card_lang => "es",
 			:dedication => "50 horas"
 
 		#Create webinars
@@ -66,6 +69,7 @@ namespace :db do
 			:start_date => DateTime.new(2021,5,1,5,0),
 			:end_date => DateTime.new(2021,6,30,6,0),
 			:url => "http://moodle.vishub.org",
+			:card_lang => "es",
 			:dedication => "50 horas",
 			:webinar => true
 		
@@ -75,6 +79,7 @@ namespace :db do
 			:start_date => DateTime.new(2021,5,1,5,0),
 			:end_date => DateTime.new(2021,6,30,6,0),
 			:url => "http://moodle.vishub.org",
+			:card_lang => "en",
 			:dedication => "50 horas",
 			:webinar => true
 		
@@ -84,6 +89,7 @@ namespace :db do
 			:start_date => DateTime.new(2021,5,1,3,0),
 			:end_date => DateTime.new(2021,6,30,4,0),
 			:url => "http://moodle.vishub.org",
+			:card_lang => "es",
 			:dedication => "50 horas",
 			:webinar => true
 			

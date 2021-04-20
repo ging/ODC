@@ -1,0 +1,32 @@
+<div class="container" style="min-height: calc(100vh - 181px);">
+	<br>
+	<h1><%=t("email.massive_emails")%></h1>
+	<p>
+		<a href="/newsletters/new">
+			<button class="btn btn-primary"><%=t("email.send_new_email")%></button>
+		</a>
+	</p>
+
+	<% if @newsletters.length > 0 %>
+		<table class="table">
+			<thead>
+			<tr class="table-row">
+				<th scope="col" style="max-width: 70vw;"><%=t("email.subject")%></th>
+				<th scope="col"><%=t("email.date")%></th>
+			</tr>
+			</thead>
+			<tbody>
+			<% @newsletters.each do |newsletter| %>
+				<tr>
+					<th style="max-width: 70vw; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+						<a href="/newsletters/<%=newsletter.id%>"><%=newsletter.subject%></a>
+					</th>
+					<th><%=newsletter.created_at.strftime("%d/%m/%Y %H:%M")%></th>
+					<!-- <th class="text-right"><%= link_to "Delete", newsletter, method: :delete, class: 'badge badge-danger', data: { confirm: 'Are you sure?' } %></th> -->
+				</tr>
+			<% end %>
+			</tbody>
+		</table>
+	<% end %>
+</div>
+

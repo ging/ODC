@@ -18,6 +18,8 @@
 					<% end %>
 					</div>
 				<% end %>
+				<%if !defined?(@already_seo)%>
+				<%@already_seo = true%>
 				<script type="application/ld+json">
 				{
 					"@context":"https://schema.org",
@@ -33,6 +35,7 @@
 					]
 				}
 				</script>
+				<%end%>
 				<%if courses.length() == 0  and  defined?empty_msg %>
 					<p class="d-flex no-results text-center" style="min-height: 300px; padding-top: 15px;"><%=empty_msg%></p>
 				<%end%>

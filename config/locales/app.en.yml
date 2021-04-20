@@ -270,6 +270,35 @@ en:
     video_placeholder: "Link to the intro video (Youtube)"
     visits: "Visits"
     votes: "votes"
+  email: 
+    massive_email: "Massive email"
+    massive_emails: "Massive emails"
+    to: "To"
+    content: "Content"
+    send: "Send"
+    subject: "Subject"
+    add_rule: "New condition"
+    delete_rule: "Delete"
+    whoever_attended_course: "Whoever attended the course"
+    whoever_attended_webinar: "Whoever attended the webinar"
+    whoever_attended_category: "Whoever attended a course/webinar tagged as"
+    everyone: "Everyone"
+    noone: "No one"
+    any: "Any"
+    unsubscribed: "You have succesfully unsubscribed from the email list"
+    unsubscribe_msg: "Are you sure you wish to stop receiving newsletters from Orange Digital Center?"
+    unsubscribe_confirm: Confirm
+    unsubscribe_back: Back
+    send_new_email: "Enviar nuevo e-mail"
+    date: "Date"
+    n_recipients: "Number of recipients"
+    calculate: "Calculate"
+    recycle: "Create a new newsletter from this one"
+    sent_successfully: "E-mail sent successfully"
+    sent_error: "E-mail was NOT sent successfully" 
+    delete: Delete 
+    deleted: "Newsletter succesfully destroyed"
+    note: The newsletter will be sent to all users that fulfill either of the conditions 
   landing:
     intro_new: "In the free educational platform of the Orange Foundation you will find courses and webinars adapted to your needs. Have fun learning with training prepared by specialists to face the challenges of this new digital era: 3D manufacturing, environment or responsible use of technology are just some examples of what you will discover."
     intro_old: "In the free educational platform of the Orange Foundation you will find courses and webinars adapted to your needs. Have fun learning with training prepared by specialists to face the challenges of this new digital era: 3D manufacturing, environment or responsible use of technology are just some examples of what you will discover."

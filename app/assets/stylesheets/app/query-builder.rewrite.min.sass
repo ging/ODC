@@ -1,0 +1,41 @@
+@import "colors"
+.query-builder
+	.rules-group-container
+		width: 100%
+		background: transparent
+		border: none
+		border-radius: 0%
+		padding: 0
+		button[data-add="rule"]
+			background-color: $orange
+			border-color: $orange
+			&:hover, &:focus, &:active
+				background-color: white
+				color: black
+				border-color: black
+		button[data-add="group"]
+			display: none
+		.rules-list>::before, .rules-list>::after
+			border-radius: 0%
+			border-color: #eee
+	.rule-container, .rule-placeholder, .rules-group-container
+		border-radius: 0%
+		border-color: #eee
+	.rule-container
+		border-width: 2px
+		padding: 10px
+			
+	.group-conditions
+		display: none
+	.rule-header
+		display: inline-block
+		float: right
+	.rule-value-container
+		max-width: 35%
+		position: relative
+		.form-control
+			max-width: 100%
+	.has-error
+		background-color: inherit
+		.error-container
+			display: none

@@ -9,7 +9,7 @@ Rails.application.configure do
   unless mailConf.nil?  
     if mailConf["type"] == "SENDMAIL"
       ActionMailer::Base.delivery_method = :sendmail
-      ActionMailer::Base.default :from => mailConf["no_reply_mail"] unless mailConf["no_reply_mail"].blank?
+      ActionMailer::Base.default :from => config.APP_CONFIG["no_reply_mail"] unless config.APP_CONFIG["no_reply_mail"].blank?
       ActionMailer::Base.sendmail_settings = {
         :location => "/usr/sbin/sendmail",
         :arguments => "-i -t"
@@ -17,7 +17,7 @@ Rails.application.configure do
     else
       ActionMailer::Base.delivery_method = :smtp
       if mailConf["gmail_credentials"].blank?
-        ActionMailer::Base.default :from => mailConf["no_reply_mail"] unless mailConf["no_reply_mail"].blank?
+        ActionMailer::Base.default :from => config.APP_CONFIG["no_reply_mail"] unless config.APP_CONFIG["no_reply_mail"].blank?
         smtp_settings = {}
         smtp_settings[:address] = mailConf["address"].blank? ? "127.0.0.1" : mailConf["address"] #If no address is provided, use local SMTP server
         smtp_settings[:port] = mailConf["port"].blank? ? "25" : mailConf["port"]

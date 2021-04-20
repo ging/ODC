@@ -16,6 +16,7 @@
 //= require jquery-ui
 //= require moment.min.js
 //= require daterangepicker.min.js
+//= require query-builder.standalone.min.js
 //= require cropper.min.js
 //= require jquery-cropper.min.js
 //= require select2.min.js
