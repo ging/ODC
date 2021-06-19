@@ -42,6 +42,10 @@ gem 'browser'
 gem 'exception_notification', '4.4.3'
 gem 'friendly_id', '~> 5.4.0'
 
+#The mysql2 gem is required for connecting to Sphinx, even if PostgreSQL is used as DBMS.
+gem 'mysql2', '0.5.3', :platform => :ruby
+gem 'thinking-sphinx', '5.2.0'
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console'
