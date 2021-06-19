@@ -57,6 +57,10 @@ class Course < ApplicationRecord
 		self.enrollments.find_by_user_id(user.id).destroy
 	end
 
+	def open
+		return self.is_enrollment_period?
+	end
+
 	def is_enrollment_period?
 		return self.selfpaced == true if self.start_enrollment_date.blank? or self.end_enrollment_date.blank?
 		tNow = Time.now
@@ -91,6 +95,30 @@ class Course < ApplicationRecord
 			id: self.id,
 			enrollments: self.users.length
 		}
+	end
+
+	def lessons_text
+		self.contents.nil? ? "" : self.contents.map{|l| l[:title]}.join(" ")
+	end
+
+	def categories_text
+		return "" if self.categories.nil?
+		if ODC::Application.config.i18n.available_locales.include?(self.card_lang.to_sym)
+			locale = self.card_lang
+		else
+			locale = I18n.default_locale
+		end
+		self.categories.map{|c| I18n.t("categories." + c, :locale => locale)}.join(" ")
+	end
+
+	def categories_ids
+		return "" if self.categories.nil?
+		self.categories.map{|c| Course.id_for_category(c)}
+	end
+
+	def self.id_for_category(c)
+		index = ["esafety", "inclusion", "climate", "entrepreneurship"].index(c)
+		return 1+index unless index.nil?
 	end
 
 end
