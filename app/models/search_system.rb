@@ -4,6 +4,8 @@ class SearchSystem
 
   # Usage example: SearchSystem.search({:query=>"cibersecurity", :per_page=>10, :page => 2})
   def self.search(options={})
+    return self.search_teachers(options) if options[:models] and options[:models].include?(CourseTeacher)
+
     if options[:query].blank? or options[:browse] == true
       browse = true
       query = ""
@@ -15,7 +17,7 @@ class SearchSystem
     #Specify search options
     sOpts = {}
     sOpts[:classes] = options[:models] || [Course]
-    
+
     #Number of results and pagination
     sOpts[:max_matches] = options[:n] if options[:n].is_a? Integer
     sOpts[:page] = options[:page].blank? ? 1 : options[:page].to_i
@@ -77,6 +79,44 @@ class SearchSystem
         # sOpts[:select] = '*, weight() as w'
         # sOpts[:order] = 'available DESC, w DESC'
       end
+    end
+
+    return ThinkingSphinx.search(query, sOpts)
+  end
+
+  def self.search_teachers(options={})
+    if options[:query].blank? or options[:browse] == true
+      browse = true
+      query = ""
+    else
+      browse = false
+      query = ThinkingSphinx::Query.escape(options[:query])
+    end
+    
+    #Specify search options
+    sOpts = {}
+    sOpts[:classes] = [CourseTeacher]
+    
+    #Number of results and pagination
+    sOpts[:max_matches] = options[:n] if options[:n].is_a? Integer
+    sOpts[:page] = options[:page].blank? ? 1 : options[:page].to_i
+    sOpts[:per_page] = options[:per_page].blank? ? 100 : options[:per_page].to_i
+    
+    #Ranking
+    if browse
+      sOpts[:ranker] = :none
+    else
+      sOpts[:ranker] = :proximity_bm25
+      sOpts[:field_weights] = {
+        :name => 3
+      }
+    end
+
+    case options[:order]
+    when "date"
+      sOpts[:order] = 'created_at DESC'
+    else
+      #By default, Sphinx sorts the results by how relevant they are to the search query
     end
 
     return ThinkingSphinx.search(query, sOpts)

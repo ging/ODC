@@ -22,4 +22,8 @@ class CourseTeacher < ActiveRecord::Base
 	  end
 	end
 
+	def public_json
+		self.as_json
+	end
+
 end

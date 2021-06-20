@@ -25,14 +25,8 @@ class SearchController < ApplicationController
   end
 
   def teacher_search
-    query = "%#{(params[:term]||"").downcase}%"
-    results = CourseTeacher.all
-    results = results.where(["lower(name) LIKE ?", query]) unless query.blank?
-    results = results.paginate(:per_page => 5, :page => 1)
-    if results.length == 0
-      results = [{:label => I18n.t("course.teacher.no_results"), :value =>"default"}]
-    end
-    render :json => results
+    @teachers = SearchSystem.search({:models => [CourseTeacher], :query => params[:q], :per_page => 24})
+    render :json => @teachers.map{|t| t.public_json }
   end
 
 end
