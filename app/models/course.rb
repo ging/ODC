@@ -126,4 +126,12 @@ class Course < ApplicationRecord
 		return visitFrequencyScore
 	end
 
+	def date
+		return self.start_date unless self.start_date.nil?
+		return self.start_enrollment_date unless self.start_enrollment_date.blank?
+		return Time.now if self.selfpaced and self.available
+	end
+
 end
+
+

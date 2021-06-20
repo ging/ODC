@@ -11,32 +11,32 @@ class CoursesController < ApplicationController
 
   # GET /courses
   def index
+    @courses = SearchSystem.search({:browse => true, :locale => I18n.locale.to_s, :webinar => false, :per_page => 24, :page => params[:page]})
+
     @searching = true
-    @courses = Course.all.where(:webinar => false, :card_lang => I18n.locale.to_s)
-    @courses = @courses.order(:start_date=> :desc,:end_date=> :desc, :created_at=> :desc).paginate(:per_page => 24, :page => params[:page].blank? ? 1 : params[:page])
     params[:webinar] = 0
   end
 
   # GET /webinars
   def webinars
+    @courses = SearchSystem.search({:browse => true, :locale => I18n.locale.to_s, :webinar => true, :per_page => 24, :page => params[:page]})
     @searching = true
-    @courses = Course.all.where(:webinar => true, :card_lang => I18n.locale.to_s)
-    @courses = @courses.order(:start_date=> :desc,:end_date=> :desc, :created_at=> :desc).paginate(:per_page => 24, :page => params[:page].blank? ? 1 : params[:page])
     params[:webinar] = 1
+
     render "index"
   end
 
   # GET /all_courses
   def all_courses
-    @courses = Course.all
     respond_to do |format|
       format.html {
+        @courses = SearchSystem.search({:browse => true, :locale => I18n.locale.to_s, :per_page => 24, :page => params[:page]})
         @searching = true
-      	@courses = @courses.where(:card_lang => I18n.locale.to_s)
-      	@courses = @courses.order(:start_date=> :desc,:end_date=> :desc, :created_at=> :desc).paginate(:per_page => 24, :page => params[:page].blank? ? 1 : params[:page])
         render "index"
       }
       format.json {
+        nCourses = Course.count
+        @courses = SearchSystem.search({:browse => true, :n => nCourses, :per_page => nCourses})
         render json: @courses.map{|c| c.public_json}
       }
     end

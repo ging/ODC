@@ -2,8 +2,6 @@ class SearchController < ApplicationController
   include ActionView::Helpers::SanitizeHelper
   skip_authorization_check :only => [:index, :teacher_search]
 
-  RESULTS_SEARCH_PER_PAGE=24
-
   def index
     @courses = search
 
@@ -17,28 +15,13 @@ class SearchController < ApplicationController
 
   def search
     #Remove empty params
-    @searching = true
     params.delete_if { |k, v| v == "" }
+    params[:sort_by] = "date" if !params[:sort_by]
+    params[:webinar] = (params[:webinar]==1) unless params[:webinar].blank?
 
-    params[:page] = (params[:page] || 1)
+    @searching = true
 
-    query = "%#{(params[:q]||"").downcase}%"
-
-    params[:sort_by] = "start_date" if !params[:sort_by]
-    # case params[:sort_by]
-    # when 'start_date'
-    #   order = 'start_date DESC'
-    # else
-    #   order = nil
-    # end
-    results = Course.all
-    results = results.where(["lower(name) LIKE ? OR lower(description) LIKE ? OR lower(categories) LIKE ?", query, query, sanitize(query)]) unless query.blank?
-    results = results.where(:webinar => params[:webinar]) if params[:webinar].present?
-    #filter courses and webinars only in the language of the page
-    pagelang = I18n.locale.to_s
-    results = results.where(:card_lang => pagelang)
-    results = results.order(:start_date=> :desc,:end_date=> :desc, :created_at=> :desc).paginate(:per_page => RESULTS_SEARCH_PER_PAGE, :page => params[:page])
-    results
+    SearchSystem.search({:query => params[:q], :locale => I18n.locale.to_s, :webinar => params[:webinar], :per_page => 24, :page => params[:page], :order => params[:sort_by]})
   end
 
   def teacher_search

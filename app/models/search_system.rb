@@ -67,12 +67,11 @@ class SearchSystem
 
     case options[:order]
     when "date"
-      sOpts[:order] = 'available DESC, start_date DESC'
+      sOpts[:order] = 'available DESC, date DESC, ranking DESC'
     else
       if browse
         #Apply custom sorting when there is no query
-        sOpts[:select] = '*, ranking as custom_weight'
-        sOpts[:order] = 'available DESC, custom_weight DESC'
+        sOpts[:order] = 'available DESC, date DESC, ranking DESC'
       else
         #By default, Sphinx sorts the results by how relevant they are to the search query
         # sOpts[:select] = '*, weight() as w'

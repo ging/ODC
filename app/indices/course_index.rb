@@ -6,7 +6,10 @@ ThinkingSphinx::Index.define :course, :with => :real_time do
   indexes categories_text
 
   # attributes
+  has date, :type => :timestamp
   has start_date, :type => :timestamp
+  has end_date, :type => :timestamp
+  has created_at, :type => :timestamp
   has available, :type => :boolean
   has webinar, :type => :boolean
   has teacher_ids, :type => :integer, :multi => true
