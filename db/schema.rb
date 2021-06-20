@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_12_201425) do
+ActiveRecord::Schema.define(version: 2021_06_20_164019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 2021_04_12_201425) do
     t.string "thumb_min_content_type"
     t.bigint "thumb_min_file_size"
     t.datetime "thumb_min_updated_at"
-    t.string "card_lang"
+    t.string "card_lang", default: "es"
     t.string "slug"
     t.index ["slug"], name: "index_courses_on_slug", unique: true
   end
@@ -184,9 +184,7 @@ ActiveRecord::Schema.define(version: 2021_04_12_201425) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "username"
     t.string "name"
-    t.string "surname"
     t.string "language"
     t.string "ui_language"
     t.text "tag_array_text", default: ""
@@ -196,10 +194,17 @@ ActiveRecord::Schema.define(version: 2021_04_12_201425) do
     t.datetime "avatar_updated_at"
     t.string "provider"
     t.string "uid"
+    t.string "username"
+    t.string "surname"
     t.boolean "subscribed_to_newsletters", default: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "words", force: :cascade do |t|
+    t.string "value"
+    t.integer "occurrences", default: 0
   end
 
 end

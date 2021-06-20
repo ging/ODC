@@ -18,4 +18,27 @@ class RecommenderSystem
 	  Course.where("webinar = ? and id != ?", course.webinar, course.id).where(:card_lang => pagelang)
   end
 
+
+
+
+  #Utils
+
+  def self.getWordsFromText(text)
+    return {} if text.blank?
+    text = processText(text)
+    words = Hash.new
+    text.split(" ").each do |word|
+      word = word.gsub(/([.|;|:|,]$)/,"")
+      words[word] = 0 if words[word].nil?
+      words[word] += 1
+    end
+    words
+  end
+
+  def self.processText(text)
+    return "" if text.blank? or !text.is_a? String
+    text = ActionView::Base.full_sanitizer.sanitize(text)
+    text = I18n.transliterate(text.gsub(/([\n])/," ").gsub(/([.|;|:|,]$)/,"").strip, :locale => "en").downcase
+  end
+
 end
