@@ -24,7 +24,6 @@ namespace :rs do
     # For stopwords, the occurences of the word record is set to the 'Course.count' value.
     # This way, the IDF value for these words will be close to 0, and therefore the TF-IDF value will be close to 0 too.
     # Stop words are readed from the file stopwords.yml
-    totalEntries = Course.count
     stopwords = File.read("config/stopwords.yml").split(",").map{|s| s.gsub("\n","").gsub("\"","") } rescue []
     stopwords.each do |stopword|
       wordRecord = Word.find_by_value(stopword)
@@ -32,7 +31,7 @@ namespace :rs do
         wordRecord = Word.new
         wordRecord.value = stopword
       end
-      wordRecord.occurrences = totalEntries
+      wordRecord.occurrences = ODC::Application::config.rs_total_entries
       wordRecord.save!
     end
     

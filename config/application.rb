@@ -86,18 +86,30 @@ module ODC
         end
     end
 
+    #Recommender system
+    config.rs_total_entries = 0
+
     config.after_initialize do
+        begin 
+            ActiveRecord::Base.connection 
+        rescue
+        end
+
         if ActiveRecord::Base.connected?
           #Agnostic random
           if ActiveRecord::Base.connection.adapter_name == "PostgreSQL"
             config.agnostic_random = "RANDOM()"
           else
-            MySQL
+            #MySQL
             config.agnostic_random = "RAND()"
           end
 
+          if ActiveRecord::Base.connection.data_source_exists?('courses')
+            config.rs_total_entries = Course.count
+          end
+
           #Demo user
-          config.demo_user = User.find_by_email("demo@odc.dit.upm.es") if (ActiveRecord::Base.connection.table_exists? "users" and !User.find_by_email("demo@odc.dit.upm.es").nil?)
+          config.demo_user = User.find_by_email("demo@odc.dit.upm.es") if (ActiveRecord::Base.connection.data_source_exists? "users" and !User.find_by_email("demo@odc.dit.upm.es").nil?)
         end
     end
 
