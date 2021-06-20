@@ -57,7 +57,7 @@ class Course < ApplicationRecord
 		self.enrollments.find_by_user_id(user.id).destroy
 	end
 
-	def open
+	def available
 		return self.is_enrollment_period?
 	end
 
@@ -118,6 +118,12 @@ class Course < ApplicationRecord
 
 	def locale_id
 		Utils.id_for_locale(self.locale)
+	end
+
+	def ranking
+		weeksFromCreation = [((Time.now - self.created_at)/(604800)).round(0),1].max
+		visitFrequencyScore = (self.visit_count/weeksFromCreation).round(0)
+		return visitFrequencyScore
 	end
 
 end
