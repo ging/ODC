@@ -19,6 +19,15 @@ class Utils
     I18n.t("languages." + lanCode.to_s, :default => lanCode.to_s)
   end
 
+  def self.id_for_locale(locale)
+    return nil unless Utils.valid_locale?(locale)
+    return (1 + ODC::Application.config.i18n.available_locales.index(locale.to_sym))
+  end
+
+  def self.id_for_category(c)
+    index = ["esafety", "inclusion", "climate", "entrepreneurship"].index(c)
+    return 1+index unless index.nil?
+  end
 
   def self.getOptionsForCategories
     I18n.t("categories").map{|k,v| [v,k.to_s]}

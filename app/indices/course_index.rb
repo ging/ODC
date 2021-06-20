@@ -11,4 +11,5 @@ ThinkingSphinx::Index.define :course, :with => :real_time do
   has webinar, :type => :boolean
   has teacher_ids, :type => :integer, :multi => true
   has categories_ids, :type => :integer, :multi => true
+  has locale_id, :type => :integer
 end
