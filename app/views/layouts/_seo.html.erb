@@ -33,7 +33,7 @@
 		<%end%>
 		"keywords": "<% (@course[:categories]||[]).each_with_index{|tag, index|%><%=t("categories." + tag)%><%if index != @course[:categories].length()-1%>,<%end%><%}%>",
 		<% if defined?(@course) and !@course.dedication.blank? %>
-		"courseWorkload": "<%=@course.dedication%>","
+		"courseWorkload": "<%=@course.dedication%>",
 		<%end%>
 		<% if defined?(@course) and !@course.rating.blank? %>
 		"aggregateRating": {
@@ -58,7 +58,7 @@
             "name": "<%=teacher.name%>",
             "jobTitle": "<%=teacher.position_en%>",
             "image": "<%=@host%><%=teacher.avatar.url%>"
-          }<%if index != teachers.length()-1%>,<%end%>",
+          }<%if index != teachers.length()-1%>,<%end%>
         <%}%>],
 		"hasCourseInstance": {
 		    "@type": "CourseInstance",

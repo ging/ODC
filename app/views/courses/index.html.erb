@@ -3,6 +3,7 @@
 		<div class="col-12">
 			<div class="row search-row">
 				<div class="col-12 search-col">
+					<h1 class="d-none"><%=t("course.courses")%></h1>
 					<form class="custom-form" action="/search" autocomplete="off">
 						<span class="input input--hoshi <%=params[:q] && !params[:q].strip.empty? ? "input--filled" : ""%>">
 							<%if !params[:webinar].blank?%>

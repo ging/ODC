@@ -9,7 +9,7 @@
 <% ended = !(comingUp or notYet or currentlyGoingOn) %>
 <% noVotes = (notYet or comingUp) %>
 <% user_enrolled = user_signed_in? ? @course.users.include?(current_user) : false %>
-
+<%@host = request.protocol + request.host_with_port %>
 <div class="container-fluid course-detail">
 	<div class="row">
 		<div class="col-xs-12 col-md-9">
@@ -285,6 +285,9 @@
 		<div class="col-xs-12 col-lg-9"><br/><br/>
 			<div>
 				<h2 class="orange"><%=@course[:name]%></h2>
+				<%if can? :edit, @course %>
+				<span class="fas fa-link" style="color: #333;">&nbsp;</span><a class="text-muted"><%=@host%>/courses/<%=@course.slug%></a>
+				<%end%>
 				<%if @course[:description] %>
 				<p><%= @course[:description].html_safe%></p>
 				<% end %>

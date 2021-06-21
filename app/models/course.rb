@@ -1,6 +1,6 @@
 class Course < ApplicationRecord
 	extend FriendlyId
-  	friendly_id :name, use: [:slugged, :finders]
+  	friendly_id :name, use: [:sequentially_slugged, :finders]
 
 	serialize :categories
 	serialize :contents
@@ -132,6 +132,8 @@ class Course < ApplicationRecord
 		return Time.now if self.selfpaced and self.available
 	end
 
+	def should_generate_new_friendly_id? #will change the slug if the name changed
+    	name_changed?
+  	end
+
 end
-
-

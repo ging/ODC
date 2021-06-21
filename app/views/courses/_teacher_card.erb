@@ -1,5 +1,5 @@
 <% teacher_avatar_url = (teacher.respond_to? "avatar") ? teacher.avatar.url : '/img/user_placeholder.png' %>
-<%pagelang = (I18n.locale === :en) ? "es":I18n.locale.to_s%>
+<%pagelang = I18n.locale.to_s%>
 <div class="d-flex  flex-column flex-sm-row teacher-card">
 	<div class="teacher-picture-container">
 		<img src="<%=teacher_avatar_url%>" alt="">
