@@ -3,40 +3,73 @@
 class RecommenderSystem
 
   def self.getRecommendCourses(course,n=4)
-    #filter courses and webinars only in the language of the page, or in spanish if page is in english
-    pagelang = I18n.locale.to_s
-    if course.categories.blank?
-      suggestions = default_suggested_courses(course, pagelang)
-    else
-	    suggestions = Course.where("webinar = ? and categories is NOT NULL and id != ?", course.webinar, course.id).where(:card_lang => pagelang).select{|c| (c.categories & course.categories).length > 0}
-      suggestions = default_suggested_courses(course, pagelang) if suggestions.blank?
-    end
-    suggestions.sample(n)
+    getSimilarCourses(course,n)
   end
 
-  def self.default_suggested_courses(course, pagelang="es")
-	  Course.where("webinar = ? and id != ?", course.webinar, course.id).where(:card_lang => pagelang)
+  def self.getSimilarCourses(c,n=10)
+    results = self.getSimilarCoursesFromDb(c,n)
+    return getSimilarCoursesInRealTime(c,n) if results.blank?
+    return results
+  end
+
+  def self.getSimilarCoursesFromDb(c,n=10)
+    csRecords = CourseSimilarity.where("course_similarities.course_a_id = ? OR course_similarities.course_b_id = ?", c.id, c.id).sort_by{|cs| -cs.value}.first(n*2).sample(n)
+    return [] if csRecords.blank?
+    csRecords.each do |cs|
+      cs.course_id = [cs.course_a_id,cs.course_b_id].reject{|id| id == c.id}.first
+    end
+    courses = Course.find(csRecords.map{|cs| cs.course_id})
+    results = courses.map{|c| {:course => c, :score => csRecords.select{|cs| cs.course_id == c.id}.first.value.to_f}}.sort_by{|r| -r[:score]}
+    results.map{|r| r[:course]}
+  end
+
+  def self.getSimilarCoursesInRealTime(c,n=10)
+    preSelection = []
+    unless c.categories.blank?
+      preSelection = Course.where("webinar = ? and categories is NOT NULL and id != ?", c.webinar, c.id).where(:card_lang => c.card_lang).select{|rc| (rc.categories & c.categories).length > 0}
+    end
+    if preSelection.length < n
+      preSelection = Course.where("webinar = ? and id != ?", c.webinar, c.id).where(:card_lang => c.card_lang)
+    end
+
+    preSelection = preSelection.sample(50).sort_by{ |candidate| -self.calculateCourseSimilarity(c,candidate,{:fast => true}) }.first(n).sample(n)
+
+    return preSelection
   end
 
 
   #Metrics
 
   def self.calculateCourseSimilarity(courseA, courseB, options={})
-    weights = options[:weights] || ({:title => 0.3, :description => 0.2, :lessons => 0.2, :keywords => 0.1, :language => 0.2})
+    #Filters
+    languageS = self.getSemanticDistanceForCategoricalFields(courseA.locale,courseB.locale)
+    typeS = self.getSemanticDistanceForCategoricalFields(courseA.webinar.to_s,courseB.webinar.to_s)
+    return 0 if languageS == 0 or typeS == 0
 
-    titleS = 20 * getSemanticDistance(courseA.name, courseB.name)
-    descriptionS = 20 * getSemanticDistance(courseA.description, courseB.description)
-    lessonsS = 20 * getSemanticDistance(courseA.lessons_text, courseB.lessons_text)
+    weights = options[:weights] || ({:title => 0.3, :description => 0.2, :lessons => 0.2, :keywords => 0.1})
+
+    titleS = getSemanticDistance(courseA.name, courseB.name, options)
     keywordsS = getSemanticDistanceForKeywords(courseA.categories,courseB.categories)
-    languageS = getSemanticDistanceForLanguage(courseA.locale,courseB.locale)
+    if options[:fast] == true
+      descriptionS = 0
+      lessonsS = 0
+    else
+      descriptionS = getSemanticDistance(courseA.description, courseB.description, options)
+      lessonsS = getSemanticDistance(courseA.lessons_text, courseB.lessons_text, options)
+    end
 
-    return weights[:title] * titleS + weights[:description] * descriptionS + weights[:lessons] * lessonsS + weights[:keywords] * keywordsS + weights[:language] * languageS
+    return weights[:title] * titleS + weights[:description] * descriptionS + weights[:lessons] * lessonsS + weights[:keywords] * keywordsS
   end
 
   #Semantic distance in a [0,1] scale.
   #It calculates the semantic distance using the Cosine similarity measure, and the TF-IDF function to calculate the vectors.
-  def self.getSemanticDistance(textA,textB)
+  def self.getSemanticDistance(textA,textB, options)
     return 0 if (textA.blank? or textB.blank?)
+
+    if options[:fast] == true
+      textA = textA.first(50)
+      textB = textB.first(50)
+    end
 
     numerator = 0
     denominator = 0
@@ -47,7 +80,7 @@ class RecommenderSystem
     wordsTextB = getWordsFromText(processText(textB))
 
     (wordsTextA.keys + wordsTextB.keys).uniq.each do |word|
-      wordIDF = IDF(word)
+      wordIDF = (options[:fast] == true ? 1 : IDF(word))
       tfidf1 = (wordsTextA[word] || 0) * wordIDF
       tfidf2 = (wordsTextB[word] || 0) * wordIDF
       numerator += (tfidf1 * tfidf2)
@@ -58,7 +91,7 @@ class RecommenderSystem
     denominator = Math.sqrt(denominatorA) * Math.sqrt(denominatorB)
     return 0 if denominator==0
 
-    numerator/denominator
+    20*numerator/denominator
   end
 
   # Inverse Document Frequency (IDF)
@@ -76,13 +109,6 @@ class RecommenderSystem
   end
 
   #Semantic distance in a [0,1] scale.
-  #It calculates the semantic distance for languages.
-  def self.getSemanticDistanceForLanguage(stringA,stringB)
-    return 0 if (Utils.valid_locale?(stringA) == false or Utils.valid_locale?(stringB) == false)
-    return getSemanticDistanceForCategoricalFields(stringA,stringB)
-  end
-
-  #Semantic distance in a [0,1] scale.
   #It calculates the semantic distance for categorical fields.
   #Return 1 if both fields are equal, 0 if not.
   def self.getSemanticDistanceForCategoricalFields(stringA,stringB)
@@ -92,7 +118,6 @@ class RecommenderSystem
     return 1 if stringA === stringB
     return 0
   end
-
 
   #Utils
 

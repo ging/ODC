@@ -2,7 +2,6 @@
 
 namespace :rs do
 
-  #Usage
   #Development: bundle exec rake rs:updateWordsFrequency
   #Production: bundle exec rake rs:updateWordsFrequency RAILS_ENV=production
   task :updateWordsFrequency => :environment do |t, args|
@@ -49,6 +48,31 @@ namespace :rs do
       wordRecord.occurrences += 1
       wordRecord.save! rescue nil #This can be raised for too long words (e.g. long urls)
     end
+  end
+
+  #Development: bundle exec rake rs:rebuild
+  #Production: bundle exec rake rs:rebuild RAILS_ENV=production
+  task :rebuild => :environment do |t, args|
+    puts "Updating similarity scores used by the recommender system"
+
+    Rake::Task["rs:resetRecommendations"].invoke
+
+    Course.all.each do |cA|
+      Course.where("id > ?", cA.id).each do |cB|
+        similarityScore = RecommenderSystem.calculateCourseSimilarity(cA,cB,{})
+        CourseSimilarity.create! :course_a_id => cA.id,
+        :course_b_id => cB.id,
+        :value => similarityScore
+      end
+    end
+
+  end
+
+  #Development: bundle exec rake rs:resetRecommendations
+  #Production: bundle exec rake rs:resetRecommendations RAILS_ENV=production
+  task :resetRecommendations => :environment do |t, args|
+    puts "Removing similarity scores used by the recommender system"
+    CourseSimilarity.destroy_all
   end
 
 end
