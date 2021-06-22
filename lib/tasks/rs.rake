@@ -11,6 +11,8 @@ namespace :rs do
     Rake::Task["rs:removeRecommendationData"].invoke
     Rake::Task["rs:updateWordsFrequency"].invoke
     Rake::Task["rs:update"].invoke
+
+    puts "Rebuild task finished"
   end
 
   #Development: bundle exec rake rs:update
@@ -24,6 +26,8 @@ namespace :rs do
     Rake::Task["rs:update_user_recommendations"].invoke
 
     Setting.rs_date = Time.current
+
+    puts "Update finished"
   end
 
   #bundle exec rake rs:update_course_recommendations
