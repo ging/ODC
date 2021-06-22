@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
     include Taggable
     acts_as_ordered_taggable
 
+    serialize :course_suggestions
+    serialize :webinar_suggestions
+
     has_attached_file :avatar,
         styles: { medium: "300x300>", thumb: "100x100>" },
         default_url: "/img/user_placeholder.png"

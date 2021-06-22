@@ -39,6 +39,8 @@ gem 'sendgrid-ruby', '6.4.0'
 
 gem 'browser'
 
+gem 'rails-settings-cached', '2.6.0'
+
 gem 'exception_notification', '4.4.3'
 gem 'friendly_id', '~> 5.4.0'
 

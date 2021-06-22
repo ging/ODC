@@ -5,6 +5,7 @@ class Course < ApplicationRecord
 	serialize :categories
 	serialize :contents
 	serialize :teachers_order
+	serialize :suggestions
 
 	has_and_belongs_to_many :teachers, :class_name => "CourseTeacher"
 	has_many :enrollments, dependent: :destroy

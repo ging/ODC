@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_21_155118) do
+ActiveRecord::Schema.define(version: 2021_06_22_124045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(version: 2021_06_21_155118) do
     t.datetime "thumb_min_updated_at"
     t.string "card_lang", default: "es"
     t.string "slug"
+    t.text "suggestions"
     t.index ["slug"], name: "index_courses_on_slug", unique: true
   end
 
@@ -154,6 +155,14 @@ ActiveRecord::Schema.define(version: 2021_06_21_155118) do
     t.bigint "user_id"
     t.index ["role_id"], name: "index_roles_users_on_role_id"
     t.index ["user_id"], name: "index_roles_users_on_user_id"
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.string "var", null: false
+    t.text "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["var"], name: "index_settings_on_var", unique: true
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
@@ -205,6 +214,8 @@ ActiveRecord::Schema.define(version: 2021_06_21_155118) do
     t.string "username"
     t.string "surname"
     t.boolean "subscribed_to_newsletters", default: true
+    t.text "course_suggestions"
+    t.text "webinar_suggestions"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

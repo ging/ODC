@@ -2,39 +2,71 @@
 
 class RecommenderSystem
 
-  def self.getRecommendCourses(course,n=4)
-    getSimilarCourses(course,n)
+  #API methods
+  def self.getRecommendCourses(c,n=4,idsToReject=[])
+    suggestions = getSimilarCoursesFromDb(c,n,idsToReject)
+    suggestions = getSimilarCoursesInRealTime(c,n,idsToReject) if suggestions.blank?
+    return fillCourseSuggestions(suggestions,c,n)
   end
 
-  def self.getSimilarCourses(c,n=10)
-    results = self.getSimilarCoursesFromDb(c,n)
-    return getSimilarCoursesInRealTime(c,n) if results.blank?
-    return results
+  def self.getRecommendCoursesForUser(u,n=4)
+    suggestions = getRecommendCoursesForUserFromDb(u,n)
+    suggestions = getRecommendCoursesForUserInRealTime(u,n) if suggestions.blank?
+    return fillCourseSuggestionsForUser(suggestions,u,n)
   end
 
-  def self.getSimilarCoursesFromDb(c,n=10)
-    csRecords = CourseSimilarity.where("course_similarities.course_a_id = ? OR course_similarities.course_b_id = ?", c.id, c.id).sort_by{|cs| -cs.value}.first(n*2).sample(n)
-    return [] if csRecords.blank?
-    csRecords.each do |cs|
-      cs.course_id = [cs.course_a_id,cs.course_b_id].reject{|id| id == c.id}.first
-    end
-    courses = Course.find(csRecords.map{|cs| cs.course_id})
-    results = courses.map{|c| {:course => c, :score => csRecords.select{|cs| cs.course_id == c.id}.first.value.to_f}}.sort_by{|r| -r[:score]}
-    results.map{|r| r[:course]}
+  def self.getRecommendWebinarsForUser(u,n=4)
+    suggestions = getRecommendCoursesForUserFromDb(u,n,[],true)
+    suggestions = getRecommendCoursesForUserInRealTime(u,n,true) if suggestions.blank?
+    return fillCourseSuggestionsForUser(suggestions,u,n,true)
   end
 
-  def self.getSimilarCoursesInRealTime(c,n=10)
-    preSelection = []
+
+  #Auxiliary methods
+
+  def self.getSimilarCoursesFromDb(c,n=10,idsToReject=[])
+    sIds = c.suggestions
+    return [] if sIds.blank?
+    sIds = sIds.reject{|s| idsToReject.include?(s[:id])} unless idsToReject.blank?
+    Course.find(sIds.map{|s| s[:id]}).first(2*n).sample(n)
+  end
+
+  def self.getSimilarCoursesInRealTime(c,n=10,idsToReject=[])
+    idsToReject = (idsToReject + [c.id]).uniq
+    preSelection = Course.where("courses.webinar = ? AND courses.card_lang = ? AND courses.id NOT IN (?)", c.webinar, c.card_lang, idsToReject)
     unless c.categories.blank?
-      preSelection = Course.where("webinar = ? and categories is NOT NULL and id != ?", c.webinar, c.id).where(:card_lang => c.card_lang).select{|rc| (rc.categories & c.categories).length > 0}
+      categoryPreSelection = preSelection.where("categories is NOT NULL").select{|rc| (rc.categories & c.categories).length > 0}
+      preSelection = categoryPreSelection if categoryPreSelection.length > 0
     end
-    if preSelection.length < n
-      preSelection = Course.where("webinar = ? and id != ?", c.webinar, c.id).where(:card_lang => c.card_lang)
-    end
-
-    preSelection = preSelection.sample(50).sort_by{ |candidate| -self.calculateCourseSimilarity(c,candidate,{:fast => true}) }.first(n).sample(n)
-
+    preSelection = preSelection.sample(50).sort_by{ |candidate| -self.calculateCourseSimilarity(c,candidate,{:fast => true}) }.first(n).sample(n) if (n < 50 and preSelection.length > n)
     return preSelection
+  end
+
+  def self.getRecommendCoursesForUserFromDb(u,n=10,idsToReject=[],webinar=false)
+    sIds = ((webinar == false) ? u.course_suggestions : u.webinar_suggestions)
+    return [] if sIds.blank?
+    sIds = sIds.reject{|s| idsToReject.include?(s[:id])} unless idsToReject.blank?
+    Course.find(sIds.map{|s| s[:id]}).first(2*n).sample(n)
+  end
+
+  def self.getRecommendCoursesForUserInRealTime(u,n=10,webinar=false)
+    userCourses = u.courses.where(:webinar => webinar)
+    return getRecommendCourses(userCourses.sample(1).first,n,userCourses.map{|c| c.id}) if userCourses.length > 0
+    return Course.where("courses.card_lang = ? AND webinar = ?", u.ui_language, webinar).sample(n)
+  end
+
+  def self.fillCourseSuggestions(suggestions,c,n)
+    sL = suggestions.length
+    return suggestions unless sL < n
+    idsToReject = (suggestions.map{|c| c.id} + [c.id])
+    return suggestions + Course.where("courses.id NOT IN (?) AND courses.card_lang = ? AND courses.webinar = ?", idsToReject, c.locale, c.webinar).sample(n - sL)
+  end
+
+  def self.fillCourseSuggestionsForUser(suggestions,u,n,webinar=false)
+    sL = suggestions.length
+    return suggestions unless sL < n
+    idsToReject = (suggestions.map{|c| c.id} + u.courses.map{|c| c.id})
+    return suggestions + Course.where("courses.id NOT IN (?) AND courses.card_lang = ? AND courses.webinar = ?", idsToReject, u.ui_language, webinar).sample(n - sL)
   end
 
 
@@ -59,6 +91,33 @@ class RecommenderSystem
     end
 
     return weights[:title] * titleS + weights[:description] * descriptionS + weights[:lessons] * lessonsS + weights[:keywords] * keywordsS
+  end
+
+  def self.calculateCourseRelevanceForUser(course, user, options={})
+    #Filters
+    return 0 if self.getSemanticDistanceForCategoricalFields(course.locale,user.ui_language) == 0
+    userCourses = user.courses.where(:webinar => course.webinar)
+    userCoursesIds = userCourses.map{|c| c.id}
+    return 0 if userCoursesIds.include?(course.id)
+    userCoursesIds = userCoursesIds.reject{|id| id == course.id}
+
+    weights = options[:weights] || ({:courses => 0.5, :keywords => 0.5})
+
+    coursesS = 0
+    if userCoursesIds.length > 0
+      csRecords = CourseSimilarity.where("course_similarities.course_a_id = ? OR course_similarities.course_b_id = ?", course.id, course.id)
+      csRecords.where("course_similarities.course_a_id IN (?) OR course_similarities.course_b_id IN (?)", userCoursesIds, userCoursesIds)
+      userCoursesIds.each do |cId|
+        csRecord = csRecords.where("course_similarities.course_a_id = ? OR course_similarities.course_b_id = ?", [course.id,cId].min, [course.id,cId].max).first
+        coursesS += (csRecord.nil? ? 0 : csRecord.value.to_f)
+      end
+      coursesS = (coursesS/userCoursesIds.length).to_f
+    end
+    
+    userKeywords = user.tag_list.join(" ")
+    keywordsS = getSemanticDistance(course.categories_text,userKeywords,options) + getSemanticDistance(course.name,userKeywords,options) + getSemanticDistance(course.description,userKeywords,options) + getSemanticDistance(course.lessons_text,userKeywords,options)
+    
+    return weights[:courses] * coursesS + weights[:keywords] * keywordsS
   end
 
   #Semantic distance in a [0,1] scale.
