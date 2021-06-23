@@ -55,7 +55,7 @@ namespace :rs do
     puts "Updating courses suggested to users by the recommender system"
 
     User.where("updated_at >= ? OR last_sign_in_at >= ? OR course_suggestions IS NULL OR webinar_suggestions IS NULL", Setting.rs_date, (Time.current - 2.days)).each do |u|
-      candidates = Course.where("courses.id NOT IN (?) AND courses.card_lang = ?", u.courses.map{|u| u.id}, u.ui_language)
+      candidates = Course.where("courses.id NOT IN (?) AND courses.card_lang = ?", ([-1] + u.courses.map{|u| u.id}), u.ui_language)
       candidateCourses = candidates.where("courses.webinar = false")
       candidateWebinars = candidates.where("courses.webinar = true")
 
