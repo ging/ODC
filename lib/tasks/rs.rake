@@ -37,14 +37,14 @@ namespace :rs do
     Course.all.each do |cA|
       Course.where("id > ? AND updated_at >= ?", cA.id, Setting.rs_date).each do |cB|
         csRecord = CourseSimilarity.where(:course_a_id => cA.id, :course_b_id => cB.id).first
-        csRecord = CourseSimilarity.new(:course_a_id => cA.id, :course_b_id => cB.id) if csRecord.nil?
+        csRecord = CourseSimilarity.new(:course_a_id => cA.id, :course_b_id => cB.id, :same_course_type => (cA.webinar == cB.webinar)) if csRecord.nil?
         csRecord.value = RecommenderSystem.calculateCourseSimilarity(cA,cB,{})
         csRecord.save!
       end
     end
 
     Course.all.each do |c|
-      csRecords = CourseSimilarity.where("(course_similarities.course_a_id = ? OR course_similarities.course_b_id = ?) AND course_similarities.value > ?", c.id, c.id, 0).order("value DESC").first(50)
+      csRecords = CourseSimilarity.where("(course_similarities.course_a_id = ? OR course_similarities.course_b_id = ?) AND course_similarities.value > ? AND course_similarities.same_course_type = true", c.id, c.id, 0).order("value DESC").first(50)
       suggestions = csRecords.map{|cs| {:id => [cs.course_a_id,cs.course_b_id].reject{|id| id == c.id}.first, :score => cs.value.to_f}}.sort_by{|r| -r[:score]}
       c.update_column(:suggestions, suggestions)
     end
@@ -55,6 +55,8 @@ namespace :rs do
     puts "Updating courses suggested to users by the recommender system"
 
     User.where("updated_at >= ? OR last_sign_in_at >= ? OR course_suggestions IS NULL OR webinar_suggestions IS NULL", Setting.rs_date, (Time.current - 2.days)).each do |u|
+      return if (u.tag_list.blank? and u.courses.length == 0)
+
       candidates = Course.where("courses.id NOT IN (?) AND courses.card_lang = ?", ([-1] + u.courses.map{|u| u.id}), u.ui_language)
       candidateCourses = candidates.where("courses.webinar = false")
       candidateWebinars = candidates.where("courses.webinar = true")

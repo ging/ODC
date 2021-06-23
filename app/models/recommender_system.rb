@@ -74,9 +74,7 @@ class RecommenderSystem
 
   def self.calculateCourseSimilarity(courseA, courseB, options={})
     #Filters
-    languageS = self.getSemanticDistanceForCategoricalFields(courseA.locale,courseB.locale)
-    typeS = self.getSemanticDistanceForCategoricalFields(courseA.webinar.to_s,courseB.webinar.to_s)
-    return 0 if languageS == 0 or typeS == 0
+    return 0 if self.getSemanticDistanceForCategoricalFields(courseA.locale,courseB.locale) == 0
 
     weights = options[:weights] || ({:title => 0.3, :description => 0.2, :lessons => 0.2, :keywords => 0.1})
 
@@ -96,7 +94,7 @@ class RecommenderSystem
   def self.calculateCourseRelevanceForUser(course, user, options={})
     #Filters
     return 0 if self.getSemanticDistanceForCategoricalFields(course.locale,user.ui_language) == 0
-    userCourses = user.courses.where(:webinar => course.webinar)
+    userCourses = user.courses
     userCoursesIds = userCourses.map{|c| c.id}
     return 0 if userCoursesIds.include?(course.id)
     userCoursesIds = userCoursesIds.reject{|id| id == course.id}

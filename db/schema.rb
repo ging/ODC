@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_124045) do
     t.bigint "course_a_id"
     t.bigint "course_b_id"
     t.decimal "value", precision: 12, scale: 6
+    t.boolean "same_course_type"
     t.index ["course_a_id"], name: "index_course_similarities_on_course_a_id"
     t.index ["course_b_id"], name: "index_course_similarities_on_course_b_id"
   end
