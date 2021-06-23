@@ -1,7 +1,7 @@
 <% isAdmin = user_signed_in? and current_user.isAdmin? %>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<div class="container" style="min-height: calc(100vh - 181px);">
+<div class="container" style="mind-height: calc(100vh - 181px);">
 	<div class="row">
 		<div class="col-12">
 			<div class="user-block">
@@ -38,12 +38,15 @@
 			<div id="calendar"></div>
 			<br/>
 			<br/>
+			<br/>
 		</div>
 		<%events = ((@profile_user.courses||[]).reject{|x| x.webinar == false}) %>
 		<div class="col-xs-12 col-md-6 event-calendar-list">
 			<% events.each do |event| %>
 				<%= render partial: "courses/event_calendar", :locals => {event: event}%>
 			<% end %>
+			<br>
+			<br>
 			<div class="no-events hidden orange"><h4><%=t("profile.no_events")%></h4></div>
 		</div>
 		<% end %>
@@ -51,14 +54,18 @@
 </div>
 
 <% if (@isProfileOwner or isAdmin) and (@profile_user.courses ||[]).length() > 0 %> 
-<br/>
-<br/>
 <div class="soft-background">
 	<%= render partial: "courses/course_list_4", 
 	:locals => {title: t("profile.your_courses_and_webinars"), courses: @profile_user.courses.sort_by{|x| x.start_date || Time.now }.reverse ||[] , link: "/", mine: true }  %>
 </div>
+<div >
+  <%= render partial: "courses/course_list_4", :locals => {title: t('landing.others_recommended'), courses: RecommenderSystem.getRecommendCoursesForUser(@profile_user,4), mine: false }  %>
+</div>
 <% else %>
-
+<div class="soft-background">
+	<%= render partial: "courses/course_list_4", 
+	:locals => {title: t("profile.recommended"), courses: RecommenderSystem.getRecommendCoursesForUser(@profile_user,4), mine: false }  %>
+</div>
 <% end %>
 <script>
 window.selectedDates = [

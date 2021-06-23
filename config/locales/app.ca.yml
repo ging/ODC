@@ -265,6 +265,7 @@ ca:
   landing:
     intro_new: "A la plataforma educativa gratuïta de la Fundació Orange trobaràs cursos i webinaris adaptats a les teves necessitats. Diverteix-te aprenent amb formació preparada per especialistes per afrontar els reptes d'aquesta nova era digital: fabricació 3D, medi ambient o ús responsable de la tecnologia són tan sols alguns exemples del que hi descobriràs."
     intro_old: "A la plataforma educativa gratuïta de la Fundació Orange trobaràs cursos i webinaris adaptats a les teves necessitats. Diverteix-te aprenent amb formació preparada per especialistes per afrontar els reptes d'aquesta nova era digital: fabricació 3D, medi ambient o ús responsable de la tecnologia són tan sols alguns exemples del que hi descobriràs."
+    others_recommended: "També et pot interessar ..."
     popular_courses: "Cursos populars"
     popular_courses_intro: "Aquests són els cursos amb més alumnes del nostre catàleg ara mateix. Si t'interessa saber quins són els més demanats, no dubtis a revisar els detalls i apunta-t'hi."
     popular_courses_week: "Cursos populars aquesta setmana"
@@ -316,6 +317,7 @@ ca:
   profile:
     edit: "Edita el perfil"
     no_events: "No hi ha esdeveniments programats per a aquest dia"
+    recommended: "Cursos recomanats"
     your_courses_and_webinars: "Els teus cursos i webinaris"
   search:
     all: "Tots"

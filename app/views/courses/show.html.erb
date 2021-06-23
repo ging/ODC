@@ -336,3 +336,7 @@
 	<%= render partial: "courses/course_list_4",
 	:locals => {title: @course[:webinar] ? t("course.related_webinars") : t("course.related_courses"), courses: @related_courses || [], link: "/", mine: false }  %>
 </div>
+<div class="">
+	<%= render partial: "courses/course_list_4", 
+	:locals => {title: t("landing.others_recommended"), courses: RecommenderSystem.getRecommendCoursesForUser(@current_user, 4), mine: false }  %>
+</div>

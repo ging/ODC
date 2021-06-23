@@ -302,6 +302,7 @@ en:
   landing:
     intro_new: "In the free educational platform of the Orange Foundation you will find courses and webinars adapted to your needs. Have fun learning with training prepared by specialists to face the challenges of this new digital era: 3D manufacturing, environment or responsible use of technology are just some examples of what you will discover."
     intro_old: "In the free educational platform of the Orange Foundation you will find courses and webinars adapted to your needs. Have fun learning with training prepared by specialists to face the challenges of this new digital era: 3D manufacturing, environment or responsible use of technology are just some examples of what you will discover."
+    others_recommended: "You may also like..."
     popular_courses: "Popular courses"
     popular_courses_intro: "These are the courses with more students in our catalog. If you are intersted in the details, do not hesitate in reviewing the details and enroll."
     popular_courses_week: "Popular courses this week"
@@ -353,6 +354,7 @@ en:
   profile:
     edit: "Edit profile"
     no_events: "There are not any events scheduled for this day"
+    recommended: "Recommended courses"
     your_courses_and_webinars: "Your courses and webinars"
   search:
     all: "All"

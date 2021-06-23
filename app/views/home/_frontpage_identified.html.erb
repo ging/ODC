@@ -24,3 +24,6 @@
 <div>
   <%= render partial: "courses/course_list_3", :locals => {title: t('landing.popular_webinars_week'), desc: t('landing.popular_webinars_week_intro'), courses: @top_webinars, button: t('landing.see_all'), button_link: "/webinars", link: "/webinars" }  %>
 </div>
+<div class="soft-background">
+  <%= render partial: "courses/course_list_4", :locals => {title: t('landing.others_recommended'), courses: RecommenderSystem.getRecommendCoursesForUser(current_user,4), mine: false }  %>
+</div>

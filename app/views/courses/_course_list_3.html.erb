@@ -3,9 +3,11 @@
 		<div class="col-xs-12 col-md-4 course-left-info">
 			<h2><span><%=title%></span></h2>
 	  		<p><%=desc%></p>
-	  		<a href="<%=link%>">
-				<button class="btn btn-secondary btn-outline-dark"><%=button%></button>
-		  	</a>
+			<%if defined?(button) %>
+		  		<a href="<%=link%>">
+					<button class="btn btn-secondary btn-outline-dark"><%=button%></button>
+			  	</a>
+		  	<%end%>
 	  		<br/>
 	  		<br/>
 		</div>

@@ -270,6 +270,7 @@ es:
   landing:
     intro_new: "En la plataforma educativa gratuita de la Fundación Orange encontrarás cursos y webinars adaptados a tus necesidades. Diviértete aprendiendo con formación preparada por especialistas para afrontar los retos de esta nueva era digital: fabricación 3D, medio ambiente o uso responsable de la tecnología son solo algunos ejemplos de lo que descubrirás."
     intro_old: "En la plataforma educativa gratuita de la Fundación Orange encontrarás cursos y webinars adaptados a tus necesidades. Diviértete aprendiendo con formación preparada por especialistas para afrontar los retos de esta nueva era digital: fabricación 3D, medio ambiente o uso responsable de la tecnología son solo algunos ejemplos de lo que descubrirás."
+    others_recommended: "También te puede interesar...."
     popular_courses: "Cursos populares"
     popular_courses_intro: "Estos son los cursos con más alumnos de nuestro catálogo ahora mismo. Si te interesa conocer cuáles son los más demandados no dudes en revisar los detalles y apúntate."
     popular_courses_week: "Cursos populares esta semana"
@@ -322,6 +323,7 @@ es:
   profile:
     edit: "Editar perfil"
     no_events: "No hay eventos programados para este día"
+    recommended: "Cursos recomendados"
     your_courses_and_webinars: "Tus cursos y webinars"
   search:
     all: "Todos"
