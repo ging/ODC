@@ -1,14 +1,11 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-12">
-			<div class="row search-row">
+			<div class="row search-row" style="padding-bottom: 0px;">
 				<div class="col-12 search-col">
 					<h1 class="d-none"><%=t("course.courses")%></h1>
-					<form class="custom-form" action="/search" autocomplete="off">
+					<form action="/search" autocomplete="off" id="search-form">
 						<span class="input input--hoshi <%=params[:q] && !params[:q].strip.empty? ? "input--filled" : ""%>">
-							<%if !params[:webinar].blank?%>
-								<input type="hidden" name="webinar" value="<%=params[:webinar]%>">
-							<%end%>
 							<input class="input__field input__field--hoshi" type="text" id="input-search" name="q" autocomplete="off" value="<%=params[:q]%>"/>
 							<button type="submit" class="btn btn-light search-icon">
 								<img src="/img/search.svg" class="search-icon-img"/>
@@ -19,41 +16,61 @@
 								</span>
 							</label>
 						</span>
+						<div class="row filter-row">
+							<div class="row">
+								<div class="filter-left">
+									<div class="filter-item">
+										<label for="category"><%=t("search.category")%></label>
+										<select name="category" id="category" class="form-control">
+											<option value=""><%=t("search.any")%></option>
+											<%= options_for_select(t('categories').map { |name,cat| [cat,name] } , params[:category]) %>
+										</select>
+									</div>
+									<div class="filter-item">
+										<label for="webinar"><%=t("search.type")%></label>
+										<select name="webinar" id="webinar" class="form-control">
+											<option value=""><%=t("search.any")%></option>
+											<%= options_for_select([[t("course.webinar"),true],[t("course.course"),false]] , params[:webinar]) %>
+
+										</select>
+									</div>
+									<div class="filter-item">
+										<label for="webinar"><%=t("search.available")%></label>
+										<select name="available" id="available" class="form-control">
+											<option value=""><%=t("search.any")%></option>
+											<%= options_for_select( [
+													[t("search.open"),true],
+													[t("search.closed"),false]
+												],params["available"]) %>
+
+										</select>
+									</div>
+									<%if !params[:teacher].blank?%>
+										<div class="filter-item">
+											<label for="">&nbsp;</label><br>
+											<div class="standalonetag btn btn-outline-dark" style="height: 40px;" id="teacher-filter">
+												<%=t("course.teacher.teacher")%>: <%=CourseTeacher.find(params[:teacher]).name%>
+												<span data-role="remove"></span>
+											</div>
+											<input type="hidden" name="teacher" id="teacher" value="<%=params[:teacher]%>">
+										</div>
+									<%end%>
+								</div>
+									<div class="filter-item">
+										<label for="sort_by"><%=t("search.sort_by")%></label>
+										<select name="sort_by" id="sort_by" class="form-control">
+											<%= options_for_select( [
+													[t("search.relevance"),""],
+													[t("course.date"),"date"]
+												],params["sort_by"]) %>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
 					</form>
 				</div>
 			</div>
-			<% if false %>
-			<div class="row filter-row">
-				<div class="row">
-						<form class="filter-locale" class="lang nav-item">
-							<%if !params[:webinar].blank?%>
-								<input type="hidden" name="webinar" value="<%=params[:webinar]%>">
-							<%end%>
-							<input type="hidden" name="q" value="<%=params[:q]%>"/>
-							<input type="hidden" name="sort_by" value="<%=params[:sort_by]%>"/>
-							<input name="card_lang" value="All" type="hidden"/>
-							<li class="nav-item <%= (!params[:card_lang].present? || params[:card_lang] == "All") ? "active":""%>">
-								<a class="nav-link"><%= t("search.all_languages")%>
-								</a>
-							</li>
-						</form>
-						<% I18n.available_locales.map(&:to_s).each do |lanCode| %>
-						<form class="filter-locale" class="lang nav-item">
-							<%if !params[:webinar].blank?%>
-								<input type="hidden" name="webinar" value="<%=params[:webinar]%>">
-							<%end%>
-							<input type="hidden" name="q" value="<%=params[:q]%>"/>
-							<input type="hidden" name="sort_by" value="<%=params[:sort_by]%>"/>
-							<input name="card_lang" value="<%=lanCode%>" type="hidden"/>
-							<li class="nav-item <%= params[:card_lang] == lanCode ? "active":""%>">
-								<a class="nav-link"><%= t("search."+lanCode) %>
-								</a>
-							</li>
-						</form>
-						<% end %>
-				</div>
-			</div>
-			<% end %>
 		</div>
 	</div>
 </div>
@@ -61,7 +78,7 @@
 	<div class="col-12">
 		<div class="container ">
 			<div class="row courses-row courses-search-results">
-				<% if @courses.length() > 0 %>
+				<% if defined?(@courses) and @courses.length() > 0 %>
 				<% @courses.each_with_index do |course, index| %>
 				<div class="col-xs-12 col-sm-6 col-lg-4 col-xl-3 col-course" style="position: relative;">
 					<%= render partial: "courses/course_card", :locals => {index: index, course: course}  %>

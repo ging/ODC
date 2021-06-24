@@ -215,6 +215,7 @@ ca:
       or: "o"
       reorder: "Arrossega per canviar d'ordre aquest professor"
       search: "Cerca un professor ja existent"
+      teacher: "Professor"
       twitter: "Nom d'usuari de Twitter (sense @)"
       upload: "Puja..."
     thumb: "Portada"
@@ -322,13 +323,22 @@ ca:
   search:
     all: "Tots"
     all_languages: "Tots els idiomes"
+    any: "Qualsevol"
+    category: "Category"
+    categories: "Categories"
     ca: "Català"
     en: "Anglès"
     es: "Espanyol"
     filter: "Filtrar resultats"
+    open: Obert
+    closed: Tancat
+    available: Disponibilitat
     next: "Següent"
     no_results: "No hi ha resultats"
     prev: "Anterior"
+    relevance: "Rellevància"
+    sort_by: Ordenar per
+    type: Tipus
     write: "Escriu aquí la teva cerca"
   terms:
     accept: Has d'acceptar els termes i condicions

@@ -50,6 +50,13 @@ $(function () {
     $(this).parents("form.filter-locale").submit();
   });
 
+
+  $("#search-form .filter-row input, #search-form .filter-row select").change(function(e){
+    $('#search-form').submit();
+  });
+  $("#search-form #teacher-filter").click(function(e){
+    $(this).hide();$('#teacher').val('');$('#search-form').submit();
+  });
   /******************************************* SEARCH *******************************************/
 
   /******************************************** DATE ********************************************/

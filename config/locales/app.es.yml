@@ -106,7 +106,7 @@ es:
     csv_list: "Lista de usuarios"
     date: "Fecha"
     download_enrollment_list: "Descarga lista de matriculados"
-    enrollment_date: "Fecha"
+    enrollment_date: "Fecha de matriculación"
     enrollment_period_future: "El periodo de matriculación no ha comenzado. Comienza el "
     enrollment_period_over: "El periodo de matriculación ha terminado"
     date_placeholder: "Fechas de celebración del curso"
@@ -220,6 +220,7 @@ es:
       or: "o"
       reorder: "Arrastra para cambiar de orden a este profesor"
       search: "Busca a un profesor ya existente"
+      teacher: "Profesor"
       twitter: "Nombre de usuario de Twitter (sin @)"
       upload: "Subir..."
     thumb: "Portada"
@@ -328,13 +329,22 @@ es:
   search:
     all: "Todos"
     all_languages: "Todos los idiomas"
+    any: "Cualquiera"
+    category: "Categoría"
+    categories: "Categorías"
     ca: "Catalán"
     en: "Inglés"
     es: "Español"
     filter: "Filtrar resultados"
+    open: Abierto
+    closed: Cerrado
+    available: Disponibilidad
     next: "Siguiente"
     no_results: "No hay resultados"
     prev: "Anterior"
+    relevance: "Relevancia"
+    sort_by: Ordenar por
+    type: Tipo
     write: "Escribe aquí tu búsqueda"
   terms:
     accept: Debes aceptar los términos y condiciones

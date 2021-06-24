@@ -14,14 +14,14 @@ class CoursesController < ApplicationController
     @courses = SearchSystem.search({:browse => true, :locale => I18n.locale.to_s, :webinar => false, :per_page => 24, :page => params[:page]})
 
     @searching = true
-    params[:webinar] = 0
+    params[:webinar] = "false"
   end
 
   # GET /webinars
   def webinars
     @courses = SearchSystem.search({:browse => true, :locale => I18n.locale.to_s, :webinar => true, :per_page => 24, :page => params[:page]})
     @searching = true
-    params[:webinar] = 1
+    params[:webinar] = "true"
 
     render "index"
   end

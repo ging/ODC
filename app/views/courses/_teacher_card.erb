@@ -5,7 +5,11 @@
 		<img src="<%=teacher_avatar_url%>" alt="">
 	</div>
 	<div class="teacher-info">
-		<p class="teacher-name"><%=teacher[:name]%></p>
+		<p class="teacher-name">
+			<a href="/search?teacher=<%=teacher[:id]%>">
+				<%=teacher[:name]%>
+			</a>
+		</p>
 		<p>
 			<%if !teacher[("position_"+pagelang).to_sym].blank?%>
 				<span class="teacher-position"><%=teacher[("position_"+pagelang).to_sym]%></span>

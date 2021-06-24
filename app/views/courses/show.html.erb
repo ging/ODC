@@ -85,7 +85,7 @@
 				</a>
 				<% if can? :destroy, @course %>
 					<%= link_to url_for(controller: "courses", action: :destroy, id: @course.id), method: :delete, data: { confirm: t('course.confirm_delete'), "ok-button": t('accept'), "cancel-button": t('cancel')}, class: 'text-right link-remove-course' do %>
-						<button  class="btn btn-secondary btn-inverse"><i class='fa fa-trash'></i></button>
+						<button class="btn btn-secondary btn-inverse"><i class='fa fa-trash'></i></button>
 					<% end %>
 				<% end %>
 				 </div>
@@ -304,7 +304,14 @@
 					<% end %>
 				</h3>
 				<%if (@course[:contents] and @course[:contents].length() > 0)%>
-					<ul class="content-list">
+					<% clen = 0 %>
+					<% @course[:contents].each do |section|%>
+						<% unless section[:topics].blank? %>
+							<% section[:topics].each do |topic|%> <%clen = clen + 1%><%end%>
+						<%end%>
+					<% end %>
+
+					<ul class="content-list <%if clen == 0%> empty-content <%end%>">
 						<% @course[:contents].each do |section|%>
 						<li class="content-section">
 							<span class="content-title"><%=section[:title]%></span>

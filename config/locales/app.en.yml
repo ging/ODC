@@ -253,6 +253,7 @@ en:
       or: "or"
       reorder: "Drag to change the order of this teacher"
       search: "Search for an existing teacher"
+      teacher: "Instructor"
       twitter: "Twitter username (without the @)"
       upload: "Upload..."
     thumb: "Cover picture"
@@ -359,13 +360,22 @@ en:
   search:
     all: "All"
     all_languages: "All languages"
+    any: "Any"
+    category: "Category"
+    categories: "Categories"
     ca: "Catalan"
     en: "English"
     es: "Spanish"
     filter: "Filter results"
     next: Next
     no_results: "No results"
+    open: Open
+    closed: Closed
+    available: Availability
     prev: Previous
+    relevance: "Relevance"
+    sort_by: Sort by
+    type: Type
     write: "Type here your search"
   terms:
     accept: You must accept the terms and conditions

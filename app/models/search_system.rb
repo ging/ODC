@@ -7,7 +7,7 @@ class SearchSystem
     return self.search_teachers(options) if options[:models] and options[:models].include?(CourseTeacher)
 
     if options[:query].blank? or options[:browse] == true
-      browse = true
+      browse = options[:browse]
       query = ""
     else
       browse = false
