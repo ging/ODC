@@ -86,6 +86,7 @@ es:
     all: Todo
     at: "a las"
     card_lang: "Idioma de la ficha"
+    closed: Cerrado
     coming_up: "Próximamente"
     confirm_delete: "¿Seguro que quieres borrar este curso/webinar?"
     contents: Contenidos

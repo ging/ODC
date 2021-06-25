@@ -63,7 +63,7 @@ class Course < ApplicationRecord
 	end
 
 	def is_enrollment_period?
-		return self.selfpaced == true if self.start_enrollment_date.blank? or self.end_enrollment_date.blank?
+		return self.selfpaced == true if (self.start_enrollment_date.blank? or self.end_enrollment_date.blank?)
 		tNow = Time.now
 		return ((tNow > self.start_enrollment_date) and (tNow < self.end_enrollment_date))
 	end

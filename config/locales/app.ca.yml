@@ -82,6 +82,7 @@ ca:
     add_new_topic: "Afegeix nou apartat"
     all: Tot
     at: "a les"
+    closed: Tancat
     coming_up: "Pròximament"
     confirm_delete: "N'estàs segur que vols eliminar aquest curs/webinari?"
     contents: Continguts

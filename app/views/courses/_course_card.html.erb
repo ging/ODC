@@ -3,7 +3,8 @@
 <%past = course[:end_date] && course[:end_date] < Time.now %>
 <%puts offset%>
 <%puts timezone%>
-<div class="card course <%if (defined? horizontal and horizontal == true)%>course_horizontal_summary<%end%> <%if past and !course[:webinar]%> past-course <%end%>" style="width: 100%;" id="course-<%=index%>">
+
+<div class="card course <%if (defined? horizontal and horizontal == true)%>course_horizontal_summary<%end%> <%if (past and !course[:webinar]) or (course[:selfpaced] and !course.is_enrollment_period?) %> past-course <%end%>" style="width: 100%;" id="course-<%=index%>">
 	<div class="card-img-container">
 		
 		<a href="/courses/<%=course[:id]%>">
@@ -28,7 +29,11 @@
 			<%end%>
 		<%else%>
 			<%if course[:selfpaced]%>
-				<span class="self-paced"><%=t("course.selfpaced").upcase%></span>
+				<%if course.is_enrollment_period?%>
+					<span class="self-paced"><%=t("course.selfpaced").upcase%></span>
+				<%else%>
+					<span class="self-paced"><%=t("course.closed").upcase%></span>
+				<%end%>
 			<%elsif course[:start_date] and course[:end_date]%>
 				<%=calculate_duration(course[:start_date],course[:end_date], false, offset, timezone)%> <%unless (!cookies()[:utc_offset].blank?)%>(Madrid)<%end%> 
 			<%else%>
