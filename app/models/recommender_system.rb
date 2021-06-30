@@ -28,7 +28,7 @@ class RecommenderSystem
     sIds = c.suggestions
     return [] if sIds.blank?
     sIds = sIds.reject{|s| idsToReject.include?(s[:id])} unless idsToReject.blank?
-    Course.find(sIds.map{|s| s[:id]}).first(2*n).sample(n)
+    Course.where(:id => sIds.map{|s| s[:id]}).first(2*n).sample(n)
   end
 
   def self.getSimilarCoursesInRealTime(c,n=10,idsToReject=[])
@@ -46,7 +46,7 @@ class RecommenderSystem
     sIds = ((webinar == false) ? u.course_suggestions : u.webinar_suggestions)
     return [] if sIds.blank?
     sIds = sIds.reject{|s| idsToReject.include?(s[:id])} unless idsToReject.blank?
-    Course.find(sIds.map{|s| s[:id]}).first(2*n).sample(n)
+    Course.where(:id => sIds.map{|s| s[:id]}).first(2*n).sample(n)
   end
 
   def self.getRecommendCoursesForUserInRealTime(u,n=10,webinar=false)
