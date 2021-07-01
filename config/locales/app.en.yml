@@ -124,6 +124,7 @@ en:
       nooc: "NOOC (Nano Open Online Course)"
       spoc: "SPOC (Small Private Online Course)"
       spooc: "SPOOC (Self-Paced Private Online Course)"
+    course: Course
     courses: Courses
     create: Create
     csv_courses_invalid: "Courses must be comma separated numbers"
@@ -272,6 +273,7 @@ en:
     video_placeholder: "Link to the intro video (Youtube)"
     visits: "Visits"
     votes: "votes"
+    webinar: "Webinar"
   email: 
     massive_email: "Massive email"
     massive_emails: "Massive emails"

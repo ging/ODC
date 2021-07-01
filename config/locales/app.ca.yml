@@ -87,6 +87,8 @@ ca:
     confirm_delete: "N'estàs segur que vols eliminar aquest curs/webinari?"
     contents: Continguts
     continue: Continua
+    course: Curs
+    courses: Cursos
     course_formats:
       moc: "MOC (Massive Online Course)"
       mooc: "MOOC (Massive Open Online Course)"
@@ -234,6 +236,7 @@ ca:
     video_placeholder: "Enllaç al vídeo d'introducció (Youtube)"
     visits: "Visites"
     votes: "vots"
+    webinar: "Webinar"
   email: 
     massive_email: "E-mail massiu"
     massive_emails: "E-mails massius"
