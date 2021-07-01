@@ -1,6 +1,7 @@
 ca:
   lang: ca
   about:
+    video_iframe: "https://www.youtube.com/embed/FNSRn09zS-s"
     title: "Quant a"
     contact_us: "Contacta'ns"
     email_us: "Si tens cap dubte o suggeriment, envia'ns un correu a:"

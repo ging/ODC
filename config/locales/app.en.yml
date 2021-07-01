@@ -31,6 +31,7 @@
 en:
   lang: en
   about:
+    video_iframe: "https://www.youtube.com/embed/_Er35Z2eULs"
     title: "About"
     contact_us: "Contact us"
     email_us: "If you have any question or suggestion please write to:"
