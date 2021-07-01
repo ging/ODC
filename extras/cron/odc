@@ -1,0 +1,20 @@
+# Cron configuration file for environments with Rbenv
+# This file should be in /etc/cron.d/odc
+# Set the appropriate users and paths for your environment
+SHELL=/bin/bash
+
+# Every hour (at minute 5)
+5 * * * * username export PATH=$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH && eval "$(rbenv init -)" && cd /u/apps/odc/current && bundle exec rake --silent cron:hourly RAILS_ENV=production
+
+# Daily (at 4:15am)
+15 4 * * * username export PATH=$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH && eval "$(rbenv init -)" && cd /u/apps/odc/current && bundle exec rake --silent cron:daily RAILS_ENV=production
+
+# Weekly (Sundays at 5:15am)
+15 5 * * 0 username export PATH=$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH && eval "$(rbenv init -)" && cd /u/apps/odc/current && bundle exec rake --silent cron:weekly RAILS_ENV=production
+
+# Monthly
+@monthly username export PATH=$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH && eval "$(rbenv init -)" && cd /u/apps/odc/current && bundle exec rake --silent cron:monthly RAILS_ENV=production
+
+# Sphinx (Search engine)
+# Index searches every 10 minutes
+*/10 * * * * username export PATH=$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH && eval "$(rbenv init -)" && cd /u/apps/odc/current && bundle exec rake --silent ts:index RAILS_ENV=production

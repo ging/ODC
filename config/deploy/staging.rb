@@ -76,3 +76,13 @@ set :branch, branch
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
+
+
+namespace(:deploy) do
+  after :finishing, :rebuild_sphinx do
+    on roles(:app) do
+      execute "cd #{current_path} && kill -9 `cat log/production.sphinx.pid` || true"
+      execute "export PATH=$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH && eval \"$(rbenv init -)\" && cd #{release_path} && bundle exec \"rake ts:rebuild RAILS_ENV=production\""
+    end
+  end
+end
